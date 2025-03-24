@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickBooks Payment History</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #f5f7f9;
+            max-width: 375px;
+            width: 100%;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: #2ca01c;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .back-button {
+            color: white;
+            background: none;
+            border: none;
+            font-size: 16px;
+            padding: 0;
+        }
+        
+        .title {
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .section-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 20px 16px 10px;
+            color: #333;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 4px;
+            margin: 10px 16px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .qb-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .qb-logo img {
+            height: 30px;
+        }
+        
+        .tab-container {
+            display: flex;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 16px;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            font-size: 14px;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+        }
+        
+        .tab.active {
+            color: #2ca01c;
+            border-bottom: 2px solid #2ca01c;
+            font-weight: 500;
+        }
+        
+        /* 优化的History样式 */
+        .payment-history-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+        
+        .payment-history-item:last-child {
+            border-bottom: none;
+        }
+        
+        .payment-history-left {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        
+        .payment-date {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .payment-description {
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .payment-status {
+            font-size: 13px;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .status-icon {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+            display: inline-block;
+        }
+        
+        .status-success {
+            color: #2ca01c;
+        }
+        
+        .status-success .status-icon {
+            background-color: #2ca01c;
+        }
+        
+        .status-pending {
+            color: #f5a623;
+        }
+        
+        .status-pending .status-icon {
+            background-color: #f5a623;
+        }
+        
+        .status-failed {
+            color: #e74c3c;
+        }
+        
+        .status-failed .status-icon {
+            background-color: #e74c3c;
+        }
+        
+        .payment-amount {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            text-align: right;
+            min-width: 70px;
+        }
+        
+        .payment-chevron {
+            color: #ccc;
+            margin-left: 8px;
+            font-size: 14px;
+        }
+        
+        .filter-bar {
+            display: flex;
+            overflow-x: auto;
+            padding: 12px 16px;
+            background-color: white;
+            margin-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .filter-chip {
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 13px;
+            margin-right: 8px;
+            white-space: nowrap;
+            background-color: #f0f0f0;
+            color: #666;
+        }
+        
+        .filter-chip.active {
+            background-color: #2ca01c;
+            color: white;
+        }
+        
+        .summary-card {
+            background-color: #2ca01c;
+            color: white;
+            border-radius: 4px;
+            margin: 10px 16px;
+            padding: 16px;
+        }
+        
+        .summary-title {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+        
+        .summary-amount {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .summary-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        .month-divider {
+            padding: 8px 16px;
+            background-color: #f5f7f9;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            position: sticky;
+            top: 53px;
+            z-index: 10;
+        }
+        
+        .search-bar {
+            padding: 8px 16px;
+            background-color: white;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #f5f5f5;
+            box-sizing: border-box;
+        }
+        
+        .search-input::placeholder {
+            color: #999;
+        }
+        
+        .button-primary {
+            background-color: #2ca01c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        
+        .empty-state {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .empty-icon {
+            font-size: 48px;
+            color: #ddd;
+            margin-bottom: 16px;
+        }
+        
+        .empty-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .empty-description {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="back-button">Back</button>
+        <div class="title">Payment History</div>
+    </div>
+    
+    <div class="tab-container">
+        <div class="tab" onclick="location.href='/Volumes/work/cmcm-code-item/222/quickbooks-auto-payment.html'">Setup</div>
+        <div class="tab active">History</div>
+        <div class="tab" onclick="location.href='/Volumes/work/cmcm-code-item/222/quickbooks-settings.html'">Settings</div>
+    </div>
+    
+    <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Search payments...">
+    </div>
+    
+    <div class="filter-bar">
+        <div class="filter-chip active">All</div>
+        <div class="filter-chip">Successful</div>
+        <div class="filter-chip">Pending</div>
+        <div class="filter-chip">Failed</div>
+        <div class="filter-chip">Last 30 days</div>
+        <div class="filter-chip">Last 90 days</div>
+    </div>
+    
+    <div class="summary-card">
+        <div class="summary-title">Total Payments (2023)</div>
+        <div class="summary-amount">$299.94</div>
+        <div class="summary-details">
+            <div>6 transactions</div>
+            <div>Last payment: Oct 15, 2023</div>
+        </div>
+    </div>
+    
+    <div class="section-title">Recent Payments</div>
+    
+    <div class="month-divider">October 2023</div>
+    <div class="card">
+        <div class="payment-history-item">
+            <div class="payment-history-left">
+                <div class="payment-date">Oct 15, 2023</div>
+                <div class="payment-description">QuickBooks Online Subscription</div>
+                <div class="payment-status status-success">
+                    <span class="status-icon"></span>
+                    Payment Successful
+                </div>
+            </div>
+            <div class="payment-amount">$49.99</div>
+            <div class="payment-chevron">›</div>
+        </div>
+    </div>
+    
+    <div class="month-divider">September 2023</div>
+    <div class="card">
+        <div class="payment-history-item">
+            <div class="payment-history-left">
+                <div class="payment-date">Sep 15, 2023</div>
+                <div class="payment-description">QuickBooks Online Subscription</div>
+                <div class="payment-status status-success">
+                    <span class="status-icon"></span>
+                    Payment Successful
+                </div>
+            </div>
+            <div class="payment-amount">$49.99</div>
+            <div class="payment-chevron">›</div>
+        </div>
+    </div>
+    
+    <div class="month-divider">August 2023</div>
+    <div class="card">
+        <div class="payment-history-item">
+            <div class="payment-history-left">
+                <div class="payment-date">Aug 15, 2023</div>
+                <div class="payment-description">QuickBooks Online Subscription</div>
+                <div class="payment-status status-success">
+                    <span class="status-icon"></span>
+                    Payment Successful
+                </div>
+            </div>
+            <div class="payment-amount">$49.99</div>
+            <div class="payment-chevron">›</div>
+        </div>
+    </div>
+    
+    <div class="month-divider">July 2023</div>
+    <div class="card">
+        <div class="payment-history-item">
+            <div class="payment-history-left">
+                <div class="payment-date">Jul 15, 2023</div>
+                <div class="payment-description">QuickBooks Online Subscription</div>
+                <div class="payment-status status-pending">
+                    <span class="status-icon"></span>
+                    Processing
+                </div>
+            </div>
+            <div class="payment-amount">$49.99</div>
+            <div class="payment-chevron">›</div>
+        </div>
+    </div>
+    
+    <div class="month-divider">June 2023</div>
+    <div class="card">
+        <div class="payment-history-item">
+            <div class="payment-history-left">
+                <div class="payment-date">Jun 15, 2023</div>
+                <div class="payment-description">QuickBooks Online Subscription</div>
+                <div class="payment-status status-failed">
+                    <span class="status-icon"></span>
+                    Failed - Insufficient Funds
+                </div>
+            </div>
+            <div class="payment-amount">$49.99</div>
+            <div class="payment-chevron">›</div>
+        </div>
+    </div>
+    
+    <div class="section-title">Upcoming Payments</div>
+    
+    <div class="card">
+        <div class="payment-history-item">
+            <div class="payment-history-left">
+                <div class="payment-date">Nov 15, 2023 (in 15 days)</div>
+                <div class="payment-description">QuickBooks Online Subscription</div>
+                <div class="payment-status">Scheduled</div>
+            </div>
+            <div class="payment-amount">$49.99</div>
+            <div class="payment-chevron">›</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <button class="button-primary">Download Payment History</button>
+    </div>
+    
+    <div class="qb-logo">
+        <img src="https://quickbooks.intuit.com/content/dam/intuit/quickbooks/i18n/en/US/logo/quickbooks-logo-intuit-brand-lockup-preferred.svg" alt="QuickBooks by Intuit">
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为筛选芯片添加点击事件
+            const filterChips = document.querySelectorAll('.filter-chip');
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', function() {
+                    filterChips.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    // 这里可以添加筛选逻辑
+                });
+            });
+            
+            // 为支付历史项添加点击事件
+            const historyItems = document.querySelectorAll('.payment-history-item');
+            historyItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 这里可以添加查看详情的逻辑
+                    console.log('View payment details');
+                });
+            });
+            
+            // 为返回按钮添加点击事件
+            const backButton = document.querySelector('.back-button');
+            backButton.addEventListener('click', function() {
+                window.history.back();
+            });
+        });
+    </script>
+</body>
+</html>

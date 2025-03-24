@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Notifications</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #f8f9fa;
+            max-width: 375px;
+            width: 100%;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .back-button {
+            color: #007aff;
+            background: none;
+            border: none;
+            font-size: 16px;
+            padding: 0;
+        }
+        
+        .title {
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .section-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 20px 16px 10px;
+            color: #333;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            margin: 10px 16px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .notification-list {
+            background-color: white;
+            border-radius: 10px;
+            margin: 10px 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .notification-item {
+            display: flex;
+            padding: 16px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+        
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e3f2fd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: #007aff;
+            font-size: 18px;
+        }
+        
+        .notification-icon.success {
+            background-color: #e8f5e9;
+            color: #4caf50;
+        }
+        
+        .notification-icon.pending {
+            background-color: #fff8e1;
+            color: #ffa000;
+        }
+        
+        .notification-icon.failed {
+            background-color: #ffebee;
+            color: #f44336;
+        }
+        
+        .notification-content {
+            flex: 1;
+        }
+        
+        .notification-title {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: #333;
+        }
+        
+        .notification-description {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .notification-time {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .notification-amount {
+            font-weight: 600;
+            font-size: 15px;
+            color: #333;
+            margin-left: 8px;
+            text-align: right;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            background-color: white;
+            padding: 8px 16px;
+            border-bottom: 1px solid #e0e0e0;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .filter-tab {
+            padding: 8px 16px;
+            margin-right: 8px;
+            border-radius: 16px;
+            font-size: 14px;
+            color: #666;
+            background-color: #f0f0f0;
+        }
+        
+        .filter-tab.active {
+            background-color: #007aff;
+            color: white;
+        }
+        
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .empty-icon {
+            font-size: 48px;
+            color: #ccc;
+            margin-bottom: 16px;
+        }
+        
+        .empty-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .empty-description {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+        
+        .status-badge.success {
+            background-color: #e8f5e9;
+            color: #4caf50;
+        }
+        
+        .status-badge.pending {
+            background-color: #fff8e1;
+            color: #ffa000;
+        }
+        
+        .status-badge.failed {
+            background-color: #ffebee;
+            color: #f44336;
+        }
+        
+        .summary-card {
+            background-color: #007aff;
+            color: white;
+            border-radius: 10px;
+            margin: 10px 16px;
+            padding: 16px;
+        }
+        
+        .summary-title {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+        
+        .summary-amount {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .summary-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="back-button">Back</button>
+        <div class="title">Payment History</div>
+    </div>
+    
+    <div class="filter-tabs">
+        <div class="filter-tab active">All</div>
+        <div class="filter-tab">Successful</div>
+        <div class="filter-tab">Pending</div>
+        <div class="filter-tab">Failed</div>
+    </div>
+    
+    <div class="summary-card">
+        <div class="summary-title">Total Payments (2023)</div>
+        <div class="summary-amount">$299.94</div>
+        <div class="summary-details">
+            <div>6 transactions</div>
+            <div>Last payment: Oct 15, 2023</div>
+        </div>
+    </div>
+    
+    <div class="section-title">Recent Payments</div>
+    
+    <div class="notification-list">
+        <div class="notification-item">
+            <div class="notification-icon success">✓</div>
+            <div class="notification-content">
+                <div class="notification-title">Payment Successful <span class="status-badge success">Completed</span></div>
+                <div class="notification-description">Monthly subscription payment to FSG Services</div>
+                <div class="notification-time">Oct 15, 2023 at 9:30 AM</div>
+            </div>
+            <div class="notification-amount">$49.99</div>
+        </div>
+        
+        <div class="notification-item">
+            <div class="notification-icon success">✓</div>
+            <div class="notification-content">
+                <div class="notification-title">Payment Successful <span class="status-badge success">Completed</span></div>
+                <div class="notification-description">Monthly subscription payment to FSG Services</div>
+                <div class="notification-time">Sep 15, 2023 at 9:32 AM</div>
+            </div>
+            <div class="notification-amount">$49.99</div>
+        </div>
+        
+        <div class="notification-item">
+            <div class="notification-icon success">✓</div>
+            <div class="notification-content">
+                <div class="notification-title">Payment Successful <span class="status-badge success">Completed</span></div>
+                <div class="notification-description">Monthly subscription payment to FSG Services</div>
+                <div class="notification-time">Aug 15, 2023 at 9:31 AM</div>
+            </div>
+            <div class="notification-amount">$49.99</div>
+        </div>
+        
+        <div class="notification-item">
+            <div class="notification-icon pending">⏱</div>
+            <div class="notification-content">
+                <div class="notification-title">Payment Processing <span class="status-badge pending">Pending</span></div>
+                <div class="notification-description">Monthly subscription payment to FSG Services</div>
+                <div class="notification-time">Jul 15, 2023 at 9:30 AM</div>
+            </div>
+            <div class="notification-amount">$49.99</div>
+        </div>
+        
+        <div class="notification-item">
+            <div class="notification-icon failed">✕</div>
+            <div class="notification-content">
+                <div class="notification-title">Payment Failed <span class="status-badge failed">Failed</span></div>
+                <div class="notification-description">Insufficient funds in your account</div>
+                <div class="notification-time">Jun 15, 2023 at 9:30 AM</div>
+            </div>
+            <div class="notification-amount">$49.99</div>
+        </div>
+        
+        <div class="notification-item">
+            <div class="notification-icon success">✓</div>
+            <div class="notification-content">
+                <div class="notification-title">Payment Successful <span class="status-badge success">Completed</span></div>
+                <div class="notification-description">Monthly subscription payment to FSG Services</div>
+                <div class="notification-time">May 15, 2023 at 9:30 AM</div>
+            </div>
+            <div class="notification-amount">$49.99</div>
+        </div>
+    </div>
+    
+    <div class="section-title">Upcoming Payments</div>
+    
+    <div class="notification-list">
+        <div class="notification-item">
+            <div class="notification-icon pending">📅</div>
+            <div class="notification-content">
+                <div class="notification-title">Scheduled Payment</div>
+                <div class="notification-description">Monthly subscription payment to FSG Services</div>
+                <div class="notification-time">Nov 15, 2023 (in 15 days)</div>
+            </div>
+            <div class="notification-amount">$49.99</div>
+        </div>
+    </div>
+</body>
+</html>

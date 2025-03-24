@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #f2f2f2;
+            max-width: 375px;
+            width: 100%;
+        }
+        
+        .header {
+            background-color: #4a90e2;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+        }
+        
+        .search-container {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            padding: 5px 10px;
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        
+        .search-icon {
+            margin-right: 5px;
+        }
+        
+        .search-input {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            width: 100%;
+        }
+        
+        .cancel-button {
+            color: white;
+            background: none;
+            border: none;
+            font-size: 16px;
+        }
+        
+        .segment-control {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+        
+        .segment-button {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+        
+        .segment-button.active {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        .segment-button:first-child {
+            border-radius: 5px 0 0 5px;
+        }
+        
+        .segment-button:last-child {
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 15px;
+            margin: 0;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .list-item {
+            padding: 15px;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .highlight {
+            background-color: #ffeb3b;
+            font-weight: bold;
+        }
+        
+        .item-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .item-subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .item-date {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .bottom-indicator {
+            width: 100px;
+            height: 5px;
+            background-color: #000;
+            border-radius: 3px;
+            margin: 10px auto;
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" value="123" placeholder="Search...">
+            <span class="clear-icon">✕</span>
+        </div>
+        <button class="cancel-button">Cancel</button>
+    </div>
+    
+    <div class="segment-control">
+        <button class="segment-button active">My records</button>
+        <button class="segment-button">All records</button>
+    </div>
+    
+    <h2 class="section-title">Accounts</h2>
+    <div class="list-item">
+        <div class="item-title"><span class="highlight">123</span></div>
+        <div class="item-subtitle">18850338821</div>
+    </div>
+    
+    <h2 class="section-title">Contacts</h2>
+    <div class="list-item">
+        <div class="item-title"><span class="highlight">123</span></div>
+        <div class="item-subtitle">-</div>
+    </div>
+    
+    <h2 class="section-title">Deals</h2>
+    <div class="list-item">
+        <div class="item-title">1346</div>
+        <div class="item-subtitle">Qualification</div>
+    </div>
+    
+    <h2 class="section-title">Meetings</h2>
+    <div class="list-item">
+        <div class="item-title"><span class="highlight">123</span></div>
+        <div class="item-date">Mar 3, 2025  07:00 PM</div>
+    </div>
+    
+    <h2 class="section-title">Calls</h2>
+    <div class="list-item">
+        <div class="item-title">Call scheduled with <span class="highlight">123</span></div>
+        <div class="item-date">Mar 22, 2025  02:19 AM</div>
+    </div>
+    
+    <h2 class="section-title">Notes</h2>
+    <div class="list-item">
+        <div class="item-title"><span class="highlight">123</span></div>
+        <div class="item-subtitle">287; j</div>
+    </div>
+    <div class="list-item">
+        <div class="item-title"><span class="highlight">123</span></div>
+        <div class="item-subtitle">-</div>
+    </div>
+    
+    <div class="bottom-indicator"></div>
+</body>
+</html>

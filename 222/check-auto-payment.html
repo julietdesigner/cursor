@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Check Payment Authorization</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #f8f9fa;
+            max-width: 375px;
+            width: 100%;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .back-button {
+            color: #007aff;
+            background: none;
+            border: none;
+            font-size: 16px;
+            padding: 0;
+        }
+        
+        .title {
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .section-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 20px 16px 10px;
+            color: #333;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            margin: 10px 16px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .form-input:focus {
+            border-color: #007aff;
+            outline: none;
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: white;
+            box-sizing: border-box;
+        }
+        
+        .info-text {
+            font-size: 13px;
+            color: #666;
+            margin-top: 6px;
+        }
+        
+        .button-primary {
+            background-color: #007aff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .button-secondary {
+            background-color: white;
+            color: #007aff;
+            border: 1px solid #007aff;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 12px;
+        }
+        
+        .agreement-box {
+            background-color: #f5f5f7;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+            max-height: 150px;
+            overflow-y: auto;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 16px;
+        }
+        
+        .checkbox {
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+        
+        .checkbox-label {
+            font-size: 14px;
+            color: #333;
+            flex: 1;
+        }
+        
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .secure-icon {
+            color: #4caf50;
+            margin-right: 6px;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .step {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 4px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .step.active {
+            background-color: #007aff;
+            color: white;
+        }
+        
+        .step-line {
+            height: 2px;
+            width: 20px;
+            background-color: #e0e0e0;
+            margin-top: 12px;
+        }
+        
+        .payment-summary {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .payment-summary:last-child {
+            border-bottom: none;
+            font-weight: 600;
+        }
+        
+        .forte-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .forte-logo img {
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="back-button">Cancel</button>
+        <div class="title">Setup Automatic Payments</div>
+    </div>
+    
+    <div class="step-indicator">
+        <div class="step active">1</div>
+        <div class="step-line"></div>
+        <div class="step">2</div>
+        <div class="step-line"></div>
+        <div class="step">3</div>
+    </div>
+    
+    <div class="section-title">Bank Account Information</div>
+    
+    <div class="card">
+        <div class="form-group">
+            <label class="form-label">Account Holder Name</label>
+            <input type="text" class="form-input" placeholder="Enter your full legal name">
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Bank Name</label>
+            <select class="form-select">
+                <option value="" disabled selected>Select your bank</option>
+                <option value="chase">Chase Bank</option>
+                <option value="bofa">Bank of America</option>
+                <option value="wells">Wells Fargo</option>
+                <option value="citi">Citibank</option>
+                <option value="other">Other Bank</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Account Type</label>
+            <select class="form-select">
+                <option value="checking">Checking Account</option>
+                <option value="savings">Savings Account</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Routing Number</label>
+            <input type="text" class="form-input" placeholder="9-digit number" maxlength="9">
+            <div class="info-text">Usually the first 9 digits at the bottom of your check</div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Account Number</label>
+            <input type="text" class="form-input" placeholder="Enter your account number">
+            <div class="info-text">Usually the set of numbers after the routing number</div>
+        </div>
+    </div>
+    
+    <div class="section-title">Payment Details</div>
+    
+    <div class="card">
+        <div class="payment-summary">
+            <div>Merchant</div>
+            <div>FSG Services</div>
+        </div>
+        <div class="payment-summary">
+            <div>Frequency</div>
+            <div>Monthly</div>
+        </div>
+        <div class="payment-summary">
+            <div>First Payment Date</div>
+            <div>Oct 15, 2023</div>
+        </div>
+        <div class="payment-summary">
+            <div>Payment Amount</div>
+            <div>$49.99</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="agreement-box">
+            By submitting this form, I authorize FSG Services and its payment processor, Forte Payment Systems, to debit the bank account indicated above for the amount specified. I understand this authorization will remain in effect until I cancel it in writing, and I agree to notify FSG Services in writing of any changes in my account information or termination of this authorization at least 15 days prior to the next billing date.
+            
+            I certify that I am an authorized user of this bank account and will not dispute the scheduled payments with my bank provided the transactions correspond to the terms indicated in this authorization form. I understand that if there are insufficient funds to cover the payment, a $25 return fee may be assessed.
+        </div>
+        
+        <div class="checkbox-container">
+            <input type="checkbox" class="checkbox" id="agree">
+            <label for="agree" class="checkbox-label">I have read and agree to the automatic payment authorization terms above</label>
+        </div>
+    </div>
+    
+    <div class="card">
+        <button class="button-primary">Continue</button>
+        <button class="button-secondary">Save and Complete Later</button>
+        
+        <div class="secure-badge">
+            <span class="secure-icon">🔒</span>
+            <span>Secured by Forte Payment Systems</span>
+        </div>
+        
+        <div class="forte-logo">
+            <img src="https://www.forte.net/wp-content/themes/forte/images/forte-logo.svg" alt="Forte Payment Systems">
+        </div>
+    </div>
+</body>
+</html>

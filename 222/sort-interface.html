@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Interface</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #f2f2f2;
+            max-width: 375px;
+            width: 100%;
+        }
+        
+        .header {
+            background-color: #4a90e2;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: normal;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .header-button {
+            color: white;
+            background: none;
+            border: none;
+            font-size: 16px;
+            padding: 0;
+        }
+        
+        .header-button.right {
+            opacity: 0.8;
+        }
+        
+        .section-title {
+            color: #666;
+            font-size: 14px;
+            padding: 10px 15px;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+        
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .checkmark {
+            color: #4a90e2;
+            font-weight: bold;
+        }
+        
+        .bottom-indicator {
+            width: 100px;
+            height: 5px;
+            background-color: #000;
+            border-radius: 3px;
+            margin: 10px auto;
+            opacity: 0.2;
+        }
+        
+        .sort-controls {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .sort-button {
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: #666;
+        }
+        
+        .selected-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .selected-item .checkmark {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="header-button">Cancel</button>
+        <h1 class="header-title">Sort by</h1>
+        <button class="header-button right">Done</button>
+    </div>
+    
+    <h2 class="section-title">Selected Field</h2>
+    <div class="list-item">
+        <div class="selected-item">
+            <div class="checkmark">✓</div>
+            <div>Created By</div>
+        </div>
+        <div class="sort-controls">
+            <button class="sort-button">↑</button>
+            <button class="sort-button">↓</button>
+        </div>
+    </div>
+    
+    <h2 class="section-title">Choose a Field</h2>
+    <div class="list-item">
+        <div>Modified Time</div>
+    </div>
+    <div class="list-item">
+        <div>Ownership</div>
+    </div>
+    <div class="list-item">
+        <div>Parent Account</div>
+    </div>
+    <div class="list-item">
+        <div>Phone</div>
+    </div>
+    <div class="list-item">
+        <div>Rating</div>
+    </div>
+    <div class="list-item">
+        <div>SIC Code</div>
+    </div>
+    <div class="list-item">
+        <div>Shipping City</div>
+    </div>
+    <div class="list-item">
+        <div>Shipping Code</div>
+    </div>
+    <div class="list-item">
+        <div>Shipping Country</div>
+    </div>
+    <div class="list-item">
+        <div>Shipping State</div>
+    </div>
+    <div class="list-item">
+        <div>Shipping Street</div>
+    </div>
+    <div class="list-item">
+        <div>Ticker Symbol</div>
+    </div>
+    <div class="list-item">
+        <div>Website</div>
+    </div>
+    
+    <div class="bottom-indicator"></div>
+</body>
+</html>

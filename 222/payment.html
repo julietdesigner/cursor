@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Payment - 1099 Form Application</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/payment.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNNDg4IDI1NkgzNTJWMTZjMC04LjgtNy4yLTE2LTE2LTE2aC0xNjBjLTguOCAwLTE2IDcuMi0xNiAxNnYyNDBIMjRjLTguOCAwLTE2IDcuMi0xNiAxNnYxNmMwIDguOCA3LjIgMTYgMTYgMTZoMTM2djE2OGMwIDguOCA3LjIgMTYgMTYgMTZoMTYwYzguOCAwIDE2LTcuMiAxNi0xNlYzMDRoMTM2YzguOCAwIDE2LTcuMiAxNi0xNnYtMTZjMC04LjgtNy4yLTE2LTE2LTE2em0tMjcyIDE2VjE2aDEyOHYyNTZIMjE2eiIvPjwvc3ZnPg==" alt="Tax Form Icon">
+            </div>
+            <h1 class="title">Order Payment</h1>
+            <p class="subtitle">Please select your payment method to complete your 1099 form application</p>
+        </div>
+        
+        <div class="order-summary">
+            <h2 class="section-title">Order Summary</h2>
+            <div class="order-details">
+                <div class="order-row">
+                    <span class="order-label">Form Type:</span>
+                    <span class="order-value" id="form-type-display">1099-NEC</span>
+                </div>
+                <div class="order-row">
+                    <span class="order-label">Tax Year:</span>
+                    <span class="order-value" id="tax-year-display">2023</span>
+                </div>
+                <div class="order-row">
+                    <span class="order-label">Recipient:</span>
+                    <span class="order-value" id="recipient-display">John Doe</span>
+                </div>
+                <div class="order-divider"></div>
+                <div class="order-row">
+                    <span class="order-label">Form Processing Fee:</span>
+                    <span class="order-value">$29.99</span>
+                </div>
+                <div class="order-row">
+                    <span class="order-label">E-Filing Fee:</span>
+                    <span class="order-value">$9.99</span>
+                </div>
+                <div class="order-row total">
+                    <span class="order-label">Total:</span>
+                    <span class="order-value" id="total-amount">$39.98</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="payment-section">
+            <h2 class="section-title">Select Payment Method</h2>
+            
+            <div class="payment-methods">
+                <div class="payment-method-selector">
+                    <div class="payment-option" data-payment-method="credit-card">
+                        <div class="payment-option-radio">
+                            <input type="radio" id="credit-card-option" name="payment-method" checked>
+                            <label for="credit-card-option"></label>
+                        </div>
+                        <div class="payment-option-icon">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1NzYgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNNTI4IDMySDQ4QzIxLjUgMzIgMCA1My41IDAgODB2MzUyYzAgMjYuNSAyMS41IDQ4IDQ4IDQ4aDQ4MGMyNi41IDAgNDgtMjEuNSA0OC00OFY4MGMwLTI2LjUtMjEuNS00OC00OC00OHpNNDggNDAwVjgwaDQ4MHYzMjBINDh6bTMyLTIzNmMwLTYuNi01LjQtMTItMTItMTJzLTEyIDUuNC0xMiAxMnY1NmMwIDYuNiA1LjQgMTIgMTIgMTJzMTItNS40IDEyLTEydi01NnptOTYgMGMwLTYuNi01LjQtMTItMTItMTJzLTEyIDUuNC0xMiAxMnY1NmMwIDYuNiA1LjQgMTIgMTIgMTJzMTItNS40IDEyLTEydi01NnptOTYgMGMwLTYuNi01LjQtMTItMTItMTJzLTEyIDUuNC0xMiAxMnY1NmMwIDYuNiA1LjQgMTIgMTIgMTJzMTItNS40IDEyLTEydi01NnoiLz48L3N2Zz4=" alt="Credit Card Icon">
+                        </div>
+                        <div class="payment-option-info">
+                            <span class="payment-option-title">Credit Card Payment</span>
+                            <span class="payment-option-desc">Visa, Mastercard, American Express, and Discover accepted</span>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option" data-payment-method="check">
+                        <div class="payment-option-radio">
+                            <input type="radio" id="check-option" name="payment-method">
+                            <label for="check-option"></label>
+                        </div>
+                        <div class="payment-option-icon">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNMCA0NDhWNjRDMCAyOC42NSAyOC42NSAwIDY0IDBIMTI4QzEyOCAwIDE2OCAzMiAxNzYgMzJIMzM2QzM0NCAzMiAzODQgMCAzODQgMEg0NDhDNDgzLjMgMCA1MTIgMjguNjUgNTEyIDY0VjQ0OEMxNTIgNDQ4IDAgNDQ4IDAgNDQ4ek02NCA2NEMyOC42NSA2NCAwIDkyLjY1IDAgMTI4VjM4NEMwIDQxOS4zIDI4LjY1IDQ0OCA2NCA0NDhINDQ4QzQ4My4zIDQ0OCA1MTIgNDE5LjMgNTEyIDM4NFYxMjhDNTEyIDkyLjY1IDQ4My4zIDY0IDQ0OCA2NEg2NHpNMTI4IDI0MEMxMjggMjI2LjcgMTM4LjcgMjE2IDE1MiAyMTZIMzYwQzM3My4zIDIxNiAzODQgMjI2LjcgMzg0IDI0MEMzODQgMjUzLjMgMzczLjMgMjY0IDM2MCAyNjRIMTUyQzEzOC43IDI2NCAxMjggMjUzLjMgMTI4IDI0MHoiLz48L3N2Zz4=" alt="Check Icon">
+                        </div>
+                        <div class="payment-option-info">
+                            <span class="payment-option-title">Check Payment</span>
+                            <span class="payment-option-desc">Mail a check to our office address</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Credit Card Payment Form -->
+                <div class="payment-form" id="credit-card-form">
+                    <div class="form-group">
+                        <label class="form-label required-field">持卡人姓名</label>
+                        <input type="text" class="form-input" id="card-holder-name" placeholder="与卡片上的姓名完全一致" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required-field">卡号</label>
+                        <input type="text" class="form-input" id="card-number" placeholder="XXXX XXXX XXXX XXXX" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label required-field">有效期</label>
+                                <div class="expiry-inputs">
+                                    <input type="text" class="form-input" id="expiry-month" placeholder="MM" maxlength="2" required>
+                                    <span class="expiry-separator">/</span>
+                                    <input type="text" class="form-input" id="expiry-year" placeholder="YY" maxlength="2" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label required-field">
+                                    安全码 (CVV)
+                                    <div class="tooltip">
+                                        <span class="info-icon">i</span>
+                                        <span class="tooltip-text">3或4位数字，通常位于卡片背面</span>
+                                    </div>
+                                </label>
+                                <input type="text" class="form-input" id="cvv" placeholder="XXX" maxlength="4" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required-field">账单地址</label>
+                        <input type="text" class="form-input" id="billing-address" placeholder="街道地址" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label required-field">城市</label>
+                                <input type="text" class="form-input" id="billing-city" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label required-field">州/省</label>
+                                <input type="text" class="form-input" id="billing-state" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label required-field">邮政编码</label>
+                                <input type="text" class="form-input" id="billing-zip" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 支票支付说明 -->
+                <div class="payment-form" id="check-form" style="display: none;">
+                    <div class="check-instructions">
+                        <h3>支票支付说明</h3>
+                        <p>请按照以下步骤完成支票支付：</p>
+                        <ol>
+                            <li>请将支票金额填写为 <strong id="check-amount">$39.98</strong></li>
+                            <li>支票抬头请写为：<strong>1099表格申请服务</strong></li>
+                            <li>在支票备注栏写明您的订单号：<strong id="order-number">ORD-2023-12345</strong></li>
+                            <li>请将支票邮寄至以下地址：
+                                <div class="mailing-address">
+                                    1099表格申请服务<br>
+                                    财务部收<br>
+                                    北京市朝阳区建国路88号<br>
+                                    邮编：100022
+                                </div>
+                            </li>
+                            <li>支票处理通常需要5-7个工作日。收到支票并确认后，我们将通过电子邮件通知您。</li>
+                        </ol>
+                        
+                        <div class="form-note">
+                            <strong>重要提示：</strong> 请确保您的支票上包含正确的金额和订单号，以便我们能够及时处理您的付款。
+                        </div>
+                        
+                        <div class="check-confirmation">
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" class="checkbox-input" id="check-confirm" required>
+                                    我确认我将按照上述说明邮寄支票，并了解我的订单将在收到支票并确认后处理。
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 安全支付提示 -->
+                <div class="security-info">
+                    <div class="security-icon">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem02MS44LTEwNC40bC04NC45LTYxLjdjLTMuMS0yLjMtNC45LTUuOS00LjktOS43VjExNmMwLTYuNiA1LjQtMTIgMTItMTJoMzJjNi42IDAgMTIgNS40IDEyIDEydjE0MS43bDY2LjggNDguNmM1LjQgMy45IDYuNSAxMS40IDIuNiAxNi44TDMzNC42IDM0OWMtMy45IDUuMy0xMS40IDYuNS0xNi44IDIuNnoiLz48L3N2Zz4=" alt="安全图标">
+                    </div>
+                    <div class="security-text">
+                        <h3>安全支付保障</h3>
+                        <p>我们使用行业标准的加密技术保护您的支付信息。您的信用卡详情不会被存储在我们的服务器上。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <a href="/Volumes/work/cmcm-code-item/222/1099-form-application.html" class="btn btn-back">返回表单</a>
+                <button type="button" class="btn btn-next" id="complete-payment">完成支付</button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 1099表格申请服务 | 所有权利保留</p>
+            <p>本服务仅用于协助准备1099表格，不提供税务建议。请咨询专业税务顾问获取具体税务建议。</p>
+            
+            <div class="security-badge">
+                <div class="badge">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem02MS44LTEwNC40bC04NC45LTYxLjdjLTMuMS0yLjMtNC45LTUuOS00LjktOS43VjExNmMwLTYuNiA1LjQtMTIgMTItMTJoMzJjNi42IDAgMTIgNS40IDEyIDEydjE0MS43bDY2LjggNDguNmM1LjQgMy45IDYuNSAxMS40IDIuNiAxNi44TDMzNC42IDM0OWMtMy45IDUuMy0xMS40IDYuNS0xNi44IDIuNnoiLz48L3N2Zz4=" alt="安全图标">
+                    <span>安全加密</span>
+                </div>
+                <div class="badge">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNNDY2LjUgODMuN2wtMTkyLTgwYS40OC40OCAwIDAgMC0uMzUgMGwtMTkyIDgwQzgyLjIgODMuOSA4MiA4NCA4MiA4NHY4MGMwIDguOCA3LjIgMTYgMTYgMTZoNDBjOC44IDAgMTYtNy4yIDE2LTE2di00MGgxMHY0MGMwIDguOCA3LjIgMTYgMTYgMTZoNDBjOC44IDAgMTYtNy4yIDE2LTE2di00MGgxMHY0MGMwIDguOCA3LjIgMTYgMTYgMTZoNDBjOC44IDAgMTYtNy4yIDE2LTE2Vjg0YzAtLjEtLjEtLjItLjUtLjN6Ii8+PC9zdmc+" alt="安全认证图标">
+                    <span>安全认证</span>
+                </div>
+                <div class="badge">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNMjU2IDhDMTE5LjA0MyA4IDggMTE5LjA4MyA4IDI1NmMwIDEzNi45OTcgMTExLjA0MyAyNDggMjQ4IDI0OHMyNDgtMTExLjAwMyAyNDgtMjQ4QzUwNCAxMTkuMDQzIDM5Mi45NTcgOCAyNTYgOHptMTY4LjExOCAxNzMuOGwtMTYwIDIyNGMtOS4xMDEgMTIuNzUtMjYuODQzIDE2LjAzLTQwLjEwMSA3LjI5OWwtOTYtNjRjLTEyLjc1LTguNTAxLTE2LjAzLTI2LjA0My03LjI5OS0zOS4xMDFzMjYuMDQzLTE2LjAzIDM5LjEwMS03LjI5OWw3MS4wNTkgNDcuMzc0IDE0NS4wMjItMjAzLjAzYzguNzQ5LTEyLjI1IDI1Ljk5My0xNS4wNDkgMzguMjQxLTYuMyAxMi4yNSA4Ljc1IDE1LjA0OSAyNS45OTMgNi4zIDM4LjI0MXoiLz48L3N2Zz4=" alt="验证图标">
+                    <span>数据验证</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/payment.js"></script>
+</body>
+</html>

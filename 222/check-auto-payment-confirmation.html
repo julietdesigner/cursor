@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Payment Confirmation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #f8f9fa;
+            max-width: 375px;
+            width: 100%;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .back-button {
+            color: #007aff;
+            background: none;
+            border: none;
+            font-size: 16px;
+            padding: 0;
+        }
+        
+        .title {
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .section-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 20px 16px 10px;
+            color: #333;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            margin: 10px 16px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .success-icon {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .success-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #4caf50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+        }
+        
+        .success-message {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .success-description {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+        
+        .payment-summary {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .payment-summary:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-label {
+            color: #666;
+            font-size: 15px;
+        }
+        
+        .summary-value {
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .account-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .bank-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: #666;
+            font-size: 20px;
+        }
+        
+        .account-details {
+            flex: 1;
+        }
+        
+        .bank-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+        
+        .account-number {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            background-color: #e8f5e9;
+            color: #4caf50;
+        }
+        
+        .button-primary {
+            background-color: #007aff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .button-secondary {
+            background-color: white;
+            color: #007aff;
+            border: 1px solid #007aff;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 12px;
+        }
+        
+        .next-payment {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+        }
+        
+        .next-payment-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .next-payment-date {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .forte-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0 10px;
+        }
+        
+        .forte-logo img {
+            height: 24px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="back-button">Back</button>
+        <div class="title">Automatic Payments</div>
+    </div>
+    
+    <div class="success-icon">
+        <div class="success-circle">✓</div>
+    </div>
+    
+    <div class="success-message">Automatic Payments Enabled</div>
+    <div class="success-description">Your bank account has been successfully linked and automatic payments are now active</div>
+    
+    <div class="section-title">Payment Method</div>
+    <div class="card">
+        <div class="account-info">
+            <div class="bank-icon">🏦</div>
+            <div class="account-details">
+                <div class="bank-name">Chase Bank</div>
+                <div class="account-number">Checking ••••6789</div>
+            </div>
+            <div class="status-badge">Active</div>
+        </div>
+        
+        <div class="next-payment">
+            <div class="next-payment-title">Next Payment</div>
+            <div class="next-payment-date">Oct 15, 2023 - $49.99</div>
+        </div>
+    </div>
+    
+    <div class="section-title">Payment Schedule</div>
+    <div class="card">
+        <div class="payment-summary">
+            <div class="summary-label">Frequency</div>
+            <div class="summary-value">Monthly</div>
+        </div>
+        <div class="payment-summary">
+            <div class="summary-label">Payment Amount</div>
+            <div class="summary-value">$49.99</div>
+        </div>
+        <div class="payment-summary">
+            <div class="summary-label">First Payment</div>
+            <div class="summary-value">Oct 15, 2023</div>
+        </div>
+        <div class="payment-summary">
+            <div class="summary-label">Merchant</div>
+            <div class="summary-value">FSG Services</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <button class="button-primary">Manage Payment Settings</button>
+        <button class="button-secondary">View Payment History</button>
+    </div>
+    
+    <div class="forte-logo">
+        <img src="https://www.forte.net/wp-content/themes/forte/images/forte-logo.svg" alt="Forte Payment Systems">
+    </div>
+</body>
+</html>

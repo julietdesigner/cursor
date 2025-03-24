@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Invoice</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #f2f2f2;
+            max-width: 375px;
+            width: 100%;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .back-button {
+            color: #007aff;
+            background: none;
+            border: none;
+            font-size: 28px;
+            padding: 0;
+            font-weight: 300;
+            line-height: 1;
+        }
+        
+        .title {
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .save-button {
+            color: #007aff;
+            background: none;
+            border: none;
+            font-size: 17px;
+            padding: 0;
+            font-weight: 400;
+        }
+        
+        .section-title {
+            color: #8e8e93;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 16px 16px 8px;
+            margin: 0;
+            background-color: #f2f2f2;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-container {
+            background-color: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 16px 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .form-row:last-child {
+            border-bottom: none;
+        }
+        
+        .form-label {
+            font-size: 17px;
+            color: #000;
+        }
+        
+        .form-label.highlight {
+            color: #ff3b30;
+        }
+        
+        .form-value {
+            color: #007aff;
+            text-align: right;
+            display: flex;
+            align-items: center;
+            font-size: 17px;
+        }
+        
+        .form-value.gray {
+            color: #8e8e93;
+        }
+        
+        .chevron {
+            margin-left: 8px;
+            font-size: 16px;
+            color: #c7c7cc;
+        }
+        
+        .settings-icon {
+            width: 24px;
+            height: 24px;
+            margin-left: 8px;
+            color: #8e8e93;
+        }
+        
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 17px;
+            margin: 0;
+            resize: none;
+            min-height: 100px;
+            box-sizing: border-box;
+        }
+        
+        .payment-container {
+            padding: 0;
+        }
+        
+        .payment-gateway {
+            background-color: #e1f5fe;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .payment-header {
+            display: flex;
+            margin-bottom: 8px;
+            align-items: flex-start;
+        }
+        
+        .payment-content {
+            margin-left: 16px;
+        }
+        
+        .payment-title {
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 17px;
+            color: #000;
+        }
+        
+        .payment-description {
+            color: #333;
+            font-size: 15px;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        
+        .setup-button {
+            color: #007aff;
+            font-weight: 500;
+            font-size: 15px;
+            margin-top: 4px;
+        }
+        
+        .icon-container {
+            width: 30px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .payment-icon {
+            color: #007aff;
+            font-size: 30px;
+        }
+        
+        .pdf-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .pdf-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+        }
+        
+        .attachment-icon {
+            color: #007aff;
+            font-size: 24px;
+            margin-right: 12px;
+        }
+        
+        .notes-container {
+            padding: 16px;
+        }
+        
+        .subject-input {
+            min-height: 44px;
+            margin: 8px 16px 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="back-button">‹</button>
+        <div class="title">Edit Invoice</div>
+        <button class="save-button">Save</button>
+    </div>
+    
+    <div class="section-title">INVOICE DETAILS</div>
+    <div class="form-container">
+        <div class="form-row">
+            <div class="form-label highlight">Invoice Date</div>
+            <div class="form-value">09 Mar 2025 <span class="chevron">›</span></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Terms</div>
+            <div class="form-value">Due On Receipt <span class="chevron">›</span></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Due Date</div>
+            <div class="form-value">09 Mar 2025 <span class="chevron">›</span></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label highlight">Invoice#</div>
+            <div class="form-value">INV-000001 <svg class="settings-icon" viewBox="0 0 24 24"><path fill="#8e8e93" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"></path></svg></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Order#</div>
+            <div class="form-value gray">Tap to Enter</div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Salesperson</div>
+            <div class="form-value gray">Tap to Select <span class="chevron">›</span></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Subject</div>
+        </div>
+    </div>
+    <input type="text" class="text-input subject-input">
+    
+    <div class="section-title">PAYMENT GATEWAYS</div>
+    <div class="form-container payment-container">
+        <div class="payment-gateway">
+            <div class="payment-header">
+                <div class="icon-container">
+                    <span class="payment-icon">↑</span>
+                </div>
+                <div class="payment-content">
+                    <div class="payment-title">Receive Payments Online</div>
+                    <div class="payment-description">Set up a payment gateway and allow customers to make instant payments</div>
+                    <div class="setup-button">Setup Now</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section-title">Customer Notes</div>
+    <div class="form-container">
+        <div class="notes-container">
+            <textarea class="text-input">Thanks for your business.</textarea>
+        </div>
+    </div>
+    
+    <div class="section-title">Terms and Conditions</div>
+    <div class="form-container">
+        <div class="notes-container">
+            <textarea class="text-input"></textarea>
+        </div>
+    </div>
+    
+    <div class="form-container">
+        <div class="form-row">
+            <div class="pdf-container">
+                <svg class="pdf-icon" viewBox="0 0 24 24"><path fill="#ff3b30" d="M20,2H8C6.9,2 6,2.9 6,4V16C6,17.1 6.9,18 8,18H20C21.1,18 22,17.1 22,16V4C22,2.9 21.1,2 20,2M20,16H8V4H20V16M4,6H2V20C2,21.1 2.9,22 4,22H18V20H4V6M16,12V9C16,8.4 15.6,8 15,8H13V13H15C15.6,13 16,12.6 16,12Z"></path></svg>
+                <div class="form-label">PDF Template</div>
+            </div>
+            <div class="form-value">Standard Template <span class="chevron">›</span></div>
+        </div>
+    </div>
+    
+    <div class="form-container">
+        <div class="form-row">
+            <div class="pdf-container">
+                <svg class="attachment-icon" viewBox="0 0 24 24"><path fill="#007aff" d="M16.5,6V17.5A4,4 0 0,1 12.5,21.5A4,4 0 0,1 8.5,17.5V5A2.5,2.5 0 0,1 11,2.5A2.5,2.5 0 0,1 13.5,5V15.5A1,1 0 0,1 12.5,16.5A1,1 0 0,1 11.5,15.5V6H10V15.5A2.5,2.5 0 0,0 12.5,18A2.5,2.5 0 0,0 15,15.5V5A4,4 0 0,0 11,1A4,4 0 0,0 7,5V17.5A5.5,5.5 0 0,0 12.5,23A5.5,5.5 0 0,0 18,17.5V6H16.5Z"></path></svg>
+                <div class="form-label">Attachments</div>
+            </div>
+            <div class="form-value gray">Tap to Select <span class="chevron">›</span></div>
+        </div>
+    </div>
+</body>
+</html>

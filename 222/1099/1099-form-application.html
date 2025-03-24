@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1099表格申请</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNNDg4IDI1NkgzNTJWMTZjMC04LjgtNy4yLTE2LTE2LTE2aC0xNjBjLTguOCAwLTE2IDcuMi0xNiAxNnYyNDBIMjRjLTguOCAwLTE2IDcuMi0xNiAxNnYxNmMwIDguOCA3LjIgMTYgMTYgMTZoMTM2djE2OGMwIDguOCA3LjIgMTYgMTYgMTZoMTYwYzguOCAwIDE2LTcuMiAxNi0xNlYzMDRoMTM2YzguOCAwIDE2LTcuMiAxNi0xNnYtMTZjMC04LjgtNy4yLTE2LTE2LTE2em0tMjcyIDE2VjE2aDEyOHYyNTZIMjE2eiIvPjwvc3ZnPg==" alt="税表图标">
+            </div>
+            <h1 class="title">1099表格申请</h1>
+            <p class="subtitle">请填写以下信息以开始您的1099表格申报</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <div class="progress-steps">
+                <div class="step active">1. 基本信息</div>
+                <div class="step">2. 付款人信息</div>
+                <div class="step">3. 收款人信息</div>
+                <div class="step">4. 付款详情</div>
+                <div class="step">5. 确认提交</div>
+            </div>
+        </div>
+        
+        <form id="1099-application-form">
+            <!-- 表单内容保持不变 -->
+            <!-- 第一部分：基本信息 -->
+            <div class="form-section">
+                <h2 class="section-title">选择税务年度和表格类型</h2>
+                
+                <div class="form-group">
+                    <label class="form-label required-field">税务年度</label>
+                    <div class="tax-year-selector">
+                        <div class="tax-year-option selected" data-year="2023">
+                            <span class="tax-year-label">2023年</span>
+                            <span class="tax-year-desc">当前税务年度</span>
+                        </div>
+                        <div class="tax-year-option" data-year="2022">
+                            <span class="tax-year-label">2022年</span>
+                            <span class="tax-year-desc">上一税务年度</span>
+                        </div>
+                        <div class="tax-year-option" data-year="2021">
+                            <span class="tax-year-label">2021年</span>
+                            <span class="tax-year-desc">往年申报</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required-field">表格类型</label>
+                    <div class="form-type-selector">
+                        <div class="form-type-option selected" data-form-type="1099-NEC">
+                            <span class="form-type-name">1099-NEC</span>
+                            <span class="form-type-desc">非雇员报酬</span>
+                        </div>
+                        <div class="form-type-option" data-form-type="1099-MISC">
+                            <span class="form-type-name">1099-MISC</span>
+                            <span class="form-type-desc">杂项收入</span>
+                        </div>
+                        <div class="form-type-option" data-form-type="1099-DIV">
+                            <span class="form-type-name">1099-DIV</span>
+                            <span class="form-type-desc">股息和分配</span>
+                        </div>
+                        <div class="form-type-option" data-form-type="1099-INT">
+                            <span class="form-type-name">1099-INT</span>
+                            <span class="form-type-desc">利息收入</span>
+                        </div>
+                    </div>
+                    <div class="form-help">选择适合您情况的表格类型。如果不确定，请咨询税务专业人士。</div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">备注（可选）</label>
+                    <textarea class="form-input" id="form-notes" placeholder="添加任何相关备注..."></textarea>
+                </div>
+            </div>
+            
+            <!-- 第二部分：付款人信息 -->
+            <div class="form-section">
+                <h2 class="section-title">付款人信息</h2>
+                
+                <div class="form-group">
+                    <label class="form-label required-field">付款人类型</label>
+                    <select class="form-select" id="payer-type" required>
+                        <option value="">-- 请选择 --</option>
+                        <option value="individual">个人</option>
+                        <option value="business">企业</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required-field">付款人名称</label>
+                    <input type="text" class="form-input" id="payer-name" placeholder="企业名称或个人全名" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required-field">
+                        纳税人识别号 (TIN)
+                        <div class="tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="tooltip-text">对于企业，这通常是雇主识别号(EIN)。对于个人，这通常是社会安全号码(SSN)。</span>
+                        </div>
+                    </label>
+                    <input type="text" class="form-input" id="payer-tin" placeholder="XX-XXXXXXX (EIN) 或 XXX-XX-XXXX (SSN)" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required-field">地址</label>
+                    <input type="text" class="form-input" id="payer-address" placeholder="街道地址" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label required-field">城市</label>
+                            <input type="text" class="form-input" id="payer-city" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label required-field">州/省</label>
+                            <input type="text" class="form-input" id="payer-state" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label required-field">邮政编码</label>
+                            <input type="text" class="form-input" id="payer-zip" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required-field">电话号码</label>
+                    <input type="tel" class="form-input" id="payer-phone" placeholder="(XXX) XXX-XXXX" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">电子邮件</label>
+                    <input type="email" class="form-input" id="payer-email" placeholder="example@domain.com">
+                </div>
+            </div>
+            
+            <!-- 第三部分：收款人信息 -->
+            <div class="form-section">
+                <h2 class="section-title">收款人信息</h2>
+                
+                <div class="form-group">
+                    <label class="form-label required-field">收款人类型</label>
+                    <select class="form-select" id="recipient-type" required>
+                        <option value="">-- 请选择 --</option>
+                        <option value="individual">个人</option>
+                        <option value="business">企业</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required-field">收款人名称</label>
+                    <input type="text" class="form-input" id="recipient-name" placeholder="企业名称或个人全名" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required-field">
+                        纳税人识别号 (TIN)
+                        <div class="tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="tooltip-text">对于企业，这通常是雇主识别号(EIN)。对于个人，这通常是社会安全号码(SSN)。</span>
+                        </div>
+                    </label>
+                    <input type="text" class="form-input" id="recipient-tin" placeholder="XX-XXXXXXX (EIN) 或 XXX-XX-XXXX (SSN)" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required-field">地址</label>
+                    <input type="text" class="form-input" id="recipient-address" placeholder="街道地址" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label required-field">城市</label>
+                            <input type="text" class="form-input" id="recipient-city" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label required-field">州/省</label>
+                            <input type="text" class="form-input" id="recipient-state" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label required-field">邮政编码</label>
+                            <input type="text" class="form-input" id="recipient-zip" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">电子邮件</label>
+                    <input type="email" class="form-input" id="recipient-email" placeholder="example@domain.com">
+                </div>
+            </div>
+            
+            <!-- 第四部分：付款详情 -->
+            <div class="form-section">
+                <h2 class="section-title">付款详情</h2>
+                
+                <div id="nec-payment-section">
+                    <div class="form-group">
+                        <label class="form-label required-field">非雇员报酬总额</label>
+                        <div class="form-input-group">
+                            <span class="input-prefix">$</span>
+                            <input type="text" class="form-input" id="nec-payment-amount" placeholder="0.00" required>
+                        </div>
+                        <div class="form-help">在税务年度内支付给收款人的总金额</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">联邦所得税预扣金额</label>
+                    <div class="form-input-group">
+                        <span class="input-prefix">$</span>
+                        <input type="text" class="form-input" id="federal-tax-withheld" placeholder="0.00">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required-field">付款年度</label>
+                    <input type="text" class="form-input" id="payment-year" value="2023" readonly>
+                    <div class="form-help">这是您在第一步选择的税务年度</div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">账户号码（可选）</label>
+                    <input type="text" class="form-input" id="account-number" placeholder="用于识别收款人的账户号码">
+                    <div class="form-help">如果您有多个收款人，此字段可帮助您区分不同账户</div>
+                </div>
+            </div>
+            
+            <!-- 第五部分：确认提交 -->
+            <div class="form-section">
+                <h2 class="section-title">确认提交</h2>
+                
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="checkbox-input" id="confirm-accuracy" required>
+                        我确认所提供的信息准确无误，并且我有权代表付款人提交此表格。
+                    </label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="checkbox-input" id="confirm-irs" required>
+                        我了解此表格将提交给IRS（美国国税局）和收款人。
+                    </label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="checkbox-input" id="confirm-terms" required>
+                        我已阅读并同意服务条款和隐私政策。
+                    </label>
+                </div>
+                
+                <div class="form-note">
+                    <strong>注意：</strong> 提交虚假信息可能导致罚款和/或刑事处罚。
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <button type="button" class="btn btn-back">上一步</button>
+                <button type="button" class="btn btn-next">下一步</button>
+            </div>
+        </form>
+        
+        <div class="footer">
+            <p>© 2023 1099表格申请服务 | 所有权利保留</p>
+            <p>本服务仅用于协助准备1099表格，不提供税务建议。请咨询专业税务顾问获取具体税务建议。</p>
+            <div class="security-badge">
+                <div class="badge">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem02MS44LTEwNC40bC04NC45LTYxLjdjLTMuMS0yLjMtNC45LTUuOS00LjktOS43VjExNmMwLTYuNiA1LjQtMTIgMTItMTJoMzJjNi42IDAgMTIgNS40IDEyIDEydjE0MS43bDY2LjggNDguNmM1LjQgMy45IDYuNSAxMS40IDIuNiAxNi44TDMzNC42IDM0OWMtMy45IDUuMy0xMS40IDYuNS0xNi44IDIuNnoiLz48L3N2Zz4=" alt="安全图标">
+                    <span>安全加密</span>
+                </div>
+                <div class="badge">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNNDY2LjUgODMuN2wtMTkyLTgwYS40OC40OCAwIDAgMC0uMzUgMGwtMTkyIDgwQzgyLjIgODMuOSA4MiA4NCA4MiA4NHY4MGMwIDguOCA3LjIgMTYgMTYgMTZoNDBjOC44IDAgMTYtNy4yIDE2LTE2di00MGgxMHY0MGMwIDguOCA3LjIgMTYgMTYgMTZoNDBjOC44IDAgMTYtNy4yIDE2LTE2di00MGgxMHY0MGMwIDguOCA3LjIgMTYgMTYgMTZoNDBjOC44IDAgMTYtNy4yIDE2LTE2di00MGgxMHY0MGMwIDguOCA3LjIgMTYgMTYgMTZoNDBjOC44IDAgMTYtNy4yIDE2LTE2di00MGgxMHY0MGMwIDguOCA3LjIgMTYgMTYgMTZoNDBjOC44IDAgMTYtNy4yIDE2LTE2Vjg0YzAtLjEtLjEtLjItLjUtLjN6Ii8+PC9zdmc+" alt="安全认证图标">
+                    <span>安全认证</span>
+                </div>
+                <div class="badge">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNMjU2IDhDMTE5LjA0MyA4IDggMTE5LjA4MyA4IDI1NmMwIDEzNi45OTcgMTExLjA0MyAyNDggMjQ4IDI0OHMyNDgtMTExLjAwMyAyNDgtMjQ4QzUwNCAxMTkuMDQzIDM5Mi45NTcgOCAyNTYgOHptMTY4LjExOCAxNzMuOGwtMTYwIDIyNGMtOS4xMDEgMTIuNzUtMjYuODQzIDE2LjAzLTQwLjEwMSA3LjI5OWwtOTYtNjRjLTEyLjc1LTguNTAxLTE2LjAzLTI2LjA0My03LjI5OS0zOS4xMDFzMjYuMDQzLTE2LjAzIDM5LjEwMS03LjI5OWw3MS4wNTkgNDcuMzc0IDE0NS4wMjItMjAzLjAzYzguNzQ5LTEyLjI1IDI1Ljk5My0xNS4wNDkgMzguMjQxLTYuMyAxMi4yNSA4Ljc1IDE1LjA0OSAyNS45OTMgNi4zIDM4LjI0MXoiLz48L3N2Zz4=" alt="验证图标">
+                    <span>数据验证</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/form.js"></script>
+</body>
+</html>

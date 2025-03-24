@@ -1,0 +1,438 @@
+/* 订单摘要样式 */
+.order-summary {
+    margin-bottom: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-details {
+    font-size: 16px;
+}
+
+.order-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 5px 0;
+}
+
+.order-row.total {
+    font-weight: 700;
+    font-size: 18px;
+    color: #0d47a1;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+.order-divider {
+    height: 1px;
+    background-color: #ddd;
+    margin: 15px 0;
+}
+
+/* 支付方式选择器样式 */
+.payment-method-selector {
+    margin-bottom: 30px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.payment-option:hover {
+    border-color: #0d47a1;
+}
+
+.payment-option.selected {
+    border-color: #0d47a1;
+    background-color: rgba(13, 71, 161, 0.05);
+}
+
+.payment-option-radio {
+    margin-right: 15px;
+}
+
+.payment-option-radio input[type="radio"] {
+    display: none;
+}
+
+.payment-option-radio label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #0d47a1;
+    border-radius: 50%;
+    position: relative;
+}
+
+.payment-option-radio input[type="radio"]:checked + label:after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    background-color: #0d47a1;
+    border-radius: 50%;
+}
+
+.payment-option-icon {
+    margin-right: 15px;
+}
+
+.payment-option-icon img {
+    width: 30px;
+    height: 30px;
+}
+
+.payment-option-info {
+    flex: 1;
+}
+
+.payment-option-title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.payment-option-desc {
+    display: block;
+    font-size: 14px;
+    color: #666;
+}
+
+/* 信用卡表单样式 */
+.expiry-inputs {
+    display: flex;
+    align-items: center;
+}
+
+.expiry-inputs .form-input {
+    width: 60px;
+    text-align: center;
+}
+
+.expiry-separator {
+    margin: 0 10px;
+    font-size: 18px;
+    color: #666;
+}
+
+/* 支票支付说明样式 */
+.check-instructions {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.check-instructions h3 {
+    color: #0d47a1;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.check-instructions ol {
+    padding-left: 20px;
+}
+
+.check-instructions li {
+    margin-bottom: 15px;
+}
+
+.mailing-address {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+    border-left: 3px solid #0d47a1;
+}
+
+.check-confirmation {
+    margin-top: 20px;
+}
+
+/* 安全支付提示样式 */
+.security-info {
+    display: flex;
+    align-items: center;
+    background-color: #e8f5ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.security-icon {
+    margin-right: 15px;
+}
+
+.security-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+.security-text h3 {
+    margin: 0 0 5px;
+    font-size: 16px;
+    color: #0d47a1;
+}
+
+.security-text p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+/* 按钮样式 */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.btn-back {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.btn-next {
+    background-color: #0d47a1;
+    color: white;
+    border: none;
+}
+
+.btn-back:hover {
+    background-color: #e8e8e8;
+}
+
+.btn-next:hover {
+    background-color: #0a3b8c;
+}
+
+/* 页脚样式 */
+.footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.security-badge {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.badge img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 8px;
+}
+
+.badge span {
+    font-size: 12px;
+    color: #555;
+}
+
+/* 响应式调整 - 最大宽度375px */
+body {
+    max-width: 375px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 375px;
+    padding: 15px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* 小屏幕适配 */
+@media (max-width: 375px) {
+    .order-details {
+        font-size: 14px;
+    }
+    
+    .order-row.total {
+        font-size: 16px;
+    }
+    
+    .payment-option {
+        padding: 12px;
+    }
+    
+    .payment-option-icon img {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .payment-option-title {
+        font-size: 15px;
+    }
+    
+    .payment-option-desc {
+        font-size: 12px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .form-col {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .security-badge {
+        flex-wrap: wrap;
+    }
+    
+    .badge {
+        margin: 0 10px 10px;
+    }
+    
+    .section-title {
+        font-size: 18px;
+    }
+    
+    .check-instructions ol {
+        padding-left: 15px;
+    }
+    
+    .check-instructions li {
+        margin-bottom: 10px;
+    }
+}
+
+/* 表单错误状态 */
+.form-input.error {
+    border-color: #e53935;
+    background-color: #ffebee;
+}
+
+/* 工具提示样式 */
+.tooltip {
+    display: inline-block;
+    position: relative;
+    margin-left: 5px;
+}
+
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background-color: #0d47a1;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-style: italic;
+    cursor: pointer;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* 表单注释样式 */
+.form-note {
+    background-color: #fff3e0;
+    padding: 12px;
+    border-left: 3px solid #ff9800;
+    margin: 15px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+/* 复选框样式 */
+.checkbox-group {
+    margin-top: 15px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    font-size: 14px;
+    color: #333;
+}
+
+.checkbox-input {
+    margin-right: 10px;
+    margin-top: 3px;
+}

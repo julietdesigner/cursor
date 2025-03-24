@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoho Books - Invoice Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333;
+            max-width: 375px; /* 添加最大宽度限制 */
+            width: 100%;
+            margin: 0 auto; /* 居中显示 */
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            max-width: 375px; /* 确保头部也遵循最大宽度 */
+            width: 100%;
+        }
+        
+        .back-button {
+            color: #2b87da;
+            background: none;
+            border: none;
+            font-size: 16px;
+            padding: 0;
+        }
+        
+        .title {
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .save-button {
+            color: #2b87da;
+            background: none;
+            border: none;
+            font-size: 16px;
+            padding: 0;
+            font-weight: 500;
+        }
+        
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            margin: 20px 15px 5px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .card {
+            background-color: white;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .list-item-label {
+            font-size: 15px;
+            color: #333;
+        }
+        
+        .list-item-value {
+            font-size: 15px;
+            color: #666;
+            display: flex;
+            align-items: center;
+        }
+        
+        .list-item-value .chevron {
+            margin-left: 5px;
+            color: #ccc;
+        }
+        
+        .add-link {
+            color: #2b87da;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        
+        .item-details {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .item-name {
+            font-weight: 500;
+        }
+        
+        .item-price {
+            font-weight: 500;
+        }
+        
+        .item-quantity {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .total-section {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .total-row.grand-total {
+            font-weight: 600;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .edit-link {
+            color: #2b87da;
+            font-size: 14px;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 15px;
+            margin-top: 5px;
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 15px;
+            margin-top: 5px;
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .payment-gateway {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px;
+        }
+        
+        .payment-gateway-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #2b87da;
+        }
+        
+        .payment-gateway-desc {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .setup-button {
+            background-color: #2b87da;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        
+        .add-item-button {
+            display: flex;
+            align-items: center;
+            color: #2b87da;
+            background: none;
+            border: none;
+            padding: 15px;
+            font-size: 15px;
+            width: 100%;
+            text-align: left;
+        }
+        
+        .add-item-button span {
+            margin-right: 5px;
+            font-size: 18px;
+        }
+        
+        .template-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .template-label {
+            font-size: 15px;
+        }
+        
+        .template-value {
+            color: #2b87da;
+            display: flex;
+            align-items: center;
+        }
+        
+        .template-value .chevron {
+            margin-left: 5px;
+            color: #ccc;
+        }
+        
+        .attachment-section {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="back-button">‹</button>
+        <div class="title">Edit Invoice</div>
+        <button class="save-button">Save</button>
+    </div>
+    
+    <div class="section-title">CUSTOMER DETAILS</div>
+    <div class="card">
+        <div class="list-item">
+            <div class="list-item-label">Juliet</div>
+            <div class="list-item-value">
+                <span class="chevron">›</span>
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <div class="list-item-label">Billing Address</div>
+            <div class="list-item-value">
+                <a href="#" class="add-link">Add Billing Address</a>
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <div class="list-item-label">Shipping Address</div>
+            <div class="list-item-value">
+                <a href="#" class="add-link">Add Shipping Address</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section-title">ITEM DETAILS</div>
+    <div class="card">
+        <div class="list-item" style="justify-content: flex-end;">
+            <a href="#" class="add-link">Remove or Reorder</a>
+        </div>
+        
+        <div class="item-details">
+            <div class="item-row">
+                <div class="item-name">567</div>
+                <div class="item-price">100.00</div>
+            </div>
+            <div class="item-row">
+                <div class="item-quantity">1 x 100.00</div>
+            </div>
+        </div>
+        
+        <button class="add-item-button">
+            <span>+</span> Add new line
+        </button>
+        
+        <div class="total-section">
+            <div class="total-row">
+                <div>Sub Total</div>
+                <div>100.00</div>
+            </div>
+            <div class="total-row">
+                <div>Discount(0.00)</div>
+                <div>0.00</div>
+            </div>
+            <div class="total-row">
+                <div>Shipping Charges</div>
+                <div>0.00</div>
+            </div>
+            <div class="total-row">
+                <div>Adjustment</div>
+                <div>0.00 <a href="#" class="edit-link">Edit</a></div>
+            </div>
+            <div class="total-row grand-total">
+                <div>Total ( USD )</div>
+                <div>100.00</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section-title">INVOICE DETAILS</div>
+    <div class="card">
+        <div class="list-item">
+            <div class="list-item-label">Invoice Date</div>
+            <div class="list-item-value">
+                09 Mar 2025
+                <span class="chevron">›</span>
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <div class="list-item-label">Terms</div>
+            <div class="list-item-value">
+                Due On Receipt
+                <span class="chevron">›</span>
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <div class="list-item-label">Due Date</div>
+            <div class="list-item-value">
+                09 Mar 2025
+                <span class="chevron">›</span>
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <div class="list-item-label">Invoice#</div>
+            <div class="list-item-value">
+                INV-000001
+                <button style="background: none; border: none; margin-left: 5px;">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NjY2NjYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTEgNEg0YTIgMiAwIDAgMC0yIDJ2MTRhMiAyIDAgMCAwIDIgMmgxNGEyIDIgMCAwIDAgMi0ydi03Ij48L3BhdGg+PHBhdGggZD0iTTE4LjUgMi41YTIuMTIxIDIuMTIxIDAgMCAxIDMgM0wxMiAxNWwtNCAxIDEtNGw5LjUtOS41eiI+PC9wYXRoPjwvc3ZnPg==" alt="Edit">
+                </button>
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <div class="list-item-label">Order#</div>
+            <div class="list-item-value">
+                <a href="#" class="add-link">Tap to Enter</a>
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <div class="list-item-label">Salesperson</div>
+            <div class="list-item-value">
+                <a href="#" class="add-link">Tap to Select</a>
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <div class="list-item-label">Subject</div>
+            <div class="list-item-value">
+                <span class="chevron">›</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section-title">PAYMENT GATEWAY</div>
+    <div class="card">
+        <div class="payment-gateway">
+            <div class="payment-gateway-title">Receive Payments Online</div>
+            <div class="payment-gateway-desc">Set up a payment gateway and allow customers to make instant payments</div>
+            <button class="setup-button">Setup Now</button>
+        </div>
+    </div>
+    
+    <div class="section-title">Customer Notes</div>
+    <div class="card" style="padding: 15px;">
+        <textarea class="form-textarea" placeholder="Thanks for your business."></textarea>
+    </div>
+    
+    <div class="section-title">Terms and Conditions</div>
+    <div class="card" style="padding: 15px;">
+        <textarea class="form-textarea"></textarea>
+    </div>
+    
+    <div class="section-title"></div>
+    <div class="card">
+        <div class="template-section">
+            <div class="template-label">PDF Template</div>
+            <div class="template-value">
+                Standard Template
+                <span class="chevron">›</span>
+            </div>
+        </div>
+        
+        <div class="template-section">
+            <div class="template-label">Attachments</div>
+            <div class="template-value">
+                Tap to Select
+                <span class="chevron">›</span>
+            </div>
+        </div>
+    </div>
+    
+    <div style="height: 50px;"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加项目功能
+            const addItemButton = document.querySelector('.add-item-button');
+            if (addItemButton) {
+                addItemButton.addEventListener('click', function() {
+                    // 创建新的项目行
+                    const itemDetails = document.createElement('div');
+                    itemDetails.className = 'item-details';
+                    itemDetails.innerHTML = `
+                        <div class="item-row">
+                            <div class="item-name">新项目</div>
+                            <div class="item-price">0.00</div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-quantity">1 x 0.00</div>
+                        </div>
+                    `;
+                    
+                    // 添加点击事件
+                    itemDetails.addEventListener('click', function() {
+                        alert('编辑项目详情');
+                    });
+                    
+                    // 将新项目插入到按钮前面
+                    addItemButton.parentNode.insertBefore(itemDetails, addItemButton);
+                    
+                    // 更新总计
+                    updateTotals();
+                });
+            }
+            
+            // 保存按钮功能
+            const saveButton = document.querySelector('.save-button');
+            if (saveButton) {
+                saveButton.addEventListener('click', function() {
+                    alert('发票已保存');
+                });
+            }
+            
+            // 返回按钮功能
+            const backButton = document.querySelector('.back-button');
+            if (backButton) {
+                backButton.addEventListener('click', function() {
+                    if (confirm('确定要离开吗？未保存的更改将丢失。')) {
+                        // 这里可以添加返回上一页的逻辑
+                        alert('返回到发票列表');
+                    }
+                });
+            }
+            
+            // 客户详情点击事件
+            const customerDetails = document.querySelector('.list-item:first-child');
+            if (customerDetails) {
+                customerDetails.addEventListener('click', function() {
+                    alert('打开客户选择对话框');
+                });
+            }
+            
+            // 添加地址点击事件
+            const addLinks = document.querySelectorAll('.add-link');
+            addLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('打开' + this.textContent + '对话框');
+                });
+            });
+            
+            // 日期和条款点击事件
+            const dateTermsItems = document.querySelectorAll('.list-item-value .chevron');
+            dateTermsItems.forEach(item => {
+                item.parentElement.parentElement.addEventListener('click', function() {
+                    const label = this.querySelector('.list-item-label').textContent;
+                    alert('编辑' + label);
+                });
+            });
+            
+            // 编辑链接点击事件
+            const editLinks = document.querySelectorAll('.edit-link');
+            editLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('编辑调整金额');
+                });
+            });
+            
+            // 设置按钮点击事件
+            const setupButton = document.querySelector('.setup-button');
+            if (setupButton) {
+                setupButton.addEventListener('click', function() {
+                    alert('设置支付网关');
+                });
+            }
+            
+            // 更新总计的函数
+            function updateTotals() {
+                // 获取所有项目
+                const items = document.querySelectorAll('.item-details');
+                let subtotal = 0;
+                
+                // 计算小计
+                items.forEach(item => {
+                    const priceText = item.querySelector('.item-price').textContent;
+                    const price = parseFloat(priceText) || 0;
+                    subtotal += price;
+                });
+                
+                // 更新显示
+                const subtotalElement = document.querySelector('.total-row:first-child div:last-child');
+                if (subtotalElement) {
+                    subtotalElement.textContent = subtotal.toFixed(2);
+                }
+                
+                // 计算总计（这里简化处理，实际应考虑折扣、运费等）
+                const grandTotalElement = document.querySelector('.total-row.grand-total div:last-child');
+                if (grandTotalElement) {
+                    grandTotalElement.textContent = subtotal.toFixed(2);
+                }
+            }
+            
+            // 初始化时计算一次总计
+            updateTotals();
+        });
+    </script>
+</body>
+</html>

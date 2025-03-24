@@ -1,0 +1,563 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0 auto;
+    padding: 0;
+    background-color: #f8f9fa;
+    max-width: 375px;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #2b5ce7;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.back-button {
+    color: white;
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 0;
+}
+
+.title {
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.action-button {
+    color: white;
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 0;
+}
+
+.section-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 20px 16px 10px;
+    color: #333;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    margin: 10px 16px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.zoho-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    padding-bottom: 60px;
+}
+
+.zoho-logo img {
+    height: 30px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 6px;
+    font-
+}
+
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.button-primary {
+    background-color: #2b5ce7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.button-secondary {
+    background-color: white;
+    color: #2b5ce7;
+    border: 1px solid #2b5ce7;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.button-add {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-add span {
+    margin-right: 6px;
+    font-size: 18px;
+}
+
+.invoice-item {
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.invoice-item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.invoice-item-title {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.invoice-item-remove {
+    color: #e74c3c;
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.field-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.field-col {
+    flex: 1;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    font-weight: 500;
+}
+
+.total-label {
+    color: #666;
+}
+
+.total-amount {
+    color: #333;
+}
+
+.grand-total {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2b5ce7;
+}
+
+.info-banner {
+    background-color: #edf2ff;
+    border-left: 4px solid #2b5ce7;
+    padding: 12px;
+    margin: 16px;
+    font-size: 14px;
+    color: #333;
+    border-radius: 0 4px 4px 0;
+}
+
+.customer-select {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+.customer-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #edf2ff;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    color: #2b5ce7;
+    font-weight: 500;
+}
+
+.customer-info {
+    flex: 1;
+}
+
+.customer-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+}
+
+.customer-email {
+    font-size: 13px;
+    color: #666;
+}
+
+.customer-select-arrow {
+    color: #999;
+    font-size: 14px;
+}
+
+.tab-container {
+    display: flex;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 16px;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.tab.active {
+    color: #2b5ce7;
+    border-bottom: 2px solid #2b5ce7;
+    font-weight: 500;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.currency-selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.currency-label {
+    font-size: 14px;
+    color: #333;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.currency-select {
+    flex: 1;
+}
+
+.action-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 12px 16px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    max-width: 375px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.action-button-primary {
+    background-color: #2b5ce7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    flex: 1;
+    margin-left: 8px;
+}
+
+.action-button-secondary {
+    background-color: white;
+    color: #2b5ce7;
+    border: 1px solid #2b5ce7;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    flex: 1;
+    margin-right: 8px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: #2b5ce7;
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(20px);
+}
+
+.discount-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 8px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.discount-toggle-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.discount-options {
+    display: none;
+    margin-bottom: 16px;
+}
+
+.discount-type-selector {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.discount-type {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+    background-color: #f8f9fa;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.discount-type:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.discount-type:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+.discount-type.active {
+    background-color: #2b5ce7;
+    color: white;
+}
+
+.template-selector {
+    margin-bottom: 20px;
+}
+
+.template-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.template-options {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding-bottom: 8px;
+}
+
+.template-option {
+    min-width: 80px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.template-thumbnail {
+    height: 100px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+.template-name {
+    font-size: 12px;
+    color: #666;
+}
+
+.template-option.active .template-thumbnail {
+    border-color: #2b5ce7;
+    box-shadow: 0 0 0 2px rgba(43, 92, 231, 0.2);
+}
+
+.template-option.active .template-name {
+    color: #2b5ce7;
+    font-weight: 500;
+}
+
+.attachment-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 12px;
+}
+
+.attachment-button span {
+    margin-right: 6px;
+    font-size: 18px;
+}
+
+.attachment-list {
+    margin-top: 12px;
+}
+
+.attachment-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.attachment-icon {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.attachment-name {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+}
+
+.attachment-remove {
+    color: #e74c3c;
+    background: none;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.item-catalog-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.item-catalog-button span {
+    margin-right: 6px;
+    font-size: 18px;
+}
+
+.zoho-logo {
+    text-align: center;
+    margin: 30px 0;
+    padding-bottom: 60px;
+}
+
+.zoho-logo img {
+    height: 24px;
+}

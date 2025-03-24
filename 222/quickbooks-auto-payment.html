@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickBooks Automatic Payments</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #f5f7f9;
+            max-width: 375px;
+            width: 100%;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: #2ca01c;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .back-button {
+            color: white;
+            background: none;
+            border: none;
+            font-size: 16px;
+            padding: 0;
+        }
+        
+        .title {
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .section-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 20px 16px 10px;
+            color: #333;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 4px;
+            margin: 10px 16px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .form-input:focus {
+            border-color: #2ca01c;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(44, 160, 28, 0.2);
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            box-sizing: border-box;
+        }
+        
+        .info-text {
+            font-size: 13px;
+            color: #666;
+            margin-top: 6px;
+        }
+        
+        .button-primary {
+            background-color: #2ca01c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        
+        .button-secondary {
+            background-color: white;
+            color: #2ca01c;
+            border: 1px solid #2ca01c;
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 12px;
+            cursor: pointer;
+        }
+        
+        .agreement-box {
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            padding: 16px;
+            margin-top: 20px;
+            max-height: 150px;
+            overflow-y: auto;
+            font-size: 13px;
+            color: #666;
+            border: 1px solid #eee;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 16px;
+        }
+        
+        .checkbox {
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+        
+        .checkbox-label {
+            font-size: 14px;
+            color: #333;
+            flex: 1;
+        }
+        
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .secure-icon {
+            color: #2ca01c;
+            margin-right: 6px;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .step {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 4px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .step.active {
+            background-color: #2ca01c;
+            color: white;
+        }
+        
+        .step-line {
+            height: 2px;
+            width: 20px;
+            background-color: #e0e0e0;
+            margin-top: 12px;
+        }
+        
+        .payment-summary {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .payment-summary:last-child {
+            border-bottom: none;
+            font-weight: 600;
+        }
+        
+        .qb-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .qb-logo img {
+            height: 30px;
+        }
+        
+        .info-banner {
+            background-color: #e8f4fd;
+            border-left: 4px solid #0077c5;
+            padding: 12px;
+            margin: 16px;
+            font-size: 14px;
+            color: #333;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .tab-container {
+            display: flex;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 16px;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            font-size: 14px;
+            color: #666;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab.active {
+            color: #2ca01c;
+            border-bottom: 2px solid #2ca01c;
+            font-weight: 500;
+        }
+        
+        .field-row {
+            display: flex;
+            margin-bottom: 16px;
+        }
+        
+        .field-col {
+            flex: 1;
+            margin-right: 10px;
+        }
+        
+        .field-col:last-child {
+            margin-right: 0;
+        }
+        
+        .help-icon {
+            color: #999;
+            font-size: 16px;
+            margin-left: 4px;
+        }
+        
+        .bank-logo {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="back-button">Back</button>
+        <div class="title">Automatic Payments</div>
+    </div>
+    
+    <div class="tab-container">
+        <div class="tab active" id="tab-setup">Setup</div>
+        <div class="tab" id="tab-history">History</div>
+        <div class="tab" id="tab-settings">Settings</div>
+    </div>
+    
+    <!-- Setup Tab Content -->
+    <div class="tab-content active" id="content-setup">
+        <div class="info-banner">
+            Set up automatic payments to allow QuickBooks to debit your bank account for recurring invoices.
+        </div>
+        
+        <div class="section-title">Bank Account Information</div>
+        
+        <div class="card">
+            <div class="form-group">
+                <label class="form-label">Account Holder Name <span class="help-icon">ⓘ</span></label>
+                <input type="text" class="form-input" placeholder="Enter name as it appears on account">
+            </div>
+            
+            <div class="field-row">
+                <div class="field-col">
+                    <div class="form-group">
+                        <label class="form-label">Account Type</label>
+                        <select class="form-select">
+                            <option value="checking">Checking</option>
+                            <option value="savings">Savings</option>
+                            <option value="business">Business Checking</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field-col">
+                    <div class="form-group">
+                        <label class="form-label">Account Usage</label>
+                        <select class="form-select">
+                            <option value="business">Business</option>
+                            <option value="personal">Personal</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Bank Name <span class="help-icon">ⓘ</span></label>
+                <select class="form-select">
+                    <option value="" disabled selected>Select your bank</option>
+                    <option value="chase">Chase</option>
+                    <option value="bofa">Bank of America</option>
+                    <option value="wells">Wells Fargo</option>
+                    <option value="citi">Citibank</option>
+                    <option value="us">US Bank</option>
+                    <option value="other">Other Bank</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Routing Number <span class="help-icon">ⓘ</span></label>
+                <input type="text" class="form-input" placeholder="9 digits" maxlength="9">
+                <div class="info-text">The 9-digit number on the bottom left of your check</div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Account Number <span class="help-icon">ⓘ</span></label>
+                <input type="text" class="form-input" placeholder="Enter account number">
+                <div class="info-text">The number between the routing number and check number</div>
+            </div>
+        </div>
+        
+        <div class="section-title">Payment Schedule</div>
+        
+        <div class="card">
+            <div class="form-group">
+                <label class="form-label">Payment Frequency</label>
+                <select class="form-select">
+                    <option value="monthly">Monthly</option>
+                    <option value="quarterly">Quarterly</option>
+                    <option value="annual">Annual</option>
+                    <option value="custom">Custom Schedule</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">First Payment Date</label>
+                <input type="date" class="form-input" value="2023-11-15">
+            </div>
+            
+            <div class="payment-summary">
+                <div>Payment Amount</div>
+                <div>$49.99</div>
+            </div>
+            <div class="payment-summary">
+                <div>Payment Description</div>
+                <div>QuickBooks Online Subscription</div>
+            </div>
+        </div>
+        
+        <div class="section-title">Authorization</div>
+        
+        <div class="card">
+            <div class="agreement-box">
+                By clicking "Authorize Payments", I authorize Intuit Inc. to initiate electronic debits to the bank account identified above for payment of my QuickBooks subscription and/or services. I understand that this authorization will remain in effect until I cancel it by contacting Intuit at least 3 business days prior to the scheduled payment date.
+                
+                I acknowledge that the origination of ACH transactions to my account must comply with the provisions of U.S. law. I understand that if any debit should be returned unpaid, a $25.00 returned item fee may be electronically debited from my account.
+            </div>
+            
+            <div class="checkbox-container">
+                <input type="checkbox" class="checkbox" id="agree">
+                <label for="agree" class="checkbox-label">I have read and agree to the terms of the ACH Authorization</label>
+            </div>
+            
+            <button class="button-primary">Authorize Payments</button>
+            <button class="button-secondary">Cancel</button>
+            
+            <div class="secure-badge">
+                <span class="secure-icon">🔒</span>
+                <span>Your information is secure and encrypted</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- History Tab Content -->
+    <div class="tab-content" id="content-history">
+        <div class="section-title">Payment History</div>
+        
+        <div class="card">
+            <div class="payment-history-item">
+                <div class="payment-history-left">
+                    <div class="payment-date">Oct 15, 2023</div>
+                    <div class="payment-description">QuickBooks Online Subscription</div>
+                    <div class="payment-status status-success">Payment Successful</div>
+                </div>
+                <div class="payment-amount">$49.99</div>
+            </div>
+            
+            <div class="payment-history-item">
+                <div class="payment-history-left">
+                    <div class="payment-date">Sep 15, 2023</div>
+                    <div class="payment-description">QuickBooks Online Subscription</div>
+                    <div class="payment-status status-success">Payment Successful</div>
+                </div>
+                <div class="payment-amount">$49.99</div>
+            </div>
+            
+            <div class="payment-history-item">
+                <div class="payment-history-left">
+                    <div class="payment-date">Aug 15, 2023</div>
+                    <div class="payment-description">QuickBooks Online Subscription</div>
+                    <div class="payment-status status-success">Payment Successful</div>
+                </div>
+                <div class="payment-amount">$49.99</div>
+            </div>
+            
+            <div class="payment-history-item">
+                <div class="payment-history-left">
+                    <div class="payment-date">Jul 15, 2023</div>
+                    <div class="payment-description">QuickBooks Online Subscription</div>
+                    <div class="payment-status status-pending">Processing</div>
+                </div>
+                <div class="payment-amount">$49.99</div>
+            </div>
+            
+            <div class="payment-history-item">
+                <div class="payment-history-left">
+                    <div class="payment-date">Jun 15, 2023</div>
+                    <div class="payment-description">QuickBooks Online Subscription</div>
+                    <div class="payment-status status-failed">Failed - Insufficient Funds</div>
+                </div>
+                <div class="payment-amount">$49.99</div>
+            </div>
+        </div>
+        
+        <div class="section-title">Upcoming Payments</div>
+        
+        <div class="card">
+            <div class="payment-history-item">
+                <div class="payment-history-left">
+                    <div class="payment-date">Nov 15, 2023 (in 15 days)</div>
+                    <div class="payment-description">QuickBooks Online Subscription</div>
+                    <div class="payment-status">Scheduled</div>
+                </div>
+                <div class="payment-amount">$49.99</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Settings Tab Content -->
+    <div class="tab-content" id="content-settings">
+        <div class="section-title">Payment Settings</div>
+        
+        <div class="card">
+            <div class="settings-row">
+                <div>
+                    <div class="settings-label">Automatic Payments</div>
+                    <div class="settings-description">Allow QuickBooks to automatically debit your account</div>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="settings-row">
+                <div>
+                    <div class="settings-label">Payment Notifications</div>
+                    <div class="settings-description">Receive email alerts before payments</div>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="settings-row">
+                <div>
+                    <div class="settings-label">Payment Reminders</div>
+                    <div class="settings-description">Get notified 3 days before payment</div>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="section-title">Bank Account</div>
+        
+        <div class="card">
+            <div class="settings-row">
+                <div>
+                    <div class="settings-label">Chase Bank</div>
+                    <div class="settings-description">Checking ••••6789</div>
+                </div>
+                <button class="button-secondary" style="margin: 0; padding: 8px 12px; font-size: 14px;">Change</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <button class="button-primary">Save Settings</button>
+        </div>
+    </div>
+    
+    <div class="qb-logo">
+        <img src="https://quickbooks.intuit.com/content/dam/intuit/quickbooks/i18n/en/US/logo/quickbooks-logo-intuit-brand-lockup-preferred.svg" alt="QuickBooks by Intuit">
+    </div>
+    
+    <script>
+        // 添加标签页切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有标签和内容区域
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            // 为每个标签添加点击事件
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 移除所有标签和内容的active类
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    
+                    // 为当前点击的标签添加active类
+                    this.classList.add('active');
+                    
+                    // 获取对应的内容ID并显示
+                    const contentId = 'content-' + this.id.split('-')[1];
+                    document.getElementById(contentId).classList.add('active');
+                });
+            });
+            
+            // 切换开关的交互
+            const toggles = document.querySelectorAll('.toggle-switch input');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    // 这里可以添加切换开关的逻辑
+                    console.log('Toggle changed:', this.checked);
+                });
+            });
+            
+            // 按钮点击事件
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.classList.contains('back-button')) {
+                        console.log('Back button clicked');
+                    } else if (this.textContent === 'Authorize Payments') {
+                        console.log('Authorize Payments clicked');
+                        // 可以添加表单验证和提交逻辑
+                    } else if (this.textContent === 'Save Settings') {
+                        console.log('Save Settings clicked');
+                        // 可以添加设置保存逻辑
+                    } else if (this.textContent === 'Change') {
+                        console.log('Change bank account clicked');
+                        // 可以添加切换到Setup标签页的逻辑
+                        document.getElementById('tab-setup').click();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

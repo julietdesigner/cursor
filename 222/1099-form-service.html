@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1099 Form Filing Service - Fast & Accurate Tax Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 375px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            color: white;
+            text-align: center;
+            padding: 20px 15px;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 60%);
+            transform: rotate(30deg);
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo img {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .offer-badge {
+            background: #2196f3;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .offer-details {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: -30px 15px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .offer-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0d47a1;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .benefits {
+            margin: 20px 0;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: #e3f2fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .benefit-icon img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .benefit-text {
+            font-size: 14px;
+        }
+        
+        .benefit-text strong {
+            color: #0d47a1;
+        }
+        
+        .form-types {
+            background: #f5f9ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .form-type-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0d47a1;
+            margin-bottom: 10px;
+        }
+        
+        .form-type-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .form-type-item {
+            font-size: 13px;
+            padding: 5px 0;
+        }
+        
+        .price-section {
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .original-price {
+            font-size: 16px;
+            color: #757575;
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+        
+        .current-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2196f3;
+        }
+        
+        .savings {
+            font-size: 14px;
+            color: #43a047;
+            margin-top: 5px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #2196f3, #64b5f6);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 15px 0;
+            border-radius: 30px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        /* 边缘流动线条效果 */
+        .cta-button:after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: 0;
+            border-radius: 32px;
+            background: linear-gradient(90deg, #2196f3, #bbdefb, #64b5f6, #2196f3);
+            background-size: 300% 300%;
+            clip-path: polygon(
+                0% 0%, 
+                100% 0%, 
+                100% 100%, 
+                0% 100%, 
+                0% 0%, 
+                2% 2%, 
+                2% 98%, 
+                98% 98%, 
+                98% 2%, 
+                2% 2%
+            );
+            animation: border-flow 3s linear infinite;
+        }
+        
+        @keyframes border-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        .cta-button span {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-button:hover, .cta-button:active {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+        }
+        
+        .cta-button:hover:after {
+            animation: border-flow 1.5s linear infinite;
+        }
+        
+        .limited-time {
+            text-align: center;
+            font-size: 14px;
+            color: #757575;
+            margin-top: 10px;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .countdown-item {
+            background: #0d47a1;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+        }
+        
+        .countdown-value {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .countdown-label {
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+        
+        .process-section {
+            margin: 30px 15px;
+        }
+        
+        .process-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0d47a1;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: #2196f3;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #0d47a1;
+        }
+        
+        .step-description {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .testimonials {
+            margin: 30px 15px;
+        }
+        
+        .testimonial-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0d47a1;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 14px;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e3f2fd;
+            margin-right: 10px;
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info {
+            flex-grow: 1;
+        }
+        
+        .author-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .author-location {
+            font-size: 12px;
+            color: #757575;
+        }
+        
+        .rating {
+            display: flex;
+            margin-top: 5px;
+        }
+        
+        .star {
+            color: #ffc107;
+            font-size: 14px;
+            margin-right: 2px;
+        }
+        
+        .faq-section {
+            margin: 30px 15px;
+        }
+        
+        .faq-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0d47a1;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 15px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .faq-question::after {
+            content: "+";
+            font-size: 20px;
+            color: #0d47a1;
+        }
+        
+        .faq-answer {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f5f9ff;
+        }
+        
+        .faq-item.active .faq-question::after {
+            content: "-";
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 15px;
+            max-height: 200px;
+        }
+        
+        .footer {
+            background: #0d47a1;
+            color: white;
+            text-align: center;
+            padding: 20px 15px;
+            font-size: 12px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .footer-link {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .element-1 {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation: float 8s infinite ease-in-out;
+        }
+        
+        .element-2 {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            right: 15%;
+            animation: float 12s infinite ease-in-out;
+        }
+        
+        .element-3 {
+            width: 40px;
+            height: 40px;
+            bottom: 15%;
+            left: 20%;
+            animation: float 10s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .ribbon-content {
+            position: absolute;
+            top: 30px;
+            right: -35px;
+            transform: rotate(45deg);
+            background: #2196f3;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 40px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="floating-elements">
+                <div class="floating-element element-1"></div>
+                <div class="floating-element element-2"></div>
+                <div class="floating-element element-3"></div>
+            </div>
+            
+
+            <div class="ribbon">
+                <div class="ribbon-content">IRS认证</div>
+            </div>
+            
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNNDg4IDI1NkgzNTJWMTZjMC04LjgtNy4yLTE2LTE2LTE2aC0xNjBjLTguOCAwLTE2IDcuMi0xNiAxNnYyNDBIMjRjLTguOCAwLTE2IDcuMi0xNiAxNnYxNmMwIDguOCA3LjIgMTYgMTYgMTZoMTM2djE2OGMwIDguOCA3LjIgMTYgMTYgMTZoMTYwYzguOCAwIDE2LTcuMiAxNi0xNlYzMDRoMTM2YzguOCAwIDE2LTcuMiAxNi0xNnYtMTZjMC04LjgtNy4yLTE2LTE2LTE2em0tMjcyIDE2VjE2aDEyOHYyNTZIMjE2eiIvPjwvc3ZnPg==" alt="税表图标">
+            </div>
+            
+            <h1 class="title">1099表格申报服务</h1>
+            <p class="subtitle">快速、准确、符合IRS标准</p>
+            
+            <div class="offer-badge">限时30%优惠</div>
+        </div>
+        
+        <div class="offer-details">
+            <h2 class="offer-title">完整的1099表格申报解决方案</h2>
+            
+            <div class="benefits">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNNDcwLjYgMTA1LjRjMTIuNSAxMi41IDEyLjUgMzIuOCAwIDQ1LjNsLTI1NiAyNTZjLTEyLjUgMTIuNS0zMi44IDEyLjUtNDUuMyAwbC0xMjgtMTI4Yy0xMi41LTEyLjUtMTIuNS0zMi44IDAtNDUuM3MzMi44LTEyLjUgNDUuMyAwTDE5MiAzMzguNyA0MjUuNCAxMDUuNGMxMi41LTEyLjUgMzIuOC0xMi41IDQ1LjMgMHoiLz48L3N2Zz4=" alt="对勾图标">
+                    </div>
+                    <div class="benefit-text">
+                        <strong>符合IRS标准</strong> - 所有表格均符合当前IRS要求
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem02MS44LTEwNC40bC04NC45LTYxLjdjLTMuMS0yLjMtNC45LTUuOS00LjktOS43VjExNmMwLTYuNiA1LjQtMTIgMTItMTJoMzJjNi42IDAgMTIgNS40IDEyIDEydjE0MS43bDY2LjggNDguNmM1LjQgMy45IDYuNSAxMS40IDIuNiAxNi44TDMzNC42IDM0OWMtMy45IDUuMy0xMS40IDYuNS0xNi44IDIuNnoiLz48L3N2Zz4=" alt="时钟图标">
+                    </div>
+                    <div class="benefit-text">
+                        <strong>快速处理</strong> - 几分钟内提交表格，而非几小时
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNNDY0IDEyOEg0OGMtMjYuNTEgMC00OCAyMS40OS00OCA0OHYyMjRjMCAyNi41MSAyMS40OSA0OCA0OCA0OGg0MTZjMjYuNTEgMCA0OC0yMS40OSA0OC00OFYxNzZjMC0yNi41MS0yMS40OS00OC00OC00OHptLTYgMjcySDU0YTYgNiAwIDAgMS02LTZWMTgyYTYgNiAwIDAgMSA2LTZoNDA0YTYgNiAwIDAgMSA2IDZ2MjEyYTYgNiAwIDAgMS02IDZ6bS0yMTItNjhjLTMuMjEgMC02LjU0LS45LTkuNTQtMy4xMWwtODYuMjYtNjMuNDZhMTIuMDIyIDEyLjAyMiAwIDAgMS0yLjM4LTE2LjgxYzIuOS0zLjk0IDguMjYtNS4yNyAxMi44MS0zLjE3bDg2LjI2IDYzLjQ2YzEuNTYgMS4xNSAzLjggMS45MSA2LjExIDEuOTEgMi4zIDAgNC41NS0uNzYgNi4xMS0xLjkxbDg2LjI2LTYzLjQ2YzQuNTQtMi4xIDkuOTEtLjc3IDEyLjgxIDMuMTdhMTIuMDIyIDEyLjAyMiAwIDAgMS0yLjM4IDE2LjgxbC04Ni4yNiA2My40NmMtMi45OSAyLjIxLTYuMzMgMy4xMS05LjU0IDMuMTF6Ii8+PC9zdmc+" alt="邮件图标">
+                    </div>
+                    <div class="benefit-text">
+                        <strong>电子申报和邮寄选项</strong> - 选择电子申报或打印表格
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNNDY2LjUgODMuN2wtMTkyLTgwYTQ4LjE1IDQ4LjE1IDAgMCAwLTM3IDAgbC0xOTIgODBDMjcuNyA5MS4xIDkuMyAxMDguMyA5LjMgMTI4VjM4NGMwIDE4LjMgMTYgMzIuMyAzMi4zIDMyLjNjMi41IDAgNC44LS40IDcuMi0uOEMyOTkuMSA0MTcuNSA0NDMuNyAyNzcuNiA0NjAgMjc3LjZjMTYuMyAwIDMyLjEgMTYuMiAzMi4xIDMyLjVWMTI4YzAtMTkuNy0xOC40LTM2LjktMjUuNi00NC4zek0yNTYg импеяя0zNS4zIDAtNjQtMjguNy02NC02NHMyOC43LTY0IDY0LTY0IDY0IDI4LjcgNjQgNjQtMjguNyA2NC02NCA2NHoiLz48L3N2Zz4=" alt="安全图标">
+                    </div>
+                    <div class="benefit-text">
+                        <strong>安全保密</strong> - 您的数据受到加密保护
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-types">
+                <h3 class="form-type-title">支持的1099表格类型:</h3>
+                <div class="form-type-list">
+                    <div class="form-type-item">• 1099-MISC</div>
+                    <div class="form-type-item">• 1099-NEC</div>
+                    <div class="form-type-item">• 1099-INT</div>
+                    <div class="form-type-item">• 1099-DIV</div>
+                    <div class="form-type-item">• 1099-B</div>
+                    <div class="form-type-item">• 1099-R</div>
+                    <div class="form-type-item">• 1099-K</div>
+                    <div class="form-type-item">• 1099-G</div>
+                </div>
+            </div>
+            
+            <div class="price-section">
+                <span class="original-price">$149.99</span>
+                <span class="current-price">$99.99</span>
+                <div class="savings">您节省了 $50.00 (30% 优惠)</div>
+            </div>
+            
+            <button class="cta-button"><span>立即开始申报</span></button>
+            
+            <div class="limited-time">限时优惠 - 即将到期</div>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">01</div>
+                    <div class="countdown-label">天</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">23</div>
+                    <div class="countdown-label">时</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">45</div>
+                    <div class="countdown-label">分</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="seconds">30</div>
+                    <div class="countdown-label">秒</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="process-section">
+            <h2 class="process-title">操作流程</h2>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">输入付款人和收款人信息</div>
+                        <div class="step-description">通过我们的安全平台输入您的企业详细信息和收款人信息。</div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">验证和审核信息</div>
+                        <div class="step-description">我们的系统会自动检查所有输入信息，确保符合IRS要求，避免常见错误。</div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">选择提交方式</div>
+                        <div class="step-description">选择电子申报（E-File）或打印邮寄方式提交您的1099表格。</div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">完成并获取确认</div>
+                        <div class="step-description">获取提交确认和完整记录，满足您的税务合规需求。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonials">
+            <h2 class="testimonial-title">客户评价</h2>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "作为一名自由职业者，我一直为1099表格而烦恼。这个服务让整个过程变得简单快捷。强烈推荐给所有需要处理1099表格的人！"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNMjI0IDI1NmMtNzAuNyAwLTEyOC01Ny4zLTEyOC0xMjhTMTUzLjMgMCAyMjQgMHMxMjggNTcuMyAxMjggMTI4cy01Ny4zIDEyOC0xMjggMTI4em04OS42IDMyaC0xNi43Yy0yMi4yIDEwLjItNDYuOSAxNi03Mi45IDE2cy01MC42LTUuOC03Mi45LTE2aC0xNi43QzYwLjIgMjg4IDAgMzQ4LjIgMCA0MjIuNFY0NjRjMCAyNi41IDIxLjUgNDggNDggNDhoMzUyYzI2LjUgMCA0OC0yMS41IDQ4LTQ4di00MS42YzAtNzQuMi02MC4yLTEzNC40LTEzNC40LTEzNC40eiIvPjwvc3ZnPg==" alt="用户头像">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name">张先生</div>
+                        <div class="author-location">加利福尼亚州</div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "我经营一家小型企业，每年都需要处理大量1099表格。这个服务节省了我大量时间，界面简单易用，客服也非常专业。"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNMjI0IDI1NmMtNzAuNyAwLTEyOC01Ny4zLTEyOC0xMjhTMTUzLjMgMCAyMjQgMHMxMjggNTcuMyAxMjggMTI4cy01Ny4zIDEyOC0xMjggMTI4em04OS42IDMyaC0xNi43Yy0yMi4yIDEwLjItNDYuOSAxNi03Mi45IDE2cy01MC42LTUuOC03Mi45LTE2aC0xNi43QzYwLjIgMjg4IDAgMzQ4LjIgMCA0MjIuNFY0NjRjMCAyNi41IDIxLjUgNDggNDggNDhoMzUyYzI2LjUgMCA0OC0yMS41IDQ4LTQ4di00MS42YzAtNzQuMi02MC4yLTEzNC40LTEzNC40LTEzNC40eiIvPjwvc3ZnPg==" alt="用户头像">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name">李女士</div>
+                        <div class="author-location">纽约州</div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-section">
+            <h2 class="faq-title">常见问题</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">什么是1099表格？</div>
+                <div class="faq-answer">
+                    1099表格是美国国税局(IRS)用于报告非雇员收入的表格。如果您向独立承包商、自由职业者或其他非雇员支付了600美元或以上的款项，您通常需要提交1099表格。
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">我需要提交哪种类型的1099表格？</div>
+                <div class="faq-answer">
+                    最常见的是1099-MISC（用于杂项收入）和1099-NEC（用于非雇员报酬）。具体取决于您支付的款项类型。我们的系统会根据您输入的信息帮助您确定正确的表格类型。
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">提交1099表格的截止日期是什么时候？</div>
+                <div class="faq-answer">
+                    通常，您需要在次年1月31日前向收款人提供1099表格副本，并在2月28日前（如果是纸质提交）或3月31日前（如果是电子提交）向IRS提交。
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">如果我错过了提交截止日期会怎样？</div>
+                <div class="faq-answer">
+                    错过截止日期可能会导致罚款。罚款金额取决于延迟时间长短和是否有意延迟。使用我们的服务可以帮助您避免这些罚款。
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">您的服务如何保护我的数据安全？</div>
+                <div class="faq-answer">
+                    我们使用银行级加密技术保护您的所有数据。我们的系统符合IRS安全标准，确保您的敏感信息不会被未授权访问。
+                </div>
+            </div>
+        </div>
+        
+        <button class="cta-button"><span>立即开始申报</span></button>
+        
+        <div class="footer">
+            <div class="footer-links">
+                <a href="#" class="footer-link">隐私政策</a>
+                <a href="#" class="footer-link">服务条款</a>
+                <a href="#" class="footer-link">联系我们</a>
+            </div>
+            <p>© 2023 1099表格申报服务. 保留所有权利.</p>
+            <p>本服务不隶属于美国国税局(IRS)。</p>
+        </div>
+    </div>
+    
+    <script>
+        // 倒计时功能
+        function updateCountdown() {
+            const now = new Date();
+            const endDate = new Date();
+            endDate.setDate(now.getDate() + 1);
+            endDate.setHours(23, 59, 59, 0);
+            
+            const diff = endDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // FAQ 折叠功能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

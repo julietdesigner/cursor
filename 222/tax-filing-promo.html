@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Tax Filing Offer - Buy 2 Get 3 Free</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 375px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            text-align: center;
+            padding: 20px 15px;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 60%);
+            transform: rotate(30deg);
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo img {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .offer-badge {
+            background: #ff3d00;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(255, 61, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .offer-details {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: -30px 15px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .offer-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a237e;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .benefits {
+            margin: 20px 0;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: #e8eaf6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .benefit-icon img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .benefit-text {
+            font-size: 14px;
+        }
+        
+        .benefit-text strong {
+            color: #1a237e;
+        }
+        
+        .price-section {
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .original-price {
+            font-size: 16px;
+            color: #757575;
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+        
+        .current-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff3d00;
+        }
+        
+        .savings {
+            font-size: 14px;
+            color: #43a047;
+            margin-top: 5px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #ff3d00, #ff6e40);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 15px 0;
+            border-radius: 30px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(255, 61, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        /* 移除之前的效果 */
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 32px;
+            background: transparent;
+            z-index: -1;
+        }
+        
+        /* 添加边缘流动线条效果 */
+        .cta-button:after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: 0;
+            border-radius: 32px;
+            background: linear-gradient(90deg, #ff3d00, #ffeb3b, #ff6e40, #ff3d00);
+            background-size: 300% 300%;
+            clip-path: polygon(
+                0% 0%, 
+                100% 0%, 
+                100% 100%, 
+                0% 100%, 
+                0% 0%, 
+                2% 2%, 
+                2% 98%, 
+                98% 98%, 
+                98% 2%, 
+                2% 2%
+            );
+            animation: border-flow 3s linear infinite;
+        }
+        
+        @keyframes border-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        .cta-button span {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-button:hover, .cta-button:active {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 61, 0, 0.4);
+        }
+        
+        .cta-button:hover:after {
+            animation: border-flow 1.5s linear infinite;
+        }
+        
+        .cta-button:hover, .cta-button:active {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 61, 0, 0.4);
+        }
+        
+        .cta-button:hover:before {
+            animation: glowing 1.5s ease-in-out infinite;
+        }
+        
+        /* 添加流动线条效果 */
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateX(-100%);
+            animation: flowing-line 2s infinite;
+            z-index: 2;
+        }
+        
+        @keyframes flowing-line {
+            0% {
+                transform: translateX(-100%);
+            }
+            50%, 100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        .limited-time {
+            text-align: center;
+            font-size: 14px;
+            color: #757575;
+            margin-top: 10px;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .countdown-item {
+            background: #1a237e;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+        }
+        
+        .countdown-value {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .countdown-label {
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+        
+        .testimonials {
+            margin: 30px 15px;
+        }
+        
+        .testimonial-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a237e;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 14px;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e8eaf6;
+            margin-right: 10px;
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info {
+            flex-grow: 1;
+        }
+        
+        .author-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .author-location {
+            font-size: 12px;
+            color: #757575;
+        }
+        
+        .rating {
+            display: flex;
+            margin-top: 5px;
+        }
+        
+        .star {
+            color: #ffc107;
+            font-size: 14px;
+            margin-right: 2px;
+        }
+        
+        .faq-section {
+            margin: 30px 15px;
+        }
+        
+        .faq-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a237e;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 15px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .faq-question::after {
+            content: "+";
+            font-size: 20px;
+            color: #1a237e;
+        }
+        
+        .faq-answer {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f5f7ff;
+        }
+        
+        .faq-item.active .faq-question::after {
+            content: "-";
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 15px;
+            max-height: 200px;
+        }
+        
+        .footer {
+            background: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 20px 15px;
+            font-size: 12px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .footer-link {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .element-1 {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation: float 8s infinite ease-in-out;
+        }
+        
+        .element-2 {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            right: 15%;
+            animation: float 12s infinite ease-in-out;
+        }
+        
+        .element-3 {
+            width: 40px;
+            height: 40px;
+            bottom: 15%;
+            left: 20%;
+            animation: float 10s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .ribbon-content {
+            position: absolute;
+            top: 30px;
+            right: -35px;
+            transform: rotate(45deg);
+            background: #ff3d00;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 40px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="floating-elements">
+                <div class="floating-element element-1"></div>
+                <div class="floating-element element-2"></div>
+                <div class="floating-element element-3"></div>
+            </div>
+            
+            <div class="ribbon">
+                <div class="ribbon-content">NEW USER ONLY</div>
+            </div>
+            
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMWEyMzdlIiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem02MS44LTEwNC40bC04NC45LTYxLjdjLTMuMS0yLjMtNC45LTUuOS00LjktOS43VjExNmMwLTYuNiA1LjQtMTIgMTItMTJoMzJjNi42IDAgMTIgNS40IDEyIDEydjE0MS43bDY2LjggNDguNmM1LjQgMy45IDYuNSAxMS40IDIuNiAxNi44TDMzNC42IDM0OWMtMy45IDUuMy0xMS40IDYuNS0xNi44IDIuNnoiLz48L3N2Zz4=" alt="Clock Icon">
+            </div>
+            
+            <h1 class="title">EXCLUSIVE TAX OFFER</h1>
+            <p class="subtitle">For New Customers Only</p>
+            
+            <div class="offer-badge">BUY 2 GET 3 FREE</div>
+        </div>
+        
+        <div class="offer-details">
+            <h2 class="offer-title">Limited Time Tax Filing Package</h2>
+            
+            <div class="benefits">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMWEyMzdlIiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem02MS44LTEwNC40bC04NC45LTYxLjdjLTMuMS0yLjMtNC45LTUuOS00LjktOS43VjExNmMwLTYuNiA1LjQtMTIgMTItMTJoMzJjNi42IDAgMTIgNS40IDEyIDEydjE0MS43bDY2LjggNDguNmM1LjQgMy45IDYuNSAxMS40IDIuNiAxNi44TDMzNC42IDM0OWMtMy45IDUuMy0xMS40IDYuNS0xNi44IDIuNnoiLz48L3N2Zz4=" alt="Clock Icon">
+                    </div>
+                    <div class="benefit-text">
+                        <strong>5 Years of Tax Filing</strong> - Pay for 2 years and get 3 years FREE
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMWEyMzdlIiBkPSJNNDY0IDEyOEg0OGMtMjYuNTEgMC00OCAyMS40OS00OCA0OHYyMjRjMCAyNi41MSAyMS40OSA0OCA0OGg0MTZjMjYuNTEgMCA0OC0yMS40OSA0OC00OFYxNzZjMC0yNi41MS0yMS40OS00OC00OC00OHptLTYgMjcySDU0YTYgNiAwIDAgMS02LTZWMTgyYTYgNiAwIDAgMSA2LTZoNDA0YTYgNiAwIDAgMSA2IDZ2MjEyYTYgNiAwIDAgMS02IDZ6bS0yMTItNjhjLTMuMjEgMC02LjU0LS45LTkuNTQtMy4xMWwtODYuMjYtNjMuNDZhMTIuMDIyIDEyLjAyMiAwIDAgMS0yLjM4LTE2LjgxYzIuOS0zLjk0IDguMjYtNS4yNyAxMi44MS0zLjE3bDg2LjI2IDYzLjQ2YzEuNTYgMS4xNSAzLjggMS45MSA2LjExIDEuOTEgMi4zIDAgNC41NS0uNzYgNi4xMS0xLjkxbDg2LjI2LTYzLjQ2YzQuNTQtMi4xIDkuOTEtLjc3IDEyLjgxIDMuMTdhMTIuMDIyIDEyLjAyMiAwIDAgMS0yLjM4IDE2LjgxbC04Ni4yNiA2My40NmMtMi45OSAyLjIxLTYuMzMgMy4xMS05LjU0IDMuMTF6Ii8+PC9zdmc+" alt="Email Icon">
+                    </div>
+                    <div class="benefit-text">
+                        <strong>Expert Support</strong> - Get professional assistance with your tax returns
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMWEyMzdlIiBkPSJNNDY2LjUgODMuN2wtMTkyLTgwYTQ4LjE1IDQ4LjE1IDAgMCAwLTM3IDAgbC0xOTIgODBDMjcuNyA5MS4xIDkuMyAxMDguMyA5LjMgMTI4VjM4NGMwIDE4LjMgMTYgMzIuMyAzMi4zIDMyLjNjMi41IDAgNC44LS40IDcuMi0uOEMyOTkuMSA0MTcuNSA0NDMuNyAyNzcuNiA0NjAgMjc3LjZjMTYuMyAwIDMyLjEgMTYuMiAzMi4xIDMyLjVWMTI4YzAtMTkuNy0xOC40LTM2LjktMjUuNi00NC4zek0zMjAg fianceYy00NC4yIDAtODAtMzUuOC04MC04MHMzNS44LTgwIDgwLTgwIDgwIDM1LjggODAgODAtMzUuOCA4MC04MCA4MHptMC0xMjhjLTI2LjUgMC00OCAyMS41LTQ4IDQ4czIxLjUgNDggNDggNDggNDgtMjEuNSA0OC00OC0yMS41LTQ4LTQ4LTQ4eiIvPjwvc3ZnPg==" alt="Security Icon">
+                    </div>
+                    <div class="benefit-text">
+                        <strong>Maximum Refund Guarantee</strong> - We'll find every deduction you deserve
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMWEyMzdlIiBkPSJNNDcwLjYgMTA1LjRjMTIuNSAxMi41IDEyLjUgMzIuOCAwIDQ1LjNsLTI1NiAyNTZjLTEyLjUgMTIuNS0zMi44IDEyLjUtNDUuMyAwbC0xMjgtMTI4Yy0xMi41LTEyLjUtMTIuNS0zMi44IDAtNDUuM3MzMi44LTEyLjUgNDUuMyAwTDE5MiAzMzguNyA0MjUuNCAxMDUuNGMxMi41LTEyLjUgMzIuOC0xMi41IDQ1LjMgMHoiLz48L3N2Zz4=" alt="Check Icon">
+                    </div>
+                    <div class="benefit-text">
+                        <strong>100% Accuracy</strong> - Our software double-checks your return
+                    </div>
+                </div>
+            </div>
+            
+            <div class="price-section">
+                <span class="original-price">$299.99</span>
+                <span class="current-price">$119.99</span>
+                <div class="savings">You save $180.00 (60% off)</div>
+            </div>
+            
+            <button class="cta-button">CLAIM YOUR OFFER NOW</button>
+            
+            <div class="limited-time">Limited Time Offer - Expires Soon</div>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">02</div>
+                    <div class="countdown-label">days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">11</div>
+                    <div class="countdown-label">hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">45</div>
+                    <div class="countdown-label">mins</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="seconds">30</div>
+                    <div class="countdown-label">secs</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonials">
+            <h2 class="testimonial-title">What Our Customers Say</h2>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"I've been using this service for 2 years now. Getting 3 more years for free is an incredible deal! The process is so simple and their customer support is top-notch."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48cGF0aCBmaWxsPSIjMWEyMzdlIiBkPSJNMjI0IDI1NmM3MC43IDAgMTI4LTU3LjMgMTI4LTEyOFMyOTQuNyAwIDIyNCAwIDk2IDU3LjMgOTYgMTI4czU3LjMgMTI4IDEyOCAxMjh6bTg5LjYgMzJoLTE2LjdsLTguOS0xNy43QzI3NC45IDI4My43IDI0OS44IDI3MiAyMjQgMjcyczUwLjkgMTEuNyA2NC4xIDI3LjNsOC45IDE3LjdoMTYuN2M0My4yIDAgODMuMyAxMy4xIDExNi4yIDM1LjRsLTMuMiA1MS42Yy0yLjQgMzguOC0zNC4zIDY5LjEtNzMuMSA3MS4zLTk1LjggNS4yLTE5MS44IDUuMi0yODcuNiAwLTM4LjgtMi4xLTcwLjctMzIuNS03My4xLTcxLjNsLTMuMi01MS42QzMyLjYgMzAxLjEgNzIuNyAyODggMTE1LjkgMjg4eiIvPjwvc3ZnPg==" alt="User Avatar">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name">Michael Johnson</div>
+                        <div class="author-location">New York, NY</div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"As a small business owner, tax season used to be stressful. This service makes it so easy, and the expert support has saved me thousands in deductions I would have missed!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48cGF0aCBmaWxsPSIjMWEyMzdlIiBkPSJNMjI0IDI1NmM3MC43IDAgMTI4LTU3LjMgMTI4LTEyOFMyOTQuNyAwIDIyNCAwIDk2IDU3LjMgOTYgMTI4czU3LjMgMTI4IDEyOCAxMjh6bTg5LjYgMzJoLTE2LjdsLTguOS0xNy43QzI3NC45IDI4My43IDI0OS44IDI3MiAyMjQgMjcyczUwLjkgMTEuNyA2NC4xIDI3LjNsOC45IDE3LjdoMTYuN2M0My4yIDAgODMuMyAxMy4xIDExNi4yIDM1LjRsLTMuMiA1MS42Yy0yLjQgMzguOC0zNC4zIDY5LjEtNzMuMSA3MS4zLTk1LjggNS4yLTE5MS44IDUuMi0yODcuNiAwLTM4LjgtMi4xLTcwLjctMzIuNS03My4xLTcxLjNsLTMuMi01MS42QzMyLjYgMzAxLjEgNzIuNyAyODggMTE1LjkgMjg4eiIvPjwvc3ZnPg==" alt="User Avatar">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name">Sarah Williams</div>
+                        <div class="author-location">Chicago, IL</div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-section">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">What's included in this offer?</div>
+                <div class="faq-answer">
+                    This special offer includes 5 years of tax filing services for the price of 2. You'll get professional tax preparation, maximum refund guarantee, audit support, and expert assistance throughout the entire process.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How does the "Buy 2 Get 3 Free" offer work?</div>
+                <div class="faq-answer">
+                    When you purchase our 2-year tax filing package, we'll automatically extend your service for an additional 3 years at no extra cost. This means you'll get 5 years of tax filing for the price of 2!
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Is this offer available for existing customers?</div>
+                <div class="faq-answer">
+                    This special promotion is exclusively for new customers only. If you're an existing customer, please check your email for special loyalty offers we may have sent you.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What if I need to file for multiple years at once?</div>
+                <div class="faq-answer">
+                    Our service allows you to file for multiple tax years. If you need to catch up on previous years' filings, our tax experts can help you navigate the process and maximize your refunds for each year.
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Terms & Conditions</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Contact Us</a>
+            </div>
+            <p>© 2023 Tax Filing Service. All rights reserved.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Countdown functionality
+        function updateCountdown() {
+            // Set deadline - 3 days from current time
+            const now = new Date();
+            const deadline = new Date(now);
+            deadline.setDate(now.getDate() + 3);
+            
+            // Calculate time remaining
+            const timeLeft = deadline - now;
+            
+            // Calculate days, hours, minutes and seconds
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            // Update DOM
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Execute immediately
+        
+        // FAQ accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', function() {
+                    // Toggle active state for current item
+                    item.classList.toggle('active');
+                    
+                    // Close other open FAQ items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                });
+            });
+            
+            // Add CTA button click event
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', function() {
+                    alert('Thank you for your interest! We\'ll redirect you to our secure checkout page.');
+                    // Here you can add actual redirect or form submission logic
+                });
+            }
+        });
+    </script>
+</body>
+</html>

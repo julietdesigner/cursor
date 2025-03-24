@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Payment - 1099 Form Application</title>
+    <link rel="stylesheet" href="/Volumes/work/cmcm-code-item/222/assets/css/styles.css">
+    <link rel="stylesheet" href="/Volumes/work/cmcm-code-item/222/assets/css/check-payment.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNNDg4IDI1NkgzNTJWMTZjMC04LjgtNy4yLTE2LTE2LTE2aC0xNjBjLTguOCAwLTE2IDcuMi0xNiAxNnYyNDBIMjRjLTguOCAwLTE2IDcuMi0xNiAxNnYxNmMwIDguOCA3LjIgMTYgMTYgMTZoMTM2djE2OGMwIDguOCA3LjIgMTYgMTYgMTZoMTYwYzguOCAwIDE2LTcuMiAxNi0xNlYzMDRoMTM2YzguOCAwIDE2LTcuMiAxNi0xNnYtMTZjMC04LjgtNy4yLTE2LTE2LTE2em0tMjcyIDE2VjE2aDEyOHYyNTZIMjE2eiIvPjwvc3ZnPg==" alt="Tax Form Icon">
+            </div>
+            <h1 class="title">Check Payment</h1>
+            <p class="subtitle">Complete your 1099 form application payment by check</p>
+        </div>
+        
+        <div class="order-summary">
+            <h2 class="section-title">Order Summary</h2>
+            <div class="order-details">
+                <div class="order-row">
+                    <span>1099 Form Processing</span>
+                    <span>$29.99</span>
+                </div>
+                <div class="order-row">
+                    <span>Express Filing</span>
+                    <span>$9.99</span>
+                </div>
+                <div class="order-divider"></div>
+                <div class="order-row total">
+                    <span>Total</span>
+                    <span id="total-amount">$39.98</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="check-instructions">
+            <h2 class="section-title">Check Payment Instructions</h2>
+            <div class="instruction-card">
+                <div class="instruction-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Write Your Check</h3>
+                        <p>Make your check payable to <strong>1099 Form Application Service</strong> for the amount of <strong id="check-amount">$39.98</strong>.</p>
+                        <div class="check-example">
+                            <img src="/Volumes/work/cmcm-code-item/222/assets/images/check-example.png" alt="Check Example">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="instruction-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Include Your Order Number</h3>
+                        <p>Write your order number <strong id="order-number">ORD-2023-12345</strong> in the memo line of your check.</p>
+                    </div>
+                </div>
+                
+                <div class="instruction-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Mail Your Check</h3>
+                        <p>Send your check to the following address:</p>
+                        <div class="mailing-address">
+                            <p>1099 Form Application Service</p>
+                            <p>Finance Department</p>
+                            <p>88 Jianguo Road, Chaoyang District</p>
+                            <p>Beijing, 100022</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="instruction-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Processing Time</h3>
+                        <p>Check processing typically takes 5-7 business days. We will notify you by email once your check is received and confirmed.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="important-note">
+                <div class="note-icon">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmY5ODAwIiBkPSJNNTAzLjkgMzk1LjJMMjgwLjcgMjQuMWMtNi40LTEwLjctMTguMi0xNy4yLTMwLjctMTcuMnMtMjQuMyA2LjUtMzAuNyAxNy4yTDYuMSAzOTUuMmMtNi45IDExLjUtNi43IDI1LjkuNiAzNy4yIDcuNSAxMS42IDIwLjMgMTguNiAzNC4xIDE4LjZoNDM0LjRjMTMuOCAwIDI2LjctNyAzNC4xLTE4LjYgNy4zLTExLjMgNy41LTI1LjcuNi0zNy4yek0yNTYgNDhjOC44IDAgMTYgNy4yIDE2IDE2djE2MGMwIDguOC03LjIgMTYtMTYgMTZzLTE2LTcuMi0xNi0xNlY2NGMwLTguOCA3LjItMTYgMTYtMTZ6bTAgMjI0YzE3LjcgMCAzMiAxNC4zIDMyIDMycy0xNC4zIDMyLTMyIDMyLTMyLTE0LjMtMzItMzIgMTQuMy0zMiAzMi0zMnoiLz48L3N2Zz4=" alt="Important Note Icon">
+                </div>
+                <div class="note-content">
+                    <h3>Important Note</h3>
+                    <p>Your 1099 form will not be processed until your check payment has been received and cleared. Please ensure your check includes the correct amount and order number to avoid delays.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="check-confirmation">
+            <h2 class="section-title">Confirm Your Check Payment</h2>
+            <div class="confirmation-form">
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="checkbox-input" id="confirm-check">
+                        <span class="checkbox-text">I confirm that I will mail the check as instructed above and understand that my order will be processed after the check is received and confirmed.</span>
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="expected-mail-date">Expected Mail Date</label>
+                    <input type="date" class="form-input" id="expected-mail-date">
+                </div>
+            </div>
+        </div>
+        
+        <div class="alternative-payment">
+            <h2 class="section-title">Alternative Payment Methods</h2>
+            <p>If you prefer not to pay by check, you can use one of our other payment methods:</p>
+            <div class="payment-options">
+                <a href="/Volumes/work/cmcm-code-item/222/credit-card-payment.html" class="payment-option">
+                    <div class="option-icon">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1NzYgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNNTI4IDMySDQ4QzIxLjUgMzIgMCA1My41IDAgODB2MzUyYzAgMjYuNSAyMS41IDQ4IDQ4IDQ4aDQ4MGMyNi41IDAgNDgtMjEuNSA0OC00OFY4MGMwLTI2LjUtMjEuNS00OC00OC00OHpNNDggNDAwVjgwaDQ4MHYzMjBINDh6bTMyLTIzNmMwLTYuNi01LjQtMTItMTItMTJzLTEyIDUuNC0xMiAxMnY1NmMwIDYuNiA1LjQgMTIgMTIgMTJzMTItNS40IDEyLTEydi01NnptOTYgMGMwLTYuNi01LjQtMTItMTItMTJzLTEyIDUuNC0xMiAxMnY1NmMwIDYuNiA1LjQgMTIgMTIgMTJzMTItNS40IDEyLTEydi01NnptOTYgMGMwLTYuNi01LjQtMTItMTItMTJzLTEyIDUuNC0xMiAxMnY1NmMwIDYuNiA1LjQgMTIgMTIgMTJzMTItNS40IDEyLTEydi01NnoiLz48L3N2Zz4=" alt="Credit Card Icon">
+                    </div>
+                    <div class="option-text">Credit Card</div>
+                </a>
+                
+                <a href="/Volumes/work/cmcm-code-item/222/electronic-check.html" class="payment-option">
+                    <div class="option-icon">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMGQ0N2ExIiBkPSJNMTI4IDQwNS4yYzAtMTAuNi0xLjYtMjEtNC4xLTMwLjlsMzAyLjEtMTUxYzguNyA5LjkgMTkuOCAxNy41IDMyLjQgMjEuOGwzLjMgMS4yLTU3LjQgMjg3LjJjLTQuNiAxLjItOS40IDEuOC0xNC40IDEuOC01LjkgMC0xMS44LS43LTE3LjUtMi4xTDEyOCA0MDUuMnptMzQ4LjYtOTcuM2MxOS41IDEwLjcgNDIuMSA0LjIgNTIuOS0xNS4yIDEwLjctMTkuNSA0LjItNDIuMS0xNS4yLTUyLjlzLTQyLjEtNC4yLTUyLjkgMTUuMmMtNy4yIDEzLTYuMSAyOC4zIDIuMSA0MC4zTDQwOC4yIDQzLjRjMi4zLTExLjktNS40LTIzLjQtMTcuNC0yNS44TDMzOC41IDQuN2MtMTEuOS0yLjMtMjMuNCA1LjQtMjUuOCAxNy40bC0yNS40IDEyOS4zYy0yMC42LTE1LjYtNDkuOS0xMi4yLTY3LjYgOC44LTIzLjMgMjcuNy0yMC40IDY5LjYgNi43IDk0LjVsLTU3LjQgMjg3LjJjLTIuMyAxMS45IDUuNCAxOS40IDE3LjQgMjEuOGw1Mi4yIDEwLjJjMTEuOSAyLjMgMjMuNC01LjQgMjUuOC0xNy40bDQuOC0yNC4xYzE0LjIgMTEuNyAzMi4yIDE3IDUwLjMgMTQuOSA1NC4xLTYuNCA5MC40LTU3LjEgODMuOS0xMTEuMi0yLjYtMjEuOS0xMS45LTQxLjgtMjYuMi01Ny45eiIvPjwvc3ZnPg==" alt="Electronic Check Icon">
+                    </div>
+                    <div class="option-text">Electronic Check</div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <a href="/Volumes/work/cmcm-code-item/222/1099-form-application.html" class="btn btn-back">Back to Form</a>
+            <button type="button" class="btn btn-next" id="confirm-payment">Confirm Check Payment</button>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 1099 Form Application Service | All Rights Reserved</p>
+            <p>This service is intended to assist with 1099 form preparation only and does not provide tax advice.</p>
+        </div>
+    </div>
+
+    <script src="/Volumes/work/cmcm-code-item/222/assets/js/check-payment.js"></script>
+</body>
+</html>

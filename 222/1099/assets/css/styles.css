@@ -1,0 +1,335 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    margin-bottom: 15px;
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+}
+
+.title {
+    font-size: 28px;
+    color: #0d47a1;
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.progress-container {
+    margin-bottom: 30px;
+}
+
+.progress-bar {
+    height: 6px;
+    background-color: #e0e0e0;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #0d47a1;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+}
+
+.step {
+    font-size: 12px;
+    color: #757575;
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+.step.active {
+    color: #0d47a1;
+    font-weight: 600;
+}
+
+.form-section {
+    margin-bottom: 30px;
+    display: none;
+}
+
+.form-section:first-of-type {
+    display: block;
+}
+
+.section-title {
+    font-size: 20px;
+    color: #0d47a1;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.required-field::after {
+    content: "*";
+    color: #d32f2f;
+    margin-left: 4px;
+}
+
+.form-input, .form-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus, .form-select:focus {
+    border-color: #0d47a1;
+    outline: none;
+}
+
+.form-input.error, .form-select.error {
+    border-color: #d32f2f;
+}
+
+.form-help {
+    font-size: 12px;
+    color: #757575;
+    margin-top: 4px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.form-col {
+    flex: 1;
+    padding: 0 10px;
+    min-width: 200px;
+}
+
+.form-input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-prefix {
+    padding: 12px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    color: #333;
+}
+
+.form-input-group .form-input {
+    border-radius: 0 4px 4px 0;
+}
+
+.tax-year-selector, .form-type-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.tax-year-option, .form-type-option {
+    flex: 1;
+    min-width: 150px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tax-year-option:hover, .form-type-option:hover {
+    border-color: #0d47a1;
+}
+
+.tax-year-option.selected, .form-type-option.selected {
+    border-color: #0d47a1;
+    background-color: rgba(13, 71, 161, 0.05);
+}
+
+.tax-year-label, .form-type-name {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.tax-year-desc, .form-type-desc {
+    display: block;
+    font-size: 12px;
+    color: #757575;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background-color: #0d47a1;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    cursor: help;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.checkbox-group {
+    margin-bottom: 15px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.checkbox-input {
+    margin-top: 4px;
+    margin-right: 10px;
+}
+
+.form-note {
+    background-color: #fff8e1;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 0 4px 4px 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-back {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.btn-back:hover {
+    background-color: #d5d5d5;
+}
+
+.btn-next {
+    background-color: #0d47a1;
+    color: white;
+}
+
+.btn-next:hover {
+    background-color: #0a3b8c;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 12px;
+    color: #757575;
+}
+
+.security-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 20px;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #555;
+}
+
+.badge img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
