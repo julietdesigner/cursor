@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 375px;
+            background-color: #f5f5f7;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background-color: #f5f5f7;
+            color: #000;
+        }
+
+        .status-bar-time {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px 16px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .search-icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+        }
+
+        .filter-tabs {
+            display: flex;
+            padding: 0 16px;
+            margin-bottom: 16px;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .filter-tab {
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            background-color: #e5e7eb;
+            color: #4b5563;
+            cursor: pointer;
+        }
+
+        .filter-tab.active {
+            background-color: #0066ff;
+            color: white;
+        }
+
+        .filter-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+        }
+
+        .sort-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .invoice-list {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .invoice-item {
+            background-color: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px;
+        }
+
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .invoice-client {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .invoice-amount {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .invoice-date {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .invoice-number {
+            font-size: 14px;
+            color: #0066ff;
+        }
+
+        .invoice-status {
+            display: flex;
+            align-items: center;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-indicator.overdue {
+            background-color: #ef4444;
+        }
+
+        .status-indicator.success {
+            background-color: #10b981;
+        }
+
+        .status-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status-text.overdue {
+            color: #ef4444;
+        }
+
+        .status-text.success {
+            color: #10b981;
+        }
+
+        .invoice-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .more-icon {
+            color: #9ca3af;
+        }
+
+        .fab-button {
+            position: fixed;
+            bottom: 80px;
+            right: 16px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: #0066ff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            background-color: white;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        .nav-item.active {
+            color: #0066ff;
+        }
+
+        .nav-icon {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <div class="status-bar-time">9:41</div>
+            <div class="status-bar-icons">
+                <span class="material-icons-outlined" style="font-size: 16px;">signal_cellular_alt</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">wifi</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">battery_full</span>
+            </div>
+        </div>
+        
+        <div class="header">
+            <h1 class="page-title">Invoices</h1>
+            <div class="search-icon">
+                <span class="material-icons-outlined">search</span>
+            </div>
+        </div>
+        
+        <div class="filter-tabs">
+            <div class="filter-tab">Draft</div>
+            <div class="filter-tab">Unpaid</div>
+            <div class="filter-tab active">All</div>
+            <div class="filter-icon">
+                <span class="material-icons-outlined">check_circle</span>
+            </div>
+            <div class="sort-icon">
+                <span class="material-icons-outlined">sort</span>
+            </div>
+        </div>
+        
+        <div class="invoice-list">
+            <div class="invoice-item">
+                <div class="invoice-header">
+                    <div class="invoice-client">Juliet</div>
+                    <div class="invoice-amount">$49.99</div>
+                </div>
+                <div class="invoice-details">
+                    <div class="invoice-date">Oct 15, 2023</div>
+                    <div class="invoice-number">INV · 000000002</div>
+                </div>
+                <div class="invoice-status">
+                    <div class="status-indicator overdue"></div>
+                    <div class="status-text overdue">OVERDUE BY DAYS</div>
+                    <div class="invoice-actions">
+                        <span class="material-icons-outlined more-icon">more_horiz</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="invoice-item">
+                <div class="invoice-header">
+                    <div class="invoice-client">Juliet</div>
+                    <div class="invoice-amount">$49.99</div>
+                </div>
+                <div class="invoice-details">
+                    <div class="invoice-date">Oct 15, 2023</div>
+                    <div class="invoice-number">INV · 000000002</div>
+                </div>
+                <div class="invoice-status">
+                    <div class="status-indicator success"></div>
+                    <div class="status-text success">Payment Successful</div>
+                    <div class="invoice-actions">
+                        <span class="material-icons-outlined more-icon">more_horiz</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="invoice-item">
+                <div class="invoice-header">
+                    <div class="invoice-client">Juliet</div>
+                    <div class="invoice-amount">$49.99</div>
+                </div>
+                <div class="invoice-details">
+                    <div class="invoice-date">Oct 15, 2023</div>
+                    <div class="invoice-number">INV · 000000002</div>
+                </div>
+                <div class="invoice-status">
+                    <div class="status-indicator success"></div>
+                    <div class="status-text success">Payment Successful</div>
+                    <div class="invoice-actions">
+                        <span class="material-icons-outlined more-icon">more_horiz</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="fab-button">
+            <span class="material-icons-outlined">add</span>
+        </div>
+        
+        <div class="bottom-nav">
+            <div class="nav-item">
+                <span class="material-icons-outlined nav-icon">home</span>
+                <span>Home</span>
+            </div>
+            <div class="nav-item">
+                <span class="material-icons-outlined nav-icon">account_balance</span>
+                <span>Accounts</span>
+            </div>
+            <div class="nav-item">
+                <span class="material-icons-outlined nav-icon">folder</span>
+                <span>Projects</span>
+            </div>
+            <div class="nav-item">
+                <span class="material-icons-outlined nav-icon">chat</span>
+                <span>Chats</span>
+            </div>
+            <div class="nav-item active">
+                <span class="material-icons-outlined nav-icon">apps</span>
+                <span>More</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter tab selection
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    filterTabs.forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
