@@ -774,15 +774,37 @@
 
     <div class="separator"></div>
 
-    <!-- 状态12: 个人银行账户添加 -->
-    <div class="state-label">State 12: Personal Bank Account</div>
+    <!-- 状态12: 个人电子支票支付 -->
+    <div class="state-label">State 12: Personal eCheck Payment</div>
     <div class="container">
         <div class="header">
-            <h1>Add Personal Bank Account</h1>
-            <p>Link your personal checking or savings account</p>
+            <h1>Make a Payment</h1>
+            <p>Amount due: $1,250.00</p>
         </div>
 
         <div class="payment-methods">
+            <div class="method-selector">
+                <button class="method-button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                    </svg>
+                    <span>Credit Card</span>
+                </button>
+                <button class="method-button active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    <span>eCheck</span>
+                </button>
+            </div>
+
+            <div class="info-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p>eCheck payments typically process within 3-5 business days. A $1.50 processing fee will be added to your payment.</p>
+            </div>
+
             <div class="form-section">
                 <div class="form-title">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20">
@@ -797,14 +819,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Date of Birth</label>
-                    <input type="date" class="form-input">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" placeholder="Enter your email">
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Social Security Number</label>
-                    <input type="text" class="form-input" placeholder="XXX-XX-XXXX" maxlength="11">
-                    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Last 4 digits only for verification</p>
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" placeholder="(123) 456-7890">
                 </div>
             </div>
 
@@ -850,21 +871,43 @@
                 </div>
             </div>
 
-            <button class="button">Add Bank Account</button>
+            <button class="button">Submit Payment</button>
         </div>
     </div>
 
     <div class="separator"></div>
 
-    <!-- 状态13: 公司银行账户添加 -->
-    <div class="state-label">State 13: Business Bank Account</div>
+    <!-- 状态13: 公司电子支票支付 -->
+    <div class="state-label">State 13: Business eCheck Payment</div>
     <div class="container">
         <div class="header">
-            <h1>Add Business Bank Account</h1>
-            <p>Link your company's bank account</p>
+            <h1>Make a Business Payment</h1>
+            <p>Amount due: $5,000.00</p>
         </div>
 
         <div class="payment-methods">
+            <div class="method-selector">
+                <button class="method-button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                    </svg>
+                    <span>Credit Card</span>
+                </button>
+                <button class="method-button active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    <span>eCheck</span>
+                </button>
+            </div>
+
+            <div class="info-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p>Business eCheck payments typically process within 3-5 business days. A $2.50 processing fee will be added to your payment.</p>
+            </div>
+
             <div class="form-section">
                 <div class="form-title">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20">
@@ -947,77 +990,32 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    Verification Documents
+                    Payment Authorization
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Business Registration Document</label>
+                    <label class="form-label">Authorized Signer Name</label>
+                    <input type="text" class="form-input" placeholder="Enter authorized signer name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-input" placeholder="Enter signer's title">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Signature</label>
                     <div style="border: 2px dashed var(--border-color); border-radius: 8px; padding: 20px; text-align: center;">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="32" height="32" style="margin-bottom: 8px;">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
                         </svg>
-                        <p style="color: var(--text-secondary); margin-bottom: 8px;">Drag and drop your file here</p>
-                        <button class="button" style="background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color);">Choose File</button>
+                        <p style="color: var(--text-secondary); margin-bottom: 8px;">Draw your signature here</p>
+                        <button class="button" style="background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color);">Clear Signature</button>
                     </div>
                 </div>
             </div>
 
-            <button class="button">Add Business Account</button>
-        </div>
-    </div>
-
-    <div class="separator"></div>
-
-    <!-- 状态14: 公司账户验证中 -->
-    <div class="state-label">State 14: Business Account Verification</div>
-    <div class="container">
-        <div class="header">
-            <h1>Verifying Business Account</h1>
-            <p>We're reviewing your business information</p>
-        </div>
-
-        <div class="payment-methods">
-            <div style="text-align: center; padding: 40px 20px;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" width="64" height="64" style="margin-bottom: 24px;">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-
-                <h2 style="margin-bottom: 12px;">Verification in Progress</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 32px;">We're reviewing your business documents and account information. This process typically takes 1-2 business days.</p>
-
-                <div class="form-section">
-                    <div style="text-align: left;">
-                        <h3 style="margin-bottom: 16px; font-size: 17px;">Verification Steps:</h3>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 12px;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" width="20" height="20">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                </svg>
-                                <span>Business Registration Document Review</span>
-                            </li>
-                            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 12px;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" width="20" height="20">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                </svg>
-                                <span>Bank Account Verification</span>
-                            </li>
-                            <li style="display: flex; align-items: center; gap: 12px;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" width="20" height="20">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                                <span>Final Approval</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="info-box" style="background: rgba(245, 158, 11, 0.1); border-color: var(--warning-color);">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--warning-color)">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <p>We'll notify you via email once the verification is complete.</p>
-                </div>
-            </div>
+            <button class="button">Submit Payment</button>
         </div>
     </div>
 </body>
