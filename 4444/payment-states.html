@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment States</title>
+    <style>
+        /* 复用原有样式 */
+        :root {
+            --primary-color: #0066ff;
+            --background-color: #f5f7fa;
+            --border-color: #e2e8f0;
+            --text-color: #1a1a1a;
+            --text-secondary: #64748b;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            padding-bottom: 100px;
+        }
+
+        /* 分隔线样式 */
+        .separator {
+            height: 4px;
+            background-color: #ff0000;
+            margin: 40px 0;
+            width: 100%;
+        }
+
+        .state-label {
+            background: #000;
+            color: white;
+            padding: 8px 16px;
+            margin: 20px 0;
+            font-weight: 600;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        /* 复用原有组件样式 */
+        .header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .nav {
+            max-width: 420px;
+            margin: 0 auto;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+
+        .nav-action {
+            color: var(--primary-color);
+            font-size: 17px;
+            font-weight: 400;
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .nav-title {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 20px 16px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .segment-control {
+            background: var(--border-color);
+            border-radius: 9px;
+            padding: 2px;
+            display: flex;
+            margin-bottom: 24px;
+        }
+
+        .segment-button {
+            flex: 1;
+            padding: 8px 0;
+            border: none;
+            background: none;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .segment-button.active {
+            background: white;
+            color: var(--text-color);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 17px;
+        }
+
+        .form-input.error {
+            border-color: var(--error-color);
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 17px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .button.loading {
+            background-image: linear-gradient(90deg, var(--primary-color) 0%, #3385ff 50%, var(--primary-color) 100%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
+        .credit-card {
+            background: linear-gradient(135deg, #434343 0%, #000000 100%);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .card-number {
+            font-size: 22px;
+            letter-spacing: 2px;
+            margin: 20px 0;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+        }
+
+        .success-state {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 20px;
+        }
+
+        .security-info {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* 新增信用卡表单样式 */
+        .card-input-group {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 状态1: 初始银行账户表单 -->
+    <div class="state-label">State 1: Initial Bank Account Form</div>
+    <div class="container">
+        <div class="segment-control">
+            <button class="segment-button active">Bank Account</button>
+            <button class="segment-button">Credit Card</button>
+        </div>
+
+        <div class="card">
+            <div class="form-group">
+                <label class="form-label">Account Type</label>
+                <button class="form-select">
+                    <span>Checking Account</span>
+                    <span>›</span>
+                </button>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Routing Number</label>
+                <input type="text" class="form-input" placeholder="Enter 9-digit routing number">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Account Number</label>
+                <input type="text" class="form-input" placeholder="Enter account number">
+            </div>
+        </div>
+
+        <button class="button" disabled>Add Bank Account</button>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态2: 错误状态表单 -->
+    <div class="state-label">State 2: Form with Errors</div>
+    <div class="container">
+        <div class="card">
+            <div class="form-group">
+                <label class="form-label">Routing Number</label>
+                <input type="text" class="form-input error" value="12345">
+                <p class="error-message">Please enter a valid 9-digit routing number</p>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Account Number</label>
+                <input type="text" class="form-input error" value="ABC">
+                <p class="error-message">Please enter a valid account number</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态3: 信用卡表单 -->
+    <div class="state-label">State 3: Credit Card Form</div>
+    <div class="container">
+        <div class="segment-control">
+            <button class="segment-button">Bank Account</button>
+            <button class="segment-button active">Credit Card</button>
+        </div>
+
+        <div class="credit-card">
+            <div>VISA</div>
+            <div class="card-number">•••• •••• •••• 4242</div>
+            <div class="card-footer">
+                <span>John Doe</span>
+                <span>12/24</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="form-group">
+                <label class="form-label">Card Number</label>
+                <input type="text" class="form-input" placeholder="Enter card number">
+            </div>
+
+            <div class="card-input-group">
+                <div class="form-group">
+                    <label class="form-label">Expiration Date</label>
+                    <input type="text" class="form-input" placeholder="MM/YY">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">CVV</label>
+                    <input type="text" class="form-input" placeholder="123">
+                </div>
+            </div>
+        </div>
+
+        <button class="button">Add Credit Card</button>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态4: 加载状态 -->
+    <div class="state-label">State 4: Loading State</div>
+    <div class="container">
+        <div class="card">
+            <div class="form-group">
+                <label class="form-label">Processing Payment</label>
+                <button class="button loading">Adding Payment Method...</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态5: 成功状态 -->
+    <div class="state-label">State 5: Success State</div>
+    <div class="container">
+        <div class="success-state">
+            <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <h2 style="color: var(--success-color); margin-bottom: 8px;">Payment Method Added</h2>
+            <p style="color: var(--text-secondary)">Your payment method has been successfully added to your account.</p>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态6: 选择账户类型下拉框 -->
+    <div class="state-label">State 6: Account Type Selection</div>
+    <div class="container">
+        <div class="card">
+            <div class="form-group">
+                <label class="form-label">Account Type</label>
+                <div style="border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
+                    <button class="form-select" style="border: none; border-bottom: 1px solid var(--border-color);">
+                        <span>Checking Account</span>
+                        <span style="color: var(--primary-color)">✓</span>
+                    </button>
+                    <button class="form-select" style="border: none;">
+                        <span>Savings Account</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
