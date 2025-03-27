@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Program</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 375px;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-section {
+            background-color: #2563EB;
+            padding: 32px 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.2;
+        }
+
+        .hero-star {
+            position: absolute;
+            font-size: 16px;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-amount {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .get-started-button {
+            background-color: #10B981;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .get-started-button .material-icons-outlined {
+            margin-left: 8px;
+            font-size: 18px;
+        }
+
+        .hero-wave {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        .commission-section {
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .commission-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #FF6B00;
+            margin-bottom: 4px;
+        }
+
+        .commission-subtitle {
+            font-size: 14px;
+            color: #6B7280;
+            margin-bottom: 24px;
+        }
+
+        .reward-table {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 32px;
+        }
+
+        .reward-header {
+            display: flex;
+            background-color: #F3F4F6;
+            padding: 12px 16px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .reward-header-cell {
+            flex: 1;
+        }
+
+        .reward-header-cell:last-child {
+            text-align: right;
+        }
+
+        .reward-row {
+            display: flex;
+            padding: 16px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .reward-row:last-child {
+            border-bottom: none;
+        }
+
+        .reward-cell {
+            flex: 1;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .reward-cell:last-child {
+            text-align: right;
+            font-weight: 600;
+            color: #059669;
+        }
+
+        .reward-note {
+            font-size: 12px;
+            color: #6B7280;
+            text-align: left;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .how-it-works {
+            padding: 0 20px 24px;
+        }
+
+        .step-container {
+            margin-bottom: 24px;
+        }
+
+        .step {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            background-color: #2563EB;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex-grow: 1;
+        }
+
+        .step-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .step-description {
+            font-size: 14px;
+            color: #6B7280;
+            line-height: 1.4;
+        }
+
+        .rules-section {
+            padding: 0 20px 24px;
+        }
+
+        .rule {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .rule-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #F3F4F6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .rule-icon .material-icons-outlined {
+            font-size: 18px;
+            color: #2563EB;
+        }
+
+        .rule-content {
+            flex-grow: 1;
+        }
+
+        .rule-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .rule-description {
+            font-size: 14px;
+            color: #6B7280;
+            line-height: 1.4;
+        }
+
+        .service-section {
+            padding: 0 20px 24px;
+        }
+
+        .service {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding: 16px;
+            background-color: #F9FAFB;
+            border-radius: 12px;
+        }
+
+        .service-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #EFF6FF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .service-icon .material-icons-outlined {
+            font-size: 20px;
+            color: #2563EB;
+        }
+
+        .service-content {
+            flex-grow: 1;
+        }
+
+        .service-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .service-description {
+            font-size: 14px;
+            color: #6B7280;
+            line-height: 1.4;
+        }
+
+        .faq-section {
+            padding: 0 20px 32px;
+        }
+
+        .faq-item {
+            margin-bottom: 16px;
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 16px;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .question-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: #111827;
+        }
+
+        .faq-answer {
+            font-size: 14px;
+            color: #6B7280;
+            margin-top: 8px;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .material-icons-outlined {
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="hero-section">
+            <div class="hero-stars">
+                <!-- Stars will be added via JavaScript -->
+            </div>
+            <h1 class="hero-title">Become a UTAXES<sup>+</sup> Ambassador</h1>
+            <p class="hero-subtitle">Earn up to</p>
+            <div class="hero-amount">USD $10,000</div>
+            <button class="get-started-button">
+                Get started
+                <span class="material-icons-outlined">arrow_forward</span>
+            </button>
+            <div class="hero-wave"></div>
+        </div>
+        
+        <div class="commission-section">
+            <div class="commission-title">Earn 200,000 $</div>
+            <div class="commission-subtitle">commission of deal value</div>
+            
+            <div class="reward-table">
+                <div class="reward-header">
+                    <div class="reward-header-cell">Referral Reward</div>
+                    <div class="reward-header-cell">Commission</div>
+                </div>
+                <div class="reward-row">
+                    <div class="reward-cell">1-100</div>
+                    <div class="reward-cell">5.00%</div>
+                </div>
+                <div class="reward-row">
+                    <div class="reward-cell">101-500</div>
+                    <div class="reward-cell">10.00%</div>
+                </div>
+                <div class="reward-row">
+                    <div class="reward-cell">501-1000</div>
+                    <div class="reward-cell">20.00%</div>
+                </div>
+                <div class="reward-row">
+                    <div class="reward-cell">1001-5000</div>
+                    <div class="reward-cell">100.00%</div>
+                </div>
+                <div class="reward-row">
+                    <div class="reward-cell">5001-10000</div>
+                    <div class="reward-cell">150.00%</div>
+                </div>
+                <div class="reward-row">
+                    <div class="reward-cell">10000+</div>
+                    <div class="reward-cell">200.00%</div>
+                </div>
+            </div>
+            
+            <div class="reward-note">
+                Rewards will increase as a function of the referral count. New referrals are calculated based on the total number of active referrals over the span of the program.
+            </div>
+        </div>
+        
+        <div class="how-it-works">
+            <h2 class="section-title">How it works</h2>
+            
+            <div class="step-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Join the Program</div>
+                        <div class="step-description">Sign up and get approved to become an ambassador</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Share Your Link</div>
+                        <div class="step-description">Share your unique referral link with friends, network, and on social media</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Earn Big - No Limits</div>
+                        <div class="step-description">Get $50 for each new user who spends $50 or more</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="rules-section">
+            <h2 class="section-title">Rules</h2>
+            
+            <div class="rule">
+                <div class="rule-icon">
+                    <span class="material-icons-outlined">share</span>
+                </div>
+                <div class="rule-content">
+                    <div class="rule-title">Invite Your Friends</div>
+                    <div class="rule-description">Share it with your network and help them create their first listing</div>
+                </div>
+            </div>
+            
+            <div class="rule">
+                <div class="rule-icon">
+                    <span class="material-icons-outlined">savings</span>
+                </div>
+                <div class="rule-content">
+                    <div class="rule-title">Your Friends Save $$$</div>
+                    <div class="rule-description">Each friend you invite gets a special welcome bonus</div>
+                </div>
+            </div>
+            
+            <div class="rule">
+                <div class="rule-icon">
+                    <span class="material-icons-outlined">redeem</span>
+                </div>
+                <div class="rule-content">
+                    <div class="rule-title">You Earn Unlimited Rewards</div>
+                    <div class="rule-description">Get $50 for each new user who spends $50 or more</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="service-section">
+            <h2 class="section-title">Our Service</h2>
+            
+            <div class="service">
+                <div class="service-icon">
+                    <span class="material-icons-outlined">support_agent</span>
+                </div>
+                <div class="service-content">
+                    <div class="service-title">Dedicated Ambassador Support</div>
+                    <div class="service-description">You'll get 24/7 support — We Got Your Back!</div>
+                </div>
+            </div>
+            
+            <div class="service">
+                <div class="service-icon">
+                    <span class="material-icons-outlined">payments</span>
+                </div>
+                <div class="service-content">
+                    <div class="service-title">Fast Payment System</div>
+                    <div class="service-description">Get Paid Weekly — No Minimum Payout!</div>
+                </div>
+            </div>
+            
+            <div class="service">
+                <div class="service-icon">
+                    <span class="material-icons-outlined">verified_user</span>
+                </div>
+                <div class="service-content">
+                    <div class="service-title">No Fees, No Strings</div>
+                    <div class="service-description">Keep 100% of what you earn</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-section">
+            <h2 class="section-title">FAQ</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="question-text">Who can join the program?</div>
+                    <span class="material-icons-outlined">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    Anyone can join our ambassador program! Whether you're an influencer, content creator, or just someone with a network of friends who could benefit from our service.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="question-text">Referral Payout</div>
+                    <span class="material-icons-outlined">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    Payments are processed weekly. Once your referral completes a qualifying action, the commission will be added to your account and paid out in the next payment cycle.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="question-text">What is a referral?</div>
+                    <span class="material-icons-outlined">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    A referral is someone who signs up using your unique referral link and completes the required actions to qualify for the program.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="question-text">Does my referral receive any benefits?</div>
+                    <span class="material-icons-outlined">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! Your referrals receive a special welcome bonus when they sign up through your link, giving them extra value.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <div class="question-text">What is a "closed deal"?</div>
+                    <span class="material-icons-outlined">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    A closed deal occurs when your referral completes a purchase or transaction that meets our minimum qualifying amount of $50.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create stars in the hero section
+            const heroStars = document.querySelector('.hero-stars');
+            for (let i = 0; i < 30; i++) {
+                const star = document.createElement('div');
+                star.classList.add('hero-star');
+                star.textContent = '+';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.opacity = Math.random() * 0.5 + 0.5;
+                heroStars.appendChild(star);
+            }
+            
+            // FAQ toggle functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('.material-icons-outlined');
+                    
+                    if (answer.classList.contains('active')) {
+                        answer.classList.remove('active');
+                        icon.textContent = 'expand_more';
+                    } else {
+                        answer.classList.add('active');
+                        icon.textContent = 'expand_less';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
