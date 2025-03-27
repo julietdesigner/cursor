@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Payment Method</title>
+    <style>
+        :root {
+            --primary-color: #0066ff;
+            --background-color: #f5f7fa;
+            --border-color: #e2e8f0;
+            --text-color: #1a1a1a;
+            --text-secondary: #64748b;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        .status-bar {
+            background: #000;
+            color: white;
+            padding: 2px 16px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .status-bar-time {
+            font-weight: 600;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav {
+            max-width: 420px;
+            margin: 0 auto;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+
+        .nav-action {
+            color: var(--primary-color);
+            font-size: 17px;
+            font-weight: 400;
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .nav-title {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 20px 16px;
+        }
+
+        .segment-control {
+            background: var(--border-color);
+            border-radius: 9px;
+            padding: 2px;
+            display: flex;
+            margin-bottom: 24px;
+        }
+
+        .segment-button {
+            flex: 1;
+            padding: 8px 0;
+            border: none;
+            background: none;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-radius: 7px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .segment-button.active {
+            background: white;
+            color: var(--text-color);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 17px;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 17px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .form-select:active {
+            background: var(--background-color);
+        }
+
+        .chevron {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .button:active {
+            transform: scale(0.98);
+        }
+
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .home-indicator {
+            width: 134px;
+            height: 5px;
+            background: #000;
+            border-radius: 100px;
+            margin: 8px auto;
+            opacity: 0.3;
+        }
+
+        .security-info {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .security-info svg {
+            width: 14px;
+            height: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="status-bar">
+        <span class="status-bar-time">9:41</span>
+        <div class="status-bar-icons">
+            <span>5G</span>
+            <span>100%</span>
+        </div>
+    </div>
+
+    <header class="header">
+        <nav class="nav">
+            <button class="nav-action">Cancel</button>
+            <h1 class="nav-title">Add Payment Method</h1>
+            <button class="nav-action" disabled style="opacity: 0.5;">Done</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="segment-control">
+            <button class="segment-button active">Bank Account</button>
+            <button class="segment-button">Credit Card</button>
+        </div>
+
+        <div class="card">
+            <div class="form-group">
+                <label class="form-label">Account Type</label>
+                <button class="form-select">
+                    <span>Checking Account</span>
+                    <span class="chevron">›</span>
+                </button>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Routing Number</label>
+                <input type="text" class="form-input" placeholder="Enter 9-digit routing number" inputmode="numeric" maxlength="9">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Account Number</label>
+                <input type="text" class="form-input" placeholder="Enter account number" inputmode="numeric">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" placeholder="Enter your first name">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" placeholder="Enter your last name">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Billing Address</label>
+                <button class="form-select">
+                    <span style="color: var(--text-secondary);">Select address</span>
+                    <span class="chevron">›</span>
+                </button>
+            </div>
+        </div>
+
+        <button class="button" disabled>Add Bank Account</button>
+
+        <p class="security-info">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+            Your information is encrypted and secure
+        </p>
+
+        <div class="home-indicator"></div>
+    </main>
+</body>
+</html> 
