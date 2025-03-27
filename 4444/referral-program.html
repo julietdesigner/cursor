@@ -57,68 +57,53 @@
         }
 
         .hero-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-subtitle {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-bottom: 16px;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 4px;
             position: relative;
             z-index: 2;
         }
 
         .hero-amount {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
             margin-bottom: 24px;
             position: relative;
             z-index: 2;
         }
 
-        .get-started-button {
-            background-color: #10B981;
-            color: white;
-            border: none;
+        .hero-button {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 24px;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
+            padding: 8px 16px;
+            font-size: 14px;
+            color: white;
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 100%;
-            position: relative;
-            z-index: 2;
+            gap: 8px;
+            cursor: pointer;
         }
 
-        .get-started-button .material-icons-outlined {
-            margin-left: 8px;
+        .hero-button .material-icons-outlined {
             font-size: 18px;
         }
 
-        .hero-wave {
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-        }
-
         .commission-section {
-            padding: 24px 20px;
-            text-align: center;
+            padding: 20px;
+            background-color: white;
         }
 
         .commission-title {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
             color: #FF6B00;
             margin-bottom: 4px;
@@ -127,36 +112,31 @@
         .commission-subtitle {
             font-size: 14px;
             color: #6B7280;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
+        }
+
+        .commission-subtitle span {
+            color: #FF6B00;
         }
 
         .reward-table {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            margin-bottom: 32px;
+            margin-bottom: 16px;
         }
 
         .reward-header {
             display: flex;
-            background-color: #F3F4F6;
-            padding: 12px 16px;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #E5E7EB;
             font-weight: 600;
             font-size: 14px;
             color: #374151;
         }
 
-        .reward-header-cell {
-            flex: 1;
-        }
-
-        .reward-header-cell:last-child {
-            text-align: right;
-        }
-
         .reward-row {
             display: flex;
-            padding: 16px;
+            justify-content: space-between;
+            padding: 12px 0;
             border-bottom: 1px solid #E5E7EB;
         }
 
@@ -165,22 +145,19 @@
         }
 
         .reward-cell {
-            flex: 1;
             font-size: 14px;
             color: #374151;
         }
 
         .reward-cell:last-child {
-            text-align: right;
             font-weight: 600;
-            color: #059669;
+            color: #FF6B00;
         }
 
         .reward-note {
             font-size: 12px;
             color: #6B7280;
-            text-align: left;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             line-height: 1.5;
         }
 
@@ -189,29 +166,20 @@
             font-weight: 600;
             color: #111827;
             margin-bottom: 16px;
-            text-align: left;
         }
 
         .how-it-works {
             padding: 0 20px 24px;
         }
 
-        .step-container {
-            margin-bottom: 24px;
-        }
-
         .step {
-            background-color: #F9FAFB;
-            border-radius: 12px;
-            padding: 16px;
             display: flex;
-            align-items: flex-start;
             margin-bottom: 16px;
         }
 
         .step-number {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             background-color: #2563EB;
             border-radius: 50%;
             display: flex;
@@ -293,14 +261,11 @@
             display: flex;
             align-items: flex-start;
             margin-bottom: 16px;
-            padding: 16px;
-            background-color: #F9FAFB;
-            border-radius: 12px;
         }
 
         .service-icon {
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             background-color: #EFF6FF;
             border-radius: 50%;
             display: flex;
@@ -311,7 +276,7 @@
         }
 
         .service-icon .material-icons-outlined {
-            font-size: 20px;
+            font-size: 18px;
             color: #2563EB;
         }
 
@@ -383,24 +348,28 @@
             <div class="hero-stars">
                 <!-- Stars will be added via JavaScript -->
             </div>
-            <h1 class="hero-title">Become a UTAXES<sup>+</sup> Ambassador</h1>
-            <p class="hero-subtitle">Earn up to</p>
+            <div class="hero-title">Earn up to</div>
             <div class="hero-amount">USD $10,000</div>
-            <button class="get-started-button">
-                Get started
-                <span class="material-icons-outlined">arrow_forward</span>
-            </button>
-            <div class="hero-wave"></div>
+            <div class="hero-buttons">
+                <button class="hero-button">
+                    <span class="material-icons-outlined">link</span>
+                    Copy Link
+                </button>
+                <button class="hero-button">
+                    <span class="material-icons-outlined">share</span>
+                    Share Referral
+                </button>
+            </div>
         </div>
         
         <div class="commission-section">
-            <div class="commission-title">Earn 200,000 $</div>
-            <div class="commission-subtitle">commission of deal value</div>
+            <div class="commission-title">200,000 $</div>
+            <div class="commission-subtitle">commission of <span>deal value</span></div>
             
             <div class="reward-table">
                 <div class="reward-header">
-                    <div class="reward-header-cell">Referral Reward</div>
-                    <div class="reward-header-cell">Commission</div>
+                    <div>Referral Reward</div>
+                    <div>Commission</div>
                 </div>
                 <div class="reward-row">
                     <div class="reward-cell">1-100</div>
@@ -429,36 +398,34 @@
             </div>
             
             <div class="reward-note">
-                Rewards will increase as a function of the referral count. New referrals are calculated based on the total number of active referrals over the span of the program.
+                Rewards will increase as a function of the referral count. After reaching the quota based on the number of the referrals.
             </div>
         </div>
         
         <div class="how-it-works">
             <h2 class="section-title">How it works</h2>
             
-            <div class="step-container">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <div class="step-title">Join the Program</div>
-                        <div class="step-description">Sign up and get approved to become an ambassador</div>
-                    </div>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Join Our Program</div>
+                    <div class="step-description">Sign up and get approved to become an ambassador</div>
                 </div>
-                
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <div class="step-title">Share Your Link</div>
-                        <div class="step-description">Share your unique referral link with friends, network, and on social media</div>
-                    </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Share Your Link</div>
+                    <div class="step-description">Share it with your network and help them create their first listing</div>
                 </div>
-                
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <div class="step-title">Earn Big - No Limits</div>
-                        <div class="step-description">Get $50 for each new user who spends $50 or more</div>
-                    </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Earn Big - No Limits</div>
+                    <div class="step-description">Get $50 for each new user who spends $50 or more</div>
                 </div>
             </div>
         </div>
@@ -468,7 +435,7 @@
             
             <div class="rule">
                 <div class="rule-icon">
-                    <span class="material-icons-outlined">share</span>
+                    <span class="material-icons-outlined">group</span>
                 </div>
                 <div class="rule-content">
                     <div class="rule-title">Invite Your Friends</div>
@@ -481,8 +448,8 @@
                     <span class="material-icons-outlined">savings</span>
                 </div>
                 <div class="rule-content">
-                    <div class="rule-title">Your Friends Save $$$</div>
-                    <div class="rule-description">Each friend you invite gets a special welcome bonus</div>
+                    <div class="rule-title">Your Friends Save $20</div>
+                    <div class="rule-description">They get $20 off their first purchase</div>
                 </div>
             </div>
             
@@ -492,7 +459,7 @@
                 </div>
                 <div class="rule-content">
                     <div class="rule-title">You Earn Unlimited Rewards</div>
-                    <div class="rule-description">Get $50 for each new user who spends $50 or more</div>
+                    <div class="rule-description">Get $50 for each new user who spends $100 or more on Fiverr</div>
                 </div>
             </div>
         </div>
@@ -502,11 +469,11 @@
             
             <div class="service">
                 <div class="service-icon">
-                    <span class="material-icons-outlined">support_agent</span>
+                    <span class="material-icons-outlined">verified</span>
                 </div>
                 <div class="service-content">
-                    <div class="service-title">Dedicated Ambassador Support</div>
-                    <div class="service-description">You'll get 24/7 support — We Got Your Back!</div>
+                    <div class="service-title">Guaranteed Maximum Refund</div>
+                    <div class="service-description">Receive 100% of your money back if you're not satisfied</div>
                 </div>
             </div>
             
@@ -515,18 +482,18 @@
                     <span class="material-icons-outlined">payments</span>
                 </div>
                 <div class="service-content">
-                    <div class="service-title">Fast Payment System</div>
-                    <div class="service-description">Get Paid Weekly — No Minimum Payout!</div>
+                    <div class="service-title">5 Star Delivery System</div>
+                    <div class="service-description">Get your money in 24 hours, no questions asked</div>
                 </div>
             </div>
             
             <div class="service">
                 <div class="service-icon">
-                    <span class="material-icons-outlined">verified_user</span>
+                    <span class="material-icons-outlined">support_agent</span>
                 </div>
                 <div class="service-content">
-                    <div class="service-title">No Fees, No Strings</div>
-                    <div class="service-description">Keep 100% of what you earn</div>
+                    <div class="service-title">Effective Tax Filing</div>
+                    <div class="service-description">We'll help you maximize your tax returns</div>
                 </div>
             </div>
         </div>
@@ -537,7 +504,7 @@
             <div class="faq-item">
                 <div class="faq-question">
                     <div class="question-text">Who can join the program?</div>
-                    <span class="material-icons-outlined">expand_more</span>
+                    <span class="material-icons-outlined">add</span>
                 </div>
                 <div class="faq-answer">
                     Anyone can join our ambassador program! Whether you're an influencer, content creator, or just someone with a network of friends who could benefit from our service.
@@ -547,7 +514,7 @@
             <div class="faq-item">
                 <div class="faq-question">
                     <div class="question-text">Referral Payout</div>
-                    <span class="material-icons-outlined">expand_more</span>
+                    <span class="material-icons-outlined">add</span>
                 </div>
                 <div class="faq-answer">
                     Payments are processed weekly. Once your referral completes a qualifying action, the commission will be added to your account and paid out in the next payment cycle.
@@ -557,7 +524,7 @@
             <div class="faq-item">
                 <div class="faq-question">
                     <div class="question-text">What is a referral?</div>
-                    <span class="material-icons-outlined">expand_more</span>
+                    <span class="material-icons-outlined">add</span>
                 </div>
                 <div class="faq-answer">
                     A referral is someone who signs up using your unique referral link and completes the required actions to qualify for the program.
@@ -566,8 +533,8 @@
             
             <div class="faq-item">
                 <div class="faq-question">
-                    <div class="question-text">Does my referral receive any benefits?</div>
-                    <span class="material-icons-outlined">expand_more</span>
+                    <div class="question-text">Does my referee receive any benefits?</div>
+                    <span class="material-icons-outlined">add</span>
                 </div>
                 <div class="faq-answer">
                     Yes! Your referrals receive a special welcome bonus when they sign up through your link, giving them extra value.
@@ -577,10 +544,10 @@
             <div class="faq-item">
                 <div class="faq-question">
                     <div class="question-text">What is a "closed deal"?</div>
-                    <span class="material-icons-outlined">expand_more</span>
+                    <span class="material-icons-outlined">add</span>
                 </div>
                 <div class="faq-answer">
-                    A closed deal occurs when your referral completes a purchase or transaction that meets our minimum qualifying amount of $50.
+                    A closed deal occurs when your referral completes a purchase or transaction that meets our minimum qualifying amount.
                 </div>
             </div>
         </div>
@@ -610,10 +577,10 @@
                     
                     if (answer.classList.contains('active')) {
                         answer.classList.remove('active');
-                        icon.textContent = 'expand_more';
+                        icon.textContent = 'add';
                     } else {
                         answer.classList.add('active');
-                        icon.textContent = 'expand_less';
+                        icon.textContent = 'remove';
                     }
                 });
             });
