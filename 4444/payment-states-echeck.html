@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Methods - eCheck</title>
+    <style>
+        :root {
+            --primary-color: #0066ff;
+            --background-color: #f5f7fa;
+            --border-color: #e2e8f0;
+            --text-color: #1a1a1a;
+            --text-secondary: #64748b;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 15px;
+        }
+
+        .payment-methods {
+            padding: 20px;
+        }
+
+        .method-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .method-button {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .method-button.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .method-button svg {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 8px;
+        }
+
+        .method-button span {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .form-section {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .form-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+        }
+
+        .check-preview {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            font-family: "Courier New", monospace;
+        }
+
+        .check-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .check-body {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .check-amount {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .check-payee {
+            margin-bottom: 8px;
+        }
+
+        .check-footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .info-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--warning-color);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .info-box svg {
+            width: 20px;
+            height: 20px;
+            color: var(--warning-color);
+            flex-shrink: 0;
+        }
+
+        .info-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .button {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .button:hover {
+            background: #0052cc;
+        }
+
+        .separator {
+            height: 4px;
+            background-color: #ff0000;
+            margin: 40px 0;
+            width: 100%;
+        }
+
+        .state-label {
+            background: #000;
+            color: white;
+            padding: 8px 16px;
+            margin: 20px 0;
+            font-weight: 600;
+            border-radius: 6px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 状态1: 电子支票初始表单 -->
+    <div class="state-label">State 1: eCheck Payment Form</div>
+    <div class="container">
+        <div class="header">
+            <h1>Make a Payment</h1>
+            <p>Amount due: $1,250.00</p>
+        </div>
+
+        <div class="payment-methods">
+            <div class="method-selector">
+                <button class="method-button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                    </svg>
+                    <span>Credit Card</span>
+                </button>
+                <button class="method-button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                    </svg>
+                    <span>Bank Account</span>
+                </button>
+                <button class="method-button active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    <span>eCheck</span>
+                </button>
+            </div>
+
+            <div class="info-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p>eCheck payments typically process within 3-5 business days. A $1.50 processing fee will be added to your payment.</p>
+            </div>
+
+            <div class="form-section">
+                <div class="form-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    Check Information
+                </div>
+
+                <div class="check-preview">
+                    <div class="check-header">
+                        <span>Date: 03/14/2024</span>
+                        <span>Check No. 1001</span>
+                    </div>
+                    <div class="check-body">
+                        <div class="check-amount">$1,250.00</div>
+                        <div class="check-payee">Pay to the order of: FSG</div>
+                    </div>
+                    <div class="check-footer">
+                        <span>Routing Number: ••••••••5678</span>
+                        <span>Account Number: ••••4321</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Account Holder Name</label>
+                    <input type="text" class="form-input" placeholder="Enter name as it appears on account">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Routing Number</label>
+                    <input type="text" class="form-input" placeholder="9-digit routing number" maxlength="9">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Account Number</label>
+                    <input type="text" class="form-input" placeholder="Enter account number">
+                </div>
+            </div>
+
+            <button class="button">Submit Payment</button>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态2: 电子支票确认页面 -->
+    <div class="state-label">State 2: eCheck Confirmation</div>
+    <div class="container">
+        <div class="header">
+            <h1>Confirm Payment</h1>
+            <p>Please review your payment details</p>
+        </div>
+
+        <div class="payment-methods">
+            <div class="form-section">
+                <div class="form-title">Payment Summary</div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span>Payment Amount</span>
+                        <span>$1,250.00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span>Processing Fee</span>
+                        <span>$1.50</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--border-color); font-weight: 600;">
+                        <span>Total</span>
+                        <span>$1,251.50</span>
+                    </div>
+                </div>
+
+                <div class="check-preview">
+                    <div class="check-header">
+                        <span>Date: 03/14/2024</span>
+                        <span>Check No. 1001</span>
+                    </div>
+                    <div class="check-body">
+                        <div class="check-amount">$1,251.50</div>
+                        <div class="check-payee">Pay to the order of: FSG</div>
+                    </div>
+                    <div class="check-footer">
+                        <span>John Doe</span>
+                        <span>••••4321</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p>Your payment will be processed on Mar 14, 2024. Funds will be withdrawn from your account within 3-5 business days.</p>
+            </div>
+
+            <button class="button">Confirm Payment</button>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态3: 电子支票处理中 -->
+    <div class="state-label">State 3: eCheck Processing</div>
+    <div class="container">
+        <div class="header">
+            <h1>Payment Processing</h1>
+            <p>Your eCheck payment is being processed</p>
+        </div>
+
+        <div class="payment-methods">
+            <div style="text-align: center; padding: 40px 20px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" width="64" height="64" style="margin-bottom: 20px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <h2 style="margin-bottom: 12px; color: var(--primary-color)">Payment Submitted</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 24px;">Your payment of $1,251.50 is being processed</p>
+                <div style="background: var(--background-color); padding: 16px; border-radius: 8px; text-align: left;">
+                    <p style="margin-bottom: 8px;"><strong>Expected Processing Timeline:</strong></p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                            <span style="color: var(--success-color)">●</span>
+                            Payment Submitted - Mar 14
+                        </li>
+                        <li style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                            <span style="color: var(--text-secondary)">○</span>
+                            Bank Processing - 2-3 business days
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 8px;">
+                            <span style="color: var(--text-secondary)">○</span>
+                            Payment Complete - Expected by Mar 19
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态4: 电子支付方式选择 -->
+    <div class="state-label">State 4: Digital Payment Methods</div>
+    <div class="container">
+        <div class="header">
+            <h1>Add Payment Method</h1>
+            <p>Choose your preferred payment method</p>
+        </div>
+
+        <div class="payment-methods">
+            <div class="method-selector" style="grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 32px;">
+                <button class="method-button" style="padding: 24px 16px;">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwNDU3QyI+PHBhdGggZD0iTTIwLjExIDYuMTFBOC45OCA4Ljk4IDAgMCAwIDEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTBjNC40OCAwIDguMjQtMi45MiA5LjUtN2gtMy4zOGMtMS4xMiAyLjU1LTMuNjQgNC0yLjYyIDQtMy4zMSAwLTYtMi42OS02LTZzMi42OS02IDYtNmMxLjU0IDAgMi45NS41OCA0IDEuNTNWNmgzdjQuMTF6Ii8+PC9zdmc+" alt="PayPal" style="width: 48px; height: 48px; margin-bottom: 12px;">
+                    <span style="font-size: 15px;">PayPal</span>
+                </button>
+                <button class="method-button" style="padding: 24px 16px;">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwODU1NiI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4eiIvPjxwYXRoIGQ9Ik0xMiA2djZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjdWNnoiLz48L3N2Zz4=" alt="Venmo" style="width: 48px; height: 48px; margin-bottom: 12px;">
+                    <span style="font-size: 15px;">Venmo</span>
+                </button>
+            </div>
+
+            <div class="info-box" style="background: rgba(0, 102, 255, 0.1); border-color: var(--primary-color);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p>Link your digital wallet for faster checkout. Your payment information will be securely stored.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态5: PayPal连接页面 -->
+    <div class="state-label">State 5: PayPal Connection</div>
+    <div class="container">
+        <div class="header">
+            <h1>Connect PayPal</h1>
+            <p>Link your PayPal account</p>
+        </div>
+
+        <div class="payment-methods">
+            <div style="text-align: center; padding: 40px 20px;">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwNDU3QyI+PHBhdGggZD0iTTIwLjExIDYuMTFBOC45OCA4Ljk4IDAgMCAwIDEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTBjNC40OCAwIDguMjQtMi45MiA5LjUtN2gtMy4zOGMtMS4xMiAyLjU1LTMuNjQgNC0yLjYyIDQtMy4zMSAwLTYtMi42OS02LTZzMi42OS02IDYtNmMxLjU0IDAgMi45NS41OCA0IDEuNTNWNmgzdjQuMTF6Ii8+PC9zdmc+" alt="PayPal" style="width: 64px; height: 64px; margin-bottom: 24px;">
+                
+                <div style="background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: left; margin-bottom: 24px;">
+                    <h3 style="margin-bottom: 16px; font-size: 17px;">You'll be redirected to PayPal to:</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 12px;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" width="20" height="20">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>Log in to your PayPal account</span>
+                        </li>
+                        <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 12px;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" width="20" height="20">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>Review your information</span>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 12px;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" width="20" height="20">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>Authorize the connection</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <button class="button">Continue to PayPal</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态6: Venmo连接页面 -->
+    <div class="state-label">State 6: Venmo Connection</div>
+    <div class="container">
+        <div class="header">
+            <h1>Connect Venmo</h1>
+            <p>Link your Venmo account</p>
+        </div>
+
+        <div class="payment-methods">
+            <div class="form-section">
+                <div style="text-align: center; margin-bottom: 24px;">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwODU1NiI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4eiIvPjxwYXRoIGQ9Ik0xMiA2djZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjdWNnoiLz48L3N2Zz4=" alt="Venmo" style="width: 48px; height: 48px; margin-bottom: 16px;">
+                    <h2 style="font-size: 20px; margin-bottom: 8px;">Connect with your phone</h2>
+                    <p style="color: var(--text-secondary)">Enter your phone number to connect your Venmo account</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" placeholder="(123) 456-7890">
+                </div>
+
+                <button class="button">Send Verification Code</button>
+            </div>
+
+            <div class="form-section" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Verification Code</label>
+                    <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">
+                        <input type="text" class="form-input" style="text-align: center; padding: 12px 0;" maxlength="1">
+                        <input type="text" class="form-input" style="text-align: center; padding: 12px 0;" maxlength="1">
+                        <input type="text" class="form-input" style="text-align: center; padding: 12px 0;" maxlength="1">
+                        <input type="text" class="form-input" style="text-align: center; padding: 12px 0;" maxlength="1">
+                        <input type="text" class="form-input" style="text-align: center; padding: 12px 0;" maxlength="1">
+                        <input type="text" class="form-input" style="text-align: center; padding: 12px 0;" maxlength="1">
+                    </div>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px; text-align: center;">
+                        Code sent to (123) 456-7890
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态7: 连接成功 -->
+    <div class="state-label">State 7: Connection Success</div>
+    <div class="container">
+        <div class="header">
+            <h1>Payment Method Added</h1>
+            <p>Your digital wallet is now connected</p>
+        </div>
+
+        <div class="payment-methods">
+            <div style="text-align: center; padding: 40px 20px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" width="64" height="64" style="margin-bottom: 24px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+
+                <h2 style="color: var(--success-color); margin-bottom: 12px;">Successfully Connected</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 32px;">Your PayPal account has been successfully linked to your profile</p>
+
+                <div class="form-section" style="text-align: left;">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwNDU3QyI+PHBhdGggZD0iTTIwLjExIDYuMTFBOC45OCA4Ljk4IDAgMCAwIDEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTBjNC40OCAwIDguMjQtMi45MiA5LjUtN2gtMy4zOGMtMS4xMiAyLjU1LTMuNjQgNC0yLjYyIDQtMy4zMSAwLTYtMi42OS02LTZzMi42OS02IDYtNmMxLjU0IDAgMi45NS41OCA0IDEuNTNWNmgzdjQuMTF6Ii8+PC9zdmc+" alt="PayPal" style="width: 32px; height: 32px;">
+                        <div>
+                            <h3 style="font-size: 17px; margin-bottom: 4px;">PayPal</h3>
+                            <p style="color: var(--text-secondary); font-size: 14px;">j***@email.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="button">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态8: 添加电子支票支付方式 -->
+    <div class="state-label">State 8: Add eCheck Payment Method</div>
+    <div class="container">
+        <div class="header">
+            <h1>Add Bank Account</h1>
+            <p>Securely link your bank account</p>
+        </div>
+
+        <div class="payment-methods">
+            <div class="info-box" style="background: rgba(0, 102, 255, 0.1); border-color: var(--primary-color);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p>Your bank account information is encrypted and secure. We use bank-level security to protect your data.</p>
+            </div>
+
+            <div class="form-section">
+                <div class="form-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    Account Information
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Account Type</label>
+                    <div class="method-selector" style="grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 0;">
+                        <button class="method-button active">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                            </svg>
+                            <span>Checking</span>
+                        </button>
+                        <button class="method-button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                            </svg>
+                            <span>Savings</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Account Holder Name</label>
+                    <input type="text" class="form-input" placeholder="Enter name as it appears on account">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Bank Name</label>
+                    <input type="text" class="form-input" placeholder="Enter your bank name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Routing Number</label>
+                    <input type="text" class="form-input" placeholder="9-digit routing number" maxlength="9">
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">You can find this on your check or bank statement</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Account Number</label>
+                    <input type="text" class="form-input" placeholder="Enter account number">
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">This is your bank account number</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Confirm Account Number</label>
+                    <input type="text" class="form-input" placeholder="Re-enter account number">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Verification
+                </div>
+
+                <div class="info-box" style="background: rgba(245, 158, 11, 0.1); border-color: var(--warning-color);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--warning-color)">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <p>We'll make two small deposits to your account to verify ownership. This may take 1-2 business days.</p>
+                </div>
+            </div>
+
+            <button class="button">Add Bank Account</button>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态9: 电子支票验证中 -->
+    <div class="state-label">State 9: eCheck Verification</div>
+    <div class="container">
+        <div class="header">
+            <h1>Verify Your Account</h1>
+            <p>We've sent two small deposits to your account</p>
+        </div>
+
+        <div class="payment-methods">
+            <div style="text-align: center; padding: 40px 20px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" width="64" height="64" style="margin-bottom: 24px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+
+                <h2 style="margin-bottom: 12px;">Check Your Bank Account</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 32px;">Look for two small deposits in your account. Enter the amounts below to verify your account.</p>
+
+                <div class="form-section">
+                    <div class="form-group">
+                        <label class="form-label">First Deposit Amount</label>
+                        <input type="text" class="form-input" placeholder="Enter amount">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Second Deposit Amount</label>
+                        <input type="text" class="form-input" placeholder="Enter amount">
+                    </div>
+
+                    <div class="info-box" style="background: rgba(245, 158, 11, 0.1); border-color: var(--warning-color);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--warning-color)">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <p>Deposits may take 1-2 business days to appear in your account</p>
+                    </div>
+                </div>
+
+                <button class="button">Verify Account</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态10: 电子支票验证成功 -->
+    <div class="state-label">State 10: eCheck Verification Success</div>
+    <div class="container">
+        <div class="header">
+            <h1>Account Verified</h1>
+            <p>Your bank account is now connected</p>
+        </div>
+
+        <div class="payment-methods">
+            <div style="text-align: center; padding: 40px 20px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" width="64" height="64" style="margin-bottom: 24px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+
+                <h2 style="color: var(--success-color); margin-bottom: 12px;">Successfully Verified</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 32px;">Your bank account has been verified and is ready to use</p>
+
+                <div class="form-section" style="text-align: left;">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="32" height="32">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                        </svg>
+                        <div>
+                            <h3 style="font-size: 17px; margin-bottom: 4px;">Checking Account</h3>
+                            <p style="color: var(--text-secondary); font-size: 14px;">••••4321</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="button">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态11: 支付方式选择（公司/个人） -->
+    <div class="state-label">State 11: Payment Method Type Selection</div>
+    <div class="container">
+        <div class="header">
+            <h1>Add Payment Method</h1>
+            <p>Choose your account type</p>
+        </div>
+
+        <div class="payment-methods">
+            <div class="method-selector" style="grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 32px;">
+                <button class="method-button" style="padding: 24px 16px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="48" height="48" style="margin-bottom: 12px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                    <span style="font-size: 15px;">Personal Account</span>
+                </button>
+                <button class="method-button" style="padding: 24px 16px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="48" height="48" style="margin-bottom: 12px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    <span style="font-size: 15px;">Business Account</span>
+                </button>
+            </div>
+
+            <div class="info-box" style="background: rgba(0, 102, 255, 0.1); border-color: var(--primary-color);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p>Select the type of account you want to add. This will help us provide the appropriate payment options.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态12: 个人银行账户添加 -->
+    <div class="state-label">State 12: Personal Bank Account</div>
+    <div class="container">
+        <div class="header">
+            <h1>Add Personal Bank Account</h1>
+            <p>Link your personal checking or savings account</p>
+        </div>
+
+        <div class="payment-methods">
+            <div class="form-section">
+                <div class="form-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                    </svg>
+                    Personal Information
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Date of Birth</label>
+                    <input type="date" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Social Security Number</label>
+                    <input type="text" class="form-input" placeholder="XXX-XX-XXXX" maxlength="11">
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Last 4 digits only for verification</p>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                    </svg>
+                    Bank Account Details
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Account Type</label>
+                    <div class="method-selector" style="grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 0;">
+                        <button class="method-button active">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                            </svg>
+                            <span>Checking</span>
+                        </button>
+                        <button class="method-button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                            </svg>
+                            <span>Savings</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Bank Name</label>
+                    <input type="text" class="form-input" placeholder="Enter your bank name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Routing Number</label>
+                    <input type="text" class="form-input" placeholder="9-digit routing number" maxlength="9">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Account Number</label>
+                    <input type="text" class="form-input" placeholder="Enter account number">
+                </div>
+            </div>
+
+            <button class="button">Add Bank Account</button>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态13: 公司银行账户添加 -->
+    <div class="state-label">State 13: Business Bank Account</div>
+    <div class="container">
+        <div class="header">
+            <h1>Add Business Bank Account</h1>
+            <p>Link your company's bank account</p>
+        </div>
+
+        <div class="payment-methods">
+            <div class="form-section">
+                <div class="form-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    Business Information
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Business Name</label>
+                    <input type="text" class="form-input" placeholder="Enter registered business name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Business Type</label>
+                    <select class="form-input">
+                        <option value="">Select business type</option>
+                        <option value="corporation">Corporation</option>
+                        <option value="llc">LLC</option>
+                        <option value="partnership">Partnership</option>
+                        <option value="sole_proprietorship">Sole Proprietorship</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">EIN (Tax ID)</label>
+                    <input type="text" class="form-input" placeholder="XX-XXXXXXX" maxlength="10">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Business Address</label>
+                    <input type="text" class="form-input" placeholder="Enter business address">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                    </svg>
+                    Bank Account Details
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Account Type</label>
+                    <div class="method-selector" style="grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 0;">
+                        <button class="method-button active">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                            </svg>
+                            <span>Business Checking</span>
+                        </button>
+                        <button class="method-button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                            </svg>
+                            <span>Business Savings</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Bank Name</label>
+                    <input type="text" class="form-input" placeholder="Enter your bank name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Routing Number</label>
+                    <input type="text" class="form-input" placeholder="9-digit routing number" maxlength="9">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Account Number</label>
+                    <input type="text" class="form-input" placeholder="Enter account number">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Verification Documents
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Business Registration Document</label>
+                    <div style="border: 2px dashed var(--border-color); border-radius: 8px; padding: 20px; text-align: center;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="32" height="32" style="margin-bottom: 8px;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                        </svg>
+                        <p style="color: var(--text-secondary); margin-bottom: 8px;">Drag and drop your file here</p>
+                        <button class="button" style="background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color);">Choose File</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="button">Add Business Account</button>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 状态14: 公司账户验证中 -->
+    <div class="state-label">State 14: Business Account Verification</div>
+    <div class="container">
+        <div class="header">
+            <h1>Verifying Business Account</h1>
+            <p>We're reviewing your business information</p>
+        </div>
+
+        <div class="payment-methods">
+            <div style="text-align: center; padding: 40px 20px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" width="64" height="64" style="margin-bottom: 24px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+
+                <h2 style="margin-bottom: 12px;">Verification in Progress</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 32px;">We're reviewing your business documents and account information. This process typically takes 1-2 business days.</p>
+
+                <div class="form-section">
+                    <div style="text-align: left;">
+                        <h3 style="margin-bottom: 16px; font-size: 17px;">Verification Steps:</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 12px;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" width="20" height="20">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>Business Registration Document Review</span>
+                            </li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 12px;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" width="20" height="20">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>Bank Account Verification</span>
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 12px;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" width="20" height="20">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span>Final Approval</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box" style="background: rgba(245, 158, 11, 0.1); border-color: var(--warning-color);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--warning-color)">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <p>We'll notify you via email once the verification is complete.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
