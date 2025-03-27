@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invite Code</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            background-color: #f5f5f5;
+            background-color: #f5f5f7;
             display: flex;
             justify-content: center;
             min-height: 100vh;
@@ -38,7 +40,7 @@
         }
 
         .status-bar-time {
-            font-weight: bold;
+            font-weight: 600;
         }
 
         .status-bar-icons {
@@ -50,7 +52,7 @@
             padding: 16px;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .back-button {
@@ -58,120 +60,124 @@
             height: 24px;
             margin-right: 16px;
             cursor: pointer;
-            color: #000;
+            color: #007AFF;
         }
 
         .header-title {
-            font-size: 20px;
-            font-weight: 500;
+            font-size: 17px;
+            font-weight: 600;
             flex-grow: 1;
             text-align: center;
             margin-right: 40px; /* To balance the back button */
+            color: #1d1d1f;
         }
 
         .content {
-            padding: 24px 16px;
+            padding: 24px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .title {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             margin-bottom: 8px;
             text-align: center;
+            color: #1d1d1f;
+            letter-spacing: -0.5px;
         }
 
         .subtitle {
-            font-size: 16px;
-            color: #666;
+            font-size: 17px;
+            color: #86868b;
             margin-bottom: 16px;
             text-align: center;
+            letter-spacing: -0.2px;
         }
 
         .user-info {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 24px;
+            font-size: 15px;
+            color: #86868b;
+            margin-bottom: 32px;
             text-align: center;
         }
 
         .button-container {
             display: flex;
             gap: 16px;
-            margin-bottom: 32px;
+            margin-bottom: 36px;
             width: 100%;
         }
 
         .button-outlined {
             flex: 1;
             background-color: transparent;
-            color: #1a73e8;
-            border: 1px solid #1a73e8;
-            border-radius: 24px;
-            padding: 12px 16px;
-            font-size: 14px;
-            font-weight: 500;
+            color: #007AFF;
+            border: 1px solid #007AFF;
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 17px;
+            font-weight: 600;
             cursor: pointer;
             text-align: center;
-            transition: background-color 0.3s;
+            transition: all 0.2s ease;
         }
 
         .button-outlined:hover {
-            background-color: rgba(26, 115, 232, 0.04);
+            background-color: rgba(0, 122, 255, 0.05);
         }
 
         .button-filled {
             flex: 1;
-            background-color: #1a73e8;
+            background-color: #007AFF;
             color: white;
             border: none;
-            border-radius: 24px;
-            padding: 12px 16px;
-            font-size: 14px;
-            font-weight: 500;
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 17px;
+            font-weight: 600;
             cursor: pointer;
             text-align: center;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-            transition: background-color 0.3s;
+            transition: all 0.2s ease;
         }
 
         .button-filled:hover {
-            background-color: #1765cc;
+            background-color: #0071e3;
         }
 
         .card {
             width: 100%;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             margin-bottom: 32px;
-            border: 1px solid #e0e0e0;
+            border: none;
         }
 
         .code-container {
-            background-color: #f5f5f5;
-            padding: 24px;
+            background-color: #f5f5f7;
+            padding: 32px 24px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .invite-code {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            color: #1d1d1f;
         }
 
         .features-container {
-            padding: 16px;
+            padding: 24px 20px;
         }
 
         .feature {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
         }
 
         .feature:last-child {
@@ -179,9 +185,9 @@
         }
 
         .feature-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -190,18 +196,18 @@
         }
 
         .feature-icon.blue {
-            background-color: #e8f0fe;
-            color: #1a73e8;
+            background-color: #e3f2fd;
+            color: #007AFF;
         }
 
         .feature-icon.purple {
-            background-color: #f3e8fd;
-            color: #6200ee;
+            background-color: #f0e5ff;
+            color: #5e5ce6;
         }
 
         .feature-icon.orange {
-            background-color: #feefe3;
-            color: #f57c00;
+            background-color: #fff2e3;
+            color: #ff9500;
         }
 
         .feature-content {
@@ -209,99 +215,113 @@
         }
 
         .feature-title {
-            font-size: 16px;
-            font-weight: 500;
+            font-size: 17px;
+            font-weight: 600;
             margin-bottom: 4px;
+            color: #1d1d1f;
         }
 
         .feature-description {
-            font-size: 12px;
-            color: #666;
+            font-size: 14px;
+            color: #86868b;
+            line-height: 1.4;
         }
 
         .footer {
-            padding: 16px;
+            padding: 20px;
             text-align: center;
-            color: #666;
-            font-size: 12px;
+            color: #86868b;
+            font-size: 13px;
             margin-top: auto;
         }
 
-        .material-icons {
-            font-size: 24px;
-        }
-    </style>
-</head>
-<body>
-    <div class="app-container">
-        <div class="status-bar">
-            <div class="status-bar-time">9:41</div>
-            <div class="status-bar-icons">
-                <span class="material-icons" style="font-size: 16px;">signal_cellular_alt</span>
-                <span class="material-icons" style="font-size: 16px;">wifi</span>
-                <span class="material-icons" style="font-size: 16px;">battery_full</span>
-            </div>
-        </div>
-        
-        <div class="header">
-            <div class="back-button">
-                <span class="material-icons">arrow_back</span>
-            </div>
-            <div class="header-title">Invite Code</div>
-        </div>
-        
-        <div class="content">
-            <h1 class="title">Earn Money By Refer</h1>
-            <p class="subtitle">Taxes Made Simple for You</p>
-            <p class="user-info">User Name invites you to join</p>
-            
-            <div class="button-container">
-                <button class="button-outlined">Copy</button>
-                <button class="button-filled">Save</button>
-            </div>
-            
-            <div class="card">
-                <div class="code-container">
-                    <div class="invite-code">MLYZ BZVG</div>
-                </div>
-                
-                <div class="features-container">
-                    <div class="feature">
-                        <div class="feature-icon purple">
-                            <span class="material-icons">bookmark</span>
-                        </div>
-                        <div class="feature-content">
-                            <div class="feature-title">Guaranteed Maximum Refund</div>
-                            <div class="feature-description">"Average $1,283 More in Refunds" – Verified 2023 User Data</div>
+        /* 保持原有样式不变 */
+                .material-icons-round {
+                    font-size: 24px;
+                }
+                </style>
+                <script>
+                    // 页面加载完成后执行
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // 获取URL参数中的用户名
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const userName = urlParams.get('userName') || 'User Name';
+                        
+                        // 更新页面上的用户名显示
+                        document.getElementById('userNameDisplay').textContent = userName + ' invites you to join';
+                    });
+                </script>
+            </head>
+            <body>
+                <div class="app-container">
+                    <div class="status-bar">
+                        <div class="status-bar-time">9:41</div>
+                        <div class="status-bar-icons">
+                            <span class="material-icons-round" style="font-size: 16px;">signal_cellular_alt</span>
+                            <span class="material-icons-round" style="font-size: 16px;">wifi</span>
+                            <span class="material-icons-round" style="font-size: 16px;">battery_full</span>
                         </div>
                     </div>
                     
-                    <div class="feature">
-                        <div class="feature-icon blue">
-                            <span class="material-icons">shield</span>
+                    <div class="header">
+                        <div class="back-button">
+                            <span class="material-icons-round">arrow_back_ios</span>
                         </div>
-                        <div class="feature-content">
-                            <div class="feature-title">5-Star Defense System</div>
-                            <div class="feature-description">Expert Error Detection • CPA Review • Audit Protection</div>
-                        </div>
+                        <div class="header-title">Invite Code</div>
                     </div>
                     
-                    <div class="feature">
-                        <div class="feature-icon orange">
-                            <span class="material-icons">upload_file</span>
+                    <div class="content">
+                        <h1 class="title">Earn Money By Refer</h1>
+                        <p class="subtitle">Taxes Made Simple for You</p>
+                        <p class="user-info" id="userNameDisplay">User Name invites you to join</p>
+                        
+                        <div class="button-container">
+                            <button class="button-outlined">Copy</button>
+                            <button class="button-filled">Save</button>
                         </div>
-                        <div class="feature-content">
-                            <div class="feature-title">Effortless Tax Filing</div>
-                            <div class="feature-description">Upload W-2 via Mobile</div>
+                        
+                        <div class="card">
+                            <div class="code-container">
+                                <div class="invite-code">MLYZ BZVG</div>
+                            </div>
+                            
+                            <div class="features-container">
+                                <div class="feature">
+                                    <div class="feature-icon purple">
+                                        <span class="material-icons-round">savings</span>
+                                    </div>
+                                    <div class="feature-content">
+                                        <div class="feature-title">Guaranteed Maximum Refund</div>
+                                        <div class="feature-description">"Average $1,283 More in Refunds" – Verified 2023 User Data</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature">
+                                    <div class="feature-icon blue">
+                                        <span class="material-icons-round">security</span>
+                                    </div>
+                                    <div class="feature-content">
+                                        <div class="feature-title">5-Star Defense System</div>
+                                        <div class="feature-description">Expert Error Detection • CPA Review • Audit Protection</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature">
+                                    <div class="feature-icon orange">
+                                        <span class="material-icons-round">cloud_upload</span>
+                                    </div>
+                                    <div class="feature-content">
+                                        <div class="feature-title">Effortless Tax Filing</div>
+                                        <div class="feature-description">Upload W-2 via Mobile</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="footer">
+                            Please search "uTaxes" in the App Store to download the app.
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="footer">
-                Please search "uTaxes" in the app store to download the app.
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+            </body>
+            </html>
