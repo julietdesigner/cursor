@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Confirmation</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 375px;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background-color: #fff;
+            color: #000;
+        }
+
+        .status-bar-time {
+            font-weight: 600;
+        }
+
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .header {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .back-button {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .header-title {
+            font-size: 17px;
+            font-weight: 600;
+            flex-grow: 1;
+            text-align: center;
+            color: #1d1d1f;
+        }
+
+        .content {
+            padding: 24px 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .amount-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 16px;
+        }
+
+        .amount-label {
+            font-size: 15px;
+            color: #86868b;
+            margin-bottom: 8px;
+        }
+
+        .amount-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .amount-description {
+            font-size: 13px;
+            color: #86868b;
+            text-align: center;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-size: 15px;
+            color: #86868b;
+        }
+
+        .detail-value {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1d1d1f;
+            text-align: right;
+        }
+
+        .card-row {
+            display: flex;
+            align-items: center;
+        }
+
+        .card-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #4285F4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .card-info {
+            flex-grow: 1;
+        }
+
+        .card-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1d1d1f;
+            margin-bottom: 2px;
+        }
+
+        .card-id {
+            font-size: 13px;
+            color: #86868b;
+        }
+
+        .terms-text {
+            font-size: 13px;
+            color: #86868b;
+            text-align: center;
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+
+        .terms-link {
+            color: #007AFF;
+            text-decoration: none;
+        }
+
+        .button-container {
+            margin-top: auto;
+            padding: 0 20px 24px;
+        }
+
+        .confirm-button {
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cancel-button {
+            background-color: transparent;
+            color: #007AFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+        }
+
+        .material-icons-outlined {
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <div class="status-bar-time">9:41</div>
+            <div class="status-bar-icons">
+                <span class="material-icons-outlined" style="font-size: 16px;">signal_cellular_alt</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">wifi</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">battery_full</span>
+            </div>
+        </div>
+        
+        <div class="header">
+            <div class="back-button">
+                <span class="material-icons-outlined">chevron_left</span>
+            </div>
+            <div class="header-title">Confirm Withdrawal</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <div class="card amount-card">
+                    <div class="amount-label">Withdrawal Amount</div>
+                    <div class="amount-value">$1,250.00</div>
+                    <div class="amount-description">Funds will be transferred to your selected card</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Details</div>
+                <div class="card">
+                    <div class="detail-row">
+                        <div class="detail-label">Withdrawal Amount</div>
+                        <div class="detail-value">$1,250.00</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Processing Fee</div>
+                        <div class="detail-value">$0.00</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Total</div>
+                        <div class="detail-value">$1,250.00</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Destination</div>
+                <div class="card">
+                    <div class="card-row">
+                        <div class="card-avatar">MJ</div>
+                        <div class="card-info">
+                            <div class="card-name">Card Name</div>
+                            <div class="card-id">Card ID</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="terms-text">
+                By confirming this withdrawal, you agree to our <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <button class="confirm-button">CONFIRM WITHDRAWAL</button>
+            <button class="cancel-button">Cancel</button>
+        </div>
+    </div>
+</body>
+</html>
