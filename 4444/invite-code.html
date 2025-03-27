@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invite Code</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 375px;
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background-color: #fff;
+            color: #000;
+        }
+
+        .status-bar-time {
+            font-weight: bold;
+        }
+
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .header {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .back-button {
+            width: 24px;
+            height: 24px;
+            margin-right: 16px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .header-title {
+            font-size: 20px;
+            font-weight: 500;
+            flex-grow: 1;
+            text-align: center;
+            margin-right: 40px; /* To balance the back button */
+        }
+
+        .content {
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .user-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+            width: 100%;
+        }
+
+        .button-outlined {
+            flex: 1;
+            background-color: transparent;
+            color: #1a73e8;
+            border: 1px solid #1a73e8;
+            border-radius: 24px;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .button-outlined:hover {
+            background-color: rgba(26, 115, 232, 0.04);
+        }
+
+        .button-filled {
+            flex: 1;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            transition: background-color 0.3s;
+        }
+
+        .button-filled:hover {
+            background-color: #1765cc;
+        }
+
+        .card {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 32px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .code-container {
+            background-color: #f5f5f5;
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .invite-code {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .features-container {
+            padding: 16px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .feature:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .feature-icon.blue {
+            background-color: #e8f0fe;
+            color: #1a73e8;
+        }
+
+        .feature-icon.purple {
+            background-color: #f3e8fd;
+            color: #6200ee;
+        }
+
+        .feature-icon.orange {
+            background-color: #feefe3;
+            color: #f57c00;
+        }
+
+        .feature-content {
+            flex-grow: 1;
+        }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .feature-description {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .footer {
+            padding: 16px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            margin-top: auto;
+        }
+
+        .material-icons {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <div class="status-bar-time">9:41</div>
+            <div class="status-bar-icons">
+                <span class="material-icons" style="font-size: 16px;">signal_cellular_alt</span>
+                <span class="material-icons" style="font-size: 16px;">wifi</span>
+                <span class="material-icons" style="font-size: 16px;">battery_full</span>
+            </div>
+        </div>
+        
+        <div class="header">
+            <div class="back-button">
+                <span class="material-icons">arrow_back</span>
+            </div>
+            <div class="header-title">Invite Code</div>
+        </div>
+        
+        <div class="content">
+            <h1 class="title">Earn Money By Refer</h1>
+            <p class="subtitle">Taxes Made Simple for You</p>
+            <p class="user-info">User Name invites you to join</p>
+            
+            <div class="button-container">
+                <button class="button-outlined">Copy</button>
+                <button class="button-filled">Save</button>
+            </div>
+            
+            <div class="card">
+                <div class="code-container">
+                    <div class="invite-code">MLYZ BZVG</div>
+                </div>
+                
+                <div class="features-container">
+                    <div class="feature">
+                        <div class="feature-icon purple">
+                            <span class="material-icons">bookmark</span>
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-title">Guaranteed Maximum Refund</div>
+                            <div class="feature-description">"Average $1,283 More in Refunds" – Verified 2023 User Data</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon blue">
+                            <span class="material-icons">shield</span>
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-title">5-Star Defense System</div>
+                            <div class="feature-description">Expert Error Detection • CPA Review • Audit Protection</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon orange">
+                            <span class="material-icons">upload_file</span>
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-title">Effortless Tax Filing</div>
+                            <div class="feature-description">Upload W-2 via Mobile</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                Please search "uTaxes" in the app store to download the app.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

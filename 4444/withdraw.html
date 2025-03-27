@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提现页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .app-container {
+            width: 375px;
+            height: 667px;
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin: 10px;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background-color: #4285f4;
+            color: white;
+        }
+
+        .status-bar-time {
+            font-weight: bold;
+        }
+
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .header {
+            background-color: #4285f4;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-button {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .back-button svg {
+            fill: white;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .account-balance {
+            background-color: #4285f4;
+            color: white;
+            padding: 0 15px 20px;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .balance-label {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .balance-amount {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .currency-icon {
+            width: 20px;
+            height: 20px;
+            background-color: #ffd700;
+            border-radius: 50%;
+            margin-left: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .amount-section {
+            padding: 20px 15px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .section-subtitle {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .amount-input {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .amount-input-prefix {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .amount-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .amount-option {
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .amount-option.selected {
+            border-color: #4285f4;
+            background-color: #e8f0fe;
+            color: #4285f4;
+        }
+
+        .withdraw-to {
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .withdraw-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            cursor: pointer;
+        }
+
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .payment-details {
+            flex: 1;
+        }
+
+        .payment-name {
+            font-weight: 500;
+        }
+
+        .payment-email {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .button-container {
+            padding: 15px;
+            margin-top: auto;
+        }
+
+        .primary-button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 15px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .primary-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: #4285f4;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* 确认页面样式 */
+        .confirmation-screen {
+            padding: 20px 15px;
+        }
+
+        .confirmation-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .confirmation-details {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #666;
+        }
+
+        .detail-value {
+            font-weight: 500;
+        }
+
+        /* PIN输入页面样式 */
+        .pin-screen {
+            display: flex;
+            flex-direction: column;
+            padding: 20px 15px;
+        }
+
+        .pin-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .pin-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .pin-dots {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .pin-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 2px solid #4285f4;
+        }
+
+        .pin-dot.filled {
+            background-color: #4285f4;
+        }
+
+        .pin-input {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            font-size: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+        .key {
+            background-color: #f9f9f9;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .key:active {
+            background-color: #e0e0e0;
+        }
+
+        .key-function {
+            background-color: transparent;
+        }
+        
+        .screen-title {
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+            padding: 5px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 第一个屏幕：输入金额 -->
+    <div class="app-container">
+        <div class="screen-title">输入金额页面</div>
+        <div class="screen">
+            <div class="status-bar">
+                <div class="status-bar-time">9:41</div>
+                <div class="status-bar-icons">
+                    <span>●●●</span>
+                    <span>📶</span>
+                    <span>🔋</span>
+                </div>
+            </div>
+            
+            <div class="header">
+                <div class="back-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    </svg>
+                </div>
+                <div class="header-title">Withdraw</div>
+            </div>
+            
+            <div class="account-balance">
+                <div class="balance-label">Account Balance</div>
+                <div class="balance-amount">
+                    $9,876.52
+                    <div class="currency-icon">$</div>
+                </div>
+            </div>
+            
+            <div class="amount-section">
+                <div class="section-title">Set amount</div>
+                <div class="section-subtitle">How much would you like withdraw?</div>
+                
+                <div class="amount-input">
+                    <span class="amount-input-prefix">$</span>100.00
+                </div>
+                
+                <div class="amount-options">
+                    <div class="amount-option">$10.00</div>
+                    <div class="amount-option">$50.00</div>
+                    <div class="amount-option selected">$100.00</div>
+                </div>
+            </div>
+            
+            <div class="withdraw-to">
+                <div class="withdraw-label">Withdraw to</div>
+                <div class="payment-method">
+                    <div class="payment-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#0070ba">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                            <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                        </svg>
+                    </div>
+                    <div class="payment-details">
+                        <div class="payment-name">PayPal</div>
+                        <div class="payment-email">user123@gmail.com</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <button class="primary-button">Continue</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 第二个屏幕：确认详情 -->
+    <div class="app-container">
+        <div class="screen-title">确认详情页面</div>
+        <div class="screen">
+            <div class="status-bar">
+                <div class="status-bar-time">9:41</div>
+                <div class="status-bar-icons">
+                    <span>●●●</span>
+                    <span>📶</span>
+                    <span>🔋</span>
+                </div>
+            </div>
+            
+            <div class="header">
+                <div class="back-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    </svg>
+                </div>
+                <div class="header-title">Withdraw</div>
+            </div>
+            
+            <div class="account-balance">
+                <div class="balance-label">Account Balance</div>
+                <div class="balance-amount">
+                    $9,876.52
+                    <div class="currency-icon">$</div>
+                </div>
+            </div>
+            
+            <div class="confirmation-screen">
+                <div class="confirmation-title">Amount Withdraw</div>
+                
+                <div class="confirmation-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Amount</div>
+                        <div class="detail-value">$100.00</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Admin Fee</div>
+                        <div class="detail-value">$1.00</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Total</div>
+                        <div class="detail-value">$101.00</div>
+                    </div>
+                </div>
+                
+                <div class="withdraw-to" style="margin-top: 20px;">
+                    <div class="withdraw-label">Withdraw To</div>
+                    <div class="payment-method">
+                        <div class="payment-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#0070ba">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                            </svg>
+                        </div>
+                        <div class="payment-details">
+                            <div class="payment-name">PayPal</div>
+                            <div class="payment-email">user123@gmail.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <button class="primary-button">Continue</button>
+                <button class="secondary-button">Change Amount</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 第三个屏幕：输入PIN -->
+    <div class="app-container">
+        <div class="screen-title">PIN码输入页面</div>
+        <div class="screen">
+            <div class="status-bar">
+                <div class="status-bar-time">9:41</div>
+                <div class="status-bar-icons">
+                    <span>●●●</span>
+                    <span>📶</span>
+                    <span>🔋</span>
+                </div>
+            </div>
+            
+            <div class="header">
+                <div class="back-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    </svg>
+                </div>
+                <div class="header-title">Enter Your PIN</div>
+            </div>
+            
+            <div class="pin-screen">
+                <div class="pin-subtitle">Enter your PIN to continue the withdraw.</div>
+                
+                <div class="pin-dots">
+                    <div class="pin-dot filled"></div>
+                    <div class="pin-dot filled"></div>
+                    <div class="pin-dot"></div>
+                    <div class="pin-dot"></div>
+                </div>
+                
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <input type="text" class="pin-input" readonly value="2">
+                </div>
+                
+                <div class="keypad">
+                    <button class="key">1</button>
+                    <button class="key">2</button>
+                    <button class="key">3</button>
+                    <button class="key">4</button>
+                    <button class="key">5</button>
+                    <button class="key">6</button>
+                    <button class="key">7</button>
+                    <button class="key">8</button>
+                    <button class="key">9</button>
+                    <button class="key key-function"></button>
+                    <button class="key">0</button>
+                    <button class="key key-function">⌫</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
