@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CouponDeals - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 375px;
+            background-color: #f5f5f7;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .status-bar-time {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .page-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #000;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .profile-button {
+            color: #000;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .profile-button .material-icons-outlined {
+            font-size: 24px;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .welcome-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .welcome-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+        }
+
+        .welcome-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .coupon-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .coupon-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .coupon-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .coupon-tag {
+            background-color: #34c759;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .coupon-amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+        }
+
+        .coupon-price {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+
+        .coupon-rules {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .rule-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .rule-item .material-icons-outlined {
+            font-size: 16px;
+            color: #6b7280;
+            margin-right: 8px;
+        }
+
+        .buy-button {
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .buy-button:hover {
+            background-color: #333;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .action-button {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .action-button:hover {
+            background-color: #f9fafb;
+        }
+
+        .action-button .material-icons-outlined {
+            font-size: 20px;
+            color: #000;
+        }
+
+        .action-button span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000;
+        }
+
+        .faq-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .faq-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 12px;
+        }
+
+        .faq-item {
+            margin-bottom: 12px;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 4px;
+        }
+
+        .faq-answer {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .home-indicator {
+            width: 134px;
+            height: 5px;
+            background-color: #000;
+            border-radius: 3px;
+            margin: 8px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <div class="status-bar-time">9:41</div>
+            <div class="status-bar-icons">
+                <span class="material-icons-outlined" style="font-size: 16px;">signal_cellular_alt</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">wifi</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">battery_full</span>
+            </div>
+        </div>
+        
+        <div class="header">
+            <div class="page-title">CouponDeals</div>
+            <div class="profile-button">
+                <span class="material-icons-outlined">person</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="welcome-section">
+                <div class="welcome-title">Welcome to CouponDeals</div>
+                <div class="welcome-subtitle">Get more value for your money</div>
+            </div>
+
+            <div class="coupon-card">
+                <div class="coupon-header">
+                    <div class="coupon-title">Premium Deal</div>
+                    <div class="coupon-tag">Best Value</div>
+                </div>
+                <div class="coupon-amount">$100</div>
+                <div class="coupon-price">Pay only $50</div>
+                <div class="coupon-rules">
+                    <div class="rule-item">
+                        <span class="material-icons-outlined">info</span>
+                        Minimum purchase: $100
+                    </div>
+                    <div class="rule-item">
+                        <span class="material-icons-outlined">schedule</span>
+                        Valid for 90 days
+                    </div>
+                    <div class="rule-item">
+                        <span class="material-icons-outlined">warning</span>
+                        Non-refundable
+                    </div>
+                </div>
+                <button class="buy-button">Buy Now</button>
+            </div>
+
+            <div class="quick-actions">
+                <div class="action-button">
+                    <span class="material-icons-outlined">local_offer</span>
+                    <span>My Coupons</span>
+                </div>
+                <div class="action-button">
+                    <span class="material-icons-outlined">help</span>
+                    <span>FAQ</span>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <div class="faq-title">Frequently Asked Questions</div>
+                <div class="faq-item">
+                    <div class="faq-question">How do I use my coupon?</div>
+                    <div class="faq-answer">Simply present your coupon code at checkout when making a purchase.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Are coupons refundable?</div>
+                    <div class="faq-answer">No, all coupons are non-refundable once purchased.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What's the expiration policy?</div>
+                    <div class="faq-answer">Coupons are valid for 90 days from the date of purchase.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-indicator"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 购买按钮点击事件
+            document.querySelector('.buy-button').addEventListener('click', function() {
+                window.location.href = 'coupon-detail.html';
+            });
+
+            // 我的优惠券按钮点击事件
+            document.querySelector('.action-button:first-child').addEventListener('click', function() {
+                window.location.href = 'my-coupons.html';
+            });
+
+            // FAQ按钮点击事件
+            document.querySelector('.action-button:last-child').addEventListener('click', function() {
+                window.location.href = 'help.html';
+            });
+
+            // 个人资料按钮点击事件
+            document.querySelector('.profile-button').addEventListener('click', function() {
+                window.location.href = 'profile.html';
+            });
+        });
+    </script>
+</body>
+</html> 

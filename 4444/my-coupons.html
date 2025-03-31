@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CouponDeals - My Coupons</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 375px;
+            background-color: #f5f5f7;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .status-bar-time {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .page-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #000;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .search-bar {
+            padding: 12px 16px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-input .material-icons-outlined {
+            color: #6b7280;
+            font-size: 20px;
+        }
+
+        .search-input input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            padding: 12px 16px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .filter-tab {
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            color: #6b7280;
+            background-color: #f3f4f6;
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .filter-tab.active {
+            background-color: #000;
+            color: white;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .coupon-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .coupon-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .coupon-card.expired {
+            opacity: 0.6;
+        }
+
+        .coupon-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .coupon-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .coupon-tag {
+            background-color: #34c759;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .coupon-amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+        }
+
+        .coupon-code {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 16px;
+            font-family: monospace;
+            letter-spacing: 1px;
+        }
+
+        .coupon-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .detail-label {
+            color: #6b7280;
+        }
+
+        .detail-value {
+            color: #000;
+            font-weight: 500;
+        }
+
+        .coupon-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .action-button {
+            flex: 1;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .action-button:hover {
+            background-color: #f9fafb;
+        }
+
+        .action-button .material-icons-outlined {
+            font-size: 20px;
+            color: #000;
+        }
+
+        .action-button span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000;
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 16px;
+            text-align: center;
+        }
+
+        .empty-state .material-icons-outlined {
+            font-size: 48px;
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+
+        .empty-state-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 8px;
+        }
+
+        .empty-state-message {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 24px;
+        }
+
+        .browse-button {
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .browse-button:hover {
+            background-color: #333;
+        }
+
+        .home-indicator {
+            width: 134px;
+            height: 5px;
+            background-color: #000;
+            border-radius: 3px;
+            margin: 8px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <div class="status-bar-time">9:41</div>
+            <div class="status-bar-icons">
+                <span class="material-icons-outlined" style="font-size: 16px;">signal_cellular_alt</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">wifi</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">battery_full</span>
+            </div>
+        </div>
+        
+        <div class="header">
+            <div class="page-title">My Coupons</div>
+        </div>
+
+        <div class="search-bar">
+            <div class="search-input">
+                <span class="material-icons-outlined">search</span>
+                <input type="text" placeholder="Search coupons...">
+            </div>
+        </div>
+
+        <div class="filter-tabs">
+            <div class="filter-tab active">All</div>
+            <div class="filter-tab">Active</div>
+            <div class="filter-tab">Used</div>
+            <div class="filter-tab">Expired</div>
+        </div>
+
+        <div class="main-content">
+            <div class="coupon-list">
+                <div class="coupon-card">
+                    <div class="coupon-header">
+                        <div class="coupon-title">Premium Deal</div>
+                        <div class="coupon-tag">Best Value</div>
+                    </div>
+                    <div class="coupon-amount">$100</div>
+                    <div class="coupon-code">PREMIUM100</div>
+                    <div class="coupon-details">
+                        <div class="detail-row">
+                            <div class="detail-label">Valid Until</div>
+                            <div class="detail-value">Jan 15, 2025</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Minimum Purchase</div>
+                            <div class="detail-value">$100</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Usage Limit</div>
+                            <div class="detail-value">One-time use</div>
+                        </div>
+                    </div>
+                    <div class="coupon-actions">
+                        <div class="action-button">
+                            <span class="material-icons-outlined">content_copy</span>
+                            <span>Copy Code</span>
+                        </div>
+                        <div class="action-button">
+                            <span class="material-icons-outlined">info</span>
+                            <span>Details</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coupon-card expired">
+                    <div class="coupon-header">
+                        <div class="coupon-title">Summer Sale</div>
+                        <div class="coupon-tag">Expired</div>
+                    </div>
+                    <div class="coupon-amount">$50</div>
+                    <div class="coupon-code">SUMMER50</div>
+                    <div class="coupon-details">
+                        <div class="detail-row">
+                            <div class="detail-label">Valid Until</div>
+                            <div class="detail-value">Aug 31, 2024</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Minimum Purchase</div>
+                            <div class="detail-value">$50</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Usage Limit</div>
+                            <div class="detail-value">One-time use</div>
+                        </div>
+                    </div>
+                    <div class="coupon-actions">
+                        <div class="action-button">
+                            <span class="material-icons-outlined">info</span>
+                            <span>Details</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-indicator"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 筛选标签点击事件
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // 复制优惠券代码
+            document.querySelectorAll('.action-button:first-child').forEach(button => {
+                button.addEventListener('click', function() {
+                    const code = this.closest('.coupon-card').querySelector('.coupon-code').textContent;
+                    navigator.clipboard.writeText(code).then(function() {
+                        alert('Coupon code copied to clipboard!');
+                    });
+                });
+            });
+
+            // 查看详情
+            document.querySelectorAll('.action-button:last-child').forEach(button => {
+                button.addEventListener('click', function() {
+                    const couponCard = this.closest('.coupon-card');
+                    const title = couponCard.querySelector('.coupon-title').textContent;
+                    alert(`Viewing details for ${title}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

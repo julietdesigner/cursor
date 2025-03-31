@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CouponDeals - Checkout</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 375px;
+            background-color: #f5f5f7;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .status-bar-time {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .back-button {
+            color: #000;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .back-button .material-icons-outlined {
+            font-size: 24px;
+        }
+
+        .page-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #000;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .order-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .order-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 16px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .order-item:last-child {
+            margin-bottom: 0;
+            padding-top: 12px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .order-label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .order-value {
+            font-size: 14px;
+            color: #000;
+            font-weight: 500;
+        }
+
+        .order-item:last-child .order-value {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .payment-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .payment-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 16px;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .payment-method:last-child {
+            margin-bottom: 0;
+        }
+
+        .payment-method .material-icons-outlined {
+            font-size: 24px;
+            color: #000;
+            margin-right: 12px;
+        }
+
+        .payment-method-info {
+            flex-grow: 1;
+        }
+
+        .payment-method-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 2px;
+        }
+
+        .payment-method-desc {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .card-details {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .card-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .card-input:focus {
+            outline: none;
+            border-color: #007aff;
+        }
+
+        .card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .card-input.small {
+            padding: 12px;
+        }
+
+        .security-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .security-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 16px;
+        }
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .security-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .security-item .material-icons-outlined {
+            font-size: 20px;
+            color: #34c759;
+            margin-right: 12px;
+        }
+
+        .security-text {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .terms-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .terms-text {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .terms-link {
+            color: #007aff;
+            text-decoration: none;
+        }
+
+        .pay-button {
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 16px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .pay-button:hover {
+            background-color: #333;
+        }
+
+        .home-indicator {
+            width: 134px;
+            height: 5px;
+            background-color: #000;
+            border-radius: 3px;
+            margin: 8px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <div class="status-bar-time">9:41</div>
+            <div class="status-bar-icons">
+                <span class="material-icons-outlined" style="font-size: 16px;">signal_cellular_alt</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">wifi</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">battery_full</span>
+            </div>
+        </div>
+        
+        <div class="header">
+            <div class="back-button">
+                <span class="material-icons-outlined">chevron_left</span>
+            </div>
+            <div class="page-title">Checkout</div>
+            <div style="width: 24px;"></div>
+        </div>
+
+        <div class="main-content">
+            <div class="order-card">
+                <div class="order-title">Order Summary</div>
+                <div class="order-item">
+                    <div class="order-label">Coupon Value</div>
+                    <div class="order-value">$100</div>
+                </div>
+                <div class="order-item">
+                    <div class="order-label">Processing Fee</div>
+                    <div class="order-value">$0.00</div>
+                </div>
+                <div class="order-item">
+                    <div class="order-label">Total Amount</div>
+                    <div class="order-value">$50.00</div>
+                </div>
+            </div>
+
+            <div class="payment-card">
+                <div class="payment-title">Payment Details</div>
+                <div class="payment-method">
+                    <span class="material-icons-outlined">credit_card</span>
+                    <div class="payment-method-info">
+                        <div class="payment-method-name">Credit Card</div>
+                        <div class="payment-method-desc">Visa, Mastercard, American Express</div>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <input type="text" class="card-input" placeholder="Card Number" maxlength="19">
+                    <input type="text" class="card-input" placeholder="Cardholder Name">
+                    <div class="card-row">
+                        <input type="text" class="card-input small" placeholder="MM/YY" maxlength="5">
+                        <input type="text" class="card-input small" placeholder="CVV" maxlength="4">
+                    </div>
+                </div>
+            </div>
+
+            <div class="security-card">
+                <div class="security-title">Secure Payment</div>
+                <div class="security-item">
+                    <span class="material-icons-outlined">lock</span>
+                    <div class="security-text">256-bit SSL encryption</div>
+                </div>
+                <div class="security-item">
+                    <span class="material-icons-outlined">verified</span>
+                    <div class="security-text">PCI DSS compliant</div>
+                </div>
+                <div class="security-item">
+                    <span class="material-icons-outlined">security</span>
+                    <div class="security-text">Fraud protection</div>
+                </div>
+            </div>
+
+            <div class="terms-card">
+                <div class="terms-text">
+                    By proceeding with the payment, you agree to our <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>. The coupon is non-refundable once purchased.
+                </div>
+            </div>
+
+            <button class="pay-button">Pay $50.00</button>
+        </div>
+
+        <div class="home-indicator"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 返回按钮点击事件
+            document.querySelector('.back-button').addEventListener('click', function() {
+                window.history.back();
+            });
+
+            // 支付按钮点击事件
+            document.querySelector('.pay-button').addEventListener('click', function() {
+                window.location.href = 'success.html';
+            });
+
+            // 信用卡号码格式化
+            document.querySelector('input[placeholder="Card Number"]').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(\d{4})/g, '$1 ').trim();
+                e.target.value = value;
+            });
+        });
+    </script>
+</body>
+</html> 
