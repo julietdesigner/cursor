@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Check Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 375px;
+            background-color: #f5f5f7;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .status-bar-time {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .back-button {
+            color: #000;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .back-button .material-icons-outlined {
+            font-size: 24px;
+        }
+
+        .page-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #000;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .withdrawal-status {
+            background-color: #ffffff;
+            padding: 24px 16px;
+            margin-bottom: 12px;
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .status-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 24px;
+            background-color: #ff9500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+        }
+
+        .status-icon .material-icons-outlined {
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        .status-info {
+            flex-grow: 1;
+        }
+
+        .status-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 4px;
+        }
+
+        .status-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .amount-card {
+            background-color: #000;
+            border-radius: 12px;
+            padding: 16px;
+            color: white;
+            margin: 0 16px 12px;
+        }
+
+        .amount-label {
+            font-size: 14px;
+            color: #9ca3af;
+            margin-bottom: 4px;
+        }
+
+        .amount-value {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .details-card {
+            background-color: #ffffff;
+            padding: 16px;
+            margin: 0 16px 12px;
+            border-radius: 12px;
+        }
+
+        .details-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 16px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .detail-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            color: #000;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .progress-card {
+            background-color: #ffffff;
+            padding: 16px;
+            margin: 0 16px 12px;
+            border-radius: 12px;
+        }
+
+        .progress-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 16px;
+        }
+
+        .progress-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .step-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 12px;
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .step-icon.completed {
+            background-color: #34c759;
+        }
+
+        .step-icon .material-icons-outlined {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .step-icon.completed .material-icons-outlined {
+            color: #ffffff;
+        }
+
+        .step-content {
+            flex-grow: 1;
+        }
+
+        .step-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 4px;
+        }
+
+        .step-description {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .home-indicator {
+            width: 134px;
+            height: 5px;
+            background-color: #000;
+            border-radius: 3px;
+            margin: 8px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <div class="status-bar-time">9:41</div>
+            <div class="status-bar-icons">
+                <span class="material-icons-outlined" style="font-size: 16px;">signal_cellular_alt</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">wifi</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">battery_full</span>
+            </div>
+        </div>
+        
+        <div class="header">
+            <div class="back-button">
+                <span class="material-icons-outlined">chevron_left</span>
+            </div>
+            <div class="page-title">Paper Check Details</div>
+            <div style="width: 24px;"></div>
+        </div>
+
+        <div class="withdrawal-status">
+            <div class="status-header">
+                <div class="status-icon">
+                    <span class="material-icons-outlined">local_shipping</span>
+                </div>
+                <div class="status-info">
+                    <div class="status-title">Check Mailed</div>
+                    <div class="status-subtitle">Mailed on Oct 15, 2024</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="amount-card">
+            <div class="amount-label">Check Amount</div>
+            <div class="amount-value">$49.99</div>
+        </div>
+
+        <div class="details-card">
+            <div class="details-title">Check Details</div>
+            <div class="detail-row">
+                <div class="detail-label">Check Number</div>
+                <div class="detail-value">#123456789</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Payable To</div>
+                <div class="detail-value">John Doe</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Mailing Address</div>
+                <div class="detail-value">123 Main St, Apt 4B<br>San Francisco, CA 94105</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Processing Fee</div>
+                <div class="detail-value">$1.99</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Estimated Delivery</div>
+                <div class="detail-value">3-5 business days</div>
+            </div>
+        </div>
+
+        <div class="details-card">
+            <div class="details-title">Shipping Information</div>
+            <div class="detail-row">
+                <div class="detail-label">Carrier</div>
+                <div class="detail-value">USPS</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Tracking Number</div>
+                <div class="detail-value">9405511298370093298393</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Service Type</div>
+                <div class="detail-value">Priority Mail</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Status</div>
+                <div class="detail-value" style="color: #ff9500;">In Transit</div>
+            </div>
+        </div>
+
+        <div class="progress-card">
+            <div class="progress-title">Processing Timeline</div>
+            <div class="progress-steps">
+                <div class="progress-step">
+                    <div class="step-icon completed">
+                        <span class="material-icons-outlined">check</span>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">Check Issued</div>
+                        <div class="step-description">Oct 15, 2024 9:30 AM</div>
+                    </div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-icon completed">
+                        <span class="material-icons-outlined">check</span>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">Check Mailed</div>
+                        <div class="step-description">Oct 15, 2024 2:30 PM</div>
+                    </div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-icon">
+                        <span class="material-icons-outlined">schedule</span>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">In Transit</div>
+                        <div class="step-description">Expected: Oct 18, 2024</div>
+                    </div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-icon">
+                        <span class="material-icons-outlined">schedule</span>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">Delivered</div>
+                        <div class="step-description">Pending</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-indicator"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.back-button').addEventListener('click', function() {
+                window.history.back();
+            });
+        });
+    </script>
+</body>
+</html> 
