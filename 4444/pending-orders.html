@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CouponDeals - Pending Orders</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiated;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 375px;
+            background-color: #f5f5f7;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .status-bar-time {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .back-button {
+            color: #000;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .back-button .material-icons-outlined {
+            font-size: 24px;
+        }
+
+        .page-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #000;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .search-bar {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #000;
+            background-color: transparent;
+        }
+
+        .search-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .filter-tab {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #000;
+            background-color: #f3f4f6;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .filter-tab.active {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .order-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .order-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .order-id {
+            font-size: 14px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .order-time {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .order-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .order-label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .order-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000;
+        }
+
+        .order-amount {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .verify-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            margin-top: 12px;
+        }
+
+        .verify-button:hover {
+            opacity: 0.9;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .empty-icon {
+            width: 64px;
+            height: 64px;
+            background-color: #f3f4f6;
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .empty-icon .material-icons-outlined {
+            font-size: 32px;
+            color: #6b7280;
+        }
+
+        .empty-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 8px;
+        }
+
+        .empty-message {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .home-indicator {
+            width: 134px;
+            height: 5px;
+            background-color: #000;
+            border-radius: 3px;
+            margin: 8px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <div class="status-bar-time">9:41</div>
+            <div class="status-bar-icons">
+                <span class="material-icons-outlined" style="font-size: 16px;">signal_cellular_alt</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">wifi</span>
+                <span class="material-icons-outlined" style="font-size: 16px;">battery_full</span>
+            </div>
+        </div>
+        
+        <div class="header">
+            <div class="back-button">
+                <span class="material-icons-outlined">chevron_left</span>
+            </div>
+            <div class="page-title">Pending Orders</div>
+            <div style="width: 24px;"></div>
+        </div>
+
+        <div class="main-content">
+            <div class="search-bar">
+                <span class="material-icons-outlined" style="color: #9ca3af;">search</span>
+                <input type="text" class="search-input" placeholder="Search orders...">
+            </div>
+
+            <div class="filter-tabs">
+                <div class="filter-tab active">All</div>
+                <div class="filter-tab">Today</div>
+                <div class="filter-tab">This Week</div>
+                <div class="filter-tab">High Value</div>
+                <div class="filter-tab">Urgent</div>
+            </div>
+
+            <div class="order-list">
+                <div class="order-card">
+                    <div class="order-header">
+                        <div class="order-id">Order #123456</div>
+                        <div class="order-time">2:30 PM</div>
+                    </div>
+                    <div class="order-details">
+                        <div class="order-label">Customer</div>
+                        <div class="order-value">John Doe</div>
+                    </div>
+                    <div class="order-details">
+                        <div class="order-label">Items</div>
+                        <div class="order-value">3 items</div>
+                    </div>
+                    <div class="order-details">
+                        <div class="order-label">Amount</div>
+                        <div class="order-amount">$49.99</div>
+                    </div>
+                    <button class="verify-button">Verify Order</button>
+                </div>
+
+                <div class="order-card">
+                    <div class="order-header">
+                        <div class="order-id">Order #123455</div>
+                        <div class="order-time">1:45 PM</div>
+                    </div>
+                    <div class="order-details">
+                        <div class="order-label">Customer</div>
+                        <div class="order-value">Jane Smith</div>
+                    </div>
+                    <div class="order-details">
+                        <div class="order-label">Items</div>
+                        <div class="order-value">1 item</div>
+                    </div>
+                    <div class="order-details">
+                        <div class="order-label">Amount</div>
+                        <div class="order-amount">$29.99</div>
+                    </div>
+                    <button class="verify-button">Verify Order</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-indicator"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 返回按钮点击事件
+            document.querySelector('.back-button').addEventListener('click', function() {
+                window.history.back();
+            });
+
+            // 筛选标签点击事件
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // 搜索框输入事件
+            const searchInput = document.querySelector('.search-input');
+            searchInput.addEventListener('input', function() {
+                // TODO: 处理搜索逻辑
+                console.log('Search:', this.value);
+            });
+
+            // 核销按钮点击事件
+            document.querySelectorAll('.verify-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    // TODO: 处理核销逻辑
+                    console.log('Verify order clicked');
+                });
+            });
+
+            // 订单卡片点击事件
+            document.querySelectorAll('.order-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    // TODO: 跳转到订单详情
+                    console.log('Order card clicked');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
