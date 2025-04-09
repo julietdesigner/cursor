@@ -1,0 +1,30 @@
+{
+    "title": "Tuần lễ Kim cương!",
+    "subTitle":"Thu thập quà đặc biệt và nhận ngay các phần quà hấp dẫn!",
+    "time":"17/6-24/6 (theo giờ Mỹ)",
+    
+    "rewardDesc":"Thu thập các loại quà ở trên với số lượng tương ứng, bạn sẽ nhận được kim cương tặng thưởng!",
+    "bossDesc":"Top 1 nhận quà (từng loại quà)<br> sẽ nhận <span class=\"icon icon_diamond\"></span> 10% kim cương; <br> max <span class=\"icon icon_diamond\"></span> 1 million diamonds.",
+    
+    "Received":"Nhận",
+    "noRank":"Chưa lọt vào BXH",
+    
+    "noteTitle":"Chú thích",
+    "noteRewardTitle":"Phần thưởng thành tích",
+    "noteRewardDesc":"Có hai loại phần thưởng, mỗi người phát sóng được nhận nhiều nhất 1 phần thưởng",
+    "noteBoosTitle":"Phần thưởng siêu hạng",
+    "noteBoosDesc1":"Trong thời gian diễn ra hoạt động, người phát sóng được xếp hạng trong BXH 3 loại quà của hoạt động",
+    "noteBoosDesc2":"Người phát sóng nhận được nhiều nhất một trong ba loại quà hoạt động.",
+    "noteBoosDesc3":"Phần thưởng: <span class=\"icon icon_diamond\"></span> nhận 10% kim cương<br>(maximum <span class=\"icon icon_diamond\"></span> 1 million)",
+    
+    "note1":"Phần thưởng sẽ được gửi vào tài khoản sau 10 ngày làm việc. ",
+    "note2":"Trong thời gian diễn ra hoạt động, người phát sóng vi phạm quy định của Live.me sẽ bị tước quyền nhận thưởng.",
+    
+    "cancel":"Hủy",
+    "go":"Đi nào!",
+    "footerDesc": "Social Live Video Streaming",
+    "footerDown": "&nbsp; JOIN &nbsp;",
+    "downloadTip":"Tải Live.me để xem live stream hấp dẫn.",
+    "wechatTip":"Bấm vào góc trên bên phải chọn mở bằng trình duyệt để tải Live.me",
+    "noDataTip":"Không có dữ liệu"
+}

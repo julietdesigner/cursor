@@ -1,0 +1,402 @@
+/*===============footer===============*/
+
+.footer {
+    position: fixed;
+    width: 100%;
+    z-index: 300;
+    bottom: 0;
+    overflow: hidden;
+    background: #fff;
+    padding: 0.1rem;
+    box-sizing: border-box;
+}
+
+.footer .app-icon,
+.footer .txt,
+.footer .signature,
+.footer .app-name {
+    display: inline-block;
+}
+
+.footer .app-icon {
+    float: left;
+    width: 1rem;
+    height: 1rem;
+    background: url(../images/live_80.png);
+    background-size: cover;
+}
+
+.footer .app-icon img {
+    width: 1.0rem;
+    height: 1.0rem;
+}
+
+.footer .signature {
+    font-size: 0.24rem;
+    color: #333;
+    float: left;
+    clear: left;
+    line-height: .33rem;
+}
+
+.footer .app-name {
+    font-size: 0.4rem;
+    width: 1.8rem;
+    height: 0.575rem;
+    vertical-align: top;
+    color: #fff;
+    background: url(../images/logo_t.png);
+    background-size: cover;
+    float: left;
+}
+
+.footer .txt {
+    margin-left: 0.125rem;
+}
+
+.footer .download {
+    font-size: 0.3rem;
+    line-height: 0.355rem;
+    float: right;
+    padding: 0.3rem 0.3rem;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 0.5rem;
+    background-color: #18c641;
+}
+
+.footer .download-en {
+    padding: 0.33rem 0.66rem;
+    margin-right: 5px;
+    font-size: 0.4rem;
+}
+
+
+/*===============loading===============*/
+
+
+/*===============loading===============*/
+
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: 101;
+    background: #160725;
+    .spinner {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-top: -.43rem;
+        margin-left: -.43rem;
+        height: .85rem;
+        width: .85rem;
+        background: url("../images/loading.png") no-repeat center center transparent;
+        background-size: contain;
+        animation: retate360 2s linear infinite;
+        z-index: 102;
+    }
+}
+
+@keyframes retate360 {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes stretchdelay {
+    0%,
+    100%,
+    40% {
+        transform: scaleY(.4)
+    }
+    20% {
+        transform: scaleY(1)
+    }
+}
+
+@-webkit-keyframes zoom {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1)
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0, 0) scale(.85);
+        transform: translate3d(0, 0, 0) scale(.85)
+    }
+}
+
+@-moz-keyframes zoom {
+    0% {
+        -moz-transform: translate3d(0, 0, 0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1)
+    }
+    100% {
+        -moz-transform: translate3d(0, 0, 0) scale(.85);
+        transform: translate3d(0, 0, 0) scale(.85)
+    }
+}
+
+@-o-keyframes zoom {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1)
+    }
+    100% {
+        transform: translate3d(0, 0, 0) scale(.85)
+    }
+}
+
+.mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.6);
+    color: #333;
+    .client-pop {
+        position: fixed;
+        width: 5.4rem;
+        margin-left: -2.7rem;
+        margin-top: -1rem;
+        left: 50%;
+        top: 40%;
+        background: rgba(255, 255, 255, .95);
+        border-radius: .14rem;
+        transform: scale(1.3) translateZ(0);
+        opacity: 0;
+        transition-duration: .1s, .1s;
+        transition-timing-function: linear, linear;
+        transition-property: transform, opacity;
+        font-size: .32rem;
+        p {
+            padding: 15px 20px;
+            text-align: center;
+            line-height: 1.5em;
+            font-size: 1em;
+        }
+        &.client-pop-show {
+            opacity: 1;
+            transform: scale(1) translateZ(0);
+        }
+    }
+    .client-btns {
+        height: .9rem;
+        display: -webkit-box;
+        border-top: #CCC solid 1px;
+        -webkit-box-flex: 0.0;
+        a {
+            display: block;
+            -webkit-box-flex: 1.0;
+            text-align: center;
+            line-height: .88rem;
+            color: #333;
+            border-right: #CCC solid 1px;
+            width: 50%;
+            &:active {
+                background: rgba(0, 0, 0, .05);
+            }
+            &:last-child {
+                border-right: 0 none;
+            }
+        }
+    }
+}
+
+
+/*============share============*/
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: .7rem;
+    background: rgba(49, 16, 121, .7);
+    z-index: 999;
+    left: 0;
+    .logo {
+        float: left;
+        width: 1.56rem;
+        height: .7rem;
+        position: relative;
+    }
+    .logo:after {
+        content: " ";
+        display: block;
+        height: .36rem;
+        width: 1.16rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -.18rem;
+        margin-left: -.58rem;
+        background: url('../images/icon_share.png') center center no-repeat transparent;
+        background-size: 2.25rem 10rem;
+        background-position: 0 -7rem;
+    }
+    .share {
+        float: right;
+        width: .77rem;
+        height: .7rem;
+        position: relative;
+    }
+    .share:after {
+        content: " ";
+        display: block;
+        height: .38rem;
+        width: .38rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -.19rem;
+        margin-left: -.19rem;
+        background: url('../images/icon_share.png') center center no-repeat transparent;
+        background-size: 2.25rem 10rem;
+        background-position: 0 -6rem;
+    }
+}
+
+@keyframes moveTop {
+    0% {
+        transform: translate3d(-50%, 100%, 0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate3d(-50%, 0%, 0);
+        opacity: 1;
+    }
+}
+
+.public-toast {
+    padding: .2rem .3rem;
+    border-radius: .06rem;
+    font-size: .24rem;
+    background: rgba(0, 0, 0, .7);
+    position: fixed;
+    right: 50%;
+    bottom: 50px;
+    max-width: 80%;
+    z-index: 9999;
+    color: #FFF;
+    transform: translate3d(50%, 100%, 0);
+    opacity: 0;
+    transition: all linear .1s;
+    &.public-toast-show {
+        opacity: 1;
+        transform: translate3d(50%, 0, 0);
+    }
+}
+
+.layer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    .layer-box {
+        width: 5.9rem;
+        background-color: #FFF;
+        position: absolute;
+        left: 50%;
+        bottom: .13rem;
+        transform: translate3d(-50%, 0, 0);
+        border-radius: .04rem;
+        animation: moveTop 0.3s;
+    }
+    .layer-btn {
+        height: .74rem;
+        line-height: .74rem;
+        display: block;
+        text-align: center;
+        font-size: .28rem;
+        font-weight: bold;
+        color: #333;
+    }
+    .share-button {
+        border: #b5b5b5 solid 1px;
+        &:after {
+            content: '';
+            display: block;
+            clear: both;
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+        }
+        a {
+            color: #333;
+            float: left;
+            width: 50%;
+            text-align: center;
+            padding: .26rem 0 .34rem 0;
+            font-size: .24rem;
+            .icon {
+                display: block;
+                width: .72rem;
+                height: .72rem;
+                margin-bottom: .28rem;
+                margin: 0 auto;
+                &.icon-fb {
+                    //                    .contain('../images/fb.png');
+                    background: url('../images/icon_share.png') center center no-repeat transparent;
+                    background-size: 2.25rem 10rem;
+                    background-position: 0 -3rem;
+                }
+                &.icon-tw {
+                    //                    .contain('../images/twitter.png');
+                    background: url('../images/icon_share.png') center center no-repeat transparent;
+                    background-size: 2.25rem 10rem;
+                    background-position: 0 0;
+                }
+            }
+            &:active {
+                background-color: #F5F5F5;
+            }
+        }
+    }
+}
+
+.level {
+    height: .25rem;
+    width: .48rem;
+    display: inline-block;
+    background: center center no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+}
+
+.levelFn(@number) {
+    .sendbg(@counter) when (@counter >0) {
+        @itemClass: ~".level-@{counter}";
+        @itemImg: ~"../images/level/level-@{counter}.png";
+        @{itemClass} {
+            background-image: url(@itemImg);
+        }
+        .sendbg(@counter - 1);
+    }
+    .sendbg(@number);
+}
+
+.levelFn(99);

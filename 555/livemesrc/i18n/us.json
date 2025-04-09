@@ -1,0 +1,30 @@
+{
+    "title": "Diamond Bonus Week!",
+    "subTitle":"Collect Specific Gifts, Get Bonus Diamonds!",
+    "time":"6\/16 - 6\/22",
+    
+    "rewardDesc":"Collect the above gifts, and try to hit the milestone to win a Diamond bonus!",
+    "bossDesc":"Top 1 Gift Earner (of each gift) <br> gets extra <span class=\"icon icon_diamond\"></span> 10% diamonds; <br> max <span class=\"icon icon_diamond\"></span> 1 million diamonds.",
+    
+    "Received":"Received",
+    "noRank":"No  rank yet",
+    
+    "noteTitle":"Notes",
+    "noteRewardTitle":"Achievement reward",
+    "noteRewardDesc":"2 tiers per gift, maximum 1 redemption per tier",
+    "noteBoosTitle":"Bling Boss",
+    "noteBoosDesc1":"During the event, broadcasters are ranked in  3 gift categories",
+    "noteBoosDesc2":"broadcasters who earn the most gifts in 3 categories.",
+    "noteBoosDesc3":"Reward: <span class=\"icon icon_diamond\"></span> 10% of the diamond bonus<br>(maximum <span class=\"icon icon_diamond\"></span> 1 million)",
+    
+    "note1":"All bonus diamonds will be issued within ten workdays. ",
+    "note2":"During the event, broadcasters who violate the Live.me Terms of Service lose their eligibility to participate and win a prize.",
+    
+    "cancel":"Cancel",
+    "go":"Go",
+    "footerDesc": "Social Live Video Streaming",
+    "footerDown": "&nbsp; JOIN &nbsp;",
+    "downloadTip":"Download Live.me to watch live video streamings.",
+    "wechatTip":"Click on the upper right corner, select in the browser to open, and then download our App",
+    "noDataTip":"No more data"
+}

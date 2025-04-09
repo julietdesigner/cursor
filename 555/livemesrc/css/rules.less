@@ -1,0 +1,34 @@
+@charset "utf-8";
+@import "_lib.less";
+@import '_common.less';
+html {
+    font-size: 100px;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background: @bgcolor;
+    color: #291152;
+    font-size: .22rem;
+}
+
+.wrap {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    background-color: #3b1d6c;
+    padding-bottom: .7rem;
+    img{
+        width: 100%;
+        float: left;
+    }
+    .office{
+        display: block;
+        img{
+            float: none;
+        }
+    }
+}
