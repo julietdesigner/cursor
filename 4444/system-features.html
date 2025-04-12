@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Tax System Features</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1D1D1F;
+            --accent-color: #0066CC;
+            --success-color: #34C759;
+            --warning-color: #FF9F0A;
+            --error-color: #FF3B30;
+            --text-primary: #1D1D1F;
+            --text-secondary: #86868B;
+            --background-light: #F5F5F7;
+            --border-color: #D2D2D7;
+            --card-background: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--background-light);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.47059;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.003em;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+        }
+
+        .header p {
+            font-size: 21px;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .section {
+            background: var(--card-background);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.002em;
+        }
+
+        .section-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        .badge-app-web {
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--accent-color);
+        }
+
+        .badge-web {
+            background: rgba(88, 86, 214, 0.1);
+            color: #5856D6;
+        }
+
+        .badge-offline {
+            background: rgba(255, 159, 10, 0.1);
+            color: var(--warning-color);
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .module-card {
+            background: var(--card-background);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .module-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .module-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            letter-spacing: -0.001em;
+        }
+
+        .module-desc {
+            font-size: 15px;
+            line-height: 1.4;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .module-port {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            background: rgba(0, 102, 204, 0.08);
+            color: var(--accent-color);
+        }
+
+        .extension-section {
+            margin-top: 64px;
+        }
+
+        .extension-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: var(--primary-color);
+            letter-spacing: -0.002em;
+        }
+
+        .extension-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .extension-card {
+            background: var(--card-background);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .extension-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .extension-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .extension-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            letter-spacing: -0.001em;
+        }
+
+        .extension-desc {
+            font-size: 15px;
+            line-height: 1.4;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 32px 16px;
+            }
+
+            .header h1 {
+                font-size: 36px;
+            }
+
+            .header p {
+                font-size: 18px;
+            }
+
+            .section {
+                padding: 28px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .module-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .extension-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>US Tax System Features</h1>
+            <p>Professional Edition - Platform & Feature Overview</p>
+        </header>
+
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">I. System & Marketing</h2>
+                <span class="section-badge badge-app-web">App + Web</span>
+            </div>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-icon">📌</div>
+                    <h3 class="module-title">Client Relationship Management (CRM)</h3>
+                    <p class="module-desc">Client profiling, assignment tracking (Prospect / Active / Done), and tag management</p>
+                    <span class="module-port">Web + App</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">📌</div>
+                    <h3 class="module-title">Workflow & Task Management</h3>
+                    <p class="module-desc">Multi-role task distribution, automated reminders, progress tracking for sales, assistants, accountants, and reviewers</p>
+                    <span class="module-port">Web</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">📌</div>
+                    <h3 class="module-title">Form Collection & Channels</h3>
+                    <p class="module-desc">Embedded forms for website/SMS/email to collect W-2, 1099, passport, SSN information</p>
+                    <span class="module-port">Web + App</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">📌</div>
+                    <h3 class="module-title">Client Self-Service Portal</h3>
+                    <p class="module-desc">Track tax filing progress, upload documents, receive notifications, and communicate online</p>
+                    <span class="module-port">App + Web</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">II. Software Tools & Online Services</h2>
+                <span class="section-badge badge-web">Web Primary</span>
+            </div>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-icon">🧾</div>
+                    <h3 class="module-title">Tax Form Generator</h3>
+                    <p class="module-desc">Automated generation of 1040, Schedule C, W-9 forms with support for schedules and amendments</p>
+                    <span class="module-port">Web</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">✍️</div>
+                    <h3 class="module-title">E-Signature Module</h3>
+                    <p class="module-desc">Electronic signatures for Form 8879/W-9, compliant archiving, DocuSign integration</p>
+                    <span class="module-port">Web</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">🔁</div>
+                    <h3 class="module-title">E-File System</h3>
+                    <p class="module-desc">Automated submission to IRS/State, receipt tracking, status monitoring (Accepted/Rejected)</p>
+                    <span class="module-port">Web</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">🤖</div>
+                    <h3 class="module-title">AI Assistant</h3>
+                    <p class="module-desc">Tax FAQ integration, knowledge base access, enhanced self-service capabilities</p>
+                    <span class="module-port">Web</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">🕓</div>
+                    <h3 class="module-title">Real-time Progress Tracking</h3>
+                    <p class="module-desc">Transparent tax filing workflow visualization (Collection > Signature > Submit > Receipt)</p>
+                    <span class="module-port">Web</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">🗂</div>
+                    <h3 class="module-title">Client Document Center</h3>
+                    <p class="module-desc">Cloud storage for passports, W-2s, receipts, and tax records with categorization and preview</p>
+                    <span class="module-port">Web</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">III. Offline Support Services</h2>
+                <span class="section-badge badge-offline">Offline Primary + Web Support</span>
+            </div>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-icon">📅</div>
+                    <h3 class="module-title">In-Person Appointments</h3>
+                    <p class="module-desc">Location, time, and advisor selection for first-time filers and high-net-worth clients</p>
+                    <span class="module-port">Web</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">🧾</div>
+                    <h3 class="module-title">Document Scanning & Entry</h3>
+                    <p class="module-desc">Physical document digitization for senior clients and in-person submissions</p>
+                    <span class="module-port">Offline Primary</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">📝</div>
+                    <h3 class="module-title">On-site Contracts & Payments</h3>
+                    <p class="module-desc">Check/cash/card payments, synchronized paper and digital contract archiving</p>
+                    <span class="module-port">Offline + Web</span>
+                </div>
+                <div class="module-card">
+                    <div class="module-icon">📂</div>
+                    <h3 class="module-title">IRS Support & Communication</h3>
+                    <p class="module-desc">On-site assistance for IRS inquiries and tax issues with real-time system updates</p>
+                    <span class="module-port">Offline + Web</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="extension-section">
+            <h2 class="extension-title">🌟 Feature Enhancements</h2>
+            <div class="extension-grid">
+                <div class="extension-card">
+                    <div class="extension-icon">📍</div>
+                    <h3 class="extension-name">Refund Tracker</h3>
+                    <p class="extension-desc">Visual refund progress bar, estimated arrival time, and deposit notifications</p>
+                </div>
+                <div class="extension-card">
+                    <div class="extension-icon">🌐</div>
+                    <h3 class="extension-name">Multi-language Support</h3>
+                    <p class="extension-desc">Spanish and Chinese language options for enhanced accessibility</p>
+                </div>
+                <div class="extension-card">
+                    <div class="extension-icon">🏛</div>
+                    <h3 class="extension-name">State Tax Adaptation</h3>
+                    <p class="extension-desc">Enhanced guidance and calculation templates for complex tax states (CA, NY)</p>
+                </div>
+                <div class="extension-card">
+                    <div class="extension-icon">🧩</div>
+                    <h3 class="extension-name">Third-party Integration</h3>
+                    <p class="extension-desc">Bank verification (Plaid), e-signatures (HelloSign), payments (Stripe)</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html> 
