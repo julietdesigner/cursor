@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uTaxes Ambassador Program</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0A2540;
+            --accent-color: #635BFF;
+            --success-color: #32D583;
+            --warning-color: #FFB020;
+            --error-color: #FF4842;
+            --text-primary: #0A2540;
+            --text-secondary: #64748B;
+            --background-light: #F8FAFC;
+            --border-color: #E2E8F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-light);
+            min-height: 100vh;
+            color: var(--text-primary);
+        }
+
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            background: #fff;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-logo {
+            height: 32px;
+        }
+
+        .nav-divider {
+            color: var(--border-color);
+            font-size: 20px;
+        }
+
+        .nav-title {
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .login-btn {
+            padding: 10px 20px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 91, 255, 0.2);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0A2540 0%, #1A365D 100%);
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            color: white;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('pattern.svg') center/cover;
+            opacity: 0.1;
+        }
+
+        .hero-title {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .content-wrapper {
+            margin-top: -64px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            margin-bottom: 32px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-number {
+            color: var(--accent-color);
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .step {
+            margin-bottom: 32px;
+            padding: 32px;
+            border-radius: 12px;
+            background: var(--background-light);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .step-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            gap: 8px;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 91, 255, 0.2);
+        }
+
+        .button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .reward-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .reward-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .reward-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .reward-card-header {
+            background: var(--primary-color);
+            padding: 32px;
+            text-align: center;
+            color: white;
+        }
+
+        .reward-card-header h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .reward-amount {
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            line-height: 1;
+        }
+
+        .reward-card-content {
+            padding: 32px;
+        }
+
+        .reward-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .reward-label {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .reward-value {
+            color: var(--text-primary);
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .reward-info {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .note {
+            background: var(--background-light);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .note-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .note-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .note-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .faq-item {
+            margin-bottom: 32px;
+            padding: 24px;
+            border-radius: 12px;
+            background: var(--background-light);
+            border: 1px solid var(--border-color);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .faq-answer {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 64px;
+            padding: 48px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        .contact-email-box {
+            padding-bottom: 20px;
+        }
+
+        .contact-email {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .contact-email:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .hero-subtitle {
+                font-size: 20px;
+            }
+
+            .section {
+                padding: 24px;
+            }
+
+            .step {
+                padding: 24px;
+            }
+
+            .reward-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-left">
+            <img src="image/utaxes-logo.svg" alt="uTaxes" class="nav-logo">
+            <span class="nav-divider">›</span>
+            <span class="nav-title">Ambassador</span>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="login-btn">Sign In</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1 class="hero-title">Simplify Tax Filing<br>for Everyone</h1>
+            <p class="hero-subtitle">Share Smart Tax Solutions, Earn Rewards</p>
+        </div>
+    </div>
+
+    <div class="container content-wrapper">
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">01</span>How It Works</h2>
+            <div class="step">
+                <h3 class="step-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M8.5 14.5L12 11L15.5 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 11V21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20.5 16.5C20.5 17.9045 19.9045 19.2426 18.8388 20.2388C17.7731 21.235 16.301 21.7753 14.7731 21.7753H9.22692C7.69897 21.7753 6.22686 21.235 5.16116 20.2388C4.09547 19.2426 3.5 17.9045 3.5 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 11C14.7614 11 17 8.76142 17 6C17 3.23858 14.7614 1 12 1C9.23858 1 7 3.23858 7 6C7 8.76142 9.23858 11 12 11Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Share Tax Solutions
+                </h3>
+                <p class="step-content">Share your unique referral link with individuals and businesses looking for efficient tax filing solutions. Perfect for CPAs, tax professionals, and financial advisors.</p>
+            </div>
+            <div class="step">
+                <h3 class="step-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 1V23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Double Rewards
+                </h3>
+                <p class="step-content">Both you and your referrals earn rewards when they complete their tax filing through uTaxes. It's a win-win for everyone!</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">02</span>Getting Started</h2>
+            <div class="step">
+                <h3 class="step-title">Create Your uTaxes Account</h3>
+                <p class="step-content">Join the platform trusted by thousands of U.S. taxpayers. Skip this step if you already have an account.</p>
+                <a href="https://www.utaxes.com/signup" class="button">
+                    Start Now
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4.16666 10H15.8333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 4.16667L15.8333 10L10 15.8333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="step">
+                <h3 class="step-title">Get Your Referral Link</h3>
+                <p class="step-content">Access your unique referral link and start sharing it with your network.</p>
+                <a href="https://www.utaxes.com/ambassador" class="button">
+                    Get Your Link
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M11.6667 8.33333L17.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13.3333 2.5H17.5V6.66667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17.5 11.6667V15.8333C17.5 16.2754 17.3244 16.6993 17.0118 17.0118C16.6993 17.3244 16.2754 17.5 15.8333 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V4.16667C2.5 3.72464 2.67559 3.30072 2.98816 2.98816C3.30072 2.67559 3.72464 2.5 4.16667 2.5H8.33333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="step">
+                <h3 class="step-title">Join Our Community</h3>
+                <p class="step-content">Connect with fellow ambassadors and get exclusive tax filing tips and updates.</p>
+                <a href="#" class="button">
+                    Join Community
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M14.1667 5.83333C14.1667 7.67428 12.6743 9.16667 10.8333 9.16667C8.99238 9.16667 7.5 7.67428 7.5 5.83333C7.5 3.99238 8.99238 2.5 10.8333 2.5C12.6743 2.5 14.1667 3.99238 14.1667 5.83333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10.8333 11.6667C7.61167 11.6667 5 14.2783 5 17.5H16.6667C16.6667 14.2783 14.055 11.6667 10.8333 11.6667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">03</span>Reward Structure</h2>
+            <div class="reward-cards">
+                <div class="reward-card">
+                    <div class="reward-card-header">
+                        <h3>Individual Tax Filing</h3>
+                        <div class="reward-amount">$50</div>
+                    </div>
+                    <div class="reward-card-content">
+                        <div class="reward-detail">
+                            <span class="reward-label">You Earn</span>
+                            <span class="reward-value">$50</span>
+                        </div>
+                        <div class="reward-detail">
+                            <span class="reward-label">Referral Earns</span>
+                            <span class="reward-value">$50</span>
+                        </div>
+                        <div class="reward-info">
+                            Perfect for personal tax returns, self-employed individuals, and freelancers
+                        </div>
+                    </div>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-card-header">
+                        <h3>Business Tax Filing</h3>
+                        <div class="reward-amount">$100</div>
+                    </div>
+                    <div class="reward-card-content">
+                        <div class="reward-detail">
+                            <span class="reward-label">You Earn</span>
+                            <span class="reward-value">$100</span>
+                        </div>
+                        <div class="reward-detail">
+                            <span class="reward-label">Business Earns</span>
+                            <span class="reward-value">$100</span>
+                        </div>
+                        <div class="reward-info">
+                            Ideal for small businesses, LLCs, S-Corps, and partnerships
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="note">
+                <div class="note-item">
+                    <svg class="note-icon" viewBox="0 0 20 20" fill="none">
+                        <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#32D583" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Referrals must complete paid tax filing through your unique link</span>
+                </div>
+                <div class="note-item">
+                    <svg class="note-icon" viewBox="0 0 20 20" fill="none">
+                        <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#32D583" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Available for all U.S. federal and state tax returns</span>
+                </div>
+                <div class="note-item">
+                    <svg class="note-icon" viewBox="0 0 20 20" fill="none">
+                        <path d="M15 5L5 15" stroke="#FF4842" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 5L15 15" stroke="#FF4842" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Not valid for free filings, existing users, or untracked sign-ups</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">04</span>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3 class="faq-question">What makes a successful referral?</h3>
+                <p class="faq-answer">A successful referral must:<br>
+                - Sign up using your unique referral link<br>
+                - Complete a paid tax filing (Federal or State)<br>
+                - Be a U.S. resident or business<br>
+                - Be a first-time uTaxes user</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">How and when do I get paid?</h3>
+                <p class="faq-answer">Payments are processed via direct deposit or PayPal within 7-14 business days after the following month of completed tax filing. Identity verification (KYC) is required for compliance with U.S. tax regulations.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">What tax services are eligible?</h3>
+                <p class="faq-answer">All paid tax services including:<br>
+                - Federal individual tax returns<br>
+                - State tax returns<br>
+                - Business tax filings (LLC, S-Corp, C-Corp)<br>
+                - Self-employed and freelancer taxes</p>
+            </div>
+        </div>
+
+        <div class="contact">
+            <h3 class="contact-title">Ready to Get Started?</h3>
+            <p class="contact-email-box">Questions about the ambassador program? Contact us at <a href="mailto:ambassador@utaxes.com" class="contact-email">ambassador@utaxes.com</a></p>
+            <a href="#" class="button">
+                Become an Ambassador Today
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4.16666 10H15.8333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 4.16667L15.8333 10L10 15.8333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html> 
