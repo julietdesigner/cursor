@@ -330,6 +330,7 @@
         .contact {
             text-align: center;
             margin-top: 64px;
+            margin-bottom: 64px;
             padding: 48px;
             background: white;
             border-radius: 16px;
@@ -357,6 +358,70 @@
             color: var(--primary-color);
         }
 
+        .footer-banner {
+            background: #111;
+            padding: 40px 0;
+            color: white;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            height: 64px;
+            width: 64px;
+        }
+
+        .footer-text {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .download-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 100px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        .URL-QR-Code{
+         width: 60px;
+        }
+
         @media (max-width: 768px) {
             .hero {
                 padding: 80px 0;
@@ -380,6 +445,24 @@
 
             .reward-cards {
                 grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 32px;
+            }
+
+            .footer-left {
+                flex-direction: column;
+            }
+
+            .footer-title {
+                font-size: 28px;
+            }
+
+            .footer-subtitle {
+                font-size: 18px;
             }
         }
     </style>
@@ -566,7 +649,22 @@
                     <path d="M4.16666 10H15.8333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M10 4.16667L15.8333 10L10 15.8333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
+                <img src="image/URL-QR-Code.png" alt="URL-QR-Code" class="URL-QR-Code">
+
             </a>
+        </div>
+    </div>
+
+    <div class="footer-banner">
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="image/logo.svg" alt="uTaxes" class="footer-logo">
+                <div class="footer-text">
+                    <div class="footer-title">uTaxes</div>
+                    <div class="footer-subtitle">Taxes Made Simple for You</div>
+                </div>
+            </div>
+            <a href="#" class="download-btn">Download</a>
         </div>
     </div>
 </body>
