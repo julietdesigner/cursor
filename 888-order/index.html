@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Formation - Start Your Business in Minutes</title>
+    <!-- Roboto 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="/" class="logo">Legal</a>
+                <div class="nav-links">
+                    <a href="#">Business</a>
+                    <a href="#">Personal</a>
+                    <a href="#">Forms</a>
+                    <a href="#">Support</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="/">Home</a> > 
+        <a href="/business">Business</a> > 
+        <span>Business Formation</span>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <h1>Kickstart your business in minutes</h1>
+    </header>
+
+    <!-- Business Types Overview -->
+    <section class="business-details">
+        <h2>All business types at a glance</h2>
+        
+        <!-- Business Type Icons -->
+        <div class="business-type-icons">
+            <div class="business-type-icon active" data-type="llc">
+                <div class="icon">📋</div>
+                <h3>LLC</h3>
+                <p>Going solo or teaming up? Make sure you're not personally on the hook for business liabilities with an LLC.</p>
+            </div>
+            <div class="business-type-icon" data-type="corporation">
+                <div class="icon">🏢</div>
+                <h3>Corporation</h3>
+                <p>Plan to issue shares, go public, or go global? Go further as a corporation.</p>
+            </div>
+            <div class="business-type-icon" data-type="nonprofit">
+                <div class="icon">🤝</div>
+                <h3>Nonprofit</h3>
+                <p>Create an organization to give back and be eligible for tax breaks.</p>
+            </div>
+            <div class="business-type-icon" data-type="dba">
+                <div class="icon">🚚</div>
+                <h3>DBA</h3>
+                <p>Get a business name for your sole prop without forming a legal entity, or add a new name to an existing entity.</p>
+            </div>
+        </div>
+
+        <!-- Detailed Cards Container -->
+        <div class="details-container">
+            <!-- LLC Details -->
+            <div class="detail-card active" data-type="llc">
+                <div class="icon">📋</div>
+                <h3>Limited Liability Company (LLC)</h3>
+                <div class="features">
+                    <div class="feature-group">
+                        <h4>How it's unique</h4>
+                        <ul>
+                            <li>Best for max flexibility in how you manage and run your business; board of directors not required</li>
+                            <li>Unlimited owners (aka "members") allowed</li>
+                        </ul>
+                    </div>
+                    <div class="feature-group">
+                        <h4>Protections & taxation</h4>
+                        <ul>
+                            <li>You're not personally on the hook for business liabilities</li>
+                            <li>Taxed once or twice; you're free to choose which can help minimize taxes</li>
+                        </ul>
+                    </div>
+                    <div class="feature-group">
+                        <h4>Drawbacks to consider</h4>
+                        <ul>
+                            <li>Ongoing filings and fees to stay in compliance</li>
+                            <li>LLCs can't go public</li>
+                            <li>Not recognized globally; you may be taxed as a corporation in other countries</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cta">
+                    <p class="price">Starts at $0 + state filing fees</p>
+                    <button class="learn-more">Learn more</button>
+                    <button class="start-now">Start an LLC</button>
+                </div>
+            </div>
+
+            <!-- Corporation Details -->
+            <div class="detail-card" data-type="corporation">
+                <div class="icon">🏢</div>
+                <h3>Corporation (S corp or C corp)</h3>
+                <div class="features">
+                    <div class="feature-group">
+                        <h4>How it's unique</h4>
+                        <ul>
+                            <li>Best if you plan to go public one day; can issue shares to founders, employees, and investors (C corp)</li>
+                            <li>Unlimited owners (aka "shareholders") allowed (C corp)</li>
+                            <li>Avoids double taxation on profits (S corp)</li>
+                            <li>Recognized internationally and preferred by investors</li>
+                        </ul>
+                    </div>
+                    <div class="feature-group">
+                        <h4>Protections & taxation</h4>
+                        <ul>
+                            <li>You're not personally on the hook for business liabilities</li>
+                            <li>Taxed twice if it's a C corporation—business pays at the corporate level, and shareholders pay on income received</li>
+                            <li>Avoids double taxation if it's an S corporation</li>
+                        </ul>
+                    </div>
+                    <div class="feature-group">
+                        <h4>Drawbacks to consider</h4>
+                        <ul>
+                            <li>Ongoing filings and fees to stay in compliance</li>
+                            <li>Less management flexibility; must have a board of directors</li>
+                            <li>More admin; strict rules about holding meetings and keeping records</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cta">
+                    <p class="price">Starts at $149 + state filing fees</p>
+                    <button class="learn-more">Learn more</button>
+                    <button class="start-now">Start a Corporation</button>
+                </div>
+            </div>
+
+            <!-- Nonprofit Details -->
+            <div class="detail-card" data-type="nonprofit">
+                <div class="icon">🤝</div>
+                <h3>Nonprofit</h3>
+                <div class="features">
+                    <div class="feature-group">
+                        <h4>How it's unique</h4>
+                        <ul>
+                            <li>Best if you're organizing for a good cause rather than for profit</li>
+                            <li>Unlimited owners (aka "shareholders") allowed</li>
+                            <li>Eligible for tax exemption with 501(c)(3) status</li>
+                        </ul>
+                    </div>
+                    <div class="feature-group">
+                        <h4>Protections & taxation</h4>
+                        <ul>
+                            <li>You're not personally on the hook for business liabilities</li>
+                            <li>Tax exempt from federal income taxes with 501(c)(3) status</li>
+                        </ul>
+                    </div>
+                    <div class="feature-group">
+                        <h4>Drawbacks to consider</h4>
+                        <ul>
+                            <li>Ongoing filings and fees to stay in compliance</li>
+                            <li>Less management flexibility; must have a board of directors</li>
+                            <li>More admin; strict rules about holding meetings and keeping records</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cta">
+                    <p class="price">Starts at $99 + state filing fees</p>
+                    <button class="learn-more">Learn more</button>
+                    <button class="start-now">Start a Nonprofit</button>
+                </div>
+            </div>
+
+            <!-- DBA Details -->
+            <div class="detail-card" data-type="dba">
+                <div class="icon">🚚</div>
+                <h3>Doing Business As (DBA)</h3>
+                <div class="features">
+                    <div class="feature-group">
+                        <h4>How it's unique</h4>
+                        <ul>
+                            <li>Best if you want an official business name, but want to avoid the upkeep needed for LLCs or corporations</li>
+                            <li>Not an actual legal entity type</li>
+                        </ul>
+                    </div>
+                    <div class="feature-group">
+                        <h4>Protections & taxation</h4>
+                        <ul>
+                            <li>You're personally on the hook for business liabilities</li>
+                            <li>Taxed just once if your business is classified as a sole proprietorship or partnership—you pay on profits in your personal tax return</li>
+                        </ul>
+                    </div>
+                    <div class="feature-group">
+                        <h4>Drawbacks to consider</h4>
+                        <ul>
+                            <li>No personal liability protection</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cta">
+                    <p class="price">Starts at $99 + state filing fees</p>
+                    <button class="learn-more">Learn more</button>
+                    <button class="start-now">Start a DBA</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="llc-form" class="llc-form hidden">
+        <h2>LLC Formation Details</h2>
+        
+        <div class="form-section">
+            <h3>Formation Info</h3>
+            <div class="form-group">
+                <label>State of Formation</label>
+                <input type="text" id="formation-state" value="Alabama" />
+            </div>
+            <div class="form-group">
+                <label>Entity Type</label>
+                <input type="text" id="entity-type" value="LLC" readonly />
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Contact Info <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="contact-name" placeholder="Enter your full name" />
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="contact-phone" placeholder="Enter phone number" />
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="contact-email" placeholder="Enter email address" />
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" id="contact-address" placeholder="Enter your address" />
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Agent Info <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Registered Agent</label>
+                <select id="agent-type">
+                    <option value="bizee">Bizee Registered Agent Service</option>
+                    <option value="self">Self</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Company Info <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Company Name</label>
+                <input type="text" id="company-name" placeholder="Enter company name" />
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Company Address & Contact Address <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Company Address</label>
+                <input type="text" id="company-address" placeholder="Enter company address" />
+            </div>
+            <div class="form-group">
+                <label>Contact Address</label>
+                <input type="text" id="contact-address-alt" placeholder="Enter contact address" />
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Member Info <button class="edit-btn">Edit</button></h3>
+            <div class="member-form">
+                <h4>Member 1</h4>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="member-name" placeholder="Enter member name" />
+                </div>
+                <div class="form-group">
+                    <label>Ownership %</label>
+                    <input type="number" id="member-ownership" placeholder="Enter ownership percentage" min="0" max="100" />
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" id="member-address" placeholder="Enter member address" />
+                </div>
+            </div>
+            <button class="add-member-btn">+ Add Member</button>
+        </div>
+
+        <div class="form-section">
+            <h3>EIN / Tax Info <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="tax-name" placeholder="Enter your full name" />
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" id="tax-address" placeholder="Enter your address" />
+            </div>
+            <div class="form-group">
+                <label>SSN</label>
+                <input type="text" id="tax-ssn" placeholder="Enter your SSN" pattern="\d{3}-\d{2}-\d{4}" />
+                <small class="help-text">Format: XXX-XX-XXXX</small>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button class="save-btn">Save Changes</button>
+            <button class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Corporation表单 -->
+    <div id="corporation-form" class="form-container hidden">
+        <h2>Corporation Formation Details</h2>
+        
+        <div class="form-section">
+            <h3>Formation Info</h3>
+            <div class="form-group">
+                <label>State of Formation</label>
+                <input type="text" id="corp-formation-state" value="Alabama" />
+            </div>
+            <div class="form-group">
+                <label>Entity Type</label>
+                <select id="corp-entity-type">
+                    <option value="c-corporation">C-Corporation</option>
+                    <option value="s-corporation">S-Corporation</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Contact Info <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="corp-contact-name" placeholder="Enter your full name" />
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="corp-contact-phone" placeholder="Enter phone number" />
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="corp-contact-email" placeholder="Enter email address" />
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" id="corp-contact-address" placeholder="Enter your address" />
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Agent Info <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Registered Agent</label>
+                <select id="corp-agent-type">
+                    <option value="bizee">Bizee Registered Agent Service</option>
+                    <option value="self">Self</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Company Info <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Company Name</label>
+                <input type="text" id="corp-company-name" placeholder="Enter company name" />
+            </div>
+            <div class="form-group">
+                <label>Business Purpose</label>
+                <textarea id="corp-business-purpose" placeholder="Describe your business purpose"></textarea>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Company Address & Contact Address <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Company Address</label>
+                <input type="text" id="corp-company-address" placeholder="Enter company address" />
+            </div>
+            <div class="form-group">
+                <label>Contact Address</label>
+                <input type="text" id="corp-contact-address-alt" placeholder="Enter contact address" />
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Director Info <button class="edit-btn">Edit</button></h3>
+            <div class="director-form">
+                <h4>Director 1</h4>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter director name" />
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" placeholder="Enter director address" />
+                </div>
+            </div>
+            <button class="add-director-btn">+ Add Director</button>
+        </div>
+
+        <div class="form-section">
+            <h3>Shareholders Info <button class="edit-btn">Edit</button></h3>
+            <div class="shareholder-form">
+                <h4>Shareholder 1</h4>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter shareholder name" />
+                </div>
+                <div class="form-group">
+                    <label>Number of Shares</label>
+                    <input type="number" placeholder="Enter number of shares" min="1" />
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" placeholder="Enter shareholder address" />
+                </div>
+                <div class="form-group">
+                    <label>SSN</label>
+                    <input type="text" placeholder="Enter SSN" pattern="\d{3}-\d{2}-\d{4}" />
+                </div>
+            </div>
+            <button class="add-shareholder-btn">+ Add Shareholder</button>
+        </div>
+
+        <div class="form-section">
+            <h3>Officer Info <button class="edit-btn">Edit</button></h3>
+            <div class="officer-section">
+                <h4>President/CEO</h4>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter officer name" />
+                </div>
+            </div>
+            <div class="officer-section">
+                <h4>Secretary</h4>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter officer name" />
+                </div>
+            </div>
+            <div class="officer-section">
+                <h4>Treasurer</h4>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter officer name" />
+                </div>
+            </div>
+            <div class="officer-section">
+                <h4>Vice President</h4>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter officer name" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>EIN / Tax Info <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="corp-tax-name" placeholder="Enter your full name" />
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" id="corp-tax-address" placeholder="Enter your address" />
+            </div>
+            <div class="form-group">
+                <label>SSN</label>
+                <input type="text" id="corp-tax-ssn" placeholder="Enter your SSN" pattern="\d{3}-\d{2}-\d{4}" />
+                <small class="help-text">Format: XXX-XX-XXXX</small>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button class="save-btn">Save Changes</button>
+            <button class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Nonprofit表单 -->
+    <div id="nonprofit-form" class="form-container hidden">
+        <h2>Nonprofit Formation Details</h2>
+        
+        <div class="form-section">
+            <h3>Formation Info</h3>
+            <div class="form-group">
+                <label>State of Formation</label>
+                <input type="text" id="np-formation-state" value="Alabama" />
+            </div>
+            <div class="form-group">
+                <label>Entity Type</label>
+                <input type="text" id="np-entity-type" value="Nonprofit" readonly />
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Contact Info <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="np-contact-name" placeholder="Enter your full name" />
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="np-contact-phone" placeholder="Enter phone number" />
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="np-contact-email" placeholder="Enter email address" />
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" id="np-contact-address" placeholder="Enter your address" />
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Agent Info <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Registered Agent</label>
+                <select id="np-agent-type">
+                    <option value="bizee">Bizee Registered Agent Service</option>
+                    <option value="self">Self</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Organization Info <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Organization Name</label>
+                <input type="text" id="np-org-name" placeholder="Enter organization name" />
+            </div>
+            <div class="form-group">
+                <label>Mission Statement</label>
+                <textarea id="np-mission" placeholder="Describe your organization's mission"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Purpose</label>
+                <select id="np-purpose">
+                    <option value="charitable">Charitable</option>
+                    <option value="religious">Religious</option>
+                    <option value="educational">Educational</option>
+                    <option value="scientific">Scientific</option>
+                    <option value="literary">Literary</option>
+                    <option value="public-safety">Public Safety</option>
+                    <option value="amateur-sports">Amateur Sports</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Organization Address <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Organization Address</label>
+                <input type="text" id="np-org-address" placeholder="Enter organization address" />
+            </div>
+            <div class="form-group">
+                <label>Mailing Address</label>
+                <input type="text" id="np-mailing-address" placeholder="Enter mailing address" />
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Director Info <button class="edit-btn">Edit</button></h3>
+            <div class="director-form">
+                <h4>Director 1</h4>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter director name" />
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" placeholder="Enter director address" />
+                </div>
+            </div>
+            <button class="add-director-btn">+ Add Director</button>
+        </div>
+
+        <div class="form-section">
+            <h3>Officer Info <button class="edit-btn">Edit</button></h3>
+            <div class="officer-section">
+                <h4>President/CEO</h4>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter officer name" />
+                </div>
+            </div>
+            <div class="officer-section">
+                <h4>Secretary</h4>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter officer name" />
+                </div>
+            </div>
+            <div class="officer-section">
+                <h4>Treasurer</h4>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter officer name" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>EIN / Tax Info <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="np-tax-name" placeholder="Enter your full name" />
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" id="np-tax-address" placeholder="Enter your address" />
+            </div>
+            <div class="form-group">
+                <label>SSN</label>
+                <input type="text" id="np-tax-ssn" placeholder="Enter your SSN" pattern="\d{3}-\d{2}-\d{4}" />
+                <small class="help-text">Format: XXX-XX-XXXX</small>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button class="save-btn">Save Changes</button>
+            <button class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- DBA表单 -->
+    <div id="dba-form" class="form-container hidden">
+        <h2>DBA (Doing Business As) Registration Details</h2>
+        
+        <div class="form-section">
+            <h3>Business Type</h3>
+            <div class="form-group">
+                <label>Select Your Business Type</label>
+                <select id="dba-business-type">
+                    <option value="sole-proprietorship">Sole Proprietorship</option>
+                    <option value="existing-entity">Existing Entity</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>DBA Information <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Desired DBA Name</label>
+                <input type="text" id="dba-name" placeholder="Enter your desired business name" />
+                <small class="help-text">This is the name you want to do business under</small>
+            </div>
+            <div class="form-group">
+                <label>State of Registration</label>
+                <input type="text" id="dba-state" value="Alabama" />
+            </div>
+            <div class="form-group">
+                <label>County</label>
+                <input type="text" id="dba-county" placeholder="Enter county name" />
+            </div>
+        </div>
+
+        <div class="form-section existing-entity-section hidden">
+            <h3>Existing Entity Information <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Legal Entity Name</label>
+                <input type="text" id="dba-entity-name" placeholder="Enter your existing entity name" />
+            </div>
+            <div class="form-group">
+                <label>Entity Type</label>
+                <select id="dba-entity-type">
+                    <option value="llc">LLC</option>
+                    <option value="corporation">Corporation</option>
+                    <option value="nonprofit">Nonprofit</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Entity Registration Number</label>
+                <input type="text" id="dba-entity-number" placeholder="Enter entity registration number" />
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Owner Information <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="dba-owner-name" placeholder="Enter owner's full name" />
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="dba-owner-phone" placeholder="Enter phone number" />
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="dba-owner-email" placeholder="Enter email address" />
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Business Address <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Physical Address</label>
+                <input type="text" id="dba-physical-address" placeholder="Enter business physical address" />
+            </div>
+            <div class="form-group">
+                <label>Mailing Address</label>
+                <input type="text" id="dba-mailing-address" placeholder="Enter business mailing address" />
+                <div class="checkbox-group">
+                    <input type="checkbox" id="same-as-physical">
+                    <label for="same-as-physical">Same as physical address</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Business Details <button class="edit-btn">Edit</button></h3>
+            <div class="form-group">
+                <label>Nature of Business</label>
+                <textarea id="dba-business-nature" placeholder="Describe what your business does"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Start Date</label>
+                <input type="date" id="dba-start-date" />
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button class="save-btn">Save Changes</button>
+            <button class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
