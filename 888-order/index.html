@@ -42,179 +42,442 @@
 
     <!-- Business Types Overview -->
     <section class="business-details">
-        <h2>All business types at a glance</h2>
-        
-        <!-- Business Type Icons -->
-        <div class="business-type-icons">
-            <div class="business-type-icon active" data-type="llc">
-                <div class="icon">📋</div>
-                <h3>LLC</h3>
-                <p>Going solo or teaming up? Make sure you're not personally on the hook for business liabilities with an LLC.</p>
+        <div class="business-types-container">
+            <div class="step-badge">STEP 1</div>
+            <h2>Choose Your Business Type</h2>
+            
+            <!-- Business Type Icons -->
+            <div class="business-type-icons">
+                <div class="business-type-icon active" data-type="llc">
+                    <div class="icon">📋</div>
+                    <h3>LLC</h3>
+                    <p>Going solo or teaming up? Make sure you're not personally on the hook for business liabilities with an LLC.</p>
+                </div>
+                <div class="business-type-icon" data-type="corporation">
+                    <div class="icon">🏢</div>
+                    <h3>Corporation</h3>
+                    <p>Plan to issue shares, go public, or go global? Go further as a corporation.</p>
+                </div>
+                <div class="business-type-icon" data-type="nonprofit">
+                    <div class="icon">🤝</div>
+                    <h3>Nonprofit</h3>
+                    <p>Create an organization to give back and be eligible for tax breaks.</p>
+                </div>
+                <div class="business-type-icon" data-type="dba">
+                    <div class="icon">🚚</div>
+                    <h3>DBA</h3>
+                    <p>Get a business name for your sole prop without forming a legal entity, or add a new name to an existing entity.</p>
+                </div>
+
+                
             </div>
-            <div class="business-type-icon" data-type="corporation">
-                <div class="icon">🏢</div>
-                <h3>Corporation</h3>
-                <p>Plan to issue shares, go public, or go global? Go further as a corporation.</p>
-            </div>
-            <div class="business-type-icon" data-type="nonprofit">
-                <div class="icon">🤝</div>
-                <h3>Nonprofit</h3>
-                <p>Create an organization to give back and be eligible for tax breaks.</p>
-            </div>
-            <div class="business-type-icon" data-type="dba">
-                <div class="icon">🚚</div>
-                <h3>DBA</h3>
-                <p>Get a business name for your sole prop without forming a legal entity, or add a new name to an existing entity.</p>
-            </div>
+                <!-- LLC Details -->
+                <div class="detail-card active" data-type="llc">
+                    <h3>Limited Liability Company (LLC)</h3>
+                    <div class="features">
+                        <div class="feature-group">
+                            <h4>How it's unique</h4>
+                            <ul>
+                                <li>Best for max flexibility in how you manage and run your business; board of directors not required</li>
+                                <li>Unlimited owners (aka "members") allowed</li>
+                            </ul>
+                        </div>
+                        <div class="feature-group">
+                            <h4>Protections & taxation</h4>
+                            <ul>
+                                <li>You're not personally on the hook for business liabilities</li>
+                                <li>Taxed once or twice; you're free to choose which can help minimize taxes</li>
+                            </ul>
+                        </div>
+                        <div class="feature-group">
+                            <h4>Drawbacks to consider</h4>
+                            <ul>
+                                <li>Ongoing filings and fees to stay in compliance</li>
+                                <li>LLCs can't go public</li>
+                                <li>Not recognized globally; you may be taxed as a corporation in other countries</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="cta">
+                        <p class="price">Starts at $0 + state filing fees</p>
+                    </div>
+                </div>
+
+                <!-- Corporation Details -->
+                <div class="detail-card" data-type="corporation">
+                    <h3>Corporation (S corp or C corp)</h3>
+                    <div class="features">
+                        <div class="feature-group">
+                            <h4>How it's unique</h4>
+                            <ul>
+                                <li>Best if you plan to go public one day; can issue shares to founders, employees, and investors (C corp)</li>
+                                <li>Unlimited owners (aka "shareholders") allowed (C corp)</li>
+                                <li>Avoids double taxation on profits (S corp)</li>
+                                <li>Recognized internationally and preferred by investors</li>
+                            </ul>
+                        </div>
+                        <div class="feature-group">
+                            <h4>Protections & taxation</h4>
+                            <ul>
+                                <li>You're not personally on the hook for business liabilities</li>
+                                <li>Taxed twice if it's a C corporation—business pays at the corporate level, and shareholders pay on income received</li>
+                                <li>Avoids double taxation if it's an S corporation</li>
+                            </ul>
+                        </div>
+                        <div class="feature-group">
+                            <h4>Drawbacks to consider</h4>
+                            <ul>
+                                <li>Ongoing filings and fees to stay in compliance</li>
+                                <li>Less management flexibility; must have a board of directors</li>
+                                <li>More admin; strict rules about holding meetings and keeping records</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="cta">
+                        <p class="price">Starts at $149 + state filing fees</p>
+                    </div>
+                </div>
+
+                <!-- Nonprofit Details -->
+                <div class="detail-card" data-type="nonprofit">
+                    <h3>Nonprofit</h3>
+                    <div class="features">
+                        <div class="feature-group">
+                            <h4>How it's unique</h4>
+                            <ul>
+                                <li>Best if you're organizing for a good cause rather than for profit</li>
+                                <li>Unlimited owners (aka "shareholders") allowed</li>
+                                <li>Eligible for tax exemption with 501(c)(3) status</li>
+                            </ul>
+                        </div>
+                        <div class="feature-group">
+                            <h4>Protections & taxation</h4>
+                            <ul>
+                                <li>You're not personally on the hook for business liabilities</li>
+                                <li>Tax exempt from federal income taxes with 501(c)(3) status</li>
+                            </ul>
+                        </div>
+                        <div class="feature-group">
+                            <h4>Drawbacks to consider</h4>
+                            <ul>
+                                <li>Ongoing filings and fees to stay in compliance</li>
+                                <li>Less management flexibility; must have a board of directors</li>
+                                <li>More admin; strict rules about holding meetings and keeping records</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="cta">
+                        <p class="price">Starts at $99 + state filing fees</p>
+                    </div>
+                </div>
+
+                <!-- DBA Details -->
+                <div class="detail-card" data-type="dba">
+                    <h3>Doing Business As (DBA)</h3>
+                    <div class="features">
+                        <div class="feature-group">
+                            <h4>How it's unique</h4>
+                            <ul>
+                                <li>Best if you want an official business name, but want to avoid the upkeep needed for LLCs or corporations</li>
+                                <li>Not an actual legal entity type</li>
+                            </ul>
+                        </div>
+                        <div class="feature-group">
+                            <h4>Protections & taxation</h4>
+                            <ul>
+                                <li>You're personally on the hook for business liabilities</li>
+                                <li>Taxed just once if your business is classified as a sole proprietorship or partnership—you pay on profits in your personal tax return</li>
+                            </ul>
+                        </div>
+                        <div class="feature-group">
+                            <h4>Drawbacks to consider</h4>
+                            <ul>
+                                <li>No personal liability protection</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="cta">
+                        <p class="price">Starts at $99 + state filing fees</p>
+                    </div>
+                </div>
         </div>
+        
 
-        <!-- Detailed Cards Container -->
         <div class="details-container">
-            <!-- LLC Details -->
-            <div class="detail-card active" data-type="llc">
-                <div class="icon">📋</div>
-                <h3>Limited Liability Company (LLC)</h3>
-                <div class="features">
-                    <div class="feature-group">
-                        <h4>How it's unique</h4>
-                        <ul>
-                            <li>Best for max flexibility in how you manage and run your business; board of directors not required</li>
-                            <li>Unlimited owners (aka "members") allowed</li>
-                        </ul>
-                    </div>
-                    <div class="feature-group">
-                        <h4>Protections & taxation</h4>
-                        <ul>
-                            <li>You're not personally on the hook for business liabilities</li>
-                            <li>Taxed once or twice; you're free to choose which can help minimize taxes</li>
-                        </ul>
-                    </div>
-                    <div class="feature-group">
-                        <h4>Drawbacks to consider</h4>
-                        <ul>
-                            <li>Ongoing filings and fees to stay in compliance</li>
-                            <li>LLCs can't go public</li>
-                            <li>Not recognized globally; you may be taxed as a corporation in other countries</li>
-                        </ul>
-                    </div>
+            <!-- 插入计算器组件 -->
+            <div class="calculator-container">
+                <div class="calculator-header">
+                    <div class="step-badge">STEP 2</div>
+                    <h2>Calculate Your Formation Costs</h2>
+                    <p>Select your services to calculate total formation costs</p>
                 </div>
-                <div class="cta">
-                    <p class="price">Starts at $0 + state filing fees</p>
-                    <button class="learn-more">Learn more</button>
-                    <button class="start-now">Start an LLC</button>
+                
+                <div class="calculator-body">
+                    <div class="calculator-section">
+                        <h3>1. Select State</h3>
+                        <div class="state-info">
+                            <p>Formation fees and processing times vary by state</p>
+                            <div class="state-select-wrapper">
+                                <select id="entity-type-select" class="state-select">
+                                    <option value="alabama">Alabama</option>
+                                    <option value="alaska">Alaska</option>
+                                    <option value="arizona">Arizona</option>
+                                    <option value="arkansas">Arkansas</option>
+                                    <option value="california">California</option>
+                                    <option value="colorado">Colorado</option>
+                                    <option value="connecticut">Connecticut</option>
+                                    <option value="delaware">Delaware</option>
+                                    <option value="florida">Florida</option>
+                                    <option value="georgia">Georgia</option>
+                                    <option value="hawaii">Hawaii</option>
+                                    <option value="idaho">Idaho</option>
+                                    <option value="illinois">Illinois</option>
+                                    <option value="indiana">Indiana</option>
+                                    <option value="iowa">Iowa</option>
+                                    <option value="kansas">Kansas</option>
+                                    <option value="kentucky">Kentucky</option>
+                                    <option value="louisiana">Louisiana</option>
+                                    <option value="maine">Maine</option>
+                                    <option value="maryland">Maryland</option>
+                                    <option value="massachusetts">Massachusetts</option>
+                                    <option value="michigan">Michigan</option>
+                                    <option value="minnesota">Minnesota</option>
+                                    <option value="mississippi">Mississippi</option>
+                                    <option value="missouri">Missouri</option>
+                                    <option value="montana">Montana</option>
+                                    <option value="nebraska">Nebraska</option>
+                                    <option value="nevada">Nevada</option>
+                                    <option value="new-hampshire">New Hampshire</option>
+                                    <option value="new-jersey">New Jersey</option>
+                                    <option value="new-mexico">New Mexico</option>
+                                    <option value="new-york">New York</option>
+                                    <option value="north-carolina">North Carolina</option>
+                                    <option value="north-dakota">North Dakota</option>
+                                    <option value="ohio">Ohio</option>
+                                    <option value="oklahoma">Oklahoma</option>
+                                    <option value="oregon">Oregon</option>
+                                    <option value="pennsylvania">Pennsylvania</option>
+                                    <option value="rhode-island">Rhode Island</option>
+                                    <option value="south-carolina">South Carolina</option>
+                                    <option value="south-dakota">South Dakota</option>
+                                    <option value="tennessee">Tennessee</option>
+                                    <option value="texas">Texas</option>
+                                    <option value="utah">Utah</option>
+                                    <option value="vermont">Vermont</option>
+                                    <option value="virginia">Virginia</option>
+                                    <option value="washington">Washington</option>
+                                    <option value="west-virginia">West Virginia</option>
+                                    <option value="wisconsin">Wisconsin</option>
+                                    <option value="wyoming">Wyoming</option>
+                                </select>
+                            </div>
+                            <div class="state-details">
+                                <p class="processing-time">Standard Processing Time: <span id="processing-time">3-5 business days</span></p>
+                                <p class="state-fee-note">State Fee: <span class="state-fee-amount">$250</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-section">
+                        <h3>2. Choose Your Package</h3>
+                        <div class="package-options">
+                            <div class="package-card" data-type="basic" data-price="0">
+                                <h3>Basic</h3>
+                                <div class="price">
+                                    <h2>$0</h2>
+                                    <p>+ $236 state fee</p>
+                                </div>
+                                <div class="package-time">
+                                    <span class="material-icons">schedule</span>
+                                    <span>3 Weeks</span>
+                                </div>
+                                <ul class="package-features">
+                                    <li><span class="material-icons">check</span>Preparing & Filing the Articles of Organization</li>
+                                    <li><span class="material-icons">check</span>FREE 1st Year Registered Agent Service!</li>
+                                    <li><span class="material-icons">check</span>FREE 1st Month of Virtual Address Service!</li>
+                                    <li><span class="material-icons">check</span>Online Access Dashboard</li>
+                                    <li><span class="material-icons">check</span>Business Banking Account Offer</li>
+                                    <li><span class="material-icons">check</span>Business Tax Consultation</li>
+                                    <li><span class="material-icons">check</span>IRS Form 2553</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="package-card" data-type="standard" data-price="199">
+                                <div class="recommended">Recommended</div>
+                                <h3>Standard</h3>
+                                <div class="price">
+                                    <h2>$199</h2>
+                                    <p>+ $236 state fee</p>
+                                </div>
+                                <div class="package-time">
+                                    <span class="material-icons">schedule</span>
+                                    <span>3 Weeks</span>
+                                </div>
+                                <ul class="package-features">
+                                    <li><span class="material-icons">check</span>Everything in Basic, plus:</li>
+                                    <li><span class="material-icons">check</span>EIN Business Tax Number</li>
+                                    <li><span class="material-icons">check</span>Corporate Bylaws</li>
+                                    <li><span class="material-icons">check</span>Lifetime Compliance Alerts</li>
+                                    <li><span class="material-icons">check</span>Unlimited Phone & Email Support</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="package-card" data-type="premium" data-price="299">
+                                <h3>Premium</h3>
+                                <div class="price">
+                                    <h2>$299</h2>
+                                    <p>+ $236 state fee</p>
+                                </div>
+                                <div class="package-time">
+                                    <span class="material-icons">bolt</span>
+                                    <span>1 Day</span>
+                                </div>
+                                <ul class="package-features">
+                                    <li><span class="material-icons">check</span>Everything in Standard, plus:</li>
+                                    <li><span class="material-icons">check</span>Domain Name + Business Email</li>
+                                    <li><span class="material-icons">check</span>FREE 1st Year Business Phone Number</li>
+                                    <li><span class="material-icons">check</span>Business Contract Templates</li>
+                                    <li><span class="material-icons">check</span>Expedited Filing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="calculator-section">
+                        <h3>3. Choose Address Type</h3>
+                        <div class="address-options">
+                            <div class="address-option" data-price="29">
+                                <input type="radio" name="address" id="virtual-address" value="virtual">
+                                <label for="virtual-address">
+                                    <div class="address-header">
+                                        <span class="promo-tag">FIRST MONTH FREE</span>
+                                        <h4>Professional Business Address & Virtual Mail Service</h4>
+                                    </div>
+                                    <div class="address-details">
+                                        <p class="address-text">181 W VALLEY AVE STE 245<br>BIRMINGHAM, AL 35209</p>
+                                        <p class="suite-note">Suite # assigned upon order completion</p>
+                                        <ul class="features-list">
+                                            <li>Maintain privacy by using a commercial address</li>
+                                            <li>Unlimited scanned incoming mail</li>
+                                            <li>A physical address for your business (not PO Box)</li>
+                                            <li>Instant alerts with 24/7 access to your mail online</li>
+                                        </ul>
+                                        <div class="price-info">
+                                            <h4>First Month Free</h4>
+                                            <p class="period">Then $29/month. Cancel anytime.</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="address-option" data-price="0">
+                                <input type="radio" name="address" id="own-address" value="own">
+                                <label for="own-address">
+                                    <div class="address-header">
+                                        <h4>Use My Own Address</h4>
+                                    </div>
+                                    <div class="address-details">
+                                        <p>I will provide my own business address and will personally keep up with the incoming mail.</p>
+                                        <ul class="features-list">
+                                            <li>Physical street address required</li>
+                                            <li>PO Boxes are not accepted</li>
+                                            <li>Address will be listed publicly</li>
+                                        </ul>
+                                        <div class="price-info">
+                                            <h4>$0</h4>
+                                            <p class="period">Use your own address</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-section">
+                        <h3>4. Additional Services</h3>
+                        <p class="service-note">Premium Package automatically includes all services. Standard Package includes EIN Registration Service and Corporate Bylaws.</p>
+                        <div class="addon-options">
+                            <div class="addon-option">
+                                <input type="checkbox" id="expedited-filing">
+                                <label for="expedited-filing">
+                                    <span class="addon-name">Expedited Filing</span>
+                                    <span class="addon-description">1 business day (instead of 3 weeks)</span>
+                                    <span class="addon-price">+ $50</span>
+                                </label>
+                            </div>
+                            
+                            <div class="addon-option">
+                                <input type="checkbox" id="business-templates">
+                                <label for="business-templates">
+                                    <span class="addon-name">Business Contract Templates</span>
+                                    <span class="addon-description">Access to essential business contract templates</span>
+                                    <span class="addon-price">+ $150</span>
+                                </label>
+                            </div>
+                            
+                            <div class="addon-option">
+                                <input type="checkbox" id="ein-service">
+                                <label for="ein-service">
+                                    <span class="addon-name">EIN Business Tax Number</span>
+                                    <span class="addon-description">Federal Tax ID registration with the IRS</span>
+                                    <span class="addon-price">+ $70</span>
+                                </label>
+                            </div>
+                            
+                            <div class="addon-option">
+                                <input type="checkbox" id="corporate-bylaws">
+                                <label for="corporate-bylaws">
+                                    <span class="addon-name">Corporate Bylaws</span>
+                                    <span class="addon-description">Customized corporate bylaws document</span>
+                                    <span class="addon-price">+ $30</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-total">
+                        <h3>Order Summary</h3>
+                        <div class="total-breakdown">
+                            <div class="breakdown-item">
+                                <span>Standard Package:</span>
+                                <span id="base-price">$199</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span><span class="state-name">Alabama</span> State Fee:</span>
+                                <span id="state-fee">$236</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Expedited Filing:</span>
+                                <span id="expedited-price">$0</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>EIN / Tax ID#:</span>
+                                <span id="ein-price">$0</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Business Contract Templates:</span>
+                                <span id="templates-price">$0</span>
+                            </div>
+                            <div class="breakdown-item total">
+                                <span>Total:</span>
+                                <span id="total-price">$435</span>
+                            </div>
+                        </div>
+                        <div class="state-note">
+                            <span class="material-icons">info</span>
+                            <p>Standard processing time in <span class="state-name">Alabama</span> is <span class="state-processing-time">3-5 business days</span>. Select Expedited Filing to reduce processing time to 1-2 business days.</p>
+                        </div>
+                        <button class="calculate-btn">Get Started</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Corporation Details -->
-            <div class="detail-card" data-type="corporation">
-                <div class="icon">🏢</div>
-                <h3>Corporation (S corp or C corp)</h3>
-                <div class="features">
-                    <div class="feature-group">
-                        <h4>How it's unique</h4>
-                        <ul>
-                            <li>Best if you plan to go public one day; can issue shares to founders, employees, and investors (C corp)</li>
-                            <li>Unlimited owners (aka "shareholders") allowed (C corp)</li>
-                            <li>Avoids double taxation on profits (S corp)</li>
-                            <li>Recognized internationally and preferred by investors</li>
-                        </ul>
-                    </div>
-                    <div class="feature-group">
-                        <h4>Protections & taxation</h4>
-                        <ul>
-                            <li>You're not personally on the hook for business liabilities</li>
-                            <li>Taxed twice if it's a C corporation—business pays at the corporate level, and shareholders pay on income received</li>
-                            <li>Avoids double taxation if it's an S corporation</li>
-                        </ul>
-                    </div>
-                    <div class="feature-group">
-                        <h4>Drawbacks to consider</h4>
-                        <ul>
-                            <li>Ongoing filings and fees to stay in compliance</li>
-                            <li>Less management flexibility; must have a board of directors</li>
-                            <li>More admin; strict rules about holding meetings and keeping records</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="cta">
-                    <p class="price">Starts at $149 + state filing fees</p>
-                    <button class="learn-more">Learn more</button>
-                    <button class="start-now">Start a Corporation</button>
-                </div>
-            </div>
-
-            <!-- Nonprofit Details -->
-            <div class="detail-card" data-type="nonprofit">
-                <div class="icon">🤝</div>
-                <h3>Nonprofit</h3>
-                <div class="features">
-                    <div class="feature-group">
-                        <h4>How it's unique</h4>
-                        <ul>
-                            <li>Best if you're organizing for a good cause rather than for profit</li>
-                            <li>Unlimited owners (aka "shareholders") allowed</li>
-                            <li>Eligible for tax exemption with 501(c)(3) status</li>
-                        </ul>
-                    </div>
-                    <div class="feature-group">
-                        <h4>Protections & taxation</h4>
-                        <ul>
-                            <li>You're not personally on the hook for business liabilities</li>
-                            <li>Tax exempt from federal income taxes with 501(c)(3) status</li>
-                        </ul>
-                    </div>
-                    <div class="feature-group">
-                        <h4>Drawbacks to consider</h4>
-                        <ul>
-                            <li>Ongoing filings and fees to stay in compliance</li>
-                            <li>Less management flexibility; must have a board of directors</li>
-                            <li>More admin; strict rules about holding meetings and keeping records</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="cta">
-                    <p class="price">Starts at $99 + state filing fees</p>
-                    <button class="learn-more">Learn more</button>
-                    <button class="start-now">Start a Nonprofit</button>
-                </div>
-            </div>
-
-            <!-- DBA Details -->
-            <div class="detail-card" data-type="dba">
-                <div class="icon">🚚</div>
-                <h3>Doing Business As (DBA)</h3>
-                <div class="features">
-                    <div class="feature-group">
-                        <h4>How it's unique</h4>
-                        <ul>
-                            <li>Best if you want an official business name, but want to avoid the upkeep needed for LLCs or corporations</li>
-                            <li>Not an actual legal entity type</li>
-                        </ul>
-                    </div>
-                    <div class="feature-group">
-                        <h4>Protections & taxation</h4>
-                        <ul>
-                            <li>You're personally on the hook for business liabilities</li>
-                            <li>Taxed just once if your business is classified as a sole proprietorship or partnership—you pay on profits in your personal tax return</li>
-                        </ul>
-                    </div>
-                    <div class="feature-group">
-                        <h4>Drawbacks to consider</h4>
-                        <ul>
-                            <li>No personal liability protection</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="cta">
-                    <p class="price">Starts at $99 + state filing fees</p>
-                    <button class="learn-more">Learn more</button>
-                    <button class="start-now">Start a DBA</button>
-                </div>
-            </div>
+       
         </div>
     </section>
 
     <div id="llc-form" class="llc-form hidden">
+        <div class="step-badge">STEP 3</div>
         <h2>LLC Formation Details</h2>
         
         <div class="form-section">
@@ -230,7 +493,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Contact Info <button class="edit-btn">Edit</button></h3>
+            <h3>Contact Info</h3>
             <div class="form-group">
                 <label>Full Name</label>
                 <input type="text" id="contact-name" placeholder="Enter your full name" />
@@ -250,7 +513,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Agent Info <button class="edit-btn">Edit</button></h3>
+            <h3>Agent Info</h3>
             <div class="form-group">
                 <label>Registered Agent</label>
                 <select id="agent-type">
@@ -261,7 +524,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Company Info <button class="edit-btn">Edit</button></h3>
+            <h3>Company Info</h3>
             <div class="form-group">
                 <label>Company Name</label>
                 <input type="text" id="company-name" placeholder="Enter company name" />
@@ -269,7 +532,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Company Address & Contact Address <button class="edit-btn">Edit</button></h3>
+            <h3>Company Address & Contact Address</h3>
             <div class="form-group">
                 <label>Company Address</label>
                 <input type="text" id="company-address" placeholder="Enter company address" />
@@ -281,7 +544,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Member Info <button class="edit-btn">Edit</button></h3>
+            <h3>Member Info</h3>
             <div class="member-form">
                 <h4>Member 1</h4>
                 <div class="form-group">
@@ -301,7 +564,7 @@
         </div>
 
         <div class="form-section">
-            <h3>EIN / Tax Info <button class="edit-btn">Edit</button></h3>
+            <h3>EIN / Tax Info</h3>
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" id="tax-name" placeholder="Enter your full name" />
@@ -343,7 +606,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Contact Info <button class="edit-btn">Edit</button></h3>
+            <h3>Contact Info</h3>
             <div class="form-group">
                 <label>Full Name</label>
                 <input type="text" id="corp-contact-name" placeholder="Enter your full name" />
@@ -363,7 +626,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Agent Info <button class="edit-btn">Edit</button></h3>
+            <h3>Agent Info</h3>
             <div class="form-group">
                 <label>Registered Agent</label>
                 <select id="corp-agent-type">
@@ -374,7 +637,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Company Info <button class="edit-btn">Edit</button></h3>
+            <h3>Company Info</h3>
             <div class="form-group">
                 <label>Company Name</label>
                 <input type="text" id="corp-company-name" placeholder="Enter company name" />
@@ -386,7 +649,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Company Address & Contact Address <button class="edit-btn">Edit</button></h3>
+            <h3>Company Address & Contact Address</h3>
             <div class="form-group">
                 <label>Company Address</label>
                 <input type="text" id="corp-company-address" placeholder="Enter company address" />
@@ -398,7 +661,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Director Info <button class="edit-btn">Edit</button></h3>
+            <h3>Director Info</h3>
             <div class="director-form">
                 <h4>Director 1</h4>
                 <div class="form-group">
@@ -414,7 +677,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Shareholders Info <button class="edit-btn">Edit</button></h3>
+            <h3>Shareholders Info</h3>
             <div class="shareholder-form">
                 <h4>Shareholder 1</h4>
                 <div class="form-group">
@@ -438,7 +701,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Officer Info <button class="edit-btn">Edit</button></h3>
+            <h3>Officer Info</h3>
             <div class="officer-section">
                 <h4>President/CEO</h4>
                 <div class="form-group">
@@ -470,7 +733,7 @@
         </div>
 
         <div class="form-section">
-            <h3>EIN / Tax Info <button class="edit-btn">Edit</button></h3>
+            <h3>EIN / Tax Info</h3>
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" id="corp-tax-name" placeholder="Enter your full name" />
@@ -509,7 +772,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Contact Info <button class="edit-btn">Edit</button></h3>
+            <h3>Contact Info</h3>
             <div class="form-group">
                 <label>Full Name</label>
                 <input type="text" id="np-contact-name" placeholder="Enter your full name" />
@@ -529,7 +792,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Agent Info <button class="edit-btn">Edit</button></h3>
+            <h3>Agent Info</h3>
             <div class="form-group">
                 <label>Registered Agent</label>
                 <select id="np-agent-type">
@@ -540,7 +803,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Organization Info <button class="edit-btn">Edit</button></h3>
+            <h3>Organization Info</h3>
             <div class="form-group">
                 <label>Organization Name</label>
                 <input type="text" id="np-org-name" placeholder="Enter organization name" />
@@ -565,7 +828,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Organization Address <button class="edit-btn">Edit</button></h3>
+            <h3>Organization Address</h3>
             <div class="form-group">
                 <label>Organization Address</label>
                 <input type="text" id="np-org-address" placeholder="Enter organization address" />
@@ -577,7 +840,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Director Info <button class="edit-btn">Edit</button></h3>
+            <h3>Director Info</h3>
             <div class="director-form">
                 <h4>Director 1</h4>
                 <div class="form-group">
@@ -593,7 +856,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Officer Info <button class="edit-btn">Edit</button></h3>
+            <h3>Officer Info</h3>
             <div class="officer-section">
                 <h4>President/CEO</h4>
                 <div class="form-group">
@@ -618,7 +881,7 @@
         </div>
 
         <div class="form-section">
-            <h3>EIN / Tax Info <button class="edit-btn">Edit</button></h3>
+            <h3>EIN / Tax Info</h3>
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" id="np-tax-name" placeholder="Enter your full name" />
@@ -656,7 +919,7 @@
         </div>
 
         <div class="form-section">
-            <h3>DBA Information <button class="edit-btn">Edit</button></h3>
+            <h3>DBA Information</h3>
             <div class="form-group">
                 <label>Desired DBA Name</label>
                 <input type="text" id="dba-name" placeholder="Enter your desired business name" />
@@ -673,7 +936,7 @@
         </div>
 
         <div class="form-section existing-entity-section hidden">
-            <h3>Existing Entity Information <button class="edit-btn">Edit</button></h3>
+            <h3>Existing Entity Information</h3>
             <div class="form-group">
                 <label>Legal Entity Name</label>
                 <input type="text" id="dba-entity-name" placeholder="Enter your existing entity name" />
@@ -693,7 +956,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Owner Information <button class="edit-btn">Edit</button></h3>
+            <h3>Owner Information</h3>
             <div class="form-group">
                 <label>Full Name</label>
                 <input type="text" id="dba-owner-name" placeholder="Enter owner's full name" />
@@ -709,7 +972,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Business Address <button class="edit-btn">Edit</button></h3>
+            <h3>Business Address</h3>
             <div class="form-group">
                 <label>Physical Address</label>
                 <input type="text" id="dba-physical-address" placeholder="Enter business physical address" />
@@ -725,7 +988,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Business Details <button class="edit-btn">Edit</button></h3>
+            <h3>Business Details</h3>
             <div class="form-group">
                 <label>Nature of Business</label>
                 <textarea id="dba-business-nature" placeholder="Describe what your business does"></textarea>

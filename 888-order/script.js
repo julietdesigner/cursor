@@ -1,44 +1,199 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // FAQ accordion effect
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            const answer = item.querySelector('.faq-answer');
-            const arrow = question.querySelector('.arrow');
-            
-            // Close other open FAQs
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.querySelector('.faq-answer').style.display = 'none';
-                    otherItem.querySelector('.arrow').textContent = '▼';
-                }
-            });
-            
-            // Toggle current FAQ
-            if (answer.style.display === 'block') {
-                answer.style.display = 'none';
-                arrow.textContent = '▼';
-            } else {
-                answer.style.display = 'block';
-                arrow.textContent = '▲';
-            }
-        });
-    });
+// 添加州注册费用数据
+const stateFilingFees = {
+    'alabama': 236,
+    'alaska': 250,
+    'arizona': 85,
+    'arkansas': 45,
+    'california': 70,
+    'colorado': 50,
+    'connecticut': 120,
+    'delaware': 90,
+    'florida': 125,
+    'georgia': 100,
+    'hawaii': 50,
+    'idaho': 100,
+    'illinois': 150,
+    'indiana': 95,
+    'iowa': 50,
+    'kansas': 160,
+    'kentucky': 40,
+    'louisiana': 100,
+    'maine': 175,
+    'maryland': 100,
+    'massachusetts': 500,
+    'michigan': 50,
+    'minnesota': 135,
+    'mississippi': 50,
+    'missouri': 50,
+    'montana': 70,
+    'nebraska': 100,
+    'nevada': 425,
+    'new-hampshire': 100,
+    'new-jersey': 125,
+    'new-mexico': 50,
+    'new-york': 200,
+    'north-carolina': 125,
+    'north-dakota': 135,
+    'ohio': 99,
+    'oklahoma': 100,
+    'oregon': 100,
+    'pennsylvania': 125,
+    'rhode-island': 150,
+    'south-carolina': 110,
+    'south-dakota': 150,
+    'tennessee': 300,
+    'texas': 300,
+    'utah': 70,
+    'vermont': 125,
+    'virginia': 100,
+    'washington': 180,
+    'west-virginia': 100,
+    'wisconsin': 130,
+    'wyoming': 100
+};
 
-    // Tab switching functionality
+// 添加州处理时间数据
+const stateProcessingTimes = {
+    'alabama': '3-5',
+    'alaska': '3-5',
+    'arizona': '2-3',
+    'arkansas': '2-4',
+    'california': '5-7',
+    'colorado': '2-3',
+    'connecticut': '3-5',
+    'delaware': '1-2',
+    'florida': '3-5',
+    'georgia': '2-4',
+    'hawaii': '3-5',
+    'idaho': '2-3',
+    'illinois': '10-15',
+    'indiana': '3-5',
+    'iowa': '2-4',
+    'kansas': '2-3',
+    'kentucky': '2-3',
+    'louisiana': '3-5',
+    'maine': '3-5',
+    'maryland': '5-7',
+    'massachusetts': '4-5',
+    'michigan': '3-5',
+    'minnesota': '4-6',
+    'mississippi': '2-3',
+    'missouri': '2-3',
+    'montana': '3-5',
+    'nebraska': '2-3',
+    'nevada': '1-3',
+    'new-hampshire': '3-5',
+    'new-jersey': '3-4',
+    'new-mexico': '2-3',
+    'new-york': '5-7',
+    'north-carolina': '5-7',
+    'north-dakota': '3-5',
+    'ohio': '2-3',
+    'oklahoma': '1-2',
+    'oregon': '3-5',
+    'pennsylvania': '3-5',
+    'rhode-island': '4-6',
+    'south-carolina': '2-3',
+    'south-dakota': '2-3',
+    'tennessee': '2-3',
+    'texas': '2-3',
+    'utah': '2-3',
+    'vermont': '3-5',
+    'virginia': '4-6',
+    'washington': '2-3',
+    'west-virginia': '3-5',
+    'wisconsin': '3-5',
+    'wyoming': '2-3'
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 初始化所有需要的元素
+    const packageCards = document.querySelectorAll('.package-card');
+    const additionalServices = document.querySelectorAll('.addon-option input[type="checkbox"]');
+    const standardCard = document.querySelector('.package-card[data-type="standard"]');
+    const calculateButtons = document.querySelectorAll('.calculate-btn');
     const businessTypeIcons = document.querySelectorAll('.business-type-icon');
     const detailCards = document.querySelectorAll('.detail-card');
+    const ssnInput = document.getElementById('tax-ssn');
+    const dbaForm = document.getElementById('dba-form');
 
+    // 隐藏所有表单的辅助函数
+    function hideAllForms() {
+        const forms = document.querySelectorAll('.form-container, .llc-form');
+        forms.forEach(form => {
+            form.classList.add('hidden');
+        });
+    }
+
+    // 处理计算器按钮点击事件
+    function handleCalculateButtonClick() {
+        console.log('Calculate button clicked'); // 调试日志
+        
+        // 获取当前选中的业务类型
+        const activeDetailCard = document.querySelector('.detail-card.active');
+        const businessType = activeDetailCard ? activeDetailCard.dataset.type : 'llc';
+        
+        console.log('Business type:', businessType); // 调试日志
+        
+        // 隐藏所有表单
+        hideAllForms();
+        
+        // 显示对应的表单
+        let formId;
+        switch(businessType) {
+            case 'llc':
+                formId = 'llc-form';
+                break;
+            case 'corporation':
+                formId = 'corporation-form';
+                break;
+            case 'nonprofit':
+                formId = 'nonprofit-form';
+                break;
+            case 'dba':
+                formId = 'dba-form';
+                break;
+            default:
+                formId = 'llc-form';
+        }
+        
+        console.log('Form ID:', formId); // 调试日志
+        
+        const targetForm = document.getElementById(formId);
+        if (targetForm) {
+            console.log('Found target form, showing it'); // 调试日志
+            targetForm.classList.remove('hidden');
+            // 滚动到表单位置
+            targetForm.scrollIntoView({ behavior: 'smooth' });
+            
+            // 更新进度条状态
+            if (typeof goToStep === 'function') {
+                goToStep(3);
+            }
+        } else {
+            console.error('Form not found:', formId);
+        }
+    }
+
+    // 为计算器按钮添加点击事件
+    calculateButtons.forEach(button => {
+        // 移除现有的事件监听器
+        const newButton = button.cloneNode(true);
+        button.parentNode.replaceChild(newButton, button);
+        // 添加新的事件监听器
+        newButton.addEventListener('click', handleCalculateButtonClick);
+    });
+
+    // 为业务类型图标添加点击事件
     businessTypeIcons.forEach(icon => {
         icon.addEventListener('click', function() {
             const type = this.dataset.type;
             
             // 更新图标激活状态
-            businessTypeIcons.forEach(icon => icon.classList.remove('active'));
+            businessTypeIcons.forEach(i => i.classList.remove('active'));
             this.classList.add('active');
             
-            // 更新详情卡片激活状态
+            // 更新详情卡片显示
             detailCards.forEach(card => {
                 if (card.dataset.type === type) {
                     card.classList.add('active');
@@ -46,495 +201,210 @@ document.addEventListener('DOMContentLoaded', function() {
                     card.classList.remove('active');
                 }
             });
-
-            // 隐藏所有表单
-            hideAllForms();
-
-            // 在移动端平滑滚动到详情部分
-            if (window.innerWidth <= 768) {
-                const detailsSection = document.querySelector('.details-container');
-                detailsSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    });
-
-    // 添加隐藏所有表单的函数
-    function hideAllForms() {
-        const forms = [
-            document.getElementById('llc-form'),
-            document.getElementById('corporation-form'),
-            document.getElementById('nonprofit-form'),
-            document.getElementById('dba-form')
-        ];
-        
-        forms.forEach(form => {
-            if (form) {
-                form.classList.add('hidden');
-            }
-        });
-    }
-
-    // Business type card click handling
-    const startButtons = document.querySelectorAll('.start-button, .start-now');
-    startButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const businessType = this.closest('.business-card, .detail-card').querySelector('h2, h3').textContent;
-            let type;
             
-            // 根据按钮文本或父元素内容确定类型
-            if (this.textContent.includes('LLC')) {
-                type = 'llc';
-            } else if (this.textContent.includes('Corporation')) {
-                type = 'corporation';
-            } else if (this.textContent.includes('Nonprofit')) {
-                type = 'nonprofit';
-            } else if (this.textContent.includes('DBA')) {
-                type = 'dba';
-            } else {
-                // 从父元素标题判断
-                type = businessType.toLowerCase().includes('corporation') ? 'corporation' :
-                       businessType.toLowerCase().includes('nonprofit') ? 'nonprofit' :
-                       businessType.toLowerCase().includes('dba') ? 'dba' : 'llc';
-            }
-            
-            showFormByType(type);
+            // 更新按钮文案
+            updateButtonText(type);
         });
     });
 
-    // Show order review page
-    function showOrderReview(businessType) {
-        const orderReview = document.querySelector('.order-review');
-        const packageInfo = orderReview.querySelector('.package-info h3');
+    // 更新按钮文案的函数
+    function updateButtonText(businessType) {
+        const buttons = document.querySelectorAll('.calculate-btn');
+        let buttonText = 'Get Started';
         
-        // Update package name
-        packageInfo.textContent = businessType + ' Pro Package';
-        
-        // Show order review section
-        orderReview.style.display = 'block';
-        
-        // Scroll to order review section
-        orderReview.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Promo code toggle
-    const promoToggle = document.querySelector('.promo-toggle');
-    if (promoToggle) {
-        promoToggle.addEventListener('click', function() {
-            const promoCode = this.parentElement;
-            
-            // Check if input field already exists
-            if (!promoCode.querySelector('.promo-input')) {
-                const inputGroup = document.createElement('div');
-                inputGroup.className = 'promo-input-group';
-                inputGroup.innerHTML = `
-                    <input type="text" placeholder="Enter promo code" class="promo-input">
-                    <button class="apply-promo">Apply</button>
-                `;
-                promoCode.appendChild(inputGroup);
-            }
-        });
-    }
-
-    // Navbar scroll effect
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-        const navbar = document.querySelector('.navbar');
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll > lastScroll) {
-            // Scrolling down
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            // Scrolling up
-            navbar.style.transform = 'translateY(0)';
-        }
-
-        lastScroll = currentScroll;
-    });
-
-    // Business type details toggle
-    const businessCards = document.querySelectorAll('.business-card');
-    businessCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-            // 如果不是点击开始按钮，则隐藏所有表单
-            if (!e.target.classList.contains('start-button')) {
-                hideAllForms();
-                const type = this.querySelector('h2').textContent;
-                showBusinessDetails(type);
-            }
-        });
-    });
-
-    function showBusinessDetails(type) {
-        const detailsContainer = document.querySelector('.details-container');
-        // Here we can show different details for different business types
-        // For demo, we just update the title
-        const detailCard = detailsContainer.querySelector('.detail-card');
-        detailCard.querySelector('h3').textContent = type;
-    }
-
-    // Payment option toggle
-    const paymentOptions = document.querySelectorAll('.payment-options .options > div');
-    paymentOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            paymentOptions.forEach(opt => opt.classList.remove('selected'));
-            this.classList.add('selected');
-        });
-    });
-
-    // LLC表单处理
-    const llcForm = document.getElementById('llc-form');
-
-    // 显示表单
-    function showLLCForm() {
-        llcForm.classList.remove('hidden');
-        // 滚动到表单位置
-        llcForm.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // 处理表单编辑
-    const editButtons = document.querySelectorAll('.edit-btn');
-    editButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const section = this.closest('.form-section');
-            const inputs = section.querySelectorAll('input, select');
-            inputs.forEach(input => {
-                input.removeAttribute('readonly');
-                input.focus();
-            });
-        });
-    });
-
-    // 处理成员添加
-    const addMemberBtn = document.querySelector('.add-member-btn');
-    const memberFormContainer = document.querySelector('.member-form').parentElement;
-
-    let memberCount = 1;
-
-    addMemberBtn.addEventListener('click', function() {
-        memberCount++;
-        const newMemberForm = document.createElement('div');
-        newMemberForm.className = 'member-form';
-        newMemberForm.innerHTML = `
-            <h4>Member ${memberCount}</h4>
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" placeholder="Enter member name" />
-            </div>
-            <div class="form-group">
-                <label>Ownership %</label>
-                <input type="number" placeholder="Enter ownership percentage" min="0" max="100" />
-            </div>
-            <div class="form-group">
-                <label>Address</label>
-                <input type="text" placeholder="Enter member address" />
-            </div>
-            <button class="remove-member-btn">Remove Member</button>
-        `;
-        
-        memberFormContainer.insertBefore(newMemberForm, addMemberBtn);
-    });
-
-    // 处理成员删除
-    memberFormContainer.addEventListener('click', function(e) {
-        if (e.target.classList.contains('remove-member-btn')) {
-            e.target.closest('.member-form').remove();
-            memberCount--;
-        }
-    });
-
-    // 处理表单保存
-    const saveBtn = document.querySelector('.save-btn');
-    saveBtn.addEventListener('click', function() {
-        // 收集表单数据
-        const formData = {
-            formation: {
-                state: document.getElementById('formation-state').value,
-                entityType: document.getElementById('entity-type').value
-            },
-            contact: {
-                name: document.getElementById('contact-name').value,
-                phone: document.getElementById('contact-phone').value,
-                email: document.getElementById('contact-email').value,
-                address: document.getElementById('contact-address').value
-            },
-            agent: {
-                type: document.getElementById('agent-type').value
-            },
-            company: {
-                name: document.getElementById('company-name').value,
-                address: document.getElementById('company-address').value,
-                contactAddress: document.getElementById('contact-address-alt').value
-            },
-            taxInfo: {
-                name: document.getElementById('tax-name').value,
-                address: document.getElementById('tax-address').value,
-                ssn: document.getElementById('tax-ssn').value
-            },
-            members: []
-        };
-
-        // 收集所有成员信息
-        document.querySelectorAll('.member-form').forEach(memberForm => {
-            const member = {
-                name: memberForm.querySelector('input[placeholder="Enter member name"]').value,
-                ownership: memberForm.querySelector('input[type="number"]').value,
-                address: memberForm.querySelector('input[placeholder="Enter member address"]').value
-            };
-            formData.members.push(member);
-        });
-
-        // 这里可以添加数据验证和提交逻辑
-        console.log('Form Data:', formData);
-        
-        // 隐藏表单
-        llcForm.classList.add('hidden');
-    });
-
-    // 处理取消按钮
-    const cancelBtn = document.querySelector('.cancel-btn');
-    cancelBtn.addEventListener('click', function() {
-        llcForm.classList.add('hidden');
-    });
-
-    // 表单显示控制
-    function showFormByType(type) {
-        // 先隐藏所有表单
-        hideAllForms();
-        
-        // 显示对应表单
-        switch(type.toLowerCase()) {
+        switch(businessType) {
             case 'llc':
-                document.getElementById('llc-form').classList.remove('hidden');
-                document.getElementById('llc-form').scrollIntoView({ behavior: 'smooth' });
+                buttonText = 'Start an LLC';
                 break;
             case 'corporation':
-                document.getElementById('corporation-form').classList.remove('hidden');
-                document.getElementById('corporation-form').scrollIntoView({ behavior: 'smooth' });
+                buttonText = 'Start a Corporation';
                 break;
             case 'nonprofit':
-                document.getElementById('nonprofit-form').classList.remove('hidden');
-                document.getElementById('nonprofit-form').scrollIntoView({ behavior: 'smooth' });
+                buttonText = 'Start a Nonprofit';
                 break;
             case 'dba':
-                document.getElementById('dba-form').classList.remove('hidden');
-                document.getElementById('dba-form').scrollIntoView({ behavior: 'smooth' });
+                buttonText = 'Start a DBA';
                 break;
         }
-    }
-
-    // Corporation表单处理
-    const corpForm = document.getElementById('corporation-form');
-    if (corpForm) {
-        // 处理董事添加
-        const addDirectorBtn = corpForm.querySelector('.add-director-btn');
-        const directorContainer = corpForm.querySelector('.director-form').parentElement;
-        let directorCount = 1;
-
-        addDirectorBtn.addEventListener('click', function() {
-            directorCount++;
-            const newDirectorForm = document.createElement('div');
-            newDirectorForm.className = 'director-form';
-            newDirectorForm.innerHTML = `
-                <h4>Director ${directorCount}</h4>
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" placeholder="Enter director name" />
-                </div>
-                <div class="form-group">
-                    <label>Address</label>
-                    <input type="text" placeholder="Enter director address" />
-                </div>
-                <button class="remove-director-btn">Remove Director</button>
-            `;
-            
-            directorContainer.insertBefore(newDirectorForm, addDirectorBtn);
-        });
-
-        // 处理股东添加
-        const addShareholderBtn = corpForm.querySelector('.add-shareholder-btn');
-        const shareholderContainer = corpForm.querySelector('.shareholder-form').parentElement;
-        let shareholderCount = 1;
-
-        addShareholderBtn.addEventListener('click', function() {
-            shareholderCount++;
-            const newShareholderForm = document.createElement('div');
-            newShareholderForm.className = 'shareholder-form';
-            newShareholderForm.innerHTML = `
-                <h4>Shareholder ${shareholderCount}</h4>
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" placeholder="Enter shareholder name" />
-                </div>
-                <div class="form-group">
-                    <label>Number of Shares</label>
-                    <input type="number" placeholder="Enter number of shares" min="1" />
-                </div>
-                <div class="form-group">
-                    <label>Address</label>
-                    <input type="text" placeholder="Enter shareholder address" />
-                </div>
-                <div class="form-group">
-                    <label>SSN</label>
-                    <input type="text" placeholder="Enter SSN" pattern="\d{3}-\d{2}-\d{4}" />
-                </div>
-                <button class="remove-shareholder-btn">Remove Shareholder</button>
-            `;
-            
-            shareholderContainer.insertBefore(newShareholderForm, addShareholderBtn);
-        });
-
-        // 处理删除按钮
-        corpForm.addEventListener('click', function(e) {
-            if (e.target.classList.contains('remove-director-btn')) {
-                e.target.closest('.director-form').remove();
-                directorCount--;
-            }
-            if (e.target.classList.contains('remove-shareholder-btn')) {
-                e.target.closest('.shareholder-form').remove();
-                shareholderCount--;
-            }
-        });
-    }
-
-    // Nonprofit表单处理
-    const npForm = document.getElementById('nonprofit-form');
-    if (npForm) {
-        // 处理董事添加
-        const addDirectorBtn = npForm.querySelector('.add-director-btn');
-        const directorContainer = npForm.querySelector('.director-form').parentElement;
-        let directorCount = 1;
-
-        addDirectorBtn.addEventListener('click', function() {
-            directorCount++;
-            const newDirectorForm = document.createElement('div');
-            newDirectorForm.className = 'director-form';
-            newDirectorForm.innerHTML = `
-                <h4>Director ${directorCount}</h4>
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" placeholder="Enter director name" />
-                </div>
-                <div class="form-group">
-                    <label>Address</label>
-                    <input type="text" placeholder="Enter director address" />
-                </div>
-                <button class="remove-director-btn">Remove Director</button>
-            `;
-            
-            directorContainer.insertBefore(newDirectorForm, addDirectorBtn);
-        });
-
-        // 处理删除按钮
-        npForm.addEventListener('click', function(e) {
-            if (e.target.classList.contains('remove-director-btn')) {
-                e.target.closest('.director-form').remove();
-                directorCount--;
-            }
-        });
-    }
-
-    // 移除之前的showLLCForm函数调用
-    startButtons.forEach(button => {
-        button.removeEventListener('click', showLLCForm);
-    });
-
-    // 添加SSN格式化
-    const ssnInput = document.getElementById('tax-ssn');
-    ssnInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 9) value = value.slice(0, 9);
         
-        if (value.length >= 5) {
-            value = value.slice(0, 3) + '-' + value.slice(3, 5) + '-' + value.slice(5);
-        } else if (value.length >= 3) {
-            value = value.slice(0, 3) + '-' + value.slice(3);
+        buttons.forEach(button => {
+            button.textContent = buttonText;
+        });
+    }
+
+    // 初始化时设置默认按钮文案
+    updateButtonText('llc');
+
+    // 初始化默认选中的LLC卡片
+    const defaultCard = document.querySelector('.detail-card[data-type="llc"]');
+    if (defaultCard) {
+        defaultCard.classList.add('active');
+        const defaultIcon = document.querySelector('.business-type-icon[data-type="llc"]');
+        if (defaultIcon) {
+            defaultIcon.classList.add('active');
+        }
+    }
+
+    // 修改更新总价格的函数
+    function updateTotalPrice() {
+        const selectedPackage = document.querySelector('.package-card.selected');
+        if (!selectedPackage) return;
+        
+        const packagePrice = parseInt(selectedPackage.getAttribute('data-price'));
+        const selectedState = document.getElementById('entity-type-select').value.toLowerCase();
+        const stateFee = stateFilingFees[selectedState] || 0;
+        
+        // 计算附加服务总价
+        let additionalServicesTotal = 0;
+        document.querySelectorAll('.addon-option input[type="checkbox"]:checked:not(:disabled)').forEach(checkbox => {
+            const priceText = checkbox.closest('.addon-option').querySelector('.addon-price').textContent;
+            const price = parseInt(priceText.replace(/[^0-9]/g, ''));
+            if (!isNaN(price)) {
+                additionalServicesTotal += price;
+            }
+        });
+
+        // 更新总价
+        const total = packagePrice + stateFee + additionalServicesTotal;
+        const totalPrice = document.getElementById('total-price');
+        if (totalPrice) totalPrice.textContent = `$${total}`;
+    }
+
+    // 修改州选择事件监听器
+    document.getElementById('entity-type-select').addEventListener('change', function() {
+        const selectedState = this.value.toLowerCase();
+        const stateFee = stateFilingFees[selectedState] || 0;
+        const processingTime = stateProcessingTimes[selectedState] || '3-5';
+        
+        // 更新所有显示州费用的元素
+        const stateFeeElements = document.querySelectorAll('.state-fee-amount, #state-fee');
+        stateFeeElements.forEach(element => {
+            element.textContent = `$${stateFee}`;
+        });
+
+        // 更新套餐卡片中的州费用显示
+        document.querySelectorAll('.package-card .price p').forEach(element => {
+            element.textContent = `+ $${stateFee} state fee`;
+        });
+        
+        // 更新处理时间
+        const processingTimeElement = document.getElementById('processing-time');
+        if (processingTimeElement) {
+            processingTimeElement.textContent = `${processingTime} business days`;
         }
         
-        e.target.value = value;
+        // 更新所有显示州名的元素
+        const stateNameElements = document.querySelectorAll('.state-name');
+        const stateName = this.options[this.selectedIndex].text;
+        stateNameElements.forEach(element => {
+            element.textContent = stateName;
+        });
+        
+        // 更新总价
+        updateTotalPrice();
     });
 
-    // DBA表单处理
-    const dbaForm = document.getElementById('dba-form');
-    if (dbaForm) {
-        // 处理业务类型切换
-        const businessTypeSelect = dbaForm.querySelector('#dba-business-type');
-        const existingEntitySection = dbaForm.querySelector('.existing-entity-section');
+    // 添加更新额外服务选择状态的函数
+    function updateAdditionalServices(packageType) {
+        console.log('Updating services for package:', packageType); // 调试日志
         
-        businessTypeSelect.addEventListener('change', function() {
-            if (this.value === 'existing-entity') {
-                existingEntitySection.classList.remove('hidden');
-            } else {
-                existingEntitySection.classList.add('hidden');
-            }
-        });
-
-        // 处理地址复制
-        const sameAsPhysical = dbaForm.querySelector('#same-as-physical');
-        const physicalAddress = dbaForm.querySelector('#dba-physical-address');
-        const mailingAddress = dbaForm.querySelector('#dba-mailing-address');
-
-        sameAsPhysical.addEventListener('change', function() {
-            if (this.checked) {
-                mailingAddress.value = physicalAddress.value;
-                mailingAddress.setAttribute('readonly', true);
-            } else {
-                mailingAddress.removeAttribute('readonly');
-            }
-        });
-
-        // 监听物理地址变化
-        physicalAddress.addEventListener('input', function() {
-            if (sameAsPhysical.checked) {
-                mailingAddress.value = this.value;
-            }
-        });
-
-        // 处理保存按钮
-        const saveBtn = dbaForm.querySelector('.save-btn');
-        saveBtn.addEventListener('click', function() {
-            // 收集表单数据
-            const formData = {
-                businessType: businessTypeSelect.value,
-                dbaInfo: {
-                    name: document.getElementById('dba-name').value,
-                    state: document.getElementById('dba-state').value,
-                    county: document.getElementById('dba-county').value
-                },
-                ownerInfo: {
-                    name: document.getElementById('dba-owner-name').value,
-                    phone: document.getElementById('dba-owner-phone').value,
-                    email: document.getElementById('dba-owner-email').value
-                },
-                address: {
-                    physical: document.getElementById('dba-physical-address').value,
-                    mailing: document.getElementById('dba-mailing-address').value
-                },
-                businessDetails: {
-                    nature: document.getElementById('dba-business-nature').value,
-                    startDate: document.getElementById('dba-start-date').value
+        // 获取所有额外服务复选框
+        const einService = document.getElementById('ein-service');
+        const corporateBylaws = document.getElementById('corporate-bylaws');
+        const expeditedFiling = document.getElementById('expedited-filing');
+        const businessTemplates = document.getElementById('business-templates');
+        
+        // 重置所有复选框状态
+        [einService, corporateBylaws, expeditedFiling, businessTemplates].forEach(checkbox => {
+            if (checkbox) {
+                checkbox.checked = false;
+                checkbox.disabled = false;
+                const addonOption = checkbox.closest('.addon-option');
+                if (addonOption) {
+                    addonOption.classList.remove('included');
+                    addonOption.style.opacity = '1';
                 }
-            };
-
-            // 如果是现有实体，添加实体信息
-            if (businessTypeSelect.value === 'existing-entity') {
-                formData.entityInfo = {
-                    name: document.getElementById('dba-entity-name').value,
-                    type: document.getElementById('dba-entity-type').value,
-                    number: document.getElementById('dba-entity-number').value
-                };
             }
-
-            console.log('DBA Form Data:', formData);
-            
-            // 隐藏表单
-            dbaForm.classList.add('hidden');
         });
 
-        // 处理取消按钮
-        const cancelBtn = dbaForm.querySelector('.cancel-btn');
-        cancelBtn.addEventListener('click', function() {
-            dbaForm.classList.add('hidden');
-        });
+        // 根据套餐类型设置默认选中的服务
+        switch(packageType.toLowerCase()) {
+            case 'premium':
+                // Premium 套餐默认包含所有服务
+                [einService, corporateBylaws, expeditedFiling, businessTemplates].forEach(checkbox => {
+                    if (checkbox) {
+                        checkbox.checked = true;
+                        checkbox.disabled = true;
+                        const addonOption = checkbox.closest('.addon-option');
+                        if (addonOption) {
+                            addonOption.classList.add('included');
+                            addonOption.style.opacity = '0.7';
+                        }
+                    }
+                });
+                break;
+                
+            case 'standard':
+                // Standard 套餐默认包含 EIN 和 Corporate Bylaws
+                if (einService) {
+                    einService.checked = true;
+                    einService.disabled = true;
+                    const einOption = einService.closest('.addon-option');
+                    if (einOption) {
+                        einOption.classList.add('included');
+                        einOption.style.opacity = '0.7';
+                    }
+                }
+                if (corporateBylaws) {
+                    corporateBylaws.checked = true;
+                    corporateBylaws.disabled = true;
+                    const bylawsOption = corporateBylaws.closest('.addon-option');
+                    if (bylawsOption) {
+                        bylawsOption.classList.add('included');
+                        bylawsOption.style.opacity = '0.7';
+                    }
+                }
+                break;
+                
+            case 'basic':
+                // Basic 套餐不包含额外服务，保持未选中状态
+                break;
+        }
+        
+        // 更新总价
+        updateTotalPrice();
     }
+
+    // 修改套餐卡片点击事件
+    document.querySelectorAll('.package-card').forEach(card => {
+        card.addEventListener('click', function() {
+            // 移除所有套餐卡片的选中状态
+            document.querySelectorAll('.package-card').forEach(c => {
+                c.classList.remove('selected');
+            });
+            
+            // 添加当前套餐卡片的选中状态
+            this.classList.add('selected');
+            
+            // 更新基础价格显示
+            const packagePrice = this.getAttribute('data-price');
+            document.getElementById('base-price').textContent = `$${packagePrice}`;
+            
+            // 更新额外服务选择状态
+            const packageType = this.getAttribute('data-type');
+            updateAdditionalServices(packageType);
+            
+            // 更新总价
+            updateTotalPrice();
+        });
+    });
+
+    // 为额外服务复选框添加变更事件监听器
+    document.querySelectorAll('.addon-option input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (!this.disabled) {
+                updateTotalPrice();
+            }
+        });
+    });
 }); 
