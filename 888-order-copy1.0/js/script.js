@@ -218,6 +218,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalPrice = document.getElementById('total-price');
     const orderSummaryTotal = document.getElementById('order-summary-total');
 
+    // 检查必要的元素是否存在
+    if (!stateSelect || !processingTimeSpan || !stateFeeAmount) {
+        console.log('Some required elements are missing');
+        return;
+    }
+
     // 初始化费用
     let currentStateFee = stateData.delaware.fee; // 默认使用特拉华州的费用
     let currentServiceFee = 199; // 基础套餐价格
@@ -237,8 +243,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 更新总费用显示
     function updateTotal() {
+        if (!totalPrice) return;
+        
         // 获取当前选中的套餐类型
-        const selectedPackage = document.querySelector('.package-card.selected').dataset.type;
+        const selectedPackageCard = document.querySelector('.package-card.selected');
+        if (!selectedPackageCard) return;
+        
+        const selectedPackage = selectedPackageCard.dataset.type;
         
         // 更新基础套餐价格
         currentServiceFee = packagePrices[selectedPackage];
@@ -248,149 +259,243 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 计算总费用
         const total = currentStateFee + currentServiceFee + 
-            Object.values(currentAddonFees).reduce((sum, fee) => sum + fee, 0);
+            currentAddonFees.expedited + 
+            currentAddonFees.templates + 
+            currentAddonFees.ein + 
+            currentAddonFees.bylaws;
         
-        // 更新所有显示总价的元素
+        // 更新显示
         totalPrice.textContent = `$${total}`;
         if (orderSummaryTotal) {
             orderSummaryTotal.textContent = `$${total}`;
         }
     }
 
-    // 更新Order Summary详情
+    // 更新Order Summary
     function updateOrderSummary(packageType) {
-        // 更新基础套餐价格
-        basePrice.textContent = `$${currentServiceFee}`;
+        if (!basePrice || !stateFee) return;
         
-        // 更新州费用
+        basePrice.textContent = `$${packagePrices[packageType]}`;
         stateFee.textContent = `$${currentStateFee}`;
-
-        // 更新附加服务价格显示
-        updateAddonPrices(packageType);
+        
+        if (expeditedPrice) expeditedPrice.textContent = `$${currentAddonFees.expedited}`;
+        if (templatesPrice) templatesPrice.textContent = `$${currentAddonFees.templates}`;
+        if (einPrice) einPrice.textContent = `$${currentAddonFees.ein}`;
+        if (corporateBylawsPrice) corporateBylawsPrice.textContent = `$${currentAddonFees.bylaws}`;
     }
 
-    // 更新附加服务价格显示
-    function updateAddonPrices(packageType) {
-        const addons = ['expedited', 'templates', 'ein', 'bylaws'];
-        const addonPrices = {
-            expedited: 50,
-            templates: 150,
-            ein: 70,
-            bylaws: 30
-        };
-
-        addons.forEach(addon => {
-            const checkbox = document.getElementById(`${addon}-service-${packageType}`);
-            const priceElement = document.getElementById(`${addon}-price`);
+    // 为州选择添加事件监听
+    if (stateSelect) {
+        stateSelect.addEventListener('change', function() {
+            const selectedState = this.value;
+            const stateInfo = stateData[selectedState];
             
-            if (checkbox && priceElement) {
-                if (checkbox.disabled && checkbox.checked) {
-                    priceElement.textContent = 'Included';
-                    currentAddonFees[addon] = 0;
-                } else if (checkbox.checked) {
-                    priceElement.textContent = `$${addonPrices[addon]}`;
-                    currentAddonFees[addon] = addonPrices[addon];
-                } else {
-                    priceElement.textContent = '$0';
-                    currentAddonFees[addon] = 0;
+            if (stateInfo) {
+                currentStateFee = stateInfo.fee;
+                if (processingTimeSpan) {
+                    processingTimeSpan.textContent = stateInfo.processingTime;
                 }
+                if (stateFeeAmount) {
+                    stateFeeAmount.textContent = `$${stateInfo.fee}`;
+                }
+                updateTotal();
             }
         });
     }
 
-    // 处理套餐选择
+    // 为套餐卡片添加事件监听
     packageCards.forEach(card => {
         card.addEventListener('click', function() {
             packageCards.forEach(c => c.classList.remove('selected'));
             this.classList.add('selected');
-            
-            // 重置所有附加服务的状态
-            resetAddonServices();
-            
-            // 初始化新选择的套餐的附加服务状态
-            initializePackageAddons(this.dataset.type);
-            
-            // 更新总费用
             updateTotal();
         });
     });
 
-    // 重置所有附加服务的状态
-    function resetAddonServices() {
-        document.querySelectorAll('.addon-options input[type="checkbox"]').forEach(checkbox => {
-            checkbox.checked = false;
-            checkbox.disabled = false;
-        });
-        
-        Object.keys(currentAddonFees).forEach(key => {
-            currentAddonFees[key] = 0;
-        });
-    }
-
-    // 初始化套餐的附加服务状态
-    function initializePackageAddons(packageType) {
-        const addons = document.querySelectorAll(`.${packageType}-addons input[type="checkbox"]`);
-        addons.forEach(addon => {
-            if (packageType === 'premium') {
-                addon.checked = true;
-                addon.disabled = true;
-            } else if (packageType === 'standard') {
-                const serviceId = addon.id.split('-')[0];
-                if (serviceId === 'ein' || serviceId === 'corporate') {
-                    addon.checked = true;
-                    addon.disabled = true;
-                }
-            }
-        });
-    }
-
-    // 处理附加服务选择
-    document.querySelectorAll('.addon-options input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            if (!this.disabled) {
-                updateTotal();
-            }
-        });
-    });
-
-    // 处理地址选择
+    // 为地址选项添加事件监听
     addressOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            addressOptions.forEach(opt => opt.classList.remove('selected'));
-            this.classList.add('selected');
-            updateTotal();
-        });
-    });
-
-    // 处理州选择
-    stateSelect.addEventListener('change', function() {
-        const selectedState = this.value;
-        const stateInfo = stateData[selectedState];
-        
-        if (stateInfo) {
-            // 更新州费用
-            currentStateFee = stateInfo.fee;
-            stateFeeAmount.textContent = `$${stateInfo.fee}`;
-            
-            // 更新处理时间
-            processingTimeSpan.textContent = stateInfo.processingTime;
-            
-            // 更新总费用显示
-            updateTotal();
+        const radio = option.querySelector('input[type="radio"]');
+        if (radio) {
+            radio.addEventListener('change', function() {
+                updateTotal();
+            });
         }
     });
 
-    // 设置默认选中的套餐（Basic）和州（Delaware）
-    const defaultPackage = document.querySelector('.package-card[data-type="basic"]');
-    if (defaultPackage) {
-        defaultPackage.classList.add('selected');
-        initializePackageAddons('basic');
-        updateTotal();
+    // 初始化显示
+    updateTotal();
+
+    // 获取所有业务类型图标
+    const businessTypeIcons = document.querySelectorAll('.business-type-icon');
+    
+    businessTypeIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+            // 移除所有图标的active类
+            businessTypeIcons.forEach(i => i.classList.remove('active'));
+            
+            // 为当前点击的图标添加active类
+            this.classList.add('active');
+            
+            // 隐藏所有表单
+            const allForms = document.querySelectorAll('.form-container');
+            allForms.forEach(form => form.classList.add('hidden'));
+            
+            // 获取对应的表单ID
+            const formId = this.getAttribute('data-form');
+            const targetForm = document.getElementById(formId);
+            
+            if (targetForm) {
+                targetForm.classList.remove('hidden');
+                // 滚动到表单位置
+                targetForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            console.log('Selected business type:', formId);
+        });
+    });
+
+    // 初始化第一个表单为可见（如果存在）
+    const firstIcon = businessTypeIcons[0];
+    if (firstIcon) {
+        firstIcon.click();
     }
 
-    // 设置默认选中的州（Delaware）
-    stateSelect.value = 'delaware';
-    const defaultStateInfo = stateData.delaware;
-    processingTimeSpan.textContent = defaultStateInfo.processingTime;
-    stateFeeAmount.textContent = `$${defaultStateInfo.fee}`;
-}); 
+    // Nonprofit Form Handling
+    initializeNonprofitForm();
+});
+
+// Nonprofit Form Handling
+function initializeNonprofitForm() {
+    // Form elements
+    const form = document.getElementById('nonprofit-form');
+    const activityType = document.getElementById('nonprofit-activity-type');
+    const conflictPolicy = document.getElementById('nonprofit-conflict-policy');
+    const customPolicy = document.getElementById('custom-policy');
+    const duration = document.getElementById('nonprofit-duration');
+    const fixedDuration = document.getElementById('fixed-duration');
+    const addDirectorBtn = document.getElementById('add-director');
+    const directorsContainer = document.getElementById('directors-container');
+
+    // Activity Type Change Handler
+    if (activityType) {
+        activityType.addEventListener('change', function() {
+            const otherInput = document.getElementById('other-activity-type');
+            if (this.value === 'other') {
+                if (!otherInput) {
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.id = 'other-activity-type';
+                    input.placeholder = 'Specify other activity type';
+                    input.required = true;
+                    this.parentNode.appendChild(input);
+                }
+            } else if (otherInput) {
+                otherInput.remove();
+            }
+        });
+    }
+
+    // Conflict Policy Change Handler
+    if (conflictPolicy) {
+        conflictPolicy.addEventListener('change', function() {
+            if (customPolicy) {
+                customPolicy.classList.toggle('hidden', this.value !== 'custom');
+            }
+        });
+    }
+
+    // Duration Type Change Handler
+    if (duration) {
+        duration.addEventListener('change', function() {
+            if (fixedDuration) {
+                fixedDuration.classList.toggle('hidden', this.value !== 'fixed');
+            }
+        });
+    }
+
+    // Add Director Handler
+    if (addDirectorBtn && directorsContainer) {
+        addDirectorBtn.addEventListener('click', function() {
+            const directorCount = directorsContainer.children.length + 1;
+            const directorTemplate = `
+                <div class="director-form">
+                    <h4>Director ${directorCount}</h4>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="director-name" placeholder="Enter director's name" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="director-address" placeholder="Enter director's address" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Position</label>
+                        <input type="text" class="director-position" placeholder="Enter director's position" required />
+                    </div>
+                    <button type="button" class="remove-director">Remove Director</button>
+                </div>
+            `;
+            directorsContainer.insertAdjacentHTML('beforeend', directorTemplate);
+        });
+    }
+
+    // Remove Director Handler
+    if (directorsContainer) {
+        directorsContainer.addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-director')) {
+                e.target.closest('.director-form').remove();
+                // Update director numbers
+                const directors = directorsContainer.querySelectorAll('.director-form h4');
+                directors.forEach((header, index) => {
+                    header.textContent = `Director ${index + 1}`;
+                });
+            }
+        });
+    }
+
+    // Form Validation
+    function validateNonprofitForm() {
+        const requiredFields = form.querySelectorAll('[required]');
+        let isValid = true;
+
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('error');
+            } else {
+                field.classList.remove('error');
+            }
+        });
+
+        return isValid;
+    }
+
+    // Form Submission Handler
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (validateNonprofitForm()) {
+                // Collect form data
+                const formData = {
+                    name: document.getElementById('nonprofit-name').value,
+                    state: document.getElementById('nonprofit-state').value,
+                    purpose: document.getElementById('nonprofit-purpose').value,
+                    activityType: activityType.value,
+                    directors: Array.from(directorsContainer.querySelectorAll('.director-form')).map(director => ({
+                        name: director.querySelector('.director-name').value,
+                        address: director.querySelector('.director-address').value,
+                        position: director.querySelector('.director-position').value
+                    })),
+                    beneficiaries: document.getElementById('nonprofit-beneficiaries').value,
+                    geographicScope: document.getElementById('nonprofit-geographic-scope').value,
+                    conflictPolicy: conflictPolicy.value,
+                    duration: duration.value
+                };
+
+                // Process form submission
+                console.log('Nonprofit form data:', formData);
+                // Add API call or further processing here
+            }
+        });
+    }
+} 
