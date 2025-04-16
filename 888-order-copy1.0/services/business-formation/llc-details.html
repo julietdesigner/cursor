@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLC Formation Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="service-container">
+        <div class="form-container">
+            <div class="step-badge">STEP 3</div>
+            <h2>LLC Formation Details</h2>
+
+            <!-- Formation Info -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="1">
+                    <div>
+                        <h3>Formation Info</h3>
+                        <p>Enter your LLC formation details</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">State of Formation</label>
+                        <select class="form-select" required>
+                            <option value="">Select state</option>
+                            <option value="CA">California</option>
+                            <option value="DE">Delaware</option>
+                            <option value="FL">Florida</option>
+                            <option value="NY">New York</option>
+                            <option value="TX">Texas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Entity Type</label>
+                        <input type="text" class="form-input" value="Limited Liability Company (LLC)" readonly>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back" disabled>Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="2">
+                    <div>
+                        <h3>Contact Info</h3>
+                        <p>Enter contact information for official communications</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" placeholder="Enter your full legal name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input" placeholder="Enter your phone number (e.g., 555-555-5555)" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent Info -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="3">
+                    <div>
+                        <h3>Registered Agent</h3>
+                        <p>Choose your registered agent service</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Registered Agent Type</label>
+                        <select class="form-select" required>
+                            <option value="">Select registered agent service</option>
+                            <option value="bizee">Bizee Registered Agent Service</option>
+                            <option value="self">Self as Registered Agent</option>
+                        </select>
+                        <div class="form-hint">Choose between our professional service or serve as your own agent</div>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Info -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="4">
+                    <div>
+                        <h3>Company Info</h3>
+                        <p>Enter your LLC's legal name</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Company Name (First Choice)</label>
+                        <input type="text" class="form-input" placeholder="Enter your first choice company name" required>
+                        <div class="form-hint">Must include 'LLC', 'L.L.C.' or 'Limited Liability Company'</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Alternate Name 1</label>
+                        <input type="text" class="form-input" placeholder="Enter alternate company name">
+                        <div class="form-hint">Used if first choice is unavailable</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Alternate Name 2</label>
+                        <input type="text" class="form-input" placeholder="Enter second alternate name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Alternate Name 3</label>
+                        <input type="text" class="form-input" placeholder="Enter third alternate name">
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Purpose -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="5">
+                    <div>
+                        <h3>Business Purpose</h3>
+                        <p>Describe your LLC's business activities</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Business Activity Description</label>
+                        <textarea class="form-textarea" placeholder="Describe your business activities" required></textarea>
+                        <div class="form-hint">Provide a clear description of your LLC's intended business activities</div>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Address -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="6">
+                    <div>
+                        <h3>Business Address</h3>
+                        <p>Enter your LLC's physical address</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div id="virtual-address-display">
+                        <!-- Virtual address will be displayed here if selected previously -->
+                    </div>
+                    <div id="physical-address-fields">
+                        <div class="form-group">
+                            <label class="form-label">Street Address</label>
+                            <input type="text" class="form-input" placeholder="Enter street address" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-input" placeholder="Enter city" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">State</label>
+                                <select class="form-select" required>
+                                    <option value="">Select state</option>
+                                    <!-- US states will be populated here -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ZIP Code</label>
+                                <input type="text" class="form-input" placeholder="Enter ZIP code" required pattern="[0-9]{5}(-[0-9]{4})?">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Organizer Information -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="7">
+                    <div>
+                        <h3>Organizer Information</h3>
+                        <p>Enter details about the LLC organizer</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Organizer Name</label>
+                        <input type="text" class="form-input" placeholder="Enter organizer's full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Role</label>
+                        <select class="form-select" required>
+                            <option value="">Select role</option>
+                            <option value="organizer">Organizer</option>
+                            <option value="manager">Manager</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Organizer Address</label>
+                        <input type="text" class="form-input" placeholder="Enter organizer's address" required>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Management Structure -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="8">
+                    <div>
+                        <h3>Management Structure</h3>
+                        <p>Choose how your LLC will be managed</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Management Type</label>
+                        <select class="form-select" required>
+                            <option value="">Select management type</option>
+                            <option value="member-managed">Member-Managed LLC</option>
+                            <option value="manager-managed">Manager-Managed LLC</option>
+                        </select>
+                        <div class="form-hint">
+                            Member-managed: All members participate in managing the LLC<br>
+                            Manager-managed: Designated managers handle day-to-day operations
+                        </div>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mailing Address -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="9">
+                    <div>
+                        <h3>Mailing Address</h3>
+                        <p>Choose where to receive official mail</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Mailing Address Type</label>
+                        <select class="form-select" required>
+                            <option value="">Select address type</option>
+                            <option value="business">Use Business Address</option>
+                            <option value="personal">Use Different Address</option>
+                        </select>
+                    </div>
+                    <div id="mailing-address-fields" style="display: none;">
+                        <!-- Additional address fields will be shown here if "Use Different Address" is selected -->
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Information -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="10">
+                    <div>
+                        <h3>Member Information</h3>
+                        <p>Enter information about LLC members</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="member-list">
+                        <div class="member-item">
+                            <div class="form-group">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-input" placeholder="Enter member's full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Role</label>
+                                <select class="form-select" required>
+                                    <option value="">Select role</option>
+                                    <option value="member">Member</option>
+                                    <option value="manager">Manager</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Ownership Percentage</label>
+                                <input type="number" class="form-input" placeholder="Enter ownership percentage" min="0" max="100" required>
+                                <div class="form-hint">Enter percentage between 0-100</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-input" placeholder="Enter member's address" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Tax ID Type</label>
+                                <select class="form-select" required>
+                                    <option value="">Select tax ID type</option>
+                                    <option value="ssn">Social Security Number (SSN)</option>
+                                    <option value="itin">Individual Taxpayer ID (ITIN)</option>
+                                    <option value="ein">Employer ID Number (EIN)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Tax ID Number</label>
+                                <input type="text" class="form-input" placeholder="Enter tax ID number" required>
+                            </div>
+                            <button type="button" class="remove-member">
+                                <span class="material-icons">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-member-button">
+                        <span class="material-icons">add</span>
+                        Add Member
+                    </button>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operating Agreement -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="11">
+                    <div>
+                        <h3>Operating Agreement</h3>
+                        <p>Choose your operating agreement option</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Agreement Option</label>
+                        <select class="form-select" required>
+                            <option value="">Select option</option>
+                            <option value="template">Use Standard Template</option>
+                            <option value="upload">Upload Custom Agreement</option>
+                            <option value="later">Create Later</option>
+                        </select>
+                        <div class="form-hint">
+                            Choose how you want to handle your operating agreement
+                        </div>
+                    </div>
+                    <div id="agreement-upload" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Upload Agreement</label>
+                            <input type="file" class="form-input" accept=".pdf,.doc,.docx">
+                        </div>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Foreign Status Information -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="12">
+                    <div>
+                        <h3>Foreign Status Information</h3>
+                        <p>Indicate your citizenship status</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Citizenship Status</label>
+                        <select class="form-select" required>
+                            <option value="">Select status</option>
+                            <option value="citizen">U.S. Citizen</option>
+                            <option value="non-resident">Non-Resident Alien</option>
+                        </select>
+                        <div class="form-hint">
+                            Select your current citizenship status
+                        </div>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Electronic Signature -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="13">
+                    <div>
+                        <h3>Electronic Signature</h3>
+                        <p>Choose your signature method</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Signature Method</label>
+                        <select class="form-select" required>
+                            <option value="">Select method</option>
+                            <option value="electronic">Electronic Signature</option>
+                            <option value="paper">Paper Signature</option>
+                            <option value="skip">Sign Later</option>
+                        </select>
+                        <div class="form-hint">
+                            Choose how you want to sign your documents
+                        </div>
+                    </div>
+                    <div id="signature-field" style="display: none;">
+                        <!-- Signature input field will be shown based on selection -->
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Organization Duration -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="14">
+                    <div>
+                        <h3>Organization Duration</h3>
+                        <p>Specify your LLC's duration</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Duration Type</label>
+                        <select class="form-select" required>
+                            <option value="">Select duration</option>
+                            <option value="perpetual">Perpetual</option>
+                            <option value="fixed">Fixed Term</option>
+                        </select>
+                        <div class="form-hint">
+                            Choose how long your LLC will exist
+                        </div>
+                    </div>
+                    <div id="fixed-term-fields" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">End Date</label>
+                            <input type="date" class="form-input">
+                        </div>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EIN Information -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="15">
+                    <div>
+                        <h3>EIN Information</h3>
+                        <p>Federal Tax ID Number (EIN) Application</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">EIN Application</label>
+                        <select class="form-select" required>
+                            <option value="">Select option</option>
+                            <option value="apply">Apply for EIN</option>
+                            <option value="have">I Already Have an EIN</option>
+                            <option value="later">Apply Later</option>
+                        </select>
+                        <div class="form-hint">
+                            An EIN is required for tax filing and opening business bank accounts
+                        </div>
+                    </div>
+                    <div id="ein-fields" style="display: none;">
+                        <!-- Additional EIN fields will be shown based on selection -->
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Navigation -->
+            <div class="form-navigation">
+                <button type="button" class="cancel-button">Back</button>
+                <button type="button" class="save-button">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const formPanels = document.querySelectorAll('.form-panel');
+            let currentStep = 0;
+
+            // Initialize panels
+            formPanels.forEach((panel, index) => {
+                const header = panel.querySelector('.panel-header');
+                const content = panel.querySelector('.panel-content');
+                const toggleButton = panel.querySelector('.toggle-button');
+
+                // Initially collapse all panels except the first one
+                if (index === 0) {
+                    panel.classList.add('expanded');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    toggleButton.querySelector('.material-icons').textContent = 'expand_less';
+                } else {
+                    content.style.maxHeight = '0px';
+                }
+
+                // Add click event to panel headers
+                header.addEventListener('click', () => {
+                    const isExpanded = panel.classList.contains('expanded');
+                    
+                    // If clicking on a completed or current step
+                    if (index <= currentStep) {
+                        // Collapse all other panels
+                        formPanels.forEach(p => {
+                            const pContent = p.querySelector('.panel-content');
+                            const pToggle = p.querySelector('.toggle-button .material-icons');
+                            if (p !== panel) {
+                                p.classList.remove('expanded');
+                                pContent.style.maxHeight = '0px';
+                                pToggle.textContent = 'expand_more';
+                            }
+                        });
+
+                        // Toggle current panel
+                        if (isExpanded) {
+                            panel.classList.remove('expanded');
+                            content.style.maxHeight = '0px';
+                            toggleButton.querySelector('.material-icons').textContent = 'expand_more';
+                        } else {
+                            panel.classList.add('expanded');
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                            toggleButton.querySelector('.material-icons').textContent = 'expand_less';
+                        }
+                    }
+                });
+
+                // Handle continue button
+                const continueButton = panel.querySelector('.panel-continue');
+                if (continueButton) {
+                    continueButton.addEventListener('click', () => {
+                        const requiredFields = content.querySelectorAll('[required]');
+                        let isValid = true;
+
+                        requiredFields.forEach(field => {
+                            if (!field.value) {
+                                isValid = false;
+                                field.classList.add('input-error');
+                            } else {
+                                field.classList.remove('input-error');
+                            }
+                        });
+
+                        if (isValid) {
+                            // Mark current panel as completed
+                            panel.classList.add('completed');
+                            header.classList.add('completed');
+                            
+                            // Collapse current panel
+                            panel.classList.remove('expanded');
+                            content.style.maxHeight = '0px';
+                            toggleButton.querySelector('.material-icons').textContent = 'expand_more';
+
+                            // Move to and expand next panel if available
+                            if (index < formPanels.length - 1) {
+                                currentStep = index + 1;
+                                const nextPanel = formPanels[currentStep];
+                                const nextContent = nextPanel.querySelector('.panel-content');
+                                const nextToggle = nextPanel.querySelector('.toggle-button .material-icons');
+                                
+                                nextPanel.classList.add('expanded');
+                                nextContent.style.maxHeight = nextContent.scrollHeight + 'px';
+                                nextToggle.textContent = 'expand_less';
+                                
+                                // Scroll to next panel
+                                nextPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        } else {
+                            alert('Please fill in all required fields.');
+                        }
+                    });
+                }
+
+                // Handle back button
+                const backButton = panel.querySelector('.panel-back');
+                if (backButton) {
+                    backButton.addEventListener('click', () => {
+                        if (index > 0) {
+                            // Collapse current panel
+                            panel.classList.remove('expanded');
+                            content.style.maxHeight = '0px';
+                            toggleButton.querySelector('.material-icons').textContent = 'expand_more';
+
+                            // Expand previous panel
+                            currentStep = index - 1;
+                            const prevPanel = formPanels[currentStep];
+                            const prevContent = prevPanel.querySelector('.panel-content');
+                            const prevToggle = prevPanel.querySelector('.toggle-button .material-icons');
+                            
+                            prevPanel.classList.add('expanded');
+                            prevContent.style.maxHeight = prevContent.scrollHeight + 'px';
+                            prevToggle.textContent = 'expand_less';
+                            
+                            // Scroll to previous panel
+                            prevPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                }
+            });
+
+            // Handle dynamic content changes (e.g., adding/removing members)
+            function updatePanelHeight(panel) {
+                if (panel.classList.contains('expanded')) {
+                    const content = panel.querySelector('.panel-content');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            }
+
+            // Member management
+            const memberList = document.querySelector('.member-list');
+            const addMemberButton = document.querySelector('.add-member-button');
+
+            if (addMemberButton) {
+                addMemberButton.addEventListener('click', () => {
+                    const memberItem = memberList.querySelector('.member-item').cloneNode(true);
+                    
+                    // Clear input values
+                    memberItem.querySelectorAll('input').forEach(input => input.value = '');
+                    memberItem.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
+                    
+                    // Add remove button functionality
+                    const removeButton = memberItem.querySelector('.remove-member');
+                    removeButton.addEventListener('click', () => {
+                        if (memberList.children.length > 1) {
+                            memberItem.remove();
+                            updatePanelHeight(memberList.closest('.form-panel'));
+                        }
+                    });
+                    
+                    memberList.appendChild(memberItem);
+                    updatePanelHeight(memberList.closest('.form-panel'));
+                });
+            }
+
+            // Initialize remove functionality for initial member
+            const initialRemoveButton = memberList?.querySelector('.remove-member');
+            if (initialRemoveButton) {
+                initialRemoveButton.addEventListener('click', () => {
+                    if (memberList.children.length > 1) {
+                        initialRemoveButton.closest('.member-item').remove();
+                        updatePanelHeight(memberList.closest('.form-panel'));
+                    }
+                });
+            }
+
+            // Handle conditional form fields
+            document.querySelectorAll('select').forEach(select => {
+                select.addEventListener('change', function() {
+                    const panel = this.closest('.form-panel');
+                    const conditionalFields = panel.querySelectorAll('[id$="-fields"]');
+                    
+                    conditionalFields.forEach(field => {
+                        if (field.id === `${this.value}-fields`) {
+                            field.style.display = 'block';
+                        } else {
+                            field.style.display = 'none';
+                        }
+                    });
+                    
+                    updatePanelHeight(panel);
+                });
+            });
+
+            // Form navigation
+            const cancelButton = document.querySelector('.cancel-button');
+            const saveButton = document.querySelector('.save-button');
+
+            if (cancelButton) {
+                cancelButton.addEventListener('click', () => {
+                    if (confirm('Are you sure you want to go back? Your progress will be saved.')) {
+                        window.history.back();
+                    }
+                });
+            }
+
+            if (saveButton) {
+                saveButton.addEventListener('click', () => {
+                    const form = document.querySelector('.form-container');
+                    const requiredFields = form.querySelectorAll('[required]');
+                    let isValid = true;
+
+                    requiredFields.forEach(field => {
+                        if (!field.value) {
+                            isValid = false;
+                            field.classList.add('input-error');
+                        } else {
+                            field.classList.remove('input-error');
+                        }
+                    });
+
+                    if (isValid) {
+                        window.location.href = 'review.html';
+                    } else {
+                        alert('Please fill in all required fields.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

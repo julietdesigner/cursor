@@ -243,6 +243,133 @@
             margin-top: 24px;
         }
     }
+
+    /* Navbar Styles */
+    .navbar {
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .nav-left {
+        display: flex;
+        align-items: center;
+        height: 64px;
+    }
+
+    .nav-links {
+        display: flex;
+        margin-left: 40px;
+        gap: 32px;
+    }
+
+    .nav-item {
+        position: relative;
+        padding: 8px 0;
+    }
+
+    .nav-item > a {
+        color: #1E293B;
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .nav-item:hover > a {
+        color: #2563EB;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        min-width: 240px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+        padding: 8px 0;
+    }
+
+    .nav-item:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-item {
+        padding: 8px 16px;
+        color: #4B5563;
+        text-decoration: none;
+        display: block;
+        font-size: 14px;
+        transition: all 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+        background: #F8FAFC;
+        color: #2563EB;
+    }
+
+    .dropdown-divider {
+        height: 1px;
+        background: #E5E7EB;
+        margin: 8px 0;
+    }
+
+    .dropdown-header {
+        padding: 12px 16px;
+        font-size: 13px;
+        color: #6B7280;
+        background: #F8FAFC;
+        margin-bottom: 8px;
+    }
+
+    .dropdown-section {
+        padding: 8px 0;
+    }
+
+    .dropdown-section-title {
+        padding: 8px 16px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #4B5563;
+    }
+
+    .dropdown-title {
+        font-weight: 500;
+        margin-bottom: 2px;
+    }
+
+    .dropdown-desc {
+        font-size: 12px;
+        color: #6B7280;
+    }
+
+    .dropdown-item {
+        padding: 12px 16px;
+    }
+
+    .dropdown-item:hover {
+        background: #F8FAFC;
+    }
+
+    .dropdown-item:hover .dropdown-title {
+        color: #2563EB;
+    }
     </style>
 </head>
 <body>
@@ -252,10 +379,114 @@
             <div class="nav-left">
                 <span class="material-icons" style="font-size: 36px; color: #1976d2; margin-right: 10px;">lightbulb</span>
                 <div class="nav-links">
-                    <a href="#">Business</a>
-                    <a href="#">Personal</a>
-                    <a href="#">Forms</a>
-                    <a href="#">Support</a>
+                    <div class="nav-item">
+                        <a href="#">
+                            Business Formation
+                            <span class="material-icons" style="font-size: 20px;">expand_more</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="services/business-formation/llc.html" class="dropdown-item">
+                                <div class="dropdown-title">LLC</div>
+                                <div class="dropdown-desc">Flexible Liability Protection</div>
+                            </a>
+                            <a href="services/business-formation/corporation.html" class="dropdown-item">
+                                <div class="dropdown-title">Corporation</div>
+                                <div class="dropdown-desc">Scale, Structure, Success</div>
+                            </a>
+                            <a href="services/business-formation/nonprofit.html" class="dropdown-item">
+                                <div class="dropdown-title">Nonprofit</div>
+                                <div class="dropdown-desc">Impact, Trust, Purpose</div>
+                            </a>
+                            <a href="services/business-formation/dba.html" class="dropdown-item">
+                                <div class="dropdown-title">DBA (Doing Business As)</div>
+                                <div class="dropdown-desc">Name, Test, Expand</div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Compare Entity Types</a>
+                            <a href="#" class="dropdown-item">Start Formation Quiz</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item">
+                        <a href="#">
+                            Family & Estate
+                            <span class="material-icons" style="font-size: 20px;">expand_more</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="services/family-estate/foundation.html" class="dropdown-item">
+                                <div class="dropdown-title">Foundation</div>
+                                <div class="dropdown-desc">Long-Term Giving</div>
+                            </a>
+                            <a href="services/family-estate/family-trust.html" class="dropdown-item">
+                                <div class="dropdown-title">Family Trust</div>
+                                <div class="dropdown-desc">Asset Protection</div>
+                            </a>
+                            <a href="services/family-estate/estate-plan.html" class="dropdown-item">
+                                <div class="dropdown-title">Estate Plan</div>
+                                <div class="dropdown-desc">Will, POA, Proxy</div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Start Estate Planning</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item">
+                        <a href="#">
+                            Legal Plans
+                            <span class="material-icons" style="font-size: 20px;">expand_more</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">Get unlimited 30-min consultations + document reviews</div>
+                            <a href="services/legal-support/personal-legal-plan.html" class="dropdown-item">
+                                <div class="dropdown-title">Personal Legal Plan</div>
+                                <div class="dropdown-desc">Legal Peace of Mind</div>
+                            </a>
+                            <a href="services/legal-support/business-legal-plan.html" class="dropdown-item">
+                                <div class="dropdown-title">Business Legal Plan</div>
+                                <div class="dropdown-desc">Your Legal Team for Business</div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Compare Plans</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item">
+                        <a href="#">
+                            Documents & Filing
+                            <span class="material-icons" style="font-size: 20px;">expand_more</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-section">
+                                <div class="dropdown-section-title">DIY Legal Forms</div>
+                                <a href="services/documents-filing/legal-documents.html" class="dropdown-item">
+                                    <div class="dropdown-title">Legal Documents</div>
+                                    <div class="dropdown-desc">Templates That Work</div>
+                                </a>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-section">
+                                <div class="dropdown-section-title">Full Service by Attorney</div>
+                                <a href="services/documents-filing/attorney-assisted-services.html" class="dropdown-item">
+                                    <div class="dropdown-title">Attorney-Assisted Services</div>
+                                    <div class="dropdown-desc">Done with a Pro</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-item">
+                        <a href="#">
+                            Resources
+                            <span class="material-icons" style="font-size: 20px;">expand_more</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Learning Center</a>
+                            <a href="#" class="dropdown-item">FAQs</a>
+                            <a href="#" class="dropdown-item">Business Name Search</a>
+                            <a href="#" class="dropdown-item">State Filing Fees Guide</a>
+                            <a href="#" class="dropdown-item">Entity Type Comparison</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -288,7 +519,7 @@
     <section class="business-details step-1">
         <div class="business-types-container">
             <div class="step-badge">STEP 1</div>
-            <h2>Choose Your Business Type</h2>
+            <h2>Business Services</h2>
             
             <!-- Business Type Icons -->
             <div class="business-type-icons">
@@ -323,7 +554,7 @@
                     </label>
                 </div>
 
-                <div class="business-type-icon" data-form="dba-form"
+                <div class="business-type-icon" data-form="dba-form">
                     <label class="radio-card">
                         <div class="icon">TYPE D</div>
                         <input type="radio" name="business-type" id="dba-type">
@@ -333,2330 +564,87 @@
                     </label>
                 </div>
             </div>
+            <h2>Personal & Family Services</h2>
+             <!-- Business Type Icons -->
+             <div class="business-type-icons">
+
+                <div class="business-type-icon" data-form="foundation-form">
+                    <label class="radio-card">
+                        <div class="icon">TYPE E</div>
+                        <input type="radio" name="business-type" id="foundation-type">
+                        <div class="price">Foundation</div>
+                        <div class="subtitle">Long-Term Giving</div>
+                        <p>Set up a private or public foundation to support causes you care about, build your family's philanthropic legacy, and gain tax advantages.</p>
+                    </label>
+                </div>
+
+                <div class="business-type-icon" data-form="family-trust-form">
+                    <label class="radio-card">
+                        <div class="icon">TYPE F</div>
+                        <input type="radio" name="business-type" id="family-trust-type">
+                        <div class="price">Family Trust</div>
+                        <div class="subtitle">Asset Protection</div>
+                        <p>Create a trust to manage wealth transfer, protect assets, and provide financial security for future generations.</p>
+                    </label>
+                </div>
+
+                <div class="business-type-icon" data-form="estate-plan-form">
+                    <label class="radio-card">
+                        <div class="icon">TYPE G</div>
+                        <input type="radio" name="business-type" id="estate-plan-type">
+                        <div class="price">Estate Plan</div>
+                        <div class="subtitle">Will, POA, Proxy</div>
+                        <p>Build a complete estate plan including a will, healthcare proxy, and power of attorney to secure your wishes and legacy.</p>
+                    </label>
+                </div>
+            </div>
+
+            <h2>Legal Support</h2>
+            <!-- Business Type Icons -->
+            <div class="business-type-icons">
+                <div class="business-type-icon" data-form="personal-legal-form">
+                    <label class="radio-card">
+                        <div class="icon">TYPE A</div>
+                        <input type="radio" name="business-type" id="personal-legal-type">
+                        <div class="price">Personal Legal Plan</div>
+                        <div class="subtitle">Legal Peace of Mind</div>
+                        <p>Get unlimited 30-minute consultations with licensed attorneys on personal legal matters—wills, contracts, disputes, and more—all year long for one low price.</p>
+                    </label>
+                </div>
+
+                <div class="business-type-icon" data-form="business-legal-form">
+                    <label class="radio-card">
+                        <div class="icon">TYPE B</div>
+                        <input type="radio" name="business-type" id="business-legal-type">
+                        <div class="price">Business Legal Plan</div>
+                        <div class="subtitle">Your Legal Team for Business</div>
+                        <p>Protect your company with on-demand legal advice, document reviews, and help with compliance, contracts, and HR issues—starting at just $469/year.</p>
+                    </label>
+                </div>
+
+                <div class="business-type-icon" data-form="legal-documents-form">
+                    <label class="radio-card">
+                        <div class="icon">TYPE C</div>
+                        <input type="radio" name="business-type" id="legal-documents-type">
+                        <div class="price">Legal Documents</div>
+                        <div class="subtitle">Templates That Work</div>
+                        <p>Download lawyer-approved legal forms like contracts, NDAs, leases, wills, and more. Easy to customize, ready to sign, and legally solid.</p>
+                    </label>
+                </div>
+
+                <div class="business-type-icon" data-form="attorney-assisted-form">
+                    <label class="radio-card">
+                        <div class="icon">TYPE D</div>
+                        <input type="radio" name="business-type" id="attorney-assisted-type">
+                        <div class="price">Attorney-Assisted Services</div>
+                        <div class="subtitle">Done with a Pro</div>
+                        <p>Need more help? Let licensed attorneys prepare your estate plan, trust, divorce, or trademark documents—professionally, efficiently, and without stress.</p>
+                    </label>
+                </div>
+            </div>
         </div>
         
     </section>
-    <section class="section-details-container step-2">
-        <div class="details-container">
-            <!-- 插入计算器组件 -->
-            <div class="calculator-container">
-                <div class="calculator-header">
-                    <div class="step-badge">STEP 2</div>
-                    <h2>Calculate Your Formation Costs</h2>
-                    <p>Select your services to calculate total formation costs</p>
-                </div>
-                
-                <div class="calculator-body">
-                    <div class="calculator-section">
-                        <h3>1. Select State</h3>
-                        <div class="state-info">
-                            <div class="state-selection-grid">
-                                <div class="state-select-container">
-                                    <select id="state" class="state-select">
-                                        <option value="" disabled>Select your formation state</option>
-                                        <option value="alabama">Alabama</option>
-                                        <option value="alaska">Alaska</option>
-                                        <option value="arizona">Arizona</option>
-                                        <option value="arkansas">Arkansas</option>
-                                        <option value="california">California</option>
-                                        <option value="colorado">Colorado</option>
-                                        <option value="connecticut">Connecticut</option>
-                                        <option value="delaware">Delaware</option>
-                                        <option value="florida">Florida</option>
-                                        <option value="georgia">Georgia</option>
-                                        <option value="hawaii">Hawaii</option>
-                                        <option value="idaho">Idaho</option>
-                                        <option value="illinois">Illinois</option>
-                                        <option value="indiana">Indiana</option>
-                                        <option value="iowa">Iowa</option>
-                                        <option value="kansas">Kansas</option>
-                                        <option value="kentucky">Kentucky</option>
-                                        <option value="louisiana">Louisiana</option>
-                                        <option value="maine">Maine</option>
-                                        <option value="maryland">Maryland</option>
-                                        <option value="massachusetts">Massachusetts</option>
-                                        <option value="michigan">Michigan</option>
-                                        <option value="minnesota">Minnesota</option>
-                                        <option value="mississippi">Mississippi</option>
-                                        <option value="missouri">Missouri</option>
-                                        <option value="montana">Montana</option>
-                                        <option value="nebraska">Nebraska</option>
-                                        <option value="nevada">Nevada</option>
-                                        <option value="new-hampshire">New Hampshire</option>
-                                        <option value="new-jersey">New Jersey</option>
-                                        <option value="new-mexico">New Mexico</option>
-                                        <option value="new-york">New York</option>
-                                        <option value="north-carolina">North Carolina</option>
-                                        <option value="north-dakota">North Dakota</option>
-                                        <option value="ohio">Ohio</option>
-                                        <option value="oklahoma">Oklahoma</option>
-                                        <option value="oregon">Oregon</option>
-                                        <option value="pennsylvania">Pennsylvania</option>
-                                        <option value="rhode-island">Rhode Island</option>
-                                        <option value="south-carolina">South Carolina</option>
-                                        <option value="south-dakota">South Dakota</option>
-                                        <option value="tennessee">Tennessee</option>
-                                        <option value="texas">Texas</option>
-                                        <option value="utah">Utah</option>
-                                        <option value="vermont">Vermont</option>
-                                        <option value="virginia">Virginia</option>
-                                        <option value="washington">Washington</option>
-                                        <option value="west-virginia">West Virginia</option>
-                                        <option value="wisconsin">Wisconsin</option>
-                                        <option value="wyoming">Wyoming</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="state-info-cards">
-                                    <div class="info-card processing-time">
-                                        <span>Standard Processing Time</span>
-                                        <span class="info-value" id="processing-time">10-15 business days</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="calculator-section">
-                        <h3>2. Choose Your Package</h3>
-                        <div class="package-options">
-                            <div class="package-card" data-type="basic" data-price="0">
-                                <h3>Basic</h3>
-                                <div class="price">
-                                    <h2>$0</h2>
-                                    <p>+ $236 state fee</p>
-                                </div>
-                                <div class="package-time">
-                                    <span class="material-icons">schedule</span>
-                                    <span>3 Weeks</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><span class="material-icons">check</span>Preparing & Filing the Articles of Organization</li>
-                                    <li><span class="material-icons">check</span>FREE 1st Year Registered Agent Service!</li>
-                                    <li><span class="material-icons">check</span>FREE 1st Month of Virtual Address Service!</li>
-                                    <li><span class="material-icons">close</span>Domain Name + Business Email</li>
-                                    <li><span class="material-icons">close</span>FREE 1st Year Business Phone Number</li>
-                                    <li><span class="material-icons">close</span>Lifetime Compliance Alerts</li>
-                                    <li><span class="material-icons">close</span>Unlimited Phone & Email Support</li>
-                                    <li><span class="material-icons">check</span>Online Access Dashboard</li>
-                                    <li><span class="material-icons">check</span>Business Banking Account Offer</li>
-                                    <li><span class="material-icons">check</span>Business Tax Consultation</li>
-                                    <li><span class="material-icons">close</span>IRS Form 2553</li>
-                                </ul>
-                                <div class="addon-options">
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="expedited-filing">
-                                        <label for="expedited-filing">
-                                            <span class="addon-name">Expedited Filing</span>
-                                            <span class="addon-description">1 business day (instead of 3 weeks)</span>
-                                            <span class="addon-price">+ $50</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="business-templates">
-                                        <label for="business-templates">
-                                            <span class="addon-name">Business Contract Templates</span>
-                                            <span class="addon-description">Access to essential business contract templates</span>
-                                            <span class="addon-price">+ $150</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="ein-service">
-                                        <label for="ein-service">
-                                            <span class="addon-name">EIN Business Tax Number</span>
-                                            <span class="addon-description">Federal Tax ID registration with the IRS</span>
-                                            <span class="addon-price">+ $70</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="corporate-bylaws">
-                                        <label for="corporate-bylaws">
-                                            <span class="addon-name">Corporate Bylaws</span>
-                                            <span class="addon-description">Customized corporate bylaws document</span>
-                                            <span class="addon-price">+ $30</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="package-card selected" data-type="standard" data-price="199">
-                                <div class="recommended">Recommended</div>
-                                <h3>Standard</h3>
-                                <div class="price">
-                                    <h2>$199</h2>
-                                    <p>+ $236 state fee</p>
-                                </div>
-                                <div class="package-time">
-                                    <span class="material-icons">schedule</span>
-                                    <span>3 Weeks</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><span class="material-icons">check</span>Preparing & Filing the Articles of Organization</li>
-                                    <li><span class="material-icons">check</span>FREE 1st Year Registered Agent Service!</li>
-                                    <li><span class="material-icons">check</span>FREE 1st Month of Virtual Address Service!</li>
-                                    <li><span class="material-icons">check</span>Domain Name + Business Email</li>
-                                    <li><span class="material-icons">check</span>FREE 1st Year Business Phone Number</li>
-                                    <li><span class="material-icons">check</span>Lifetime Compliance Alerts</li>
-                                    <li><span class="material-icons">check</span>Unlimited Phone & Email Support</li>
-                                    <li><span class="material-icons">check</span>Online Access Dashboard</li>
-                                    <li><span class="material-icons">check</span>Business Banking Account Offer</li>
-                                    <li><span class="material-icons">check</span>Business Tax Consultation</li>
-                                    <li><span class="material-icons">check</span>IRS Form 2553</li>
-                                </ul>
-                                <div class="addon-options">
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="expedited-filing">
-                                        <label for="expedited-filing">
-                                            <span class="addon-name">Expedited Filing</span>
-                                            <span class="addon-description">1 business day (instead of 3 weeks)</span>
-                                            <span class="addon-price">+ $50</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="business-templates">
-                                        <label for="business-templates">
-                                            <span class="addon-name">Business Contract Templates</span>
-                                            <span class="addon-description">Access to essential business contract templates</span>
-                                            <span class="addon-price">+ $150</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="ein-service" checked disabled>
-                                        <label for="ein-service">
-                                            <span class="addon-name">EIN Business Tax Number</span>
-                                            <span class="addon-description">Federal Tax ID registration with the IRS</span>
-                                            <span class="addon-price">+ $70</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="corporate-bylaws" checked disabled>
-                                        <label for="corporate-bylaws">
-                                            <span class="addon-name">Corporate Bylaws</span>
-                                            <span class="addon-description">Customized corporate bylaws document</span>
-                                            <span class="addon-price">+ $30</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="package-card" data-type="premium" data-price="399">
-                                <h3>Premium</h3>
-                                <div class="price">
-                                    <h2>$299</h2>
-                                    <p>+ $236 state fee</p>
-                                </div>
-                                <div class="package-time">
-                                    <span class="material-icons">schedule</span>
-                                    <span>1 Day</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><span class="material-icons">check</span>Preparing & Filing the Articles of Organization</li>
-                                    <li><span class="material-icons">check</span>FREE 1st Year Registered Agent Service!</li>
-                                    <li><span class="material-icons">check</span>FREE 1st Month of Virtual Address Service!</li>
-                                    <li><span class="material-icons">check</span>Domain Name + Business Email</li>
-                                    <li><span class="material-icons">check</span>FREE 1st Year Business Phone Number</li>
-                                    <li><span class="material-icons">check</span>Lifetime Compliance Alerts</li>
-                                    <li><span class="material-icons">check</span>Unlimited Phone & Email Support</li>
-                                    <li><span class="material-icons">check</span>Online Access Dashboard</li>
-                                    <li><span class="material-icons">check</span>Business Banking Account Offer</li>
-                                    <li><span class="material-icons">check</span>Business Tax Consultation</li>
-                                    <li><span class="material-icons">check</span>IRS Form 2553</li>
-                                </ul>
-                                <div class="addon-options">
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="expedited-filing" checked disabled>
-                                        <label for="expedited-filing">
-                                            <span class="addon-name">Expedited Filing</span>
-                                            <span class="addon-description">1 business day (instead of 3 weeks)</span>
-                                            <span class="addon-price">+ $50</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="business-templates" checked disabled>
-                                        <label for="business-templates">
-                                            <span class="addon-name">Business Contract Templates</span>
-                                            <span class="addon-description">Access to essential business contract templates</span>
-                                            <span class="addon-price">+ $150</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="ein-service" checked disabled>
-                                        <label for="ein-service">
-                                            <span class="addon-name">EIN Business Tax Number</span>
-                                            <span class="addon-description">Federal Tax ID registration with the IRS</span>
-                                            <span class="addon-price">+ $70</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="corporate-bylaws" checked disabled>
-                                        <label for="corporate-bylaws">
-                                            <span class="addon-name">Corporate Bylaws</span>
-                                            <span class="addon-description">Customized corporate bylaws document</span>
-                                            <span class="addon-price">+ $30</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="calculator-section">
-                        <h3>3. Choose Address Type</h3>
-                        <div class="address-options">
-                            <div class="address-option" data-price="29">
-                                <input type="radio" name="address" id="virtual-address" value="virtual">
-                                <label for="virtual-address">
-                                    <div class="address-header">
-                                        <span class="promo-tag">FIRST MONTH FREE</span>
-                                        <h4>Professional Business Address & Virtual Mail Service</h4>
-                                    </div>
-                                    <div class="address-details">
-                                        <p class="address-text">45 Colvin Ave, Suite 120 Albany, NY 12206</p>
-                                        <p class="suite-note">Suite # assigned upon order completion</p>
-                                        <ul class="features-list">
-                                            <li>Maintain privacy by using a commercial address</li>
-                                            <li>Unlimited scanned incoming mail</li>
-                                            <li>A physical address for your business (not PO Box)</li>
-                                            <li>Instant alerts with 24/7 access to your mail online</li>
-                                        </ul>
-                                        <div class="price-info">
-                                            <h4>First Month Free</h4>
-                                            <p class="period">Then $29/month. Cancel anytime.</p>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="address-option" data-price="0">
-                                <input type="radio" name="address" id="own-address" value="own">
-                                <label for="own-address">
-                                    <div class="address-header">
-                                        <h4>Use My Own Address</h4>
-                                    </div>
-                                    <div class="address-details">
-                                        <p>I will provide my own business address and will personally keep up with the incoming mail.</p>
-                                        <ul class="features-list">
-                                            <li>Physical street address required</li>
-                                            <li>PO Boxes are not accepted</li>
-                                            <li>Address will be listed publicly</li>
-                                        </ul>
-                                        <div class="price-info">
-                                            <h4>$0</h4>
-                                            <p class="period">Use your own address</p>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="calculator-total">
-                        <h3>Order Summary</h3>
-                        <div class="total-breakdown">
-                            <div class="breakdown-item">
-                                <span>Base Package</span>
-                                <span id="base-price">$199</span>
-                            </div>
-                            <div class="breakdown-item">
-                                <span>State Filing Fee</span>
-                                <span id="state-fee">$0</span>
-                            </div>
-                            <div class="breakdown-item">
-                                <span>Expedited Filing</span>
-                                <span id="expedited-price">$0</span>
-                            </div>
-                            <div class="breakdown-item">
-                                <span>Business Contract Templates</span>
-                                <span id="templates-price">$0</span>
-                            </div>
-                            <div class="breakdown-item">
-                                <span>EIN Business Tax Number</span>
-                                <span id="ein-price">$0</span>
-                            </div>
-                            <div class="breakdown-item">
-                                <span>Corporate Bylaws</span>
-                                <span id="corporate-bylaws-price">$0</span>
-                            </div>
-                            <div class="breakdown-item total">
-                                <span>Total</span>
-                                <span id="total-price">$199</span>
-                            </div>
-                        </div>
-                        <div class="state-note">
-                            <span class="material-icons">info</span>
-                            <p>Standard processing time in <span class="state-name">Alabama</span> is <span class="state-processing-time">3-5 business days</span>. Select Expedited Filing to reduce processing time to 1-2 business days.</p>
-                        </div>
-                        <button class="calculate-btn">Get Started</button>
-                    </div>
-                </div>
-            </div>
-
-       
-        </div>
-    </section>
-    <!-- LLC Form -->
-    <div id="llc-form" class="llc-form hidden">
-        <div class="step-badge">STEP 3</div>
-        <h2>LLC Formation Details</h2>
-        
-        <div class="stepper-container">
-            <div class="main-content">
-                <!-- Formation Info -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">1</div>
-                        <div class="step-content">
-                            <h3>Formation Info</h3>
-                            <p>Enter your LLC formation details.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>State of Formation</label>
-                                <select id="llc-state" required>
-                                    <option value="">Select state</option>
-                                    <option value="AL">Alabama</option>
-                                    <!-- Other states -->
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Entity Type</label>
-                                <input type="text" id="entity-type" value="LLC" readonly />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">2</div>
-                        <div class="step-content">
-                            <h3>Contact Info</h3>
-                            <p>Enter contact information for official communications.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="text" id="contact-name" placeholder="Enter your full name" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="tel" id="contact-phone" placeholder="Enter phone number" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" id="contact-email" placeholder="Enter email address" required />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Agent Info -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">3</div>
-                        <div class="step-content">
-                            <h3>Agent Info</h3>
-                            <p>Choose your registered agent service.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Registered Agent Type</label>
-                                <select id="agent-type" required>
-                                    <option value="bizee">Bizee Registered Agent Service</option>
-                                    <option value="self">Self</option>
-                                    <option value="third-party">Third Party Registered Agent</option>
-                                </select>
-                            </div>
-                            <div id="third-party-agent" class="hidden">
-                                <div class="form-group">
-                                    <label>Agent Name</label>
-                                    <input type="text" id="agent-name" placeholder="Enter agent's name" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Agent Address</label>
-                                    <input type="text" id="agent-address" placeholder="Enter agent's address" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Agent Email</label>
-                                    <input type="email" id="agent-email" placeholder="Enter agent's email" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Company Info (Legal Name) -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">4</div>
-                        <div class="step-content">
-                            <h3>Company Info</h3>
-                            <p>Enter your LLC's legal name.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Legal Name (First Choice)</label>
-                                <input type="text" id="company-name" placeholder="Enter your first choice company name" required />
-                                <small class="help-text">Must include 'LLC', 'L.L.C.' or 'Limited Liability Company'</small>
-                            </div>
-                            <div class="form-group">
-                                <label>Alternate Name 1</label>
-                                <input type="text" id="company-name-alt1" placeholder="Enter your second choice company name" />
-                            </div>
-                            <div class="form-group">
-                                <label>Alternate Name 2</label>
-                                <input type="text" id="company-name-alt2" placeholder="Enter your third choice company name" />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Business Purpose -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">5</div>
-                        <div class="step-content">
-                            <h3>Business Purpose</h3>
-                            <p>Describe your LLC's business activities.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Business Description</label>
-                                <textarea id="business-description" placeholder="Describe your business activities" required rows="4"></textarea>
-                                <small class="help-text">Provide a clear description of your LLC's intended business activities</small>
-                            </div>
-                            <div class="form-group">
-                                <label>Industry Type</label>
-                                <select id="industry-type" required>
-                                    <option value="">Select industry</option>
-                                    <option value="retail">Retail</option>
-                                    <option value="service">Service</option>
-                                    <option value="restaurant">Restaurant/Food Service</option>
-                                    <option value="construction">Construction</option>
-                                    <option value="technology">Technology</option>
-                                    <option value="real-estate">Real Estate</option>
-                                    <option value="professional">Professional Services</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Business Address -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">6</div>
-                        <div class="step-content">
-                            <h3>Business Address</h3>
-                            <p>Enter your LLC's physical address.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Street Address</label>
-                                <input type="text" id="business-street" placeholder="Enter street address" required />
-                            </div>
-                            <div class="form-group">
-                                <label>City</label>
-                                <input type="text" id="business-city" placeholder="Enter city" required />
-                            </div>
-                            <div class="form-group">
-                                <label>State</label>
-                                <input type="text" id="business-state" placeholder="Enter state" required />
-                            </div>
-                            <div class="form-group">
-                                <label>ZIP Code</label>
-                                <input type="text" id="business-zip" placeholder="Enter ZIP code" required />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Organizer Information -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">7</div>
-                        <div class="step-content">
-                            <h3>Organizer Information</h3>
-                            <p>Provide details about the LLC organizer.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Organizer Name</label>
-                                <input type="text" id="organizer-name" placeholder="Enter organizer's full name" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Organizer Address</label>
-                                <input type="text" id="organizer-address" placeholder="Enter organizer's address" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Organizer Email</label>
-                                <input type="email" id="organizer-email" placeholder="Enter organizer's email" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Relationship to LLC</label>
-                                <select id="organizer-relationship" required>
-                                    <option value="">Select relationship</option>
-                                    <option value="member">Member</option>
-                                    <option value="attorney">Attorney</option>
-                                    <option value="accountant">Accountant</option>
-                                    <option value="authorized-person">Authorized Person</option>
-                                </select>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Management Structure -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">8</div>
-                        <div class="step-content">
-                            <h3>Management Structure</h3>
-                            <p>Define your LLC's management structure.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Management Type</label>
-                                <select id="management-type" required>
-                                    <option value="">Select management type</option>
-                                    <option value="member-managed">Member-Managed</option>
-                                    <option value="manager-managed">Manager-Managed</option>
-                                </select>
-                                <small class="help-text">Choose how your LLC will be managed</small>
-                            </div>
-                            <div id="manager-info" class="hidden">
-                                <div class="form-group">
-                                    <label>Manager Name</label>
-                                    <input type="text" id="manager-name" placeholder="Enter manager's name" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Manager Address</label>
-                                    <input type="text" id="manager-address" placeholder="Enter manager's address" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mailing Address -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">9</div>
-                        <div class="step-content">
-                            <h3>Mailing Address</h3>
-                            <p>Specify where you want to receive official mail.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Use Business Address for Mailing?</label>
-                                <select id="mailing-address-type" required>
-                                    <option value="same">Yes, use business address</option>
-                                    <option value="different">No, use different address</option>
-                                </select>
-                            </div>
-                            <div id="different-mailing-address" class="hidden">
-                                <div class="form-group">
-                                    <label>Mailing Street Address</label>
-                                    <input type="text" id="mailing-street" placeholder="Enter mailing street address" />
-                                </div>
-                                <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" id="mailing-city" placeholder="Enter city" />
-                                </div>
-                                <div class="form-group">
-                                    <label>State</label>
-                                    <input type="text" id="mailing-state" placeholder="Enter state" />
-                                </div>
-                                <div class="form-group">
-                                    <label>ZIP Code</label>
-                                    <input type="text" id="mailing-zip" placeholder="Enter ZIP code" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Member Information -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">10</div>
-                        <div class="step-content">
-                            <h3>Member Information</h3>
-                            <p>Provide information about LLC members.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div id="members-container">
-                                <!-- Member 1 -->
-                                <div class="member-form">
-                                    <h4>Member 1</h4>
-                                    <div class="form-group">
-                                        <label>Name</label>
-                                        <input type="text" class="member-name" placeholder="Enter member's name" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Address</label>
-                                        <input type="text" class="member-address" placeholder="Enter member's address" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Ownership Percentage</label>
-                                        <input type="number" class="member-percentage" placeholder="Enter ownership percentage" required min="0" max="100" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Member Type</label>
-                                        <select class="member-type" required>
-                                            <option value="individual">Individual</option>
-                                            <option value="entity">Entity</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" id="add-member" class="add-btn">
-                                <span class="material-icons">add</span> Add Member
-                            </button>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Operating Agreement -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">11</div>
-                        <div class="step-content">
-                            <h3>Operating Agreement</h3>
-                            <p>Choose how to handle your LLC's operating agreement.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Operating Agreement Option</label>
-                                <select id="operating-agreement-option" required>
-                                    <option value="standard">Use Standard Template</option>
-                                    <option value="custom">Upload Custom Agreement</option>
-                                </select>
-                            </div>
-                            <div id="custom-agreement-upload" class="hidden">
-                                <div class="form-group">
-                                    <label>Upload Agreement</label>
-                                    <input type="file" id="agreement-file" accept=".pdf,.doc,.docx" />
-                                    <small class="help-text">Upload your custom operating agreement (PDF, DOC, or DOCX format)</small>
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Foreign Status Information -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">12</div>
-                        <div class="step-content">
-                            <h3>Foreign Status Information</h3>
-                            <p>Indicate your citizenship status.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Citizenship Status</label>
-                                <select id="citizenship-status" required>
-                                    <option value="us">U.S. Citizen</option>
-                                    <option value="foreign">Foreign Citizen</option>
-                                </select>
-                            </div>
-                            <div id="foreign-details" class="hidden">
-                                <div class="form-group">
-                                    <label>Country of Citizenship</label>
-                                    <input type="text" id="citizenship-country" placeholder="Enter your country of citizenship" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Visa Type</label>
-                                    <input type="text" id="visa-type" placeholder="Enter your visa type" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Electronic Signature -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">13</div>
-                        <div class="step-content">
-                            <h3>Electronic Signature</h3>
-                            <p>Sign your LLC formation documents.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Signature Method</label>
-                                <select id="signature-method" required>
-                                    <option value="electronic">Electronic Signature</option>
-                                    <option value="manual">Manual Signature</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Date</label>
-                                <input type="date" id="signature-date" required />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Organization Duration -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">14</div>
-                        <div class="step-content">
-                            <h3>Organization Duration</h3>
-                            <p>Specify how long your LLC will operate.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Duration Type</label>
-                                <select id="duration-type" required>
-                                    <option value="perpetual">Perpetual</option>
-                                    <option value="fixed">Fixed Term</option>
-                                </select>
-                            </div>
-                            <div id="fixed-duration-details" class="hidden">
-                                <div class="form-group">
-                                    <label>End Date</label>
-                                    <input type="date" id="duration-end-date" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Initial Activities Description (Optional) -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">15</div>
-                        <div class="step-content">
-                            <h3>Initial Activities Description</h3>
-                            <p>Optionally describe your initial business activities.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Initial Activities <span class="optional-badge">Optional</span></label>
-                                <textarea id="initial-activities" placeholder="Describe your planned initial business activities"></textarea>
-                                <small class="help-text">This information can help expedite your filing process</small>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-actions">
-            <button class="save-btn">Save Changes</button>
-            <button class="cancel-btn">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Corporation Form -->
-    <div id="corporation-form" class="llc-form hidden">
-        <div class="step-badge">STEP 3</div>
-        <h2>Corporation Formation Details</h2>
-        
-        <div class="stepper-container">
-            <div class="main-content">
-                <!-- Formation Info -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">1</div>
-                        <div class="step-content">
-                            <h3>Formation Info</h3>
-                            <p>Enter your corporation's formation details.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>State of Formation</label>
-                                <select id="corp-state" required>
-                                    <option value="AL">Alabama</option>
-                                    <!-- Other states -->
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Entity Type</label>
-                                <input type="text" id="entity-type" value="Corporation" readonly />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">2</div>
-                        <div class="step-content">
-                            <h3>Contact Info</h3>
-                            <p>Enter contact information for official communications.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="text" id="contact-name" placeholder="Enter your full name" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="tel" id="contact-phone" placeholder="Enter phone number" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" id="contact-email" placeholder="Enter email address" required />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Agent Info -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">3</div>
-                        <div class="step-content">
-                            <h3>Agent Info</h3>
-                            <p>Choose your registered agent service.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Registered Agent</label>
-                                <select id="agent-type" required>
-                                    <option value="bizee">Bizee Registered Agent Service</option>
-                                    <option value="self">Self</option>
-                                </select>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Company Info (Legal Name) -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">4</div>
-                        <div class="step-content">
-                            <h3>Company Info</h3>
-                            <p>Enter your corporation's legal name.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Legal Name (First Choice)</label>
-                                <input type="text" id="company-name" placeholder="Enter your first choice company name" required />
-                                <small class="help-text">This is your preferred legal company name</small>
-                            </div>
-                            <div class="form-group">
-                                <label>Alternate Name 1</label>
-                                <input type="text" id="company-name-alt1" placeholder="Enter your second choice company name" />
-                            </div>
-                            <div class="form-group">
-                                <label>Alternate Name 2</label>
-                                <input type="text" id="company-name-alt2" placeholder="Enter your third choice company name" />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Business Purpose -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">5</div>
-                        <div class="step-content">
-                            <h3>Business Purpose</h3>
-                            <p>Describe your corporation's business activities.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Business Purpose</label>
-                                <textarea id="business-purpose" placeholder="Describe your corporation's business activities and purpose" required></textarea>
-                                <small class="help-text">Provide a clear description of your corporation's intended business activities</small>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Business Address -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">6</div>
-                        <div class="step-content">
-                            <h3>Business Address</h3>
-                            <p>Enter your corporation's physical address.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Street Address</label>
-                                <input type="text" id="business-street" placeholder="Enter street address" required />
-                            </div>
-                            <div class="form-group">
-                                <label>City</label>
-                                <input type="text" id="business-city" placeholder="Enter city" required />
-                            </div>
-                            <div class="form-group">
-                                <label>State</label>
-                                <input type="text" id="business-state" placeholder="Enter state" required />
-                            </div>
-                            <div class="form-group">
-                                <label>ZIP Code</label>
-                                <input type="text" id="business-zip" placeholder="Enter ZIP code" required />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Management Structure -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">7</div>
-                        <div class="step-content">
-                            <h3>Management Structure</h3>
-                            <p>Define your corporation's management structure.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Management Type</label>
-                                <select id="management-type" required>
-                                    <option value="board">Board of Directors</option>
-                                    <option value="shareholders">Shareholders</option>
-                                </select>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mailing Address -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">8</div>
-                        <div class="step-content">
-                            <h3>Mailing Address</h3>
-                            <p>Specify where you want to receive official mail.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Use Business Address for Mailing?</label>
-                                <select id="mailing-address-type" required>
-                                    <option value="same">Yes, use business address</option>
-                                    <option value="different">No, use different address</option>
-                                </select>
-                            </div>
-                            <div id="different-mailing-address" class="hidden">
-                                <div class="form-group">
-                                    <label>Mailing Street Address</label>
-                                    <input type="text" id="mailing-street" placeholder="Enter mailing street address" />
-                                </div>
-                                <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" id="mailing-city" placeholder="Enter city" />
-                                </div>
-                                <div class="form-group">
-                                    <label>State</label>
-                                    <input type="text" id="mailing-state" placeholder="Enter state" />
-                                </div>
-                                <div class="form-group">
-                                    <label>ZIP Code</label>
-                                    <input type="text" id="mailing-zip" placeholder="Enter ZIP code" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Foreign Status Information -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">9</div>
-                        <div class="step-content">
-                            <h3>Foreign Status Information</h3>
-                            <p>Indicate your citizenship status.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Citizenship Status</label>
-                                <select id="citizenship-status" required>
-                                    <option value="us">U.S. Citizen</option>
-                                    <option value="foreign">Foreign Citizen</option>
-                                </select>
-                            </div>
-                            <div id="foreign-details" class="hidden">
-                                <div class="form-group">
-                                    <label>Country of Citizenship</label>
-                                    <input type="text" id="citizenship-country" placeholder="Enter your country of citizenship" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Visa Type</label>
-                                    <input type="text" id="visa-type" placeholder="Enter your visa type" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Electronic Signature -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">10</div>
-                        <div class="step-content">
-                            <h3>Electronic Signature</h3>
-                            <p>Choose your signature method.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Signature Method</label>
-                                <select id="signature-method" required>
-                                    <option value="electronic">Electronic Signature</option>
-                                    <option value="manual">Manual Signature</option>
-                                </select>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Organization Duration -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">11</div>
-                        <div class="step-content">
-                            <h3>Organization Duration</h3>
-                            <p>Specify how long your corporation will operate.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Duration Type</label>
-                                <select id="duration-type" required>
-                                    <option value="perpetual">Perpetual</option>
-                                    <option value="fixed">Fixed Term</option>
-                                </select>
-                            </div>
-                            <div id="fixed-duration-details" class="hidden">
-                                <div class="form-group">
-                                    <label>End Date</label>
-                                    <input type="date" id="duration-end-date" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bylaws -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">12</div>
-                        <div class="step-content">
-                            <h3>Bylaws</h3>
-                            <p>Choose how to handle your corporation's bylaws.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Bylaws Option</label>
-                                <select id="bylaws-option" required>
-                                    <option value="standard">Use Standard Template</option>
-                                    <option value="custom">Upload Custom Bylaws</option>
-                                </select>
-                            </div>
-                            <div id="custom-bylaws-upload" class="hidden">
-                                <div class="form-group">
-                                    <label>Upload Bylaws</label>
-                                    <input type="file" id="bylaws-file" accept=".pdf,.doc,.docx" />
-                                    <small class="help-text">Upload your custom bylaws (PDF, DOC, or DOCX format)</small>
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Incorporator Information -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">13</div>
-                        <div class="step-content">
-                            <h3>Incorporator Information</h3>
-                            <p>Provide details about the incorporator.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Incorporator Name</label>
-                                <input type="text" id="incorporator-name" placeholder="Enter incorporator's full name" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Incorporator Address</label>
-                                <input type="text" id="incorporator-address" placeholder="Enter incorporator's address" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Incorporator Email</label>
-                                <input type="email" id="incorporator-email" placeholder="Enter incorporator's email" required />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Initial Activities Description (Optional) -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">14</div>
-                        <div class="step-content">
-                            <h3>Initial Activities Description</h3>
-                            <p>Optionally describe your initial business activities.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Initial Activities <span class="optional-badge">Optional</span></label>
-                                <textarea id="initial-activities" placeholder="Describe your planned initial business activities"></textarea>
-                                <small class="help-text">This information can help expedite your filing process</small>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-actions">
-            <button class="save-btn">Save Changes</button>
-            <button class="cancel-btn">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Nonprofit Form -->
-    <div id="nonprofit-form" class="llc-form hidden">
-        <div class="step-badge">STEP 3</div>
-        <h2>Nonprofit Formation Details</h2>
-        
-        <div class="stepper-container">
-            <div class="main-content">
-                <!-- Formation Info -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">1</div>
-                        <div class="step-content">
-                            <h3>Formation Info</h3>
-                            <p>Enter your nonprofit organization's formation details.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>State of Formation</label>
-                                <select id="nonprofit-state" required>
-                                    <option value="AL">Alabama</option>
-                                    <!-- Other states -->
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Entity Type</label>
-                                <input type="text" id="entity-type" value="Nonprofit" readonly />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">2</div>
-                        <div class="step-content">
-                            <h3>Contact Info</h3>
-                            <p>Enter contact information for official communications.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="text" id="contact-name" placeholder="Enter your full name" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="tel" id="contact-phone" placeholder="Enter phone number" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" id="contact-email" placeholder="Enter email address" required />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Agent Info -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">3</div>
-                        <div class="step-content">
-                            <h3>Agent Info</h3>
-                            <p>Choose your registered agent service.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Registered Agent</label>
-                                <select id="agent-type" required>
-                                    <option value="bizee">Bizee Registered Agent Service</option>
-                                    <option value="self">Self</option>
-                                </select>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Company Info (Legal Name) -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">4</div>
-                        <div class="step-content">
-                            <h3>Company Info</h3>
-                            <p>Enter your nonprofit organization's legal name.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Legal Name (First Choice)</label>
-                                <input type="text" id="company-name" placeholder="Enter your first choice organization name" required />
-                                <small class="help-text">This is your preferred legal organization name</small>
-                            </div>
-                            <div class="form-group">
-                                <label>Alternate Name 1</label>
-                                <input type="text" id="company-name-alt1" placeholder="Enter your second choice organization name" />
-                            </div>
-                            <div class="form-group">
-                                <label>Alternate Name 2</label>
-                                <input type="text" id="company-name-alt2" placeholder="Enter your third choice organization name" />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Business Purpose -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">5</div>
-                        <div class="step-content">
-                            <h3>Business Purpose</h3>
-                            <p>Describe your organization's mission and purpose in detail.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Mission Statement</label>
-                                <textarea id="mission-statement" placeholder="Enter your organization's mission statement" required rows="4"></textarea>
-                                <small class="help-text">Clearly state your organization's core mission and values</small>
-                            </div>
-                            <div class="form-group">
-                                <label>Primary Activities</label>
-                                <textarea id="primary-activities" placeholder="Describe the main activities your organization will undertake" required rows="4"></textarea>
-                                <small class="help-text">List specific programs, services, or activities</small>
-                            </div>
-                            <div class="form-group">
-                                <label>Tax-Exempt Purpose Category</label>
-                                <select id="tax-exempt-category" required>
-                                    <option value="">Select a category</option>
-                                    <option value="charitable">Charitable</option>
-                                    <option value="religious">Religious</option>
-                                    <option value="educational">Educational</option>
-                                    <option value="scientific">Scientific</option>
-                                    <option value="literary">Literary</option>
-                                    <option value="public-safety">Public Safety Testing</option>
-                                    <option value="amateur-sports">Amateur Sports</option>
-                                    <option value="cruelty-prevention">Prevention of Cruelty</option>
-                                </select>
-                                <small class="help-text">Select the category that best describes your organization's purpose</small>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Business Address -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">6</div>
-                        <div class="step-content">
-                            <h3>Business Address</h3>
-                            <p>Enter your organization's physical address.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Street Address</label>
-                                <input type="text" id="business-street" placeholder="Enter street address" required />
-                            </div>
-                            <div class="form-group">
-                                <label>City</label>
-                                <input type="text" id="business-city" placeholder="Enter city" required />
-                            </div>
-                            <div class="form-group">
-                                <label>State</label>
-                                <input type="text" id="business-state" placeholder="Enter state" required />
-                            </div>
-                            <div class="form-group">
-                                <label>ZIP Code</label>
-                                <input type="text" id="business-zip" placeholder="Enter ZIP code" required />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Management Structure -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">7</div>
-                        <div class="step-content">
-                            <h3>Management Structure</h3>
-                            <p>Define your organization's management structure.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Board Structure</label>
-                                <select id="board-structure" required>
-                                    <option value="">Select board structure</option>
-                                    <option value="single-tier">Single-Tier Board</option>
-                                    <option value="two-tier">Two-Tier Board</option>
-                                    <option value="advisory">Advisory Board</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Number of Directors</label>
-                                <input type="number" id="director-count" min="3" placeholder="Enter number of directors" required />
-                                <small class="help-text">Minimum 3 directors recommended for most nonprofits</small>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mailing Address -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">8</div>
-                        <div class="step-content">
-                            <h3>Mailing Address</h3>
-                            <p>Specify where you want to receive official mail.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Use Business Address for Mailing?</label>
-                                <select id="mailing-address-type" required>
-                                    <option value="same">Yes, use business address</option>
-                                    <option value="different">No, use different address</option>
-                                </select>
-                            </div>
-                            <div id="different-mailing-address" class="hidden">
-                                <div class="form-group">
-                                    <label>Mailing Street Address</label>
-                                    <input type="text" id="mailing-street" placeholder="Enter mailing street address" />
-                                </div>
-                                <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" id="mailing-city" placeholder="Enter city" />
-                                </div>
-                                <div class="form-group">
-                                    <label>State</label>
-                                    <input type="text" id="mailing-state" placeholder="Enter state" />
-                                </div>
-                                <div class="form-group">
-                                    <label>ZIP Code</label>
-                                    <input type="text" id="mailing-zip" placeholder="Enter ZIP code" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Foreign Status Information -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">9</div>
-                        <div class="step-content">
-                            <h3>Foreign Status Information</h3>
-                            <p>Indicate your citizenship status.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Citizenship Status</label>
-                                <select id="citizenship-status" required>
-                                    <option value="us">U.S. Citizen</option>
-                                    <option value="foreign">Foreign Citizen</option>
-                                </select>
-                            </div>
-                            <div id="foreign-details" class="hidden">
-                                <div class="form-group">
-                                    <label>Country of Citizenship</label>
-                                    <input type="text" id="citizenship-country" placeholder="Enter your country of citizenship" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Visa Type</label>
-                                    <input type="text" id="visa-type" placeholder="Enter your visa type" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Electronic Signature -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">10</div>
-                        <div class="step-content">
-                            <h3>Electronic Signature</h3>
-                            <p>Choose your signature method.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Signature Method</label>
-                                <select id="signature-method" required>
-                                    <option value="electronic">Electronic Signature</option>
-                                    <option value="manual">Manual Signature</option>
-                                </select>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Conflict of Interest Policy -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">11</div>
-                        <div class="step-content">
-                            <h3>Conflict of Interest Policy</h3>
-                            <p>Establish your organization's conflict of interest policy.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Policy Type</label>
-                                <select id="conflict-policy-type" required>
-                                    <option value="">Select policy type</option>
-                                    <option value="standard">Use Standard Template</option>
-                                    <option value="custom">Upload Custom Policy</option>
-                                </select>
-                                <small class="help-text">A conflict of interest policy is required for nonprofit organizations</small>
-                            </div>
-                            <div id="custom-policy-upload" class="hidden">
-                                <div class="form-group">
-                                    <label>Upload Policy Document</label>
-                                    <input type="file" id="policy-file" accept=".pdf,.doc,.docx" required />
-                                    <small class="help-text">Upload your custom conflict of interest policy (PDF, DOC, or DOCX)</small>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Annual Review Process</label>
-                                <textarea id="review-process" placeholder="Describe how your organization will review and update the policy annually" required rows="4"></textarea>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Organization Duration -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">12</div>
-                        <div class="step-content">
-                            <h3>Organization Duration</h3>
-                            <p>Specify how long your organization will operate.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Duration Type</label>
-                                <select id="duration-type" required>
-                                    <option value="perpetual">Perpetual</option>
-                                    <option value="fixed">Fixed Term</option>
-                                </select>
-                            </div>
-                            <div id="fixed-duration-details" class="hidden">
-                                <div class="form-group">
-                                    <label>End Date</label>
-                                    <input type="date" id="duration-end-date" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bylaws -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">13</div>
-                        <div class="step-content">
-                            <h3>Bylaws</h3>
-                            <p>Choose how to handle your organization's bylaws.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Bylaws Option</label>
-                                <select id="bylaws-option" required>
-                                    <option value="standard">Use Standard Template</option>
-                                    <option value="custom">Upload Custom Bylaws</option>
-                                </select>
-                            </div>
-                            <div id="custom-bylaws-upload" class="hidden">
-                                <div class="form-group">
-                                    <label>Upload Bylaws</label>
-                                    <input type="file" id="bylaws-file" accept=".pdf,.doc,.docx" />
-                                    <small class="help-text">Upload your custom bylaws (PDF, DOC, or DOCX format)</small>
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Incorporator Information -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">14</div>
-                        <div class="step-content">
-                            <h3>Incorporator Information</h3>
-                            <p>Provide details about the incorporator.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Incorporator Name</label>
-                                <input type="text" id="incorporator-name" placeholder="Enter incorporator's full name" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Incorporator Address</label>
-                                <input type="text" id="incorporator-address" placeholder="Enter incorporator's address" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Incorporator Email</label>
-                                <input type="email" id="incorporator-email" placeholder="Enter incorporator's email" required />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Initial Activities Description -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">15</div>
-                        <div class="step-content">
-                            <h3>Initial Activities Description</h3>
-                            <p>Describe your organization's planned activities in detail.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Initial Programs and Services</label>
-                                <textarea id="initial-programs" placeholder="Describe the specific programs and services your organization will provide" required rows="4"></textarea>
-                                <small class="help-text">Be specific about your planned activities and their impact</small>
-                            </div>
-                            <div class="form-group">
-                                <label>Implementation Timeline</label>
-                                <textarea id="implementation-timeline" placeholder="Outline the timeline for implementing your programs and services" required rows="4"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Resource Requirements</label>
-                                <textarea id="resource-requirements" placeholder="Describe the resources needed to carry out your activities" required rows="4"></textarea>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Beneficiaries -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">16</div>
-                        <div class="step-content">
-                            <h3>Beneficiaries</h3>
-                            <p>Define who will benefit from your organization's activities.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Primary Beneficiary Groups</label>
-                                <select id="beneficiary-groups" multiple required>
-                                    <option value="children">Children/Youth</option>
-                                    <option value="elderly">Elderly</option>
-                                    <option value="disabled">Disabled Persons</option>
-                                    <option value="low-income">Low-Income Individuals</option>
-                                    <option value="students">Students</option>
-                                    <option value="veterans">Veterans</option>
-                                    <option value="homeless">Homeless</option>
-                                    <option value="general">General Public</option>
-                                    <option value="other">Other</option>
-                                </select>
-                                <small class="help-text">Select all groups that will benefit from your services</small>
-                            </div>
-                            <div class="form-group">
-                                <label>Geographic Scope</label>
-                                <select id="geographic-scope" required>
-                                    <option value="">Select geographic scope</option>
-                                    <option value="local">Local Community</option>
-                                    <option value="regional">Regional</option>
-                                    <option value="national">National</option>
-                                    <option value="international">International</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Beneficiary Description</label>
-                                <textarea id="beneficiary-description" placeholder="Provide a detailed description of how your organization will serve these beneficiaries" required rows="4"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Impact Measurement</label>
-                                <textarea id="impact-measurement" placeholder="Describe how you will measure and track the impact on your beneficiaries" required rows="4"></textarea>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-actions">
-            <button class="save-btn">Save Changes</button>
-            <button class="cancel-btn">Cancel</button>
-        </div>
-    </div>
-
-    <!-- DBA Form -->
-    <div id="dba-form" class="llc-form hidden">
-        <div class="step-badge">STEP 3</div>
-        <h2>DBA (Doing Business As) Registration</h2>
-        
-        <div class="stepper-container">
-            <div class="main-content">
-                <!-- Formation Info -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">1</div>
-                        <div class="step-content">
-                            <h3>Formation Info</h3>
-                            <p>Enter your DBA registration details.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>State of Registration</label>
-                                <select id="dba-state" required>
-                                    <option value="">Select state</option>
-                                    <option value="AL">Alabama</option>
-                                    <!-- Other states -->
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Filing Type</label>
-                                <select id="filing-type" required>
-                                    <option value="">Select filing type</option>
-                                    <option value="individual">Individual DBA</option>
-                                    <option value="business">Business DBA</option>
-                                </select>
-                                <small class="help-text">Select whether you're filing as an individual or an existing business</small>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">2</div>
-                        <div class="step-content">
-                            <h3>Contact Info</h3>
-                            <p>Enter your contact information.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="text" id="contact-name" placeholder="Enter your full name" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="tel" id="contact-phone" placeholder="Enter phone number" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" id="contact-email" placeholder="Enter email address" required />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Company Info (Legal Name) -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">3</div>
-                        <div class="step-content">
-                            <h3>Business Names</h3>
-                            <p>Enter your legal name and desired DBA name.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Legal Name</label>
-                                <input type="text" id="legal-name" placeholder="Enter your current legal name or business name" required />
-                                <small class="help-text">Your current legal name or registered business name</small>
-                            </div>
-                            <div class="form-group">
-                                <label>Desired DBA Name (First Choice)</label>
-                                <input type="text" id="dba-name" placeholder="Enter your desired DBA name" required />
-                                <small class="help-text">The name you want to do business under</small>
-                            </div>
-                            <div class="form-group">
-                                <label>Alternative DBA Name (Optional)</label>
-                                <input type="text" id="dba-name-alt" placeholder="Enter an alternative DBA name" />
-                                <small class="help-text">In case your first choice is not available</small>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Business Purpose -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">4</div>
-                        <div class="step-content">
-                            <h3>Business Purpose</h3>
-                            <p>Describe your business activities.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Business Description</label>
-                                <textarea id="business-description" placeholder="Describe your business activities" required rows="4"></textarea>
-                                <small class="help-text">Briefly describe what your business does or plans to do</small>
-                            </div>
-                            <div class="form-group">
-                                <label>Industry Type</label>
-                                <select id="industry-type" required>
-                                    <option value="">Select industry</option>
-                                    <option value="retail">Retail</option>
-                                    <option value="service">Service</option>
-                                    <option value="restaurant">Restaurant/Food Service</option>
-                                    <option value="construction">Construction</option>
-                                    <option value="technology">Technology</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Business Address -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">5</div>
-                        <div class="step-content">
-                            <h3>Business Address</h3>
-                            <p>Enter your business location.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Street Address</label>
-                                <input type="text" id="business-street" placeholder="Enter street address" required />
-                            </div>
-                            <div class="form-group">
-                                <label>City</label>
-                                <input type="text" id="business-city" placeholder="Enter city" required />
-                            </div>
-                            <div class="form-group">
-                                <label>State</label>
-                                <input type="text" id="business-state" placeholder="Enter state" required />
-                            </div>
-                            <div class="form-group">
-                                <label>ZIP Code</label>
-                                <input type="text" id="business-zip" placeholder="Enter ZIP code" required />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mailing Address -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">6</div>
-                        <div class="step-content">
-                            <h3>Mailing Address</h3>
-                            <p>Specify where you want to receive mail.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Use Business Address for Mailing?</label>
-                                <select id="mailing-address-type" required>
-                                    <option value="same">Yes, use business address</option>
-                                    <option value="different">No, use different address</option>
-                                </select>
-                            </div>
-                            <div id="different-mailing-address" class="hidden">
-                                <div class="form-group">
-                                    <label>Mailing Street Address</label>
-                                    <input type="text" id="mailing-street" placeholder="Enter mailing street address" />
-                                </div>
-                                <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" id="mailing-city" placeholder="Enter city" />
-                                </div>
-                                <div class="form-group">
-                                    <label>State</label>
-                                    <input type="text" id="mailing-state" placeholder="Enter state" />
-                                </div>
-                                <div class="form-group">
-                                    <label>ZIP Code</label>
-                                    <input type="text" id="mailing-zip" placeholder="Enter ZIP code" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Foreign Status Information -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">7</div>
-                        <div class="step-content">
-                            <h3>Foreign Status Information</h3>
-                            <p>Indicate your citizenship status.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Citizenship Status</label>
-                                <select id="citizenship-status" required>
-                                    <option value="us">U.S. Citizen</option>
-                                    <option value="foreign">Foreign Citizen</option>
-                                </select>
-                            </div>
-                            <div id="foreign-details" class="hidden">
-                                <div class="form-group">
-                                    <label>Country of Citizenship</label>
-                                    <input type="text" id="citizenship-country" placeholder="Enter your country of citizenship" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Visa Type</label>
-                                    <input type="text" id="visa-type" placeholder="Enter your visa type" />
-                                </div>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Electronic Signature -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">8</div>
-                        <div class="step-content">
-                            <h3>Electronic Signature</h3>
-                            <p>Sign your DBA registration.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Signature Method</label>
-                                <select id="signature-method" required>
-                                    <option value="electronic">Electronic Signature</option>
-                                    <option value="manual">Manual Signature</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Date</label>
-                                <input type="date" id="signature-date" required />
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Incorporator Information -->
-                <div class="stepper-section">
-                    <div class="stepper-header">
-                        <div class="step-indicator">9</div>
-                        <div class="step-content">
-                            <h3>Incorporator Information</h3>
-                            <p>Provide details about the person filing this DBA.</p>
-                        </div>
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="stepper-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label>Incorporator Name</label>
-                                <input type="text" id="incorporator-name" placeholder="Enter incorporator's full name" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Incorporator Address</label>
-                                <input type="text" id="incorporator-address" placeholder="Enter incorporator's address" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Incorporator Email</label>
-                                <input type="email" id="incorporator-email" placeholder="Enter incorporator's email" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Relationship to Business</label>
-                                <select id="incorporator-relationship" required>
-                                    <option value="">Select relationship</option>
-                                    <option value="owner">Owner</option>
-                                    <option value="officer">Officer</option>
-                                    <option value="authorized-representative">Authorized Representative</option>
-                                </select>
-                            </div>
-                            <div class="step-buttons">
-                                <button class="back-btn">Back</button>
-                                <button class="continue-btn">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-actions">
-            <button class="save-btn">Save Changes</button>
-            <button class="cancel-btn">Cancel</button>
-        </div>
-    </div>
 
     <script src="script.js"></script>
     <script>

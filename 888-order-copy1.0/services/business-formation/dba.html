@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Your DBA Filing Costs</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="service-container">
+        <div class="calculator-container">
+            <div class="step-badge">STEP 2</div>
+            <h2>Calculate Your DBA Filing Costs</h2>
+            <p>Select your services to calculate total filing costs</p>
+
+            <!-- State Selection -->
+            <div class="state-selection">
+                <h3>1. Select State</h3>
+                <select id="state-select">
+                    <option value="">Select your filing state</option>
+                    <option value="CA">California</option>
+                    <option value="NY">New York</option>
+                    <option value="TX">Texas</option>
+                    <option value="FL">Florida</option>
+                    <option value="IL">Illinois</option>
+                </select>
+                <div class="state-info">Standard Processing Time 5-7 business days</div>
+            </div>
+
+            <!-- Package Selection -->
+            <div class="package-selection">
+                <h3>2. Choose Your Package</h3>
+                <div class="package-options">
+                    <!-- Basic Package -->
+                    <div class="package-option">
+                        <h4>Basic</h4>
+                        <div class="price">$0</div>
+                        <div class="state-fee">+ $49 state fee</div>
+                        <div class="processing-time">
+                            <span class="material-icons">schedule</span>
+                            2 Weeks
+                        </div>
+                        <ul class="features">
+                            <li class="included">DBA Name Search</li>
+                            <li class="included">County Filing Preparation</li>
+                            <li class="included">Basic Document Review</li>
+                            <li class="not-included">Publication Service</li>
+                            <li class="not-included">Certified Copy</li>
+                            <li class="not-included">Rush Processing</li>
+                            <li class="not-included">Compliance Alerts</li>
+                            <li class="included">Online Dashboard Access</li>
+                            <li class="included">Digital Document Storage</li>
+                            <li class="not-included">Business Name Protection</li>
+                        </ul>
+                        <div class="additional-options">
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="expedited-filing" value="35">
+                                    <div class="option-content">
+                                        <div class="option-title">Expedited Filing</div>
+                                        <div class="option-description">2-3 business days processing</div>
+                                        <div class="option-price">+ $35</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="certified-copy" value="25">
+                                    <div class="option-content">
+                                        <div class="option-title">Certified Copy</div>
+                                        <div class="option-description">Official stamped copy of your DBA</div>
+                                        <div class="option-price">+ $25</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="publication" value="99">
+                                    <div class="option-content">
+                                        <div class="option-title">Publication Service</div>
+                                        <div class="option-description">Required newspaper publication handling</div>
+                                        <div class="option-price">+ $99</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Standard Package -->
+                    <div class="package-option">
+                        <div class="recommended">Recommended</div>
+                        <h4>Standard</h4>
+                        <div class="price">$99</div>
+                        <div class="state-fee">+ $49 state fee</div>
+                        <div class="processing-time">
+                            <span class="material-icons">schedule</span>
+                            1 Week
+                        </div>
+                        <ul class="features">
+                            <li class="included">Everything in Basic</li>
+                            <li class="included">Publication Service</li>
+                            <li class="included">Certified Copy</li>
+                            <li class="included">Rush Processing</li>
+                            <li class="included">Compliance Alerts</li>
+                            <li class="included">Business Name Protection</li>
+                            <li class="included">Digital Document Delivery</li>
+                        </ul>
+                        <div class="additional-options">
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="expedited-filing" value="35">
+                                    <div class="option-content">
+                                        <div class="option-title">Expedited Filing</div>
+                                        <div class="option-description">2-3 business days processing</div>
+                                        <div class="option-price">+ $35</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="certified-copy" value="25" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Certified Copy</div>
+                                        <div class="option-description">Official stamped copy of your DBA</div>
+                                        <div class="option-price">+ $25</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="publication" value="99" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Publication Service</div>
+                                        <div class="option-description">Required newspaper publication handling</div>
+                                        <div class="option-price">+ $99</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Premium Package -->
+                    <div class="package-option premium">
+                        <h4>Premium</h4>
+                        <div class="price">$199</div>
+                        <div class="state-fee">+ $49 state fee</div>
+                        <div class="processing-time">
+                            <span class="material-icons">schedule</span>
+                            2-3 Days
+                        </div>
+                        <ul class="features">
+                            <li class="included">Everything in Standard</li>
+                            <li class="included">Same-Day Processing</li>
+                            <li class="included">Priority Support</li>
+                            <li class="included">Business Contract Templates</li>
+                            <li class="included">Marketing Materials</li>
+                            <li class="included">Business Website</li>
+                        </ul>
+                        <div class="additional-options">
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="expedited-filing" value="35" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Expedited Filing</div>
+                                        <div class="option-description">2-3 business days processing</div>
+                                        <div class="option-price">+ $35</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="certified-copy" value="25" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Certified Copy</div>
+                                        <div class="option-description">Official stamped copy of your DBA</div>
+                                        <div class="option-price">+ $25</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="publication" value="99" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Publication Service</div>
+                                        <div class="option-description">Required newspaper publication handling</div>
+                                        <div class="option-price">+ $99</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address Selection -->
+            <div class="address-selection">
+                <h3>3. Choose Address Type</h3>
+                <div class="address-options">
+                    <!-- Virtual Address Option -->
+                    <div class="address-option">
+                        <div class="badge">FIRST MONTH FREE</div>
+                        <h4>Professional Business Address & Mail Service</h4>
+                        <div class="address">45 Colvin Ave, Suite 120 Albany, NY 12206</div>
+                        <div class="note">Suite # assigned upon order completion</div>
+                        <ul class="feature-list">
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                Professional business address
+                            </li>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                Mail scanning and forwarding
+                            </li>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                Real street address (not a P.O. Box)
+                            </li>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                24/7 digital mail access
+                            </li>
+                        </ul>
+                        <div class="price-info">
+                            <div class="price-title">First Month Free</div>
+                            <div class="price-subtitle">Then $29/month. Cancel anytime.</div>
+                        </div>
+                    </div>
+
+                    <!-- Own Address Option -->
+                    <div class="address-option own-address">
+                        <h4>Use My Own Address</h4>
+                        <p class="description">I will use my own business address for DBA registration and mail handling.</p>
+                        <ul class="feature-list">
+                            <li class="requirement">
+                                <span class="material-icons">check_circle</span>
+                                Physical street address required
+                            </li>
+                            <li class="requirement">
+                                <span class="material-icons">check_circle</span>
+                                No P.O. Boxes accepted
+                            </li>
+                            <li class="requirement">
+                                <span class="material-icons">check_circle</span>
+                                Address will be public record
+                            </li>
+                        </ul>
+                        <div class="price-info">
+                            <div class="price">$0</div>
+                            <div class="price-subtitle">Use your own address</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <div class="summary-header">
+                    <h3>Order Summary</h3>
+                    <span class="summary-subtitle">Review your selected services</span>
+                </div>
+                <div class="summary-content">
+                    <div class="summary-section">
+                        <div class="summary-item base-package">
+                            <div class="item-details">
+                                <span class="item-name">Base Package</span>
+                                <span class="item-description">Selected DBA filing package</span>
+                            </div>
+                            <span class="package-price">$0</span>
+                        </div>
+                        <div class="summary-item">
+                            <div class="item-details">
+                                <span class="item-name">State Filing Fee</span>
+                                <span class="item-description">Required county registration fee</span>
+                            </div>
+                            <span class="state-fee">$49</span>
+                        </div>
+                    </div>
+
+                    <div class="summary-section additional-services">
+                        <div class="section-title">Additional Services</div>
+                        <div class="summary-item">
+                            <div class="item-details">
+                                <span class="item-name">Expedited Filing</span>
+                                <span class="item-description">2-3 business days processing</span>
+                            </div>
+                            <span class="expedited-fee">$0</span>
+                        </div>
+                        <div class="summary-item">
+                            <div class="item-details">
+                                <span class="item-name">Certified Copy</span>
+                                <span class="item-description">Official stamped copy</span>
+                            </div>
+                            <span class="certified-copy-fee">$0</span>
+                        </div>
+                        <div class="summary-item">
+                            <div class="item-details">
+                                <span class="item-name">Publication Service</span>
+                                <span class="item-description">Newspaper publication handling</span>
+                            </div>
+                            <span class="publication-fee">$0</span>
+                        </div>
+                    </div>
+
+                    <div class="summary-section total-section">
+                        <div class="summary-divider"></div>
+                        <div class="summary-item total">
+                            <div class="item-details">
+                                <span class="item-name">Total Due Today</span>
+                                <span class="item-description">One-time payment</span>
+                            </div>
+                            <span class="total-price">$49</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-footer">
+                    <div class="state-note">
+                        <span class="material-icons">info</span>
+                        <div class="note-content">
+                            <p>Standard processing time in <span class="state-name">California</span> is 5-7 business days.</p>
+                            <p class="note-highlight">Select Expedited Filing to reduce processing time to 2-3 business days.</p>
+                        </div>
+                    </div>
+                    <div class="processing-time">
+                        <span class="material-icons">schedule</span>
+                        <span>Estimated Processing Time: <strong>2 Weeks</strong></span>
+                    </div>
+                    <button class="continue-button">
+                        <span>File Your DBA</span>
+                        <span class="material-icons">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    /* 保持与之前相同的样式 */
+    .order-summary {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        padding: 32px;
+        margin-top: 40px;
+    }
+
+    .summary-header {
+        margin-bottom: 24px;
+    }
+
+    .summary-header h3 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #1a202c;
+        margin: 0 0 8px 0;
+    }
+
+    .summary-subtitle {
+        font-size: 14px;
+        color: #64748b;
+    }
+
+    .summary-section {
+        margin-bottom: 24px;
+    }
+
+    .section-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 16px;
+    }
+
+    .summary-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+    }
+
+    .item-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .item-name {
+        font-size: 15px;
+        font-weight: 500;
+        color: #1a202c;
+        margin-bottom: 4px;
+    }
+
+    .item-description {
+        font-size: 13px;
+        color: #64748b;
+    }
+
+    .summary-item span:last-child {
+        font-size: 15px;
+        font-weight: 600;
+        color: #1a202c;
+    }
+
+    .summary-divider {
+        height: 1px;
+        background: #e2e8f0;
+        margin: 16px 0;
+    }
+
+    .total-section {
+        margin-top: 24px;
+    }
+
+    .summary-item.total {
+        padding: 16px 0;
+    }
+
+    .summary-item.total .item-name {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .summary-item.total .total-price {
+        font-size: 24px;
+        font-weight: 700;
+        color: #2563eb;
+    }
+
+    .summary-footer {
+        margin-top: 32px;
+    }
+
+    .state-note {
+        display: flex;
+        gap: 16px;
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 24px;
+    }
+
+    .state-note .material-icons {
+        color: #3b82f6;
+        font-size: 24px;
+    }
+
+    .note-content p {
+        margin: 0;
+        font-size: 14px;
+        color: #475569;
+        line-height: 1.5;
+    }
+
+    .note-highlight {
+        color: #2563eb !important;
+        margin-top: 4px !important;
+    }
+
+    .processing-time {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        padding: 12px 16px;
+        background: #f8fafc;
+        border-radius: 8px;
+    }
+
+    .processing-time .material-icons {
+        color: #64748b;
+    }
+
+    .processing-time span {
+        font-size: 14px;
+        color: #475569;
+    }
+
+    .processing-time strong {
+        color: #1a202c;
+    }
+
+    .continue-button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 16px 32px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .continue-button:hover {
+        background: #1d4ed8;
+        transform: translateY(-1px);
+    }
+
+    .continue-button:active {
+        transform: translateY(1px);
+    }
+
+    .continue-button .material-icons {
+        font-size: 20px;
+        transition: transform 0.2s ease;
+    }
+
+    .continue-button:hover .material-icons {
+        transform: translateX(4px);
+    }
+
+    @media (max-width: 640px) {
+        .order-summary {
+            padding: 24px;
+            margin-top: 32px;
+        }
+
+        .summary-header h3 {
+            font-size: 20px;
+        }
+
+        .item-name {
+            font-size: 14px;
+        }
+
+        .item-description {
+            font-size: 12px;
+        }
+
+        .summary-item.total .item-name {
+            font-size: 16px;
+        }
+
+        .summary-item.total .total-price {
+            font-size: 20px;
+        }
+
+        .continue-button {
+            padding: 14px 24px;
+            font-size: 15px;
+        }
+    }
+    </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const stateSelect = document.getElementById('state-select');
+        const packageOptions = document.querySelectorAll('.package-option');
+        const additionalOptions = document.querySelectorAll('.additional-option input[type="checkbox"]');
+        const summaryPackage = document.querySelector('.summary-item .package-price');
+        const summaryStateFee = document.querySelector('.summary-item .state-fee');
+        const summaryTotal = document.querySelector('.summary-item .total-price');
+        const processingTime = document.querySelector('.processing-time');
+        const continueButton = document.querySelector('.continue-button');
+        const addressOptions = document.querySelectorAll('.address-option');
+
+        // Update state fee based on state selection
+        stateSelect.addEventListener('change', function() {
+            const stateFees = {
+                'CA': 49,
+                'NY': 120,
+                'TX': 25,
+                'FL': 50,
+                'IL': 45
+            };
+            const fee = stateFees[this.value] || 49;
+            summaryStateFee.textContent = `$${fee}`;
+            
+            // Update state name in note
+            document.querySelector('.state-name').textContent = this.options[this.selectedIndex].text;
+            
+            updateTotal();
+        });
+
+        // Handle package selection
+        packageOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                packageOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                const price = this.querySelector('.price').textContent;
+                summaryPackage.textContent = price;
+                
+                const time = this.querySelector('.processing-time').textContent.trim();
+                processingTime.textContent = `Estimated Processing Time: ${time}`;
+                
+                updateTotal();
+            });
+        });
+
+        // Handle additional options
+        additionalOptions.forEach(option => {
+            option.addEventListener('change', function() {
+                if (!this.disabled) {
+                    updateTotal();
+                }
+            });
+        });
+
+        // Handle address option selection
+        addressOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                addressOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                updateTotal();
+            });
+        });
+
+        // Update total price
+        function updateTotal() {
+            const packagePrice = parseFloat(summaryPackage.textContent.replace('$', '')) || 0;
+            const stateFee = parseFloat(summaryStateFee.textContent.replace('$', '')) || 0;
+            
+            // Update individual fees
+            document.querySelector('.expedited-fee').textContent = '$0';
+            document.querySelector('.certified-copy-fee').textContent = '$0';
+            document.querySelector('.publication-fee').textContent = '$0';
+            
+            let additionalTotal = 0;
+            additionalOptions.forEach(option => {
+                if (option.checked && !option.disabled) {
+                    additionalTotal += parseFloat(option.value);
+                    // Update corresponding fee display
+                    const optionName = option.name;
+                    switch(optionName) {
+                        case 'expedited-filing':
+                            document.querySelector('.expedited-fee').textContent = `$${option.value}`;
+                            break;
+                        case 'certified-copy':
+                            document.querySelector('.certified-copy-fee').textContent = `$${option.value}`;
+                            break;
+                        case 'publication':
+                            document.querySelector('.publication-fee').textContent = `$${option.value}`;
+                            break;
+                    }
+                }
+            });
+            
+            const total = packagePrice + stateFee + additionalTotal;
+            summaryTotal.textContent = `$${total}`;
+        }
+
+        // Handle continue button
+        continueButton.addEventListener('click', function() {
+            if (!stateSelect.value) {
+                alert('Please select a state');
+                return;
+            }
+            
+            const selectedPackage = document.querySelector('.package-option.selected');
+            if (!selectedPackage) {
+                alert('Please select a package');
+                return;
+            }
+            
+            window.location.href = 'dba-details.html';
+        });
+
+        // Initialize
+        updateTotal();
+    });
+    </script>
+</body>
+</html> 

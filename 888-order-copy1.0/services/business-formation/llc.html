@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Your Formation Costs</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="service-container">
+        <div class="calculator-container">
+            <div class="step-badge">STEP 2</div>
+            <h2>Calculate Your Formation Costs</h2>
+            <p>Select your services to calculate total formation costs</p>
+
+            <!-- State Selection -->
+            <div class="state-selection">
+                <h3>1. Select State</h3>
+                <select id="state-select">
+                    <option value="">Select your formation state</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <!-- Add other states -->
+                </select>
+                <div class="state-info">Standard Processing Time 10-15 business days</div>
+            </div>
+
+            <!-- Package Selection -->
+            <div class="package-selection">
+                <h3>2. Choose Your Package</h3>
+                <div class="package-options">
+                    <!-- Basic Package -->
+                    <div class="package-option">
+                        <h4>Basic</h4>
+                        <div class="price">$0</div>
+                        <div class="state-fee">+ $236 state fee</div>
+                        <div class="processing-time">
+                            <span class="material-icons">schedule</span>
+                            3 Weeks
+                        </div>
+                        <ul class="features">
+                            <li class="included">Preparing & Filing the Articles of Organization</li>
+                            <li class="included">FREE 1st Year Registered Agent Service!</li>
+                            <li class="included">FREE 1st Month of Virtual Address Service!</li>
+                            <li class="not-included">Domain Name + Business Email</li>
+                            <li class="not-included">FREE 1st Year Business Phone Number</li>
+                            <li class="not-included">Lifetime Compliance Alerts</li>
+                            <li class="not-included">Unlimited Phone & Email Support</li>
+                            <li class="included">Online Access Dashboard</li>
+                            <li class="included">Business Banking Account Offer</li>
+                            <li class="included">Business Tax Consultation</li>
+                            <li class="not-included">IRS Form 2553</li>
+                        </ul>
+                        <div class="additional-options">
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="expedited-filing" value="50">
+                                    <div class="option-content">
+                                        <div class="option-title">Expedited Filing</div>
+                                        <div class="option-description">1 business day (instead of 3 weeks)</div>
+                                        <div class="option-price">+ $50</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="business-contract" value="150">
+                                    <div class="option-content">
+                                        <div class="option-title">Business Contract Templates</div>
+                                        <div class="option-description">Access to essential business contract templates</div>
+                                        <div class="option-price">+ $150</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="ein" value="70">
+                                    <div class="option-content">
+                                        <div class="option-title">EIN Business Tax Number</div>
+                                        <div class="option-description">Federal Tax ID registration with the IRS</div>
+                                        <div class="option-price">+ $70</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="corporate-bylaws" value="30">
+                                    <div class="option-content">
+                                        <div class="option-title">Corporate Bylaws</div>
+                                        <div class="option-description">Customized corporate bylaws document</div>
+                                        <div class="option-price">+ $30</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Standard Package -->
+                    <div class="package-option">
+                        <div class="recommended">Recommended</div>
+                        <h4>Standard</h4>
+                        <div class="price">$199</div>
+                        <div class="state-fee">+ $236 state fee</div>
+                        <div class="processing-time">
+                            <span class="material-icons">schedule</span>
+                            3 Weeks
+                        </div>
+                        <ul class="features">
+                            <li class="included">Preparing & Filing the Articles of Organization</li>
+                            <li class="included">FREE 1st Year Registered Agent Service!</li>
+                            <li class="included">FREE 1st Month of Virtual Address Service!</li>
+                            <li class="included">Domain Name + Business Email</li>
+                            <li class="included">FREE 1st Year Business Phone Number</li>
+                            <li class="included">Lifetime Compliance Alerts</li>
+                            <li class="included">Unlimited Phone & Email Support</li>
+                            <li class="included">Online Access Dashboard</li>
+                            <li class="included">Business Banking Account Offer</li>
+                            <li class="included">Business Tax Consultation</li>
+                            <li class="included">IRS Form 2553</li>
+                        </ul>
+                        <div class="additional-options">
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="expedited-filing" value="50">
+                                    <div class="option-content">
+                                        <div class="option-title">Expedited Filing</div>
+                                        <div class="option-description">1 business day (instead of 3 weeks)</div>
+                                        <div class="option-price">+ $50</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="business-contract" value="150">
+                                    <div class="option-content">
+                                        <div class="option-title">Business Contract Templates</div>
+                                        <div class="option-description">Access to essential business contract templates</div>
+                                        <div class="option-price">+ $150</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="ein" value="70" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">EIN Business Tax Number</div>
+                                        <div class="option-description">Federal Tax ID registration with the IRS</div>
+                                        <div class="option-price">+ $70</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="corporate-bylaws" value="30" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Corporate Bylaws</div>
+                                        <div class="option-description">Customized corporate bylaws document</div>
+                                        <div class="option-price">+ $30</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Premium Package -->
+                    <div class="package-option premium">
+                        <h4>Premium</h4>
+                        <div class="price">$299</div>
+                        <div class="state-fee">+ $236 state fee</div>
+                        <div class="processing-time">
+                            <span class="material-icons">schedule</span>
+                            1 Day
+                        </div>
+                        <ul class="features">
+                            <li class="included">Preparing & Filing the Articles of Organization</li>
+                            <li class="included">FREE 1st Year Registered Agent Service!</li>
+                            <li class="included">FREE 1st Month of Virtual Address Service!</li>
+                            <li class="included">Domain Name + Business Email</li>
+                            <li class="included">FREE 1st Year Business Phone Number</li>
+                            <li class="included">Lifetime Compliance Alerts</li>
+                            <li class="included">Unlimited Phone & Email Support</li>
+                            <li class="included">Online Access Dashboard</li>
+                            <li class="included">Business Banking Account Offer</li>
+                            <li class="included">Business Tax Consultation</li>
+                            <li class="included">IRS Form 2553</li>
+                        </ul>
+                        <div class="additional-options">
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="expedited-filing" value="50" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Expedited Filing</div>
+                                        <div class="option-description">1 business day (instead of 3 weeks)</div>
+                                        <div class="option-price">+ $50</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="business-contract" value="150" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Business Contract Templates</div>
+                                        <div class="option-description">Access to essential business contract templates</div>
+                                        <div class="option-price">+ $150</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="ein" value="70" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">EIN Business Tax Number</div>
+                                        <div class="option-description">Federal Tax ID registration with the IRS</div>
+                                        <div class="option-price">+ $70</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="corporate-bylaws" value="30" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Corporate Bylaws</div>
+                                        <div class="option-description">Customized corporate bylaws document</div>
+                                        <div class="option-price">+ $30</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address Selection -->
+            <div class="address-selection">
+                <h3>3. Choose Address Type</h3>
+                <div class="address-options">
+                    <div class="address-option">
+                        <div class="badge">FIRST MONTH FREE</div>
+                        <h4>Professional Business Address & Virtual Mail Service</h4>
+                        <div class="address">45 Colvin Ave, Suite 120 Albany, NY 12206</div>
+                        <div class="note">Suite # assigned upon order completion</div>
+                        <ul>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                Maintain privacy by using a commercial address
+                            </li>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                Unlimited scanned incoming mail
+                            </li>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                A physical address for your business (not PO Box)
+                            </li>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                Instant alerts with 24/7 access to your mail online
+                            </li>
+                        </ul>
+                        <div class="price">First Month Free</div>
+                        <div class="price-note">Then $29/month. Cancel anytime.</div>
+                    </div>
+
+                    <div class="address-option">
+                        <h4>Use My Own Address</h4>
+                        <p>I will provide my own business address and will personally keep up with the incoming mail.</p>
+                        <ul>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                Physical street address required
+                            </li>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                PO Boxes are not accepted
+                            </li>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                Address will be listed publicly
+                            </li>
+                        </ul>
+                        <div class="price">$0</div>
+                        <div class="price-note">Use your own address</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-item">
+                    <span>Base Package</span>
+                    <span>$199</span>
+                </div>
+                <div class="summary-item">
+                    <span>State Filing Fee</span>
+                    <span>$0</span>
+                </div>
+                <div class="summary-item">
+                    <span>Expedited Filing</span>
+                    <span>$0</span>
+                </div>
+                <div class="summary-item">
+                    <span>Business Contract Templates</span>
+                    <span>$0</span>
+                </div>
+                <div class="summary-item">
+                    <span>EIN Business Tax Number</span>
+                    <span>$0</span>
+                </div>
+                <div class="summary-item">
+                    <span>Corporate Bylaws</span>
+                    <span>$0</span>
+                </div>
+                <div class="total-price">
+                    <span>Total</span>
+                    <span>$199</span>
+                </div>
+
+                <div class="processing-note">
+                    <span class="material-icons">info</span>
+                    <p>Standard processing time in Alabama is 3-5 business days. Select Expedited Filing to reduce processing time to 1-2 business days.</p>
+                </div>
+
+                <button class="submit-button">Start an LLC</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/calculator.js"></script>
+</body>
+</html> 

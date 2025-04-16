@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBA Registration Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="service-container">
+        <div class="form-container">
+            <div class="step-badge">STEP 3</div>
+            <h2>DBA Registration Details</h2>
+
+            <!-- Formation Info -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="1">
+                    <div>
+                        <h3>Formation Info</h3>
+                        <p>Enter your DBA registration details</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">State of Registration</label>
+                        <select class="form-select" required>
+                            <option value="">Select state</option>
+                            <option value="CA">California</option>
+                            <option value="NY">New York</option>
+                            <option value="TX">Texas</option>
+                            <option value="FL">Florida</option>
+                            <option value="IL">Illinois</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Entity Type</label>
+                        <select class="form-select" required>
+                            <option value="">Select entity type</option>
+                            <option value="sole">Sole Proprietorship</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="llc">LLC</option>
+                            <option value="corporation">Corporation</option>
+                        </select>
+                        <div class="form-hint">Select the type of business entity that will use the DBA name</div>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back" disabled>Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="2">
+                    <div>
+                        <h3>Contact Info</h3>
+                        <p>Enter contact information for official communications</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" placeholder="Enter your full legal name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input" placeholder="Enter your phone number (e.g., 555-555-5555)" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Info -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="3">
+                    <div>
+                        <h3>Company Info</h3>
+                        <p>Enter your business information</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">DBA Name (First Choice)</label>
+                        <input type="text" class="form-input" placeholder="Enter your first choice DBA name" required>
+                        <div class="form-hint">This is the name you will do business under</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Alternate Name 1</label>
+                        <input type="text" class="form-input" placeholder="Enter alternate DBA name">
+                        <div class="form-hint">Used if first choice is unavailable</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Alternate Name 2</label>
+                        <input type="text" class="form-input" placeholder="Enter second alternate name">
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Purpose -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="4">
+                    <div>
+                        <h3>Business Purpose</h3>
+                        <p>Describe your business activities</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Business Description</label>
+                        <textarea class="form-textarea" placeholder="Describe your business activities" required></textarea>
+                        <div class="form-hint">Provide a clear description of your business activities</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Business Type</label>
+                        <select class="form-select" required>
+                            <option value="">Select business type</option>
+                            <option value="retail">Retail</option>
+                            <option value="service">Service</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="wholesale">Wholesale</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Address -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="5">
+                    <div>
+                        <h3>Business Address</h3>
+                        <p>Enter your business address</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Street Address</label>
+                        <input type="text" class="form-input" placeholder="Enter street address" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-input" placeholder="Enter city" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <select class="form-select" required>
+                            <option value="">Select state</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">ZIP Code</label>
+                        <input type="text" class="form-input" placeholder="Enter ZIP code" required pattern="[0-9]{5}(-[0-9]{4})?">
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mailing Address -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="6">
+                    <div>
+                        <h3>Mailing Address</h3>
+                        <p>Specify where you want to receive mail</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Mailing Address Type</label>
+                        <select class="form-select" required>
+                            <option value="">Select type</option>
+                            <option value="same">Same as Business Address</option>
+                            <option value="different">Different Address</option>
+                        </select>
+                    </div>
+                    <div id="mailing-address-fields" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Street Address</label>
+                            <input type="text" class="form-input" placeholder="Enter street address">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">City</label>
+                            <input type="text" class="form-input" placeholder="Enter city">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">State</label>
+                            <select class="form-select">
+                                <option value="">Select state</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">ZIP Code</label>
+                            <input type="text" class="form-input" placeholder="Enter ZIP code" pattern="[0-9]{5}(-[0-9]{4})?">
+                        </div>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Foreign Status Information -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="7">
+                    <div>
+                        <h3>Foreign Status Information</h3>
+                        <p>Indicate your citizenship status</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Citizenship Status</label>
+                        <select class="form-select" required>
+                            <option value="">Select status</option>
+                            <option value="us">US Citizen</option>
+                            <option value="foreign">Foreign National</option>
+                        </select>
+                    </div>
+                    <div id="foreign-info" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Country of Citizenship</label>
+                            <input type="text" class="form-input" placeholder="Enter your country of citizenship">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Visa Type</label>
+                            <input type="text" class="form-input" placeholder="Enter your visa type">
+                        </div>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bylaws -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="8">
+                    <div>
+                        <h3>Bylaws</h3>
+                        <p>Choose your bylaws option</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label class="form-label">Bylaws Option</label>
+                        <select class="form-select" required>
+                            <option value="">Select option</option>
+                            <option value="standard">Use Standard Template</option>
+                            <option value="custom">Use Custom Bylaws</option>
+                        </select>
+                        <div class="form-hint">Choose between our standard template or upload your own bylaws</div>
+                    </div>
+                    <div id="bylaws-upload" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Upload Custom Bylaws</label>
+                            <input type="file" class="form-input" accept=".pdf,.doc,.docx">
+                        </div>
+                    </div>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Beneficiaries -->
+            <div class="form-panel">
+                <div class="panel-header" data-step="9">
+                    <div>
+                        <h3>Beneficiaries</h3>
+                        <p>Enter information about your business beneficiaries</p>
+                    </div>
+                    <button class="toggle-button">
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <div class="beneficiary-list">
+                        <div class="beneficiary-item">
+                            <div class="form-group">
+                                <label class="form-label">Beneficiary Name</label>
+                                <input type="text" class="form-input" placeholder="Enter beneficiary's full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-input" placeholder="Enter beneficiary's address" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Relationship</label>
+                                <input type="text" class="form-input" placeholder="Enter relationship to business" required>
+                            </div>
+                            <button type="button" class="remove-beneficiary">
+                                <span class="material-icons">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-beneficiary-button">
+                        <span class="material-icons">add</span>
+                        Add Beneficiary
+                    </button>
+                    <div class="panel-navigation">
+                        <button type="button" class="panel-back">Back</button>
+                        <button type="button" class="panel-continue">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Navigation -->
+            <div class="form-navigation">
+                <button type="button" class="cancel-button">Back</button>
+                <button type="button" class="save-button">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const formPanels = document.querySelectorAll('.form-panel');
+            let currentStep = 0;
+
+            // Initialize panels
+            formPanels.forEach((panel, index) => {
+                const header = panel.querySelector('.panel-header');
+                const content = panel.querySelector('.panel-content');
+                const toggleButton = panel.querySelector('.toggle-button');
+
+                // Initially collapse all panels except the first one
+                if (index === 0) {
+                    panel.classList.add('expanded');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    toggleButton.querySelector('.material-icons').textContent = 'expand_less';
+                } else {
+                    content.style.maxHeight = '0px';
+                }
+
+                // Add click event to panel headers
+                header.addEventListener('click', () => {
+                    const isExpanded = panel.classList.contains('expanded');
+                    
+                    if (index <= currentStep) {
+                        // Collapse all other panels
+                        formPanels.forEach(p => {
+                            const pContent = p.querySelector('.panel-content');
+                            const pToggle = p.querySelector('.toggle-button .material-icons');
+                            if (p !== panel) {
+                                p.classList.remove('expanded');
+                                pContent.style.maxHeight = '0px';
+                                pToggle.textContent = 'expand_more';
+                            }
+                        });
+
+                        // Toggle current panel
+                        if (isExpanded) {
+                            panel.classList.remove('expanded');
+                            content.style.maxHeight = '0px';
+                            toggleButton.querySelector('.material-icons').textContent = 'expand_more';
+                        } else {
+                            panel.classList.add('expanded');
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                            toggleButton.querySelector('.material-icons').textContent = 'expand_less';
+                        }
+                    }
+                });
+
+                // Handle continue button
+                const continueButton = panel.querySelector('.panel-continue');
+                if (continueButton) {
+                    continueButton.addEventListener('click', () => {
+                        const requiredFields = content.querySelectorAll('[required]');
+                        let isValid = true;
+
+                        requiredFields.forEach(field => {
+                            if (!field.value) {
+                                isValid = false;
+                                field.classList.add('input-error');
+                            } else {
+                                field.classList.remove('input-error');
+                            }
+                        });
+
+                        if (isValid) {
+                            // Mark current panel as completed
+                            panel.classList.add('completed');
+                            header.classList.add('completed');
+                            
+                            // Collapse current panel
+                            panel.classList.remove('expanded');
+                            content.style.maxHeight = '0px';
+                            toggleButton.querySelector('.material-icons').textContent = 'expand_more';
+
+                            // Move to and expand next panel if available
+                            if (index < formPanels.length - 1) {
+                                currentStep = index + 1;
+                                const nextPanel = formPanels[currentStep];
+                                const nextContent = nextPanel.querySelector('.panel-content');
+                                const nextToggle = nextPanel.querySelector('.toggle-button .material-icons');
+                                
+                                nextPanel.classList.add('expanded');
+                                nextContent.style.maxHeight = nextContent.scrollHeight + 'px';
+                                nextToggle.textContent = 'expand_less';
+                                
+                                // Scroll to next panel
+                                nextPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        } else {
+                            alert('Please fill in all required fields.');
+                        }
+                    });
+                }
+
+                // Handle back button
+                const backButton = panel.querySelector('.panel-back');
+                if (backButton) {
+                    backButton.addEventListener('click', () => {
+                        if (index > 0) {
+                            // Collapse current panel
+                            panel.classList.remove('expanded');
+                            content.style.maxHeight = '0px';
+                            toggleButton.querySelector('.material-icons').textContent = 'expand_more';
+
+                            // Expand previous panel
+                            currentStep = index - 1;
+                            const prevPanel = formPanels[currentStep];
+                            const prevContent = prevPanel.querySelector('.panel-content');
+                            const prevToggle = prevPanel.querySelector('.toggle-button .material-icons');
+                            
+                            prevPanel.classList.add('expanded');
+                            prevContent.style.maxHeight = prevContent.scrollHeight + 'px';
+                            prevToggle.textContent = 'expand_less';
+                            
+                            // Scroll to previous panel
+                            prevPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                }
+            });
+
+            // Handle dynamic content changes
+            function updatePanelHeight(panel) {
+                if (panel.classList.contains('expanded')) {
+                    const content = panel.querySelector('.panel-content');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            }
+
+            // Beneficiary management
+            const beneficiaryList = document.querySelector('.beneficiary-list');
+            const addBeneficiaryButton = document.querySelector('.add-beneficiary-button');
+
+            if (addBeneficiaryButton) {
+                addBeneficiaryButton.addEventListener('click', () => {
+                    const beneficiaryItem = beneficiaryList.querySelector('.beneficiary-item').cloneNode(true);
+                    
+                    // Clear input values
+                    beneficiaryItem.querySelectorAll('input').forEach(input => input.value = '');
+                    
+                    // Add remove button functionality
+                    const removeButton = beneficiaryItem.querySelector('.remove-beneficiary');
+                    removeButton.addEventListener('click', () => {
+                        if (beneficiaryList.children.length > 1) {
+                            beneficiaryItem.remove();
+                            updatePanelHeight(beneficiaryList.closest('.form-panel'));
+                        }
+                    });
+                    
+                    beneficiaryList.appendChild(beneficiaryItem);
+                    updatePanelHeight(beneficiaryList.closest('.form-panel'));
+                });
+            }
+
+            // Initialize remove functionality for initial beneficiary
+            const initialBeneficiaryRemoveButton = beneficiaryList?.querySelector('.remove-beneficiary');
+            if (initialBeneficiaryRemoveButton) {
+                initialBeneficiaryRemoveButton.addEventListener('click', () => {
+                    if (beneficiaryList.children.length > 1) {
+                        initialBeneficiaryRemoveButton.closest('.beneficiary-item').remove();
+                        updatePanelHeight(beneficiaryList.closest('.form-panel'));
+                    }
+                });
+            }
+
+            // Handle conditional form fields
+            document.querySelectorAll('select').forEach(select => {
+                select.addEventListener('change', function() {
+                    const panel = this.closest('.form-panel');
+                    const conditionalFields = {
+                        'mailing-address-fields': ['different'],
+                        'foreign-info': ['foreign'],
+                        'bylaws-upload': ['custom']
+                    };
+                    
+                    Object.entries(conditionalFields).forEach(([fieldId, triggerValues]) => {
+                        const field = panel.querySelector(`#${fieldId}`);
+                        if (field) {
+                            field.style.display = triggerValues.includes(this.value) ? 'block' : 'none';
+                            updatePanelHeight(panel);
+                        }
+                    });
+                });
+            });
+
+            // Populate US states
+            const stateSelects = document.querySelectorAll('select.form-select');
+            const states = [
+                { value: 'AL', text: 'Alabama' },
+                { value: 'AK', text: 'Alaska' },
+                // ... add all US states ...
+                { value: 'WY', text: 'Wyoming' }
+            ];
+
+            stateSelects.forEach(select => {
+                if (select.querySelector('option[value="AL"]')) {
+                    states.forEach(state => {
+                        const option = document.createElement('option');
+                        option.value = state.value;
+                        option.textContent = state.text;
+                        select.appendChild(option);
+                    });
+                }
+            });
+
+            // Form navigation
+            const cancelButton = document.querySelector('.cancel-button');
+            const saveButton = document.querySelector('.save-button');
+
+            if (cancelButton) {
+                cancelButton.addEventListener('click', () => {
+                    if (confirm('Are you sure you want to go back? Your progress will be saved.')) {
+                        window.history.back();
+                    }
+                });
+            }
+
+            if (saveButton) {
+                saveButton.addEventListener('click', () => {
+                    const form = document.querySelector('.form-container');
+                    const requiredFields = form.querySelectorAll('[required]');
+                    let isValid = true;
+
+                    requiredFields.forEach(field => {
+                        if (!field.value) {
+                            isValid = false;
+                            field.classList.add('input-error');
+                        } else {
+                            field.classList.remove('input-error');
+                        }
+                    });
+
+                    if (isValid) {
+                        window.location.href = 'review.html';
+                    } else {
+                        alert('Please fill in all required fields.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

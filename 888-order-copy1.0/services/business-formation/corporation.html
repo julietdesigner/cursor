@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Your Corporation Formation Costs</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="service-container">
+        <div class="calculator-container">
+            <div class="step-badge">STEP 2</div>
+            <h2>Calculate Your Corporation Formation Costs</h2>
+            <p>Select your services to calculate total formation costs</p>
+
+            <!-- State Selection -->
+            <div class="state-selection">
+                <h3>1. Select State</h3>
+                <select id="state-select">
+                    <option value="">Select your formation state</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <!-- Add other states -->
+                </select>
+                <div class="state-info">Standard Processing Time 10-15 business days</div>
+            </div>
+
+            <!-- Package Selection -->
+            <div class="package-selection">
+                <h3>2. Choose Your Package</h3>
+                <div class="package-options">
+                    <!-- Basic Package -->
+                    <div class="package-option">
+                        <h4>Basic</h4>
+                        <div class="price">$0</div>
+                        <div class="state-fee">+ $236 state fee</div>
+                        <div class="processing-time">
+                            <span class="material-icons">schedule</span>
+                            3 Weeks
+                        </div>
+                        <ul class="features">
+                            <li class="included">Preparing & Filing the Articles of Incorporation</li>
+                            <li class="included">FREE 1st Year Registered Agent Service!</li>
+                            <li class="included">FREE 1st Month of Virtual Address Service!</li>
+                            <li class="not-included">Domain Name + Business Email</li>
+                            <li class="not-included">FREE 1st Year Business Phone Number</li>
+                            <li class="not-included">Lifetime Compliance Alerts</li>
+                            <li class="not-included">Unlimited Phone & Email Support</li>
+                            <li class="included">Online Access Dashboard</li>
+                            <li class="included">Business Banking Account Offer</li>
+                            <li class="included">Business Tax Consultation</li>
+                            <li class="not-included">IRS Form 2553</li>
+                        </ul>
+                        <div class="additional-options">
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="expedited-filing" value="50">
+                                    <div class="option-content">
+                                        <div class="option-title">Expedited Filing</div>
+                                        <div class="option-description">1 business day (instead of 3 weeks)</div>
+                                        <div class="option-price">+ $50</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="business-contract" value="150">
+                                    <div class="option-content">
+                                        <div class="option-title">Business Contract Templates</div>
+                                        <div class="option-description">Access to essential business contract templates</div>
+                                        <div class="option-price">+ $150</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="ein" value="70">
+                                    <div class="option-content">
+                                        <div class="option-title">EIN Business Tax Number</div>
+                                        <div class="option-description">Federal Tax ID registration with the IRS</div>
+                                        <div class="option-price">+ $70</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="corporate-bylaws" value="30">
+                                    <div class="option-content">
+                                        <div class="option-title">Corporate Bylaws</div>
+                                        <div class="option-description">Customized corporate bylaws document</div>
+                                        <div class="option-price">+ $30</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Standard Package -->
+                    <div class="package-option">
+                        <div class="recommended">Recommended</div>
+                        <h4>Standard</h4>
+                        <div class="price">$199</div>
+                        <div class="state-fee">+ $236 state fee</div>
+                        <div class="processing-time">
+                            <span class="material-icons">schedule</span>
+                            3 Weeks
+                        </div>
+                        <ul class="features">
+                            <li class="included">Preparing & Filing the Articles of Incorporation</li>
+                            <li class="included">FREE 1st Year Registered Agent Service!</li>
+                            <li class="included">FREE 1st Month of Virtual Address Service!</li>
+                            <li class="included">Domain Name + Business Email</li>
+                            <li class="included">FREE 1st Year Business Phone Number</li>
+                            <li class="included">Lifetime Compliance Alerts</li>
+                            <li class="included">Unlimited Phone & Email Support</li>
+                            <li class="included">Online Access Dashboard</li>
+                            <li class="included">Business Banking Account Offer</li>
+                            <li class="included">Business Tax Consultation</li>
+                            <li class="included">IRS Form 2553</li>
+                        </ul>
+                        <div class="additional-options">
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="expedited-filing" value="50">
+                                    <div class="option-content">
+                                        <div class="option-title">Expedited Filing</div>
+                                        <div class="option-description">1 business day (instead of 3 weeks)</div>
+                                        <div class="option-price">+ $50</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option">
+                                <label>
+                                    <input type="checkbox" name="business-contract" value="150">
+                                    <div class="option-content">
+                                        <div class="option-title">Business Contract Templates</div>
+                                        <div class="option-description">Access to essential business contract templates</div>
+                                        <div class="option-price">+ $150</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="ein" value="70" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">EIN Business Tax Number</div>
+                                        <div class="option-description">Federal Tax ID registration with the IRS</div>
+                                        <div class="option-price">+ $70</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="corporate-bylaws" value="30" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Corporate Bylaws</div>
+                                        <div class="option-description">Customized corporate bylaws document</div>
+                                        <div class="option-price">+ $30</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Premium Package -->
+                    <div class="package-option premium">
+                        <h4>Premium</h4>
+                        <div class="price">$299</div>
+                        <div class="state-fee">+ $236 state fee</div>
+                        <div class="processing-time">
+                            <span class="material-icons">schedule</span>
+                            1 Day
+                        </div>
+                        <ul class="features">
+                            <li class="included">Preparing & Filing the Articles of Incorporation</li>
+                            <li class="included">FREE 1st Year Registered Agent Service!</li>
+                            <li class="included">FREE 1st Month of Virtual Address Service!</li>
+                            <li class="included">Domain Name + Business Email</li>
+                            <li class="included">FREE 1st Year Business Phone Number</li>
+                            <li class="included">Lifetime Compliance Alerts</li>
+                            <li class="included">Unlimited Phone & Email Support</li>
+                            <li class="included">Online Access Dashboard</li>
+                            <li class="included">Business Banking Account Offer</li>
+                            <li class="included">Business Tax Consultation</li>
+                            <li class="included">IRS Form 2553</li>
+                        </ul>
+                        <div class="additional-options">
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="expedited-filing" value="50" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Expedited Filing</div>
+                                        <div class="option-description">1 business day (instead of 3 weeks)</div>
+                                        <div class="option-price">+ $50</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="business-contract" value="150" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Business Contract Templates</div>
+                                        <div class="option-description">Access to essential business contract templates</div>
+                                        <div class="option-price">+ $150</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="ein" value="70" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">EIN Business Tax Number</div>
+                                        <div class="option-description">Federal Tax ID registration with the IRS</div>
+                                        <div class="option-price">+ $70</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="additional-option disabled">
+                                <label>
+                                    <input type="checkbox" name="corporate-bylaws" value="30" checked disabled>
+                                    <div class="option-content">
+                                        <div class="option-title">Corporate Bylaws</div>
+                                        <div class="option-description">Customized corporate bylaws document</div>
+                                        <div class="option-price">+ $30</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address Selection -->
+            <div class="address-selection">
+                <h3>3. Choose Address Type</h3>
+                <div class="address-options">
+                    <!-- Virtual Address Option -->
+                    <div class="address-option">
+                        <div class="badge">FIRST MONTH FREE</div>
+                        <h4>Professional Business Address & Virtual Mail Service</h4>
+                        <div class="address">45 Colvin Ave, Suite 120 Albany, NY 12206</div>
+                        <div class="note">Suite # assigned upon order completion</div>
+                        <ul class="feature-list">
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                Maintain privacy by using a commercial address
+                            </li>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                Unlimited scanned incoming mail
+                            </li>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                A physical address for your business (not PO Box)
+                            </li>
+                            <li class="included">
+                                <span class="material-icons">check</span>
+                                Instant alerts with 24/7 access to your mail online
+                            </li>
+                        </ul>
+                        <div class="price-info">
+                            <div class="price-title">First Month Free</div>
+                            <div class="price-subtitle">Then $29/month. Cancel anytime.</div>
+                        </div>
+                    </div>
+
+                    <!-- Own Address Option -->
+                    <div class="address-option own-address">
+                        <h4>Use My Own Address</h4>
+                        <p class="description">I will provide my own business address and will personally keep up with the incoming mail.</p>
+                        <ul class="feature-list">
+                            <li class="requirement">
+                                <span class="material-icons">check_circle</span>
+                                Physical street address required
+                            </li>
+                            <li class="requirement">
+                                <span class="material-icons">check_circle</span>
+                                PO Boxes are not accepted
+                            </li>
+                            <li class="requirement">
+                                <span class="material-icons">check_circle</span>
+                                Address will be listed publicly
+                            </li>
+                        </ul>
+                        <div class="price-info">
+                            <div class="price">$0</div>
+                            <div class="price-subtitle">Use your own address</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-content">
+                    <div class="summary-item base-package">
+                        <span>Base Package</span>
+                        <span class="package-price">$0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>State Filing Fee</span>
+                        <span class="state-fee">$236</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Expedited Filing</span>
+                        <span class="expedited-fee">$0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Business Contract Templates</span>
+                        <span class="contract-fee">$0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>EIN Business Tax Number</span>
+                        <span class="ein-fee">$0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Corporate Bylaws</span>
+                        <span class="bylaws-fee">$0</span>
+                    </div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-item total">
+                        <span>Total</span>
+                        <span class="total-price">$236</span>
+                    </div>
+                </div>
+                <div class="state-note">
+                    <span class="material-icons">info</span>
+                    <p>Standard processing time in <span class="state-name">Alabama</span> is 3-5 business days. Select Expedited Filing to reduce processing time to 1-2 business days.</p>
+                </div>
+                <div class="processing-time">
+                    <span class="material-icons">schedule</span>
+                    <span>Estimated Processing Time: <strong>3 Weeks</strong></span>
+                </div>
+                <button class="continue-button">
+                    <span>Start Your Corporation</span>
+                    <span class="material-icons">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stateSelect = document.getElementById('state-select');
+            const packageOptions = document.querySelectorAll('.package-option');
+            const additionalOptions = document.querySelectorAll('.additional-option input[type="checkbox"]');
+            const summaryPackage = document.querySelector('.summary-item .package-price');
+            const summaryStateFee = document.querySelector('.summary-item .state-fee');
+            const summaryTotal = document.querySelector('.summary-item .total-price');
+            const processingTime = document.querySelector('.processing-time');
+            const continueButton = document.querySelector('.continue-button');
+
+            // Update state fee based on state selection
+            stateSelect.addEventListener('change', function() {
+                const stateFees = {
+                    'AL': 236,
+                    'AK': 250,
+                    // Add other state fees
+                };
+                const fee = stateFees[this.value] || 236;
+                summaryStateFee.textContent = `$${fee}`;
+                updateTotal();
+            });
+
+            // Handle package selection
+            packageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    packageOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    const price = this.querySelector('.price').textContent;
+                    summaryPackage.textContent = price;
+                    
+                    const time = this.querySelector('.processing-time').textContent.trim();
+                    processingTime.textContent = `Estimated Processing Time: ${time}`;
+                    
+                    updateTotal();
+                });
+            });
+
+            // Handle additional options
+            additionalOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    if (!this.disabled) {
+                        updateTotal();
+                    }
+                });
+            });
+
+            // Handle address option selection
+            const addressOptions = document.querySelectorAll('.address-option');
+            addressOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    addressOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    // Update order summary if needed
+                    updateTotal();
+                });
+            });
+
+            // Update total price
+            function updateTotal() {
+                const packagePrice = parseFloat(summaryPackage.textContent.replace('$', '')) || 0;
+                const stateFee = parseFloat(summaryStateFee.textContent.replace('$', '')) || 0;
+                
+                // Update individual fees
+                document.querySelector('.expedited-fee').textContent = '$0';
+                document.querySelector('.contract-fee').textContent = '$0';
+                document.querySelector('.ein-fee').textContent = '$0';
+                document.querySelector('.bylaws-fee').textContent = '$0';
+                
+                let additionalTotal = 0;
+                additionalOptions.forEach(option => {
+                    if (option.checked && !option.disabled) {
+                        additionalTotal += parseFloat(option.value);
+                        // Update corresponding fee display
+                        const optionName = option.name;
+                        switch(optionName) {
+                            case 'expedited-filing':
+                                document.querySelector('.expedited-fee').textContent = `$${option.value}`;
+                                break;
+                            case 'business-contract':
+                                document.querySelector('.contract-fee').textContent = `$${option.value}`;
+                                break;
+                            case 'ein':
+                                document.querySelector('.ein-fee').textContent = `$${option.value}`;
+                                break;
+                            case 'corporate-bylaws':
+                                document.querySelector('.bylaws-fee').textContent = `$${option.value}`;
+                                break;
+                        }
+                    }
+                });
+                
+                const total = packagePrice + stateFee + additionalTotal;
+                summaryTotal.textContent = `$${total}`;
+            }
+
+            // Handle continue button
+            continueButton.addEventListener('click', function() {
+                if (!stateSelect.value) {
+                    alert('Please select a state');
+                    return;
+                }
+                
+                const selectedPackage = document.querySelector('.package-option.selected');
+                if (!selectedPackage) {
+                    alert('Please select a package');
+                    return;
+                }
+                
+                window.location.href = 'corporation-details.html';
+            });
+
+            // Initialize
+            updateTotal();
+        });
+    </script>
+
+    <style>
+    .order-summary {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        margin-top: 32px;
+    }
+
+    .order-summary h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1a202c;
+        margin-bottom: 20px;
+    }
+
+    .summary-content {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .summary-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 15px;
+        color: #4a5568;
+    }
+
+    .summary-item.base-package {
+        font-weight: 500;
+        color: #2d3748;
+    }
+
+    .summary-item span:last-child {
+        font-weight: 500;
+    }
+
+    .summary-divider {
+        height: 1px;
+        background: #e2e8f0;
+        margin: 16px 0;
+    }
+
+    .summary-item.total {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a202c;
+        margin-top: 4px;
+    }
+
+    .state-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        background: #ebf5ff;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 20px 0;
+        font-size: 14px;
+        color: #2c5282;
+        line-height: 1.5;
+    }
+
+    .state-note .material-icons {
+        color: #4299e1;
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    .processing-time {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #4a5568;
+        font-size: 14px;
+        margin: 16px 0;
+    }
+
+    .processing-time .material-icons {
+        color: #4a5568;
+        font-size: 20px;
+    }
+
+    .processing-time strong {
+        color: #2d3748;
+    }
+
+    .continue-button {
+        width: 100%;
+        padding: 16px 24px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 24px;
+    }
+
+    .continue-button:hover {
+        background: #1d4ed8;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px rgba(37,99,235,0.1);
+    }
+
+    .continue-button:active {
+        background: #1e40af;
+        transform: translateY(1px);
+    }
+
+    .continue-button:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(37,99,235,0.3);
+    }
+
+    .continue-button .material-icons {
+        font-size: 20px;
+        transition: transform 0.2s ease;
+    }
+
+    .continue-button:hover .material-icons {
+        transform: translateX(4px);
+    }
+
+    @media (max-width: 640px) {
+        .order-summary {
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .summary-item {
+            font-size: 14px;
+        }
+
+        .summary-item.total {
+            font-size: 16px;
+        }
+
+        .continue-button {
+            font-size: 16px;
+            padding: 14px 20px;
+        }
+    }
+
+    .address-selection {
+        margin: 40px 0;
+    }
+
+    .address-selection h3 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #1a202c;
+        margin-bottom: 24px;
+    }
+
+    .address-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .address-option {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 24px;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .address-option:hover {
+        border-color: #3182ce;
+        box-shadow: 0 4px 6px rgba(49, 130, 206, 0.1);
+    }
+
+    .address-option.selected {
+        border-color: #3182ce;
+        box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.2);
+    }
+
+    .badge {
+        position: absolute;
+        top: -12px;
+        left: 24px;
+        background: #ff4757;
+        color: white;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    .address-option h4 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1a202c;
+        margin-bottom: 16px;
+        margin-top: 8px;
+    }
+
+    .address {
+        font-size: 16px;
+        color: #4a5568;
+        margin-bottom: 8px;
+    }
+
+    .note {
+        font-size: 14px;
+        color: #718096;
+        margin-bottom: 20px;
+    }
+
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 24px 0;
+    }
+
+    .feature-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 12px;
+        font-size: 15px;
+        color: #4a5568;
+        line-height: 1.5;
+    }
+
+    .feature-list li:last-child {
+        margin-bottom: 0;
+    }
+
+    .feature-list .material-icons {
+        color: #3182ce;
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    .price-info {
+        margin-top: auto;
+        text-align: center;
+    }
+
+    .price-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #3182ce;
+        margin-bottom: 8px;
+    }
+
+    .price-subtitle {
+        font-size: 14px;
+        color: #718096;
+    }
+
+    .own-address .description {
+        font-size: 15px;
+        color: #4a5568;
+        line-height: 1.6;
+        margin-bottom: 24px;
+    }
+
+    .own-address .price {
+        font-size: 32px;
+        font-weight: 700;
+        color: #3182ce;
+        margin-bottom: 8px;
+    }
+
+    .own-address .requirement .material-icons {
+        color: #48bb78;
+    }
+
+    @media (max-width: 768px) {
+        .address-options {
+            grid-template-columns: 1fr;
+        }
+
+        .address-selection h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .address-option {
+            padding: 20px;
+        }
+
+        .badge {
+            font-size: 12px;
+            padding: 4px 12px;
+        }
+    }
+    </style>
+</body>
+</html> 
