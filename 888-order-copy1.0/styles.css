@@ -453,8 +453,10 @@ button {
 .main-header {
     max-width: 1200px;
     margin: 0px auto 0px;
-    padding: 0 24px;
+    padding: 60px 24px;
     text-align: left;
+    position: relative;
+    
 }
 
 .main-header-container {
@@ -526,9 +528,6 @@ button {
 .business-details {
     padding: 64px 0;
     background: white;
-}
-.business-details.step-1 {
-    background-color: #fff;
 }
 .section-llc-form.step-3 {
     background-color: #fff;
@@ -4157,6 +4156,14 @@ button {
     border-radius: 12px;
     max-width: 1200px;
 }
+.man-image {
+    position: absolute;
+    width: 800px;
+    z-index: 0;
+    right: -200px;
+    top: 110px;
+    
+}
 .credit-header h1 {
     font-size: 4rem;
     margin-bottom: 1rem;
@@ -4238,5 +4245,17 @@ button {
     
     .credit-info h1 {
         font-size: 24px;
+    }
+}
+
+@media (max-width: 500px) {
+    .main-header-container{
+        overflow: hidden;
+    }
+    .man-image {
+        position: absolute;
+        width: 100%;
+        z-index: 0;
+        left: -20%;
     }
 }

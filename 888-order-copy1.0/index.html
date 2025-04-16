@@ -165,10 +165,12 @@
     }
 
     .credit-header {
+        gap: 40px;
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
-        gap: 40px;
+        align-items: self-start;
+        gap: 16px;
+        flex-direction: column;
     }
 
     .credit-content {
@@ -182,6 +184,8 @@
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
         min-width: 320px;
         margin-top: 20px;
+        position: relative;
+        z-index: 1;
     }
 
     .ad-label {
@@ -246,7 +250,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-left">
-                <a href="/" class="logo">Legal</a>
+                <span class="material-icons" style="font-size: 36px; color: #1976d2; margin-right: 10px;">lightbulb</span>
                 <div class="nav-links">
                     <a href="#">Business</a>
                     <a href="#">Personal</a>
@@ -273,6 +277,7 @@
                         <p>Get started with your business formation today!</p>
                     </div>
                 </div>
+                <img src="image/man.png" class="man-image">
             </div>
         </header>
 
