@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Account Management - 2023</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 全局变量
+            let accounts = [
+                {
+                    id: 1,
+                    name: 'Anderson, Brian',
+                    taxId: 'xxx-xx-1234',
+                    type: 'individual',
+                    formType: '1040',
+                    status: 'filed',
+                    dueDate: '2024-04-15',
+                    documents: {
+                        status: 'complete',
+                        details: [
+                            { type: 'W-2', received: 2, total: 2 },
+                            { type: '1099', received: 3, total: 3 },
+                            { type: 'Schedule C', received: 1, total: 1 }
+                        ]
+                    },
+                    assignedTo: 'Zhihua Wang',
+                    priority: 'high',
+                    timeline: [
+                        { date: '2024-02-01', status: 'Documents Received' },
+                        { date: '2024-03-15', status: 'Review Complete' },
+                        { date: '2024-04-01', status: 'Filed' }
+                    ]
+                },
+                // ... 更多账户数据
+            ];
+
+            // 初始化页面
+            initializePage();
+
+            // 页面初始化
+            function initializePage() {
+                setupFilters();
+                setupSorting();
+                setupBulkActions();
+                setupSearch();
+                setupPagination();
+                renderAccounts();
+            }
+
+            // 筛选器设置
+            function setupFilters() {
+                const filterCheckboxes = document.querySelectorAll('.filter-checkbox input');
+                filterCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', () => {
+                        applyFilters();
+                    });
+                });
+            }
+
+            // 应用筛选
+            function applyFilters() {
+                const activeFilters = {
+                    dueSoon: document.querySelector('[name="due-soon"]').checked,
+                    missingDocs: document.querySelector('[name="missing-docs"]').checked,
+                    needsReview: document.querySelector('[name="needs-review"]').checked,
+                    filed: document.querySelector('[name="filed"]').checked,
+                    forms: {
+                        '1040': document.querySelector('[name="form-1040"]').checked,
+                        '1120S': document.querySelector('[name="form-1120s"]').checked,
+                        '1065': document.querySelector('[name="form-1065"]').checked,
+                        '990': document.querySelector('[name="form-990"]').checked
+                    }
+                };
+
+                const filteredAccounts = accounts.filter(account => {
+                    if (activeFilters.dueSoon && !isWithin30Days(account.dueDate)) return false;
+                    if (activeFilters.missingDocs && account.documents.status === 'complete') return false;
+                    if (activeFilters.needsReview && account.status !== 'pending') return false;
+                    if (activeFilters.filed && account.status !== 'filed') return false;
+                    if (activeFilters.forms[account.formType] === true) return true;
+                    return !Object.values(activeFilters.forms).some(v => v);
+                });
+
+                renderAccounts(filteredAccounts);
+            }
+
+            // 高级搜索
+            function setupSearch() {
+                const searchFields = document.querySelectorAll('.search-field select, .search-field input');
+                searchFields.forEach(field => {
+                    field.addEventListener('change', () => {
+                        const searchCriteria = {
+                            taxYear: document.querySelector('select[name="tax-year"]').value,
+                            filingStatus: document.querySelector('select[name="filing-status"]').value,
+                            dueDate: document.querySelector('input[name="due-date"]').value,
+                            documentStatus: document.querySelector('select[name="document-status"]').value
+                        };
+                        applySearch(searchCriteria);
+                    });
+                });
+            }
+
+            // 排序功能
+            function setupSorting() {
+                const sortableHeaders = document.querySelectorAll('.table-cell.sortable');
+                sortableHeaders.forEach(header => {
+                    header.addEventListener('click', () => {
+                        const column = header.textContent.toLowerCase().replace(/\s+/g, '');
+                        sortAccounts(column);
+                    });
+                });
+            }
+
+            // 批量操作
+            function setupBulkActions() {
+                const selectAll = document.querySelector('.table-header input[type="checkbox"]');
+                selectAll.addEventListener('change', () => {
+                    const checkboxes = document.querySelectorAll('.table-row input[type="checkbox"]');
+                    checkboxes.forEach(cb => cb.checked = selectAll.checked);
+                    updateSelectedCount();
+                });
+
+                document.querySelectorAll('.action-button').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const selectedIds = getSelectedAccountIds();
+                        if (selectedIds.length === 0) {
+                            alert('请选择至少一个账户');
+                            return;
+                        }
+
+                        const action = button.textContent.trim();
+                        switch (action) {
+                            case 'Send Email':
+                                handleBulkEmail(selectedIds);
+                                break;
+                            case 'Generate Reports':
+                                handleBulkReports(selectedIds);
+                                break;
+                            case 'Update Status':
+                                handleBulkStatusUpdate(selectedIds);
+                                break;
+                        }
+                    });
+                });
+            }
+
+            // 分页功能
+            function setupPagination() {
+                const pageButtons = document.querySelectorAll('.page-button');
+                pageButtons.forEach(button => {
+                    if (!button.disabled) {
+                        button.addEventListener('click', () => {
+                            const page = button.textContent;
+                            loadPage(page);
+                        });
+                    }
+                });
+            }
+
+            // 账户详情页面
+            function openAccountDetails(accountId) {
+                const account = accounts.find(a => a.id === accountId);
+                if (!account) return;
+
+                // 创建模态框
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>${account.name}</h2>
+                            <button class="close-button">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="details-section">
+                                <h3>基本信息</h3>
+                                <div class="detail-row">
+                                    <span class="label">Tax ID:</span>
+                                    <span class="value">${account.taxId}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">Form Type:</span>
+                                    <span class="value">${account.formType}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">Status:</span>
+                                    <span class="value status-tag ${account.status}">${account.status}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="details-section">
+                                <h3>文档状态</h3>
+                                <div class="documents-list">
+                                    ${account.documents.details.map(doc => `
+                                        <div class="document-item">
+                                            <span class="doc-type">${doc.type}</span>
+                                            <span class="doc-status">${doc.received}/${doc.total}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <div class="details-section">
+                                <h3>时间线</h3>
+                                <div class="timeline">
+                                    ${account.timeline.map(event => `
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">${formatDate(event.date)}</div>
+                                            <div class="timeline-status">${event.status}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="action-button" onclick="handleEdit(${account.id})">
+                                <span class="material-icons-round">edit</span>
+                                Edit
+                            </button>
+                            <button class="action-button" onclick="handleEmail(${account.id})">
+                                <span class="material-icons-round">mail</span>
+                                Send Email
+                            </button>
+                            <button class="action-button" onclick="handleDocuments(${account.id})">
+                                <span class="material-icons-round">description</span>
+                                View Documents
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                document.body.appendChild(modal);
+
+                // 关闭模态框
+                const closeButton = modal.querySelector('.close-button');
+                closeButton.addEventListener('click', () => {
+                    document.body.removeChild(modal);
+                });
+
+                // 点击模态框外部关闭
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        document.body.removeChild(modal);
+                    }
+                });
+            }
+
+            // 工具函数
+            function isWithin30Days(dateStr) {
+                const date = new Date(dateStr);
+                const now = new Date();
+                const diffTime = date - now;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return diffDays > 0 && diffDays <= 30;
+            }
+
+            function formatDate(dateStr) {
+                const date = new Date(dateStr);
+                return date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+            }
+
+            function getSelectedAccountIds() {
+                const checkboxes = document.querySelectorAll('.table-row input[type="checkbox"]:checked');
+                return Array.from(checkboxes).map(cb => parseInt(cb.closest('.table-row').dataset.id));
+            }
+
+            function updateSelectedCount() {
+                const count = document.querySelectorAll('.table-row input[type="checkbox"]:checked').length;
+                document.querySelector('.selection-count').textContent = `${count} accounts selected`;
+            }
+
+            // 批量操作处理函数
+            function handleBulkEmail(accountIds) {
+                // 实现批量发送邮件功能
+                console.log('Sending emails to:', accountIds);
+            }
+
+            function handleBulkReports(accountIds) {
+                // 实现批量生成报告功能
+                console.log('Generating reports for:', accountIds);
+            }
+
+            function handleBulkStatusUpdate(accountIds) {
+                // 实现批量更新状态功能
+                console.log('Updating status for:', accountIds);
+            }
+
+            // 单个账户操作处理函数
+            function handleEdit(accountId) {
+                // 实现编辑功能
+                console.log('Editing account:', accountId);
+            }
+
+            function handleEmail(accountId) {
+                // 实现发送邮件功能
+                console.log('Sending email to account:', accountId);
+            }
+
+            function handleDocuments(accountId) {
+                // 实现查看文档功能
+                console.log('Viewing documents for account:', accountId);
+            }
+        });
+    </script>
+    <style>
+        :root {
+            /* 主题颜色 - 采用传统税务软件配色 */
+            --primary-color: #1B5E20;  /* 深绿色，象征专业和可信 */
+            --primary-light: #4C8C4A;
+            --primary-dark: #003300;
+            --secondary-color: #0D47A1;
+            
+            /* 背景色 */
+            --background-color: #F5F7FA;
+            --surface-color: #FFFFFF;
+            --surface-hover: #F8F9FB;
+            
+            /* 文本颜色 */
+            --text-primary: #1A1F36;
+            --text-secondary: #697386;
+            --text-tertiary: #8792A2;
+            
+            /* 状态颜色 */
+            --success-color: #2E7D32;
+            --warning-color: #F57C00;
+            --error-color: #D32F2F;
+            --info-color: #1976D2;
+            
+            /* 边框和阴影 */
+            --border-color: #E3E8EF;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            
+            /* 间距 */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            
+            /* 字体 */
+            --font-xs: 12px;
+            --font-sm: 14px;
+            --font-md: 16px;
+            --font-lg: 18px;
+            --font-xl: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: var(--space-6);
+        }
+
+        /* 头部样式 */
+        .header {
+            margin-bottom: var(--space-6);
+        }
+
+        .page-title {
+            color: var(--primary-dark);
+            font-size: var(--font-xl);
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: var(--font-md);
+        }
+
+        /* 快速过滤器 */
+        .quick-filters {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .filter-section {
+            margin-bottom: var(--space-4);
+        }
+
+        .filter-section-title {
+            font-size: var(--font-sm);
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-3);
+        }
+
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .filter-checkbox:hover {
+            background-color: var(--surface-hover);
+        }
+
+        .filter-checkbox input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        /* 批量操作工具栏 */
+        .bulk-actions {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--space-3) var(--space-4);
+            margin-bottom: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .selection-count {
+            color: var(--text-secondary);
+            font-size: var(--font-sm);
+        }
+
+        .action-button {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--surface-color);
+            color: var(--text-primary);
+            font-size: var(--font-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-button:hover {
+            background: var(--surface-hover);
+            border-color: var(--text-tertiary);
+        }
+
+        .action-button .material-icons-round {
+            font-size: 18px;
+        }
+
+        /* 高级搜索 */
+        .advanced-search {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .search-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+        }
+
+        .search-field {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .search-field label {
+            font-size: var(--font-sm);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .search-field select,
+        .search-field input {
+            padding: var(--space-2) var(--space-3);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: var(--font-sm);
+            color: var(--text-primary);
+            background: var(--surface-color);
+        }
+
+        /* 表格样式 */
+        .table-container {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 36px 2fr 1fr 1fr 1fr 1fr 1fr 40px;
+            padding: var(--space-3) var(--space-4);
+            background: var(--surface-hover);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table-cell {
+            font-size: var(--font-sm);
+            font-weight: 500;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .table-cell.sortable {
+            cursor: pointer;
+        }
+
+        .table-cell.sortable:hover {
+            color: var(--primary-color);
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 36px 2fr 1fr 1fr 1fr 1fr 1fr 40px;
+            padding: var(--space-3) var(--space-4);
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+        }
+
+        .table-row:hover {
+            background: var(--surface-hover);
+        }
+
+        /* 账户信息样式 */
+        .account-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .account-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .tax-id {
+            font-size: var(--font-xs);
+            color: var(--text-secondary);
+        }
+
+        /* 状态标签 */
+        .status-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px var(--space-2);
+            border-radius: 4px;
+            font-size: var(--font-xs);
+            font-weight: 500;
+        }
+
+        .status-tag.filed {
+            background-color: rgba(46, 125, 50, 0.1);
+            color: var(--success-color);
+        }
+
+        .status-tag.pending {
+            background-color: rgba(245, 124, 0, 0.1);
+            color: var(--warning-color);
+        }
+
+        /* 文档状态 */
+        .document-status {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--font-xs);
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .status-indicator.complete {
+            background-color: var(--success-color);
+        }
+
+        .status-indicator.partial {
+            background-color: var(--warning-color);
+        }
+
+        /* 分页 */
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4);
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-top: var(--space-4);
+        }
+
+        .page-info {
+            font-size: var(--font-sm);
+            color: var(--text-secondary);
+        }
+
+        .page-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .page-button {
+            padding: var(--space-2) var(--space-3);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--surface-color);
+            color: var(--text-primary);
+            font-size: var(--font-sm);
+            cursor: pointer;
+        }
+
+        .page-button.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .page-button:hover:not(.active) {
+            background: var(--surface-hover);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .table-header,
+            .table-row {
+                grid-template-columns: 36px 2fr 1fr 1fr 1fr 1fr 40px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .table-header,
+            .table-row {
+                grid-template-columns: 36px 2fr 1fr 1fr 1fr 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-3);
+            }
+
+            .search-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .table-header,
+            .table-row {
+                grid-template-columns: 36px 2fr 1fr 40px;
+            }
+        }
+
+        /* 模态框样式 */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--surface-color);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-body {
+            padding: var(--space-4);
+        }
+
+        .modal-footer {
+            padding: var(--space-4);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: var(--space-3);
+            justify-content: flex-end;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .details-section {
+            margin-bottom: var(--space-4);
+        }
+
+        .details-section h3 {
+            font-size: var(--font-md);
+            color: var(--text-primary);
+            margin-bottom: var(--space-3);
+        }
+
+        .detail-row {
+            display: flex;
+            margin-bottom: var(--space-2);
+        }
+
+        .detail-row .label {
+            width: 120px;
+            color: var(--text-secondary);
+        }
+
+        .documents-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--space-3);
+        }
+
+        .document-item {
+            padding: var(--space-3);
+            background: var(--surface-hover);
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: var(--space-3);
+            padding-left: var(--space-4);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-date {
+            width: 120px;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="page-title">Tax Account Management</h1>
+            <p class="page-subtitle">Tax Year 2023 • Q1 Filing Period</p>
+        </header>
+
+        <!-- 快速过滤器 -->
+        <div class="quick-filters">
+            <div class="filter-section">
+                <h3 class="filter-section-title">Quick Filters</h3>
+                <div class="filter-options">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="due-soon">
+                        Due within 30 days
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="missing-docs">
+                        Missing Documents
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="needs-review">
+                        Needs Review
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="filed">
+                        Filed Returns
+                    </label>
+                </div>
+            </div>
+            <div class="filter-section">
+                <h3 class="filter-section-title">Tax Forms</h3>
+                <div class="filter-options">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="form-1040">
+                        Form 1040 (Individual)
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="form-1120s">
+                        Form 1120S (S Corp)
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="form-1065">
+                        Form 1065 (Partnership)
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="form-990">
+                        Form 990 (Non-Profit)
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- 批量操作工具栏 -->
+        <div class="bulk-actions">
+            <span class="selection-count">0 accounts selected</span>
+            <button class="action-button">
+                <span class="material-icons-round">mail</span>
+                Send Email
+            </button>
+            <button class="action-button">
+                <span class="material-icons-round">description</span>
+                Generate Reports
+            </button>
+            <button class="action-button">
+                <span class="material-icons-round">update</span>
+                Update Status
+            </button>
+        </div>
+
+        <!-- 高级搜索 -->
+        <div class="advanced-search">
+            <div class="search-grid">
+                <div class="search-field">
+                    <label>Tax Year</label>
+                    <select>
+                        <option>2023</option>
+                        <option>2022</option>
+                        <option>2021</option>
+                    </select>
+                </div>
+                <div class="search-field">
+                    <label>Filing Status</label>
+                    <select>
+                        <option>All</option>
+                        <option>Filed</option>
+                        <option>Pending</option>
+                        <option>Extension Filed</option>
+                    </select>
+                </div>
+                <div class="search-field">
+                    <label>Due Date Range</label>
+                    <input type="date">
+                </div>
+                <div class="search-field">
+                    <label>Document Status</label>
+                    <select>
+                        <option>All</option>
+                        <option>Complete</option>
+                        <option>Partial</option>
+                        <option>Missing</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- 表格 -->
+        <div class="table-container">
+            <div class="table-header">
+                <div class="table-cell">
+                    <input type="checkbox">
+                </div>
+                <div class="table-cell sortable">
+                    Account Name
+                    <span class="material-icons-round">arrow_downward</span>
+                </div>
+                <div class="table-cell sortable">Tax Form</div>
+                <div class="table-cell sortable">Filing Status</div>
+                <div class="table-cell sortable">Due Date</div>
+                <div class="table-cell sortable">Documents</div>
+                <div class="table-cell sortable">Assigned To</div>
+                <div class="table-cell"></div>
+            </div>
+
+            <!-- 示例行 -->
+            <div class="table-row">
+                <div class="table-cell">
+                    <input type="checkbox">
+                </div>
+                <div class="account-info">
+                    <span class="account-name">Anderson, Brian</span>
+                    <span class="tax-id">SSN: xxx-xx-1234</span>
+                </div>
+                <div class="table-cell">1040</div>
+                <div class="table-cell">
+                    <span class="status-tag filed">Filed</span>
+                </div>
+                <div class="table-cell">Apr 15, 2024</div>
+                <div class="table-cell">
+                    <div class="document-status">
+                        <span class="status-indicator complete"></span>
+                        Complete
+                    </div>
+                </div>
+                <div class="table-cell">Zhihua Wang</div>
+                <div class="table-cell">
+                    <span class="material-icons-round">more_vert</span>
+                </div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell">
+                    <input type="checkbox">
+                </div>
+                <div class="account-info">
+                    <span class="account-name">Brightway Solutions LLC</span>
+                    <span class="tax-id">EIN: xx-xxx4321</span>
+                </div>
+                <div class="table-cell">1120S</div>
+                <div class="table-cell">
+                    <span class="status-tag pending">Pending</span>
+                </div>
+                <div class="table-cell">Mar 15, 2024</div>
+                <div class="table-cell">
+                    <div class="document-status">
+                        <span class="status-indicator partial"></span>
+                        Missing 1099s
+                    </div>
+                </div>
+                <div class="table-cell">Zhihua Wang</div>
+                <div class="table-cell">
+                    <span class="material-icons-round">more_vert</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分页 -->
+        <div class="pagination">
+            <div class="page-info">
+                Showing 1-10 of 156 accounts
+            </div>
+            <div class="page-controls">
+                <button class="page-button" disabled>
+                    <span class="material-icons-round">chevron_left</span>
+                </button>
+                <button class="page-button active">1</button>
+                <button class="page-button">2</button>
+                <button class="page-button">3</button>
+                <button class="page-button">
+                    <span class="material-icons-round">chevron_right</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

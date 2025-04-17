@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details - Tax Management System</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <style>
+        :root {
+            /* 主题颜色 - 专业税务软件风格 */
+            --primary-color: #1B5E20;
+            --primary-light: #4C8C4A;
+            --primary-dark: #003300;
+            --secondary-color: #0D47A1;
+            
+            /* 状态颜色 */
+            --success-color: #2E7D32;
+            --warning-color: #F57C00;
+            --error-color: #D32F2F;
+            --info-color: #1976D2;
+            
+            /* 背景色 */
+            --background-color: #F5F7FA;
+            --surface-color: #FFFFFF;
+            --surface-hover: #F8F9FB;
+            
+            /* 文本颜色 */
+            --text-primary: #1A1F36;
+            --text-secondary: #697386;
+            --text-tertiary: #8792A2;
+            
+            /* 间距 */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            
+            /* 字体大小 */
+            --font-xs: 12px;
+            --font-sm: 14px;
+            --font-md: 16px;
+            --font-lg: 18px;
+            --font-xl: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: var(--space-6);
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            background: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .nav-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--text-secondary);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: var(--space-3);
+        }
+
+        /* 主要内容区域 */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: var(--space-6);
+        }
+
+        /* 左侧主要信息 */
+        .main-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        /* 基本信息卡片 */
+        .info-card {
+            background: var(--surface-color);
+            border-radius: 8px;
+            padding: var(--space-6);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-4);
+        }
+
+        .card-title {
+            font-size: var(--font-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* 表格样式 */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .info-table th,
+        .info-table td {
+            padding: var(--space-3);
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .info-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: var(--font-sm);
+        }
+
+        /* 文档列表 */
+        .document-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--space-4);
+        }
+
+        .document-item {
+            background: var(--surface-hover);
+            border-radius: 6px;
+            padding: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .document-icon {
+            color: var(--primary-color);
+        }
+
+        .document-info {
+            flex: 1;
+        }
+
+        .document-name {
+            font-weight: 500;
+            margin-bottom: var(--space-1);
+        }
+
+        .document-meta {
+            font-size: var(--font-xs);
+            color: var(--text-secondary);
+        }
+
+        /* 时间线 */
+        .timeline {
+            margin-top: var(--space-4);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: var(--space-4);
+            padding: var(--space-3) 0;
+            position: relative;
+        }
+
+        .timeline-date {
+            width: 100px;
+            color: var(--text-secondary);
+            font-size: var(--font-sm);
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-left: var(--space-4);
+            border-left: 2px solid var(--border-color);
+        }
+
+        /* 右侧边栏 */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .status-card {
+            background: var(--surface-color);
+            border-radius: 8px;
+            padding: var(--space-4);
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-3);
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .status-indicator.filed {
+            background-color: var(--success-color);
+        }
+
+        .status-indicator.pending {
+            background-color: var(--warning-color);
+        }
+
+        /* 按钮样式 */
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            border-radius: 6px;
+            font-size: var(--font-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .button-primary {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .button-secondary {
+            background: var(--surface-color);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        /* 标签样式 */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px var(--space-2);
+            border-radius: 4px;
+            font-size: var(--font-xs);
+            font-weight: 500;
+        }
+
+        .tag.success {
+            background-color: rgba(46, 125, 50, 0.1);
+            color: var(--success-color);
+        }
+
+        .tag.warning {
+            background-color: rgba(245, 124, 0, 0.1);
+            color: var(--warning-color);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-3);
+            }
+
+            .document-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="breadcrumb">
+                <a href="account-management.html">Accounts</a>
+                <span class="material-icons-round">chevron_right</span>
+                <span>Anderson, Brian</span>
+            </div>
+            <div class="action-buttons">
+                <button class="button button-secondary">
+                    <span class="material-icons-round">history</span>
+                    View History
+                </button>
+                <button class="button button-primary">
+                    <span class="material-icons-round">edit</span>
+                    Edit Account
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content-grid">
+            <!-- 左侧主要信息 -->
+            <div class="main-info">
+                <!-- 纳税人信息 -->
+                <section class="info-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Taxpayer Information</h2>
+                        <span class="tag success">Active</span>
+                    </div>
+                    <table class="info-table">
+                        <tr>
+                            <th>Full Name</th>
+                            <td>Anderson, Brian J.</td>
+                            <th>Tax ID</th>
+                            <td>xxx-xx-1234</td>
+                        </tr>
+                        <tr>
+                            <th>Filing Status</th>
+                            <td>Single</td>
+                            <th>Tax Year</th>
+                            <td>2023</td>
+                        </tr>
+                        <tr>
+                            <th>Primary Form</th>
+                            <td>Form 1040</td>
+                            <th>Due Date</th>
+                            <td>April 15, 2024</td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>(555) 123-4567</td>
+                            <th>Email</th>
+                            <td>brian.anderson@email.com</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <!-- 文档管理 -->
+                <section class="info-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Tax Documents</h2>
+                        <button class="button button-secondary">
+                            <span class="material-icons-round">upload</span>
+                            Upload New
+                        </button>
+                    </div>
+                    <div class="document-list">
+                        <div class="document-item">
+                            <span class="material-icons-round document-icon">description</span>
+                            <div class="document-info">
+                                <div class="document-name">W-2 (Employer 1)</div>
+                                <div class="document-meta">Uploaded on Feb 1, 2024</div>
+                            </div>
+                            <button class="button button-secondary">View</button>
+                        </div>
+                        <div class="document-item">
+                            <span class="material-icons-round document-icon">description</span>
+                            <div class="document-info">
+                                <div class="document-name">1099-INT</div>
+                                <div class="document-meta">Uploaded on Feb 3, 2024</div>
+                            </div>
+                            <button class="button button-secondary">View</button>
+                        </div>
+                        <div class="document-item">
+                            <span class="material-icons-round document-icon">description</span>
+                            <div class="document-info">
+                                <div class="document-name">Schedule C</div>
+                                <div class="document-meta">Uploaded on Feb 15, 2024</div>
+                            </div>
+                            <button class="button button-secondary">View</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 时间线 -->
+                <section class="info-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Activity Timeline</h2>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Apr 1, 2024</div>
+                            <div class="timeline-content">
+                                <strong>Return Filed</strong>
+                                <p>Form 1040 submitted electronically</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Mar 15, 2024</div>
+                            <div class="timeline-content">
+                                <strong>Review Complete</strong>
+                                <p>Final review completed by John Smith</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Feb 15, 2024</div>
+                            <div class="timeline-content">
+                                <strong>Document Received</strong>
+                                <p>Schedule C uploaded and verified</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 右侧边栏 -->
+            <div class="sidebar">
+                <!-- 状态卡片 -->
+                <div class="status-card">
+                    <div class="status-header">
+                        <span class="status-indicator filed"></span>
+                        <h3>Filing Status</h3>
+                    </div>
+                    <p>Filed on April 1, 2024</p>
+                    <p>Confirmation #: 2024040112345</p>
+                </div>
+
+                <!-- 快速操作 -->
+                <div class="status-card">
+                    <h3>Quick Actions</h3>
+                    <div style="display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-3);">
+                        <button class="button button-secondary">
+                            <span class="material-icons-round">mail</span>
+                            Send Email
+                        </button>
+                        <button class="button button-secondary">
+                            <span class="material-icons-round">print</span>
+                            Print Return
+                        </button>
+                        <button class="button button-secondary">
+                            <span class="material-icons-round">download</span>
+                            Download Documents
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 重要日期 -->
+                <div class="status-card">
+                    <h3>Important Dates</h3>
+                    <div style="margin-top: var(--space-3);">
+                        <div style="margin-bottom: var(--space-3);">
+                            <div style="font-weight: 500;">Filing Deadline</div>
+                            <div style="color: var(--text-secondary);">April 15, 2024</div>
+                        </div>
+                        <div>
+                            <div style="font-weight: 500;">Extension Deadline</div>
+                            <div style="color: var(--text-secondary);">October 15, 2024</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 备注 -->
+                <div class="status-card">
+                    <h3>Notes</h3>
+                    <div style="margin-top: var(--space-3);">
+                        <p style="color: var(--text-secondary); margin-bottom: var(--space-2);">
+                            Client prefers email communication. Schedule C business requires extra documentation.
+                        </p>
+                        <button class="button button-secondary">
+                            <span class="material-icons-round">add</span>
+                            Add Note
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化页面交互
+            initializeDetailPage();
+        });
+
+        function initializeDetailPage() {
+            // 设置按钮事件监听
+            setupActionButtons();
+            // 设置文档查看器
+            setupDocumentViewers();
+            // 设置笔记功能
+            setupNotes();
+        }
+
+        function setupActionButtons() {
+            // 编辑账户按钮
+            document.querySelector('.button-primary').addEventListener('click', () => {
+                console.log('Edit account clicked');
+                // 实现编辑功能
+            });
+
+            // 查看历史按钮
+            document.querySelector('.button-secondary').addEventListener('click', () => {
+                console.log('View history clicked');
+                // 实现历史记录查看功能
+            });
+        }
+
+        function setupDocumentViewers() {
+            // 文档查看按钮
+            document.querySelectorAll('.document-item .button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const documentName = e.target.closest('.document-item')
+                        .querySelector('.document-name').textContent;
+                    console.log('Viewing document:', documentName);
+                    // 实现文档查看功能
+                });
+            });
+        }
+
+        function setupNotes() {
+            // 添加笔记按钮
+            const addNoteButton = document.querySelector('.status-card:last-child .button');
+            addNoteButton.addEventListener('click', () => {
+                console.log('Add note clicked');
+                // 实现添加笔记功能
+            });
+        }
+    </script>
+</body>
+</html> 

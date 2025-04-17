@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounts</title>
+    <!-- System Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0A84FF;
+            --background-color: #F5F5F7;
+            --surface-color: #FFFFFF;
+            --text-primary: #000000;
+            --text-secondary: #6E6E73;
+            --border-color: #E5E5EA;
+            --hover-color: rgba(0, 0, 0, 0.03);
+            --active-color: rgba(0, 0, 0, 0.06);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --avatar-size: 44px;
+            --badge-size: 36px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, 'Inter', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .status-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            background-color: var(--surface-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .status-bar-time {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .status-bar-icons {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-bar-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 44px auto 0;
+            background-color: var(--surface-color);
+            min-height: calc(100vh - 44px);
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            position: sticky;
+            top: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-button {
+            background: none;
+            border: none;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        .menu-button .material-icons-round {
+            font-size: 24px;
+        }
+
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .header-center h1 {
+            font-size: 17px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .header-center .material-icons-round {
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-button, .filter-button {
+            background: none;
+            border: none;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .search-button .material-icons-round,
+        .filter-button .material-icons-round {
+            font-size: 24px;
+            color: var(--text-primary);
+        }
+
+        .search-container {
+            padding: 8px 16px 16px;
+            background-color: var(--surface-color);
+            display: none;
+        }
+
+        .search-container.active {
+            display: block;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: var(--background-color);
+            border-radius: 12px;
+            padding: 10px 16px;
+            transition: all 0.2s ease;
+        }
+
+        .search-box:focus-within {
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        .search-box .material-icons-round {
+            color: var(--text-secondary);
+            font-size: 20px;
+            margin-right: 12px;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            background: none;
+            font-size: 17px;
+            color: var(--text-primary);
+            outline: none;
+            font-family: inherit;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .filter-options {
+            position: absolute;
+            top: 100%;
+            right: 16px;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            padding: 8px;
+            display: none;
+            z-index: 200;
+            min-width: 200px;
+        }
+
+        .filter-options.active {
+            display: block;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .filter-option:hover {
+            background-color: var(--hover-color);
+        }
+
+        .filter-option .material-icons-round {
+            font-size: 20px;
+            margin-right: 8px;
+            color: var(--text-secondary);
+        }
+
+        .filter-option span {
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .accounts-list {
+            padding: 8px 0;
+        }
+
+        .account-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .account-item:hover {
+            background-color: var(--hover-color);
+        }
+
+        .account-item:active {
+            background-color: var(--active-color);
+        }
+
+        .account-item::after {
+            content: '';
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            bottom: 0;
+            height: 1px;
+            background-color: var(--border-color);
+            opacity: 0.5;
+        }
+
+        .account-item:last-child::after {
+            display: none;
+        }
+
+        .account-avatar {
+            width: var(--avatar-size);
+            height: var(--avatar-size);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+
+        .account-item:active .account-avatar {
+            transform: scale(0.95);
+        }
+
+        .account-avatar.personal {
+            background-color: #FF9F0A;
+        }
+
+        .account-avatar.business {
+            background-color: #5E5CE6;
+        }
+
+        .avatar-text, .account-avatar .material-icons-round {
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .account-info {
+            flex: 1;
+            min-width: 0;
+            padding: 4px 0;
+        }
+
+        .account-info h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .account-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .account-info .tax-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            font-size: 12px;
+            margin-top: 4px;
+            color: var(--text-secondary);
+        }
+
+        .tax-year-badge {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .deadline-badge {
+            background-color: #FF3B30;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .extension-badge {
+            background-color: #FF9F0A;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .priority-badge {
+            background-color: #FF453A;
+            color: white;
+            padding: 1px 6px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-right: 4px;
+        }
+
+        .document-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background-color: var(--hover-color);
+        }
+
+        .document-status .material-icons-round {
+            font-size: 14px;
+        }
+
+        .document-status.complete {
+            color: #32D74B;
+        }
+
+        .document-status.missing {
+            color: #FF453A;
+        }
+
+        .document-status.partial {
+            color: #FF9F0A;
+        }
+
+        .notes-indicator {
+            color: var(--primary-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+        }
+
+        .payment-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+        }
+
+        .payment-status.paid {
+            color: #32D74B;
+        }
+
+        .payment-status.pending {
+            color: #FF9F0A;
+        }
+
+        .account-badge {
+            width: var(--badge-size);
+            height: var(--badge-size);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 16px;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 600;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .account-item:active .account-badge {
+            transform: scale(0.95);
+        }
+
+        .badge-coral { background-color: #FF6B6B; }
+        .badge-blue { background-color: var(--primary-color); }
+        .badge-purple { background-color: #BF5AF2; }
+        .badge-orange { background-color: #FF9F0A; }
+        .badge-mint { background-color: #64D2FF; }
+        .badge-green { background-color: #32D74B; }
+        .badge-indigo { background-color: #5E5CE6; }
+        .badge-brown { background-color: #AC8E68; }
+
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+            }
+
+            :root {
+                --avatar-size: 40px;
+                --badge-size: 32px;
+            }
+
+            .header {
+                padding: 12px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .search-container {
+                padding: 8px 12px 12px;
+            }
+
+            .account-item {
+                padding: 12px;
+            }
+
+            .account-info h3 {
+                font-size: 16px;
+            }
+
+            .account-info p {
+                font-size: 14px;
+            }
+
+            .account-badge {
+                font-size: 14px;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #000000;
+                --surface-color: #1C1C1E;
+                --text-primary: #FFFFFF;
+                --text-secondary: #98989F;
+                --border-color: #38383A;
+                --hover-color: rgba(255, 255, 255, 0.05);
+                --active-color: rgba(255, 255, 255, 0.1);
+                --shadow-color: rgba(0, 0, 0, 0.3);
+            }
+
+            .header {
+                background-color: var(--surface-color);
+            }
+
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="status-bar">
+        <div class="status-bar-time">9:41</div>
+        <div class="status-bar-icons">
+            <div class="status-bar-icon">
+                <svg width="17" height="10" viewBox="0 0 17 10" fill="none">
+                    <path d="M16 1L8.5 8.5L1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="status-bar-icon">
+                <svg width="15" height="11" viewBox="0 0 15 11" fill="none">
+                    <path d="M1 5.5L5.5 1L10 5.5L5.5 10L1 5.5Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="status-bar-icon">
+                <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+                    <path d="M1 6H16M1 1H16M1 11H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="status-bar-icon">
+                <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+                    <rect x="1" y="1" width="23" height="10" rx="1" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 3H22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-button">
+                    <span class="material-icons-round">menu</span>
+                </button>
+            </div>
+            <div class="header-center">
+                <h1>All Account</h1>
+                <span class="material-icons-round">expand_more</span>
+            </div>
+            <div class="header-right">
+                <button class="search-button">
+                    <span class="material-icons-round">search</span>
+                </button>
+                <button class="filter-button">
+                    <span class="material-icons-round">filter_list</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <span class="material-icons-round">search</span>
+                <input type="text" placeholder="Search accounts...">
+            </div>
+        </div>
+
+        <div class="filter-options">
+            <div class="filter-option">
+                <span class="material-icons-round">person</span>
+                <span>Personal Accounts</span>
+            </div>
+            <div class="filter-option">
+                <span class="material-icons-round">business</span>
+                <span>Business Accounts</span>
+            </div>
+            <div class="filter-option">
+                <span class="material-icons-round">account_balance</span>
+                <span>Trust Accounts</span>
+            </div>
+            <div class="filter-option">
+                <span class="material-icons-round">priority_high</span>
+                <span>Priority Items</span>
+            </div>
+            <div class="filter-option">
+                <span class="material-icons-round">warning</span>
+                <span>Missing Documents</span>
+            </div>
+        </div>
+
+        <div class="accounts-list">
+            <div class="account-item">
+                <div class="account-avatar">
+                    <span class="avatar-text">AB</span>
+                </div>
+                <div class="account-info">
+                    <h3>Anderson, Brian</h3>
+                    <p>
+                        <span class="status-dot active"></span>
+                        Individual • SSN: xxx-xx-1234
+                        <span class="account-type">1040</span>
+                        <span class="filing-status">Single</span>
+                    </p>
+                    <div class="tax-details">
+                        <span class="tax-year-badge">2023</span>
+                        <span class="deadline-badge">Due Apr 15</span>
+                        <span class="payment-status paid">
+                            <span class="material-icons-round" style="font-size: 14px;">check_circle</span>
+                            Q4 Est. Paid
+                        </span>
+                        <span class="document-status complete">
+                            <span class="material-icons-round">description</span>
+                            W-2 Received
+                        </span>
+                    </div>
+                </div>
+                <span class="account-badge badge-blue">P</span>
+            </div>
+
+            <div class="account-item">
+                <div class="account-avatar business">
+                    <span class="material-icons-round">business</span>
+                </div>
+                <div class="account-info">
+                    <h3>Brightway Solutions LLC</h3>
+                    <p>
+                        <span class="status-dot active"></span>
+                        S-Corp • EIN: xx-xxx4321
+                        <span class="account-type">1120S</span>
+                    </p>
+                    <div class="tax-details">
+                        <span class="priority-badge">Priority</span>
+                        <span class="tax-year-badge">2023</span>
+                        <span class="extension-badge">Ext. Sep 15</span>
+                        <span class="payment-status pending">
+                            <span class="material-icons-round" style="font-size: 14px;">schedule</span>
+                            Q1 Due
+                        </span>
+                        <span class="document-status partial">
+                            <span class="material-icons-round">folder_open</span>
+                            Missing 1099s
+                        </span>
+                        <span class="notes-indicator">
+                            <span class="material-icons-round" style="font-size: 14px;">comment</span>
+                            2 Notes
+                        </span>
+                    </div>
+                </div>
+                <span class="account-badge badge-orange">B</span>
+            </div>
+
+            <div class="account-item">
+                <div class="account-avatar">
+                    <span class="avatar-text">JD</span>
+                </div>
+                <div class="account-info">
+                    <h3>Davis, Jennifer & Michael</h3>
+                    <p>
+                        <span class="status-dot pending"></span>
+                        Individual • SSN: xxx-xx-5678
+                        <span class="account-type">1040</span>
+                        <span class="filing-status">MFJ</span>
+                    </p>
+                    <div class="tax-details">
+                        <span class="tax-year-badge">2023</span>
+                        <span class="deadline-badge">Due Apr 15</span>
+                        <span class="payment-status pending">
+                            <span class="material-icons-round" style="font-size: 14px;">schedule</span>
+                            Docs Pending
+                        </span>
+                        <span class="document-status missing">
+                            <span class="material-icons-round">warning</span>
+                            Missing K-1
+                        </span>
+                    </div>
+                </div>
+                <span class="account-badge badge-purple">P</span>
+            </div>
+
+            <div class="account-item">
+                <div class="account-avatar">
+                    <span class="avatar-text">MJ</span>
+                </div>
+                <div class="account-info">
+                    <h3>Johnson Family Trust</h3>
+                    <p>
+                        <span class="status-dot active"></span>
+                        Trust • EIN: xx-xxx9012
+                        <span class="account-type">1041</span>
+                    </p>
+                    <div class="tax-details">
+                        <span class="tax-year-badge">2023</span>
+                        <span class="deadline-badge">Due Apr 15</span>
+                        <span class="payment-status paid">
+                            <span class="material-icons-round" style="font-size: 14px;">check_circle</span>
+                            K-1 Ready
+                        </span>
+                        <span class="document-status complete">
+                            <span class="material-icons-round">description</span>
+                            All Docs Received
+                        </span>
+                    </div>
+                </div>
+                <span class="account-badge badge-mint">T</span>
+            </div>
+
+            <div class="account-item">
+                <div class="account-avatar business">
+                    <span class="material-icons-round">business</span>
+                </div>
+                <div class="account-info">
+                    <h3>Smith & Associates CPA</h3>
+                    <p>
+                        <span class="status-dot active"></span>
+                        Partnership • EIN: xx-xxx8765
+                        <span class="account-type">1065</span>
+                    </p>
+                    <div class="tax-details">
+                        <span class="tax-year-badge">2023</span>
+                        <span class="deadline-badge">Due Mar 15</span>
+                        <span class="payment-status paid">
+                            <span class="material-icons-round" style="font-size: 14px;">check_circle</span>
+                            Filed
+                        </span>
+                        <span class="document-status complete">
+                            <span class="material-icons-round">description</span>
+                            K-1s Distributed
+                        </span>
+                    </div>
+                </div>
+                <span class="account-badge badge-green">B</span>
+            </div>
+
+            <div class="account-item">
+                <div class="account-avatar">
+                    <span class="avatar-text">ST</span>
+                </div>
+                <div class="account-info">
+                    <h3>Thompson, Sarah</h3>
+                    <p>
+                        <span class="status-dot active"></span>
+                        Individual • SSN: xxx-xx-3456
+                        <span class="account-type">1040</span>
+                        <span class="filing-status">HOH</span>
+                    </p>
+                    <div class="tax-details">
+                        <span class="tax-year-badge">2023</span>
+                        <span class="extension-badge">Ext. Oct 15</span>
+                        <span class="payment-status pending">
+                            <span class="material-icons-round" style="font-size: 14px;">schedule</span>
+                            Est. Due Jun 15
+                        </span>
+                        <span class="document-status partial">
+                            <span class="material-icons-round">folder_open</span>
+                            Pending 1098
+                        </span>
+                        <span class="notes-indicator">
+                            <span class="material-icons-round" style="font-size: 14px;">comment</span>
+                            Note
+                        </span>
+                    </div>
+                </div>
+                <span class="account-badge badge-coral">P</span>
+            </div>
+
+            <div class="account-item">
+                <div class="account-avatar business">
+                    <span class="material-icons-round">business</span>
+                </div>
+                <div class="account-info">
+                    <h3>Wilson Financial Group</h3>
+                    <p>
+                        <span class="status-dot active"></span>
+                        C-Corp • EIN: xx-xxx5432
+                        <span class="account-type">1120</span>
+                    </p>
+                    <div class="tax-details">
+                        <span class="priority-badge">Priority</span>
+                        <span class="tax-year-badge">2023</span>
+                        <span class="deadline-badge">Due Apr 15</span>
+                        <span class="payment-status paid">
+                            <span class="material-icons-round" style="font-size: 14px;">check_circle</span>
+                            Q1 Paid
+                        </span>
+                        <span class="document-status complete">
+                            <span class="material-icons-round">description</span>
+                            Review Ready
+                        </span>
+                    </div>
+                </div>
+                <span class="account-badge badge-indigo">B</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 搜索功能
+        const searchButton = document.querySelector('.search-button');
+        const searchContainer = document.querySelector('.search-container');
+        const searchInput = document.querySelector('.search-box input');
+
+        searchButton.addEventListener('click', () => {
+            searchContainer.classList.toggle('active');
+            if (searchContainer.classList.contains('active')) {
+                searchInput.focus();
+            }
+        });
+
+        // 筛选功能
+        const filterButton = document.querySelector('.filter-button');
+        const filterOptions = document.querySelector('.filter-options');
+
+        filterButton.addEventListener('click', () => {
+            filterOptions.classList.toggle('active');
+        });
+
+        // 点击其他地方关闭筛选菜单
+        document.addEventListener('click', (e) => {
+            if (!filterButton.contains(e.target) && !filterOptions.contains(e.target)) {
+                filterOptions.classList.remove('active');
+            }
+        });
+
+        // 实时搜索
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const accountItems = document.querySelectorAll('.account-item');
+
+            accountItems.forEach(item => {
+                const accountName = item.querySelector('h3').textContent.toLowerCase();
+                if (accountName.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // 筛选选项点击事件
+        const filterOptionsList = document.querySelectorAll('.filter-option');
+        filterOptionsList.forEach(option => {
+            option.addEventListener('click', () => {
+                const filterType = option.querySelector('span').textContent;
+                const accountItems = document.querySelectorAll('.account-item');
+
+                accountItems.forEach(item => {
+                    if (filterType === 'Personal Accounts') {
+                        item.style.display = item.querySelector('.account-badge').textContent === 'P' ? 'flex' : 'none';
+                    } else if (filterType === 'Business Accounts') {
+                        item.style.display = item.querySelector('.account-badge').textContent === 'B' ? 'flex' : 'none';
+                    } else if (filterType === 'Trust Accounts') {
+                        item.style.display = item.querySelector('.account-badge').textContent === 'T' ? 'flex' : 'none';
+                    } else if (filterType === 'Priority Items') {
+                        item.style.display = item.querySelector('.priority-badge') ? 'flex' : 'none';
+                    } else if (filterType === 'Missing Documents') {
+                        item.style.display = item.querySelector('.document-status.missing') ? 'flex' : 'none';
+                    }
+                });
+
+                filterOptions.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html> 
