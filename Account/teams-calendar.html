@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams Calendar</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600&display=swap">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <style>
+        :root {
+            /* Teams主题颜色 */
+            --teams-primary: #5b5fc7;
+            --teams-surface: #f3f2f1;
+            --teams-white: #FFFFFF;
+            --teams-text: #242424;
+            --teams-secondary: #616161;
+            --teams-border: #E0E0E0;
+            --teams-hover: #F0F0F0;
+            --teams-selected: #5b5fc7;
+            --teams-inactive-text: #666666;
+            
+            /* 字体大小 */
+            --font-xs: 11px;
+            --font-sm: 13px;
+            --font-md: 15px;
+            --font-lg: 17px;
+            --font-xl: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--teams-surface);
+            color: var(--teams-text);
+            line-height: 1.5;
+            padding-bottom: 80px;
+            max-width: 375px;
+            margin: 0 auto;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 顶部状态栏 */
+        .status-bar {
+            background: var(--teams-white);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--teams-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .status-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-bar-left span {
+            font-size: var(--font-xl);
+            font-weight: 600;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f0e6d6;
+            color: #8b6f4c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+        }
+
+        .status-bar-right {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* 日历网格 */
+        .calendar-grid {
+            background: var(--teams-surface);
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            padding: 20px 16px;
+            gap: 0;
+        }
+
+        .weekday {
+            text-align: center;
+            color: var(--teams-inactive-text);
+            padding: 8px;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .date-cell {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            position: relative;
+            color: var(--teams-text);
+            font-weight: 400;
+        }
+
+        .date-cell.other-month {
+            color: var(--teams-inactive-text);
+        }
+
+        .date-cell.today {
+            background: var(--teams-selected);
+            color: white;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            margin: auto;
+        }
+
+        /* 会议列表 */
+        .meetings-section {
+            background: var(--teams-white);
+            border-radius: 12px 12px 0 0;
+            margin-top: 0;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+        }
+
+        .meetings-header {
+            padding: 20px 16px;
+            border-bottom: 1px solid var(--teams-border);
+        }
+
+        .date-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .date-subtitle {
+            font-size: 15px;
+            color: var(--teams-inactive-text);
+        }
+
+        .meeting-item {
+            display: flex;
+            padding: 16px;
+            border-bottom: 1px solid var(--teams-border);
+            gap: 12px;
+        }
+
+        .meeting-time {
+            min-width: 70px;
+        }
+
+        .meeting-time div:first-child {
+            font-size: 15px;
+            color: var(--teams-text);
+            font-weight: 400;
+        }
+
+        .meeting-duration {
+            font-size: 13px;
+            color: var(--teams-inactive-text);
+            margin-top: 2px;
+        }
+
+        .meeting-info {
+            flex: 1;
+        }
+
+        .meeting-title {
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 4px;
+            color: var(--teams-text);
+        }
+
+        .meeting-type {
+            font-size: 13px;
+            color: var(--teams-inactive-text);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .meeting-indicator {
+            width: 3px;
+            height: 100%;
+            background: var(--teams-selected);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* 底部导航 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--teams-white);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0 24px;
+            border-top: 1px solid var(--teams-border);
+            max-width: 375px;
+            margin: 0 auto;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--teams-inactive-text);
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        .nav-item.active {
+            color: var(--teams-selected);
+        }
+
+        .nav-icon {
+            font-size: 24px;
+        }
+
+        /* 浮动添加按钮 */
+        .fab {
+            position: fixed;
+            right: max(16px, calc((100vw - 375px) / 2 + 16px));
+            bottom: 85px;
+            width: 56px;
+            height: 56px;
+            border-radius: 28px;
+            background: var(--teams-selected);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .fab .material-icons-round {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部状态栏 -->
+    <div class="status-bar">
+        <div class="status-bar-left">
+            <div class="avatar">YH</div>
+            <span>May</span>
+        </div>
+        <div class="status-bar-right">
+            <span class="material-icons-round">more_vert</span>
+        </div>
+    </div>
+
+    <!-- 日历部分 -->
+    <div class="calendar-header">
+        <div class="month-nav">
+            <div class="month-title">May</div>
+            <div class="calendar-actions">
+                <span class="material-icons-round action-icon">view_agenda</span>
+                <span class="material-icons-round action-icon">videocam</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="calendar-grid">
+        <div class="weekday">S</div>
+        <div class="weekday">M</div>
+        <div class="weekday">T</div>
+        <div class="weekday">W</div>
+        <div class="weekday">T</div>
+        <div class="weekday">F</div>
+        <div class="weekday">S</div>
+
+        <div class="date-cell other-month">27</div>
+        <div class="date-cell other-month">28</div>
+        <div class="date-cell other-month">29</div>
+        <div class="date-cell other-month">30</div>
+        <div class="date-cell today has-event">1</div>
+        <div class="date-cell has-event">2</div>
+        <div class="date-cell has-event">3</div>
+
+        <div class="date-cell has-event">4</div>
+        <div class="date-cell">5</div>
+        <div class="date-cell">6</div>
+        <div class="date-cell">7</div>
+        <div class="date-cell">8</div>
+        <div class="date-cell">9</div>
+        <div class="date-cell">10</div>
+
+        <div class="date-cell">11</div>
+        <div class="date-cell">12</div>
+        <div class="date-cell">13</div>
+        <div class="date-cell">14</div>
+        <div class="date-cell">15</div>
+        <div class="date-cell">16</div>
+        <div class="date-cell">17</div>
+
+        <div class="date-cell">18</div>
+        <div class="date-cell">19</div>
+        <div class="date-cell">20</div>
+        <div class="date-cell">21</div>
+        <div class="date-cell">22</div>
+        <div class="date-cell">23</div>
+        <div class="date-cell">24</div>
+    </div>
+
+    <!-- 会议列表 -->
+    <div class="meetings-section">
+        <div class="meetings-header">
+            <div class="date-title">May 1</div>
+            <div class="date-subtitle">Thursday</div>
+        </div>
+
+        <div class="meeting-item">
+            <div class="meeting-time">
+                <div>19:40</div>
+                <div class="meeting-duration">30min</div>
+            </div>
+            <div class="meeting-info">
+                <div class="meeting-title">Fffgg</div>
+                <div class="meeting-type">
+                    <span class="material-icons-round" style="font-size: 16px;">videocam</span>
+                    Microsoft Teams 会议
+                </div>
+            </div>
+        </div>
+
+        <div class="meeting-item">
+            <div class="meeting-time">
+                <div>19:40</div>
+                <div class="meeting-duration">30min</div>
+            </div>
+            <div class="meeting-info">
+                <div class="meeting-title">Fffgg</div>
+                <div class="meeting-type">
+                    <span class="material-icons-round" style="font-size: 16px;">videocam</span>
+                    Microsoft Teams 会议
+                </div>
+            </div>
+        </div>
+
+        <div class="meeting-item">
+            <div class="meeting-time">
+                <div>19:40</div>
+                <div class="meeting-duration">30min</div>
+            </div>
+            <div class="meeting-info">
+                <div class="meeting-title">Fffgg</div>
+                <div class="meeting-type">
+                    <span class="material-icons-round" style="font-size: 16px;">videocam</span>
+                    Microsoft Teams 会议
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航 -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <span class="material-icons-round nav-icon">notifications_none</span>
+            <span>Activity</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="material-icons-round nav-icon">chat_bubble_outline</span>
+            <span>Chat</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="material-icons-round nav-icon">people_outline</span>
+            <span>Teams</span>
+        </a>
+        <a href="#" class="nav-item active">
+            <span class="material-icons-round nav-icon">calendar_today</span>
+            <span>Calendar</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="material-icons-round nav-icon">call</span>
+            <span>Calls</span>
+        </a>
+    </nav>
+
+    <!-- 浮动添加按钮 -->
+    <div class="fab">
+        <span class="material-icons-round">add</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCalendar();
+        });
+
+        function initializeCalendar() {
+            setupDateCells();
+            setupBottomNav();
+            setupFab();
+        }
+
+        function setupDateCells() {
+            const cells = document.querySelectorAll('.date-cell');
+            cells.forEach(cell => {
+                cell.addEventListener('click', () => {
+                    cells.forEach(c => c.classList.remove('selected'));
+                    cell.classList.add('selected');
+                    updateMeetingsList(cell.textContent);
+                });
+            });
+        }
+
+        function setupBottomNav() {
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+        }
+
+        function setupFab() {
+            const fab = document.querySelector('.fab');
+            fab.addEventListener('click', () => {
+                console.log('Creating new meeting');
+                // 实现创建新会议功能
+            });
+        }
+
+        function updateMeetingsList(date) {
+            const dateTitle = document.querySelector('.date-title');
+            dateTitle.textContent = `May ${date}`;
+            // 更新会议列表
+        }
+    </script>
+</body>
+</html> 
