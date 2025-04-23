@@ -1,0 +1,223 @@
+/* 步骤指示器容器 */
+.stepper-container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.vertical-stepper {
+    min-width: 280px;
+    padding-right: 1rem;
+    border-right: 1px solid #e0e0e0;
+}
+
+.step {
+    position: relative;
+    padding-bottom: 2rem;
+    padding-left: 2.5rem;
+}
+
+.step:last-child {
+    padding-bottom: 0;
+}
+
+.step-circle {
+    position: absolute;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #757575;
+    z-index: 2;
+}
+
+.step.active .step-circle {
+    background: #1976d2;
+    border-color: #1976d2;
+    color: #fff;
+}
+
+.step.completed .step-circle {
+    background: #4caf50;
+    border-color: #4caf50;
+    color: #fff;
+}
+
+.step-line {
+    position: absolute;
+    left: 15px;
+    top: 32px;
+    bottom: 0;
+    width: 2px;
+    background: #e0e0e0;
+    z-index: 1;
+}
+
+.step:last-child .step-line {
+    display: none;
+}
+
+.step-content {
+    padding-left: 1rem;
+}
+
+.step-label {
+    font-weight: 600;
+    color: #212121;
+    margin-bottom: 0.25rem;
+}
+
+.step-description {
+    font-size: 0.875rem;
+    color: #757575;
+}
+
+.step.active .step-label {
+    color: #1976d2;
+}
+
+.main-content {
+    flex: 1;
+    max-width: 1100px;
+}
+
+/* 步骤部分 */
+.stepper-section {
+    position: relative;
+    padding-bottom: 40px;
+}
+
+/* 垂直连接线 */
+.stepper-section::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 40px;
+    bottom: 0;
+    width: 2px;
+    background: #e0e0e0;
+}
+
+.stepper-section:last-child::before {
+    display: none;
+}
+
+/* 步骤指示器圆圈 */
+.step-indicator {
+    position: absolute;
+    left: -48px;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #4285f4;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 14px;
+    z-index: 2;
+}
+
+.step-indicator .material-icons {
+    font-size: 20px;
+}
+
+/* 已完成状态 */
+.stepper-section.completed .step-indicator {
+    background: #4285f4;
+}
+
+.stepper-section.completed .step-indicator .material-icons {
+    color: white;
+}
+
+/* 步骤标题区域 */
+.stepper-header {
+    display: flex;
+    align-items: flex-start;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* 步骤内容 */
+.step-content {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.step-content h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    color: #202124;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.step-content p {
+    margin: 0;
+    color: #5f6368;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* 状态样式 */
+.stepper-section.completed .step-content h3 {
+    color: #202124;
+}
+
+.stepper-section.active .step-content h3 {
+    color: #4285f4;
+}
+
+/* 展开内容区域 */
+.stepper-content {
+    display: none;
+    padding: 24px 0 0;
+}
+
+.stepper-section.expanded .stepper-content {
+    display: block;
+}
+
+/* 最后一步提示文本 */
+.last-step {
+    color: #5f6368;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .stepper-container {
+        flex-direction: column;
+    }
+    
+    .vertical-stepper {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .step-indicator {
+        left: -40px;
+        width: 28px;
+        height: 28px;
+    }
+    
+    .step-content h3 {
+        font-size: 15px;
+    }
+    
+    .step-content p {
+        font-size: 13px;
+    }
+} 

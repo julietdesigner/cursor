@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLC Registration Submitted Successfully</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        :root {
+            --primary-color: #3a56e4;
+            --primary-dark: #2a46d4;
+            --success-color: #34a853;
+            --text-primary: #1a2233;
+            --text-secondary: #4a5568;
+            --text-tertiary: #718096;
+            --border-color: #e2e8f0;
+            --bg-light: #f8fafc;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 2rem 1rem;
+        }
+        
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .confirmation-card {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .header-banner {
+            background-color: var(--primary-color);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-banner::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1));
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-title {
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .header-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            max-width: 600px;
+        }
+        
+        .card-body {
+            padding: 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .order-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-icon {
+            color: var(--primary-color);
+            background-color: rgba(58, 86, 228, 0.1);
+            border-radius: 50%;
+            padding: 8px;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .info-content {
+            flex: 1;
+        }
+        
+        .info-label {
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .info-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .steps-container {
+            margin-bottom: 2.5rem;
+        }
+        
+        .step-item {
+            display: flex;
+            margin-bottom: 1.75rem;
+            position: relative;
+        }
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-item::after {
+            content: "";
+            position: absolute;
+            top: 40px;
+            left: 17px;
+            width: 2px;
+            height: calc(100% - 30px);
+            background-color: var(--border-color);
+        }
+        
+        .step-item:last-child::after {
+            display: none;
+        }
+        
+        .step-icon {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-icon .material-icons {
+            font-size: 20px;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .step-description {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+        
+        .services-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .service-tag {
+            background-color: rgba(58, 86, 228, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-tag .material-icons {
+            font-size: 16px;
+            margin-right: 6px;
+        }
+        
+        .action-section {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .primary-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        
+        .primary-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .primary-button .material-icons {
+            margin-left: 0.5rem;
+        }
+        
+        .secondary-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .secondary-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 0.9375rem;
+        }
+        
+        .secondary-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .secondary-link .material-icons {
+            font-size: 18px;
+            margin-right: 0.5rem;
+        }
+        
+        .success-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #ecfdf5;
+            color: #10b981;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .success-badge .material-icons {
+            font-size: 16px;
+            margin-right: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 1.75rem;
+            }
+            
+            .order-info {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="confirmation-card">
+            <div class="header-banner">
+                <div class="header-content">
+                    <h1 class="header-title">Your LLC Registration<br>Has Been Submitted</h1>
+                    <p class="header-subtitle">Thank you for choosing us to form your business. Your filing request has been successfully received.</p>
+                </div>
+            </div>
+            
+            <div class="card-body">
+                <span class="success-badge">
+                    <span class="material-icons">check_circle</span>
+                    Submission Successful
+                </span>
+                
+                <h2 class="section-title">Order Information</h2>
+                
+                <div class="order-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <span class="material-icons">receipt</span>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Order Number</div>
+                            <div class="info-value" id="orderNumber">ORD-165773</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <span class="material-icons">location_on</span>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Filing State</div>
+                            <div class="info-value">Alabama</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <span class="material-icons">business</span>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Business Type</div>
+                            <div class="info-value">LLC</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <span class="material-icons">schedule</span>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Expected Approval</div>
+                            <div class="info-value">7-10 Business Days</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">Next Steps</h2>
+                
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-icon">
+                            <span class="material-icons">mail</span>
+                        </div>
+                        <div class="step-content">
+                            <h3 class="step-title">Check Confirmation Email</h3>
+                            <p class="step-description">We have sent the order confirmation to the email address you provided. Please check your inbox.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-icon">
+                            <span class="material-icons">description</span>
+                        </div>
+                        <div class="step-content">
+                            <h3 class="step-title">LLC Approval Process</h3>
+                            <p class="step-description">Your LLC is under review and will be processed within 7-10 business days.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-icon">
+                            <span class="material-icons">verified</span>
+                        </div>
+                        <div class="step-content">
+                            <h3 class="step-title">Receive Approval Documents</h3>
+                            <p class="step-description">Once approved, you will receive your LLC formation documents via email and in your online account.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="services-section">
+                    <h2 class="section-title">Services Selected</h2>
+                    
+                    <div class="service-tags">
+                        <span class="service-tag">
+                            <span class="material-icons">location_city</span>
+                            Professional Business Address
+                        </span>
+                        <span class="service-tag">
+                            <span class="material-icons">badge</span>
+                            EIN / Tax ID
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="action-section">
+                    <a href="order-summary.html" class="primary-button">
+                        Continue to Receipt
+                        <span class="material-icons">arrow_forward</span>
+                    </a>
+                    
+                    <div class="secondary-links">
+                        <a href="#" class="secondary-link">
+                            <span class="material-icons">download</span>
+                            Download Order Summary
+                        </a>
+                        <a href="#" class="secondary-link">
+                            <span class="material-icons">support_agent</span>
+                            Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate random order number if needed
+            const orderNumber = document.getElementById('orderNumber');
+            if (!orderNumber.textContent || orderNumber.textContent === 'ORD-165773') {
+                const randomNum = Math.floor(100000 + Math.random() * 900000);
+                orderNumber.textContent = 'ORD-' + randomNum;
+            }
+            
+            // Add animation to steps
+            const steps = document.querySelectorAll('.step-item');
+            steps.forEach((step, index) => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateY(20px)';
+                step.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                
+                setTimeout(() => {
+                    step.style.opacity = '1';
+                    step.style.transform = 'translateY(0)';
+                }, 300 + (index * 150));
+            });
+        });
+    </script>
+</body>
+</html> 

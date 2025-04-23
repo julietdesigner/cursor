@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members Information - LLC Registration</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <style>
+        :root {
+            --primary-color: #3a56e4;
+            --primary-light: #eef1fd;
+            --primary-dark: #2a46d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --text-primary: #1a2233;
+            --text-secondary: #4a5568;
+            --text-tertiary: #718096;
+            --border-color: #e2e8f0;
+            --bg-light: #f8fafc;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 2rem 1rem;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .members-form {
+            max-width: 1200px;
+            margin: 0 auto 2.5rem;
+            background-color: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background-color: var(--primary-color);
+            padding: 1.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1));
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-title {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .form-body {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9375rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-icon {
+            color: var(--text-tertiary);
+            font-size: 1.125rem;
+            margin-left: 0.5rem;
+            cursor: help;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .select-control, .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            color: var(--text-primary);
+            background-color: white;
+            transition: all 0.2s ease;
+        }
+
+        .select-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23718096'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.25rem;
+        }
+
+        .select-control:focus, .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(58, 86, 228, 0.1);
+        }
+
+        .option-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-card {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary-color);
+        }
+
+        .option-card.selected {
+            border: 2px solid var(--primary-color);
+            background-color: var(--primary-light);
+        }
+
+        .option-content {
+            padding: 1.25rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .radio-circle {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            margin-right: 1rem;
+            position: relative;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .option-card.selected .radio-circle {
+            border-color: var(--primary-color);
+        }
+
+        .radio-circle.selected::after {
+            content: "";
+            position: absolute;
+            width: 0.625rem;
+            height: 0.625rem;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .radio-label h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .radio-label p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .member-name-display {
+            display: flex;
+            align-items: center;
+            background-color: var(--primary-light);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+        }
+
+        .person-icon {
+            color: var(--primary-color);
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+
+        .member-name {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .checkbox-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-container {
+            position: relative;
+            padding-left: 2.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            user-select: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0.125rem;
+            left: 0;
+            height: 1.25rem;
+            width: 1.25rem;
+            border-radius: var(--radius-sm);
+            background-color: white;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-container:hover input ~ .checkmark {
+            border-color: var(--primary-color);
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .checkbox-container .checkmark:after {
+            left: 0.4375rem;
+            top: 0.1875rem;
+            width: 0.3125rem;
+            height: 0.625rem;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+        }
+
+        .location-icon {
+            color: var(--text-tertiary);
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .info-message {
+            display: flex;
+            align-items: flex-start;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+        }
+
+        .success-message {
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .info-message .info-icon {
+            color: var(--success-color);
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            flex-grow: 1;
+        }
+
+        .info-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .info-description {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .member-section {
+            background-color: white;
+            border-radius: var(--radius-md);
+            margin-bottom: 2rem;
+        }
+
+        .form-action-buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+        }
+
+        .save-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.625rem 1.25rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .save-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 2.5rem 0;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 2rem;
+        }
+
+        .update-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .update-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .arrow-icon {
+            margin-left: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .additional-info-section {
+            margin-top: 2rem;
+        }
+
+        .additional-info-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .accordion {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1.25rem;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: var(--bg-light);
+        }
+
+        .accordion-header span:first-child {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .accordion-icon {
+            color: var(--text-tertiary);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-content {
+            padding: 0 1.25rem 1.25rem;
+            display: none;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        .accordion-content p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        .optional {
+            font-weight: normal;
+            color: var(--text-tertiary);
+            font-size: 0.8125rem;
+            margin-left: 0.25rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .members-form {
+                margin: 1rem;
+            }
+            
+            .form-header, .form-body {
+                padding: 1.5rem;
+            }
+            
+            .form-title {
+                font-size: 1.5rem;
+            }
+            
+            .option-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="members-form fade-in">
+            <div class="form-header">
+                <div class="header-content">
+                    <h1 class="form-title">Members Information</h1>
+                    <p class="form-subtitle">Add details for <span id="company-name">111 LLC</span></p>
+                </div>
+            </div>
+            
+            <div class="form-body">
+                <div class="form-group fade-in">
+                    <label class="form-label">
+                        Number of Members/Owners
+                        <span class="material-icons info-icon" id="membersInfoIcon">info</span>
+                    </label>
+                    <select class="select-control" id="numberOfMembers">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                
+                <div class="member-section fade-in" id="memberSection1">
+                    <h3 class="section-title">Member 1</h3>
+                    
+                    <div class="option-cards member-type-options">
+                        <div class="option-card selected" id="individual-option-1">
+                            <div class="option-content">
+                                <div class="radio-option">
+                                    <div class="radio-circle selected"></div>
+                                    <div class="radio-label">
+                                        <h4>Individual</h4>
+                                        <p>Select if Member is a person.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="option-card" id="company-option-1">
+                            <div class="option-content">
+                                <div class="radio-option">
+                                    <div class="radio-circle"></div>
+                                    <div class="radio-label">
+                                        <h4>Company</h4>
+                                        <p>Select if Member is a company.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="member-name-display">
+                            <span class="material-icons person-icon">person</span>
+                            <span class="member-name" id="memberName1">Testest Test</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="useCompanyAddress1" checked>
+                            <span class="checkmark"></span>
+                            <div class="checkbox-label">
+                                <span class="material-icons location-icon">location_on</span>
+                                Use the assigned company address provided by Bizee
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName1" value="Jeu">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName1" value="None">
+                        </div>
+                    </div>
+                    
+                    <div class="info-message success-message">
+                        <span class="material-icons info-icon">check_circle</span>
+                        <div class="info-content">
+                            <p class="info-title">You have selected for Bizee to provide you with a company address.</p>
+                            <p class="info-description">We will use the company address for the member information in order to shield your personal information from being publicly available.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="member-address-section" id="memberAddressSection1" style="display:none;">
+                        <!-- Member address form, displayed when not using company address -->
+                        <div class="form-group">
+                            <label class="form-label">Street Address</label>
+                            <input type="text" class="form-control" id="memberStreet1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Address (Cont) <span class="optional">(Optional)</span></label>
+                            <input type="text" class="form-control" id="memberStreet21">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">City</label>
+                            <input type="text" class="form-control" id="memberCity1">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">State</label>
+                                <select class="select-control" id="memberState1">
+                                    <option value="New York" selected>New York</option>
+                                    <!-- Other state options -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Zip Code</label>
+                                <input type="text" class="form-control" id="memberZip1">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-action-buttons">
+                        <button type="button" class="save-btn" id="saveMemberBtn1">Save</button>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="button-container">
+                    <button type="button" class="update-btn" id="updateBtn">
+                        Update
+                        <span class="material-icons arrow-icon">arrow_forward</span>
+                    </button>
+                </div>
+                
+                <div class="additional-info-section fade-in">
+                    <h3>Additional Explanation</h3>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header" id="articlesInfoHeader">
+                            <span>What information is included in the Articles of Organization for an LLC?</span>
+                            <span class="material-icons accordion-icon">expand_more</span>
+                        </div>
+                        <div class="accordion-content" id="articlesInfoContent">
+                            <p>The articles of organization will not record the names and or addresses of the initial members of the LLC.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation
+            const fadeElements = document.querySelectorAll('.fade-in');
+            setTimeout(() => {
+                fadeElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('active');
+                    }, index * 150);
+                });
+            }, 100);
+            
+            // Handle option cards
+            const individualOption = document.getElementById('individual-option-1');
+            const companyOption = document.getElementById('company-option-1');
+            
+            individualOption.addEventListener('click', function() {
+                individualOption.classList.add('selected');
+                companyOption.classList.remove('selected');
+                
+                const individualRadio = individualOption.querySelector('.radio-circle');
+                const companyRadio = companyOption.querySelector('.radio-circle');
+                
+                individualRadio.classList.add('selected');
+                companyRadio.classList.remove('selected');
+            });
+            
+            companyOption.addEventListener('click', function() {
+                companyOption.classList.add('selected');
+                individualOption.classList.remove('selected');
+                
+                const individualRadio = individualOption.querySelector('.radio-circle');
+                const companyRadio = companyOption.querySelector('.radio-circle');
+                
+                companyRadio.classList.add('selected');
+                individualRadio.classList.remove('selected');
+            });
+            
+            // Handle checkbox for address
+            const useCompanyAddress = document.getElementById('useCompanyAddress1');
+            const memberAddressSection = document.getElementById('memberAddressSection1');
+            
+            useCompanyAddress.addEventListener('change', function() {
+                if (this.checked) {
+                    memberAddressSection.style.display = 'none';
+                } else {
+                    memberAddressSection.style.display = 'block';
+                }
+            });
+            
+            // Handle accordion
+            const accordionHeader = document.getElementById('articlesInfoHeader');
+            const accordionContent = document.getElementById('articlesInfoContent');
+            
+            accordionHeader.addEventListener('click', function() {
+                accordionContent.classList.toggle('active');
+                
+                const icon = this.querySelector('.accordion-icon');
+                if (accordionContent.classList.contains('active')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Handle save button
+            const firstNameInput = document.getElementById('firstName1');
+            const lastNameInput = document.getElementById('lastName1');
+            const memberNameDisplay = document.getElementById('memberName1');
+            
+            document.getElementById('saveMemberBtn1').addEventListener('click', function() {
+                const firstName = firstNameInput.value.trim();
+                const lastName = lastNameInput.value.trim();
+                
+                if (firstName && lastName) {
+                    memberNameDisplay.textContent = `${firstName} ${lastName}`;
+                    alert('Member information saved!');
+                } else {
+                    alert('Please enter both first and last name.');
+                }
+            });
+            
+            // Handle update button
+            document.getElementById('updateBtn').addEventListener('click', function() {
+                // In a real application, you would send this data to the server
+                console.log('Member data updated');
+                
+                // Redirect to order summary page
+                window.location.href = 'order-summary.html';
+            });
+        });
+    </script>
+</body>
+</html> 
