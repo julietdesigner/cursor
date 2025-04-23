@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Agent - LLC Registration</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <style>
+        :root {
+            --primary-color: #3a56e4;
+            --primary-light: #eef1fd;
+            --primary-dark: #2a46d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --text-primary: #1a2233;
+            --text-secondary: #4a5568;
+            --text-tertiary: #718096;
+            --border-color: #e2e8f0;
+            --bg-light: #f8fafc;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 2rem 1rem;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .agent-form {
+            max-width: 1200px;
+            margin: 0 auto 2.5rem;
+            background-color: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background-color: var(--primary-color);
+            padding: 1.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1));
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-title {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .form-body {
+            padding: 2rem;
+        }
+
+        .agent-info {
+            margin-bottom: 1.75rem;
+        }
+
+        .agent-info p {
+            margin: 0.75rem 0;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .check-icon {
+            color: var(--primary-color);
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+            font-size: 1.25rem;
+        }
+
+        .check-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .radio-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.75rem 0 2.5rem;
+        }
+
+        .radio-option {
+            position: relative;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-option:hover {
+            border-color: #c5cbff;
+            background-color: var(--bg-light);
+        }
+
+        .radio-option.selected {
+            border: 2px solid var(--primary-color);
+            background-color: var(--primary-light);
+        }
+
+        .radio-circle {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            margin-right: 1rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .selected .radio-circle {
+            border-color: var(--primary-color);
+        }
+
+        .selected .radio-circle::after {
+            content: "";
+            width: 0.625rem;
+            height: 0.625rem;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .radio-label {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .accordion {
+            margin: 2rem 0;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: var(--bg-light);
+        }
+
+        .accordion-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-weight: 600;
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            flex-grow: 1;
+        }
+
+        .accordion-arrow {
+            color: var(--text-tertiary);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem 1.5rem 4.5rem;
+            display: none;
+        }
+
+        .accordion-item.active .accordion-content {
+            display: block;
+        }
+
+        .accordion-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .terms-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .terms-link:hover {
+            text-decoration: underline;
+        }
+
+        .update-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 1.5rem;
+        }
+
+        .update-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .update-btn .material-icons {
+            margin-left: 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .action-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .agent-form {
+                margin: 1rem;
+            }
+            
+            .form-header, .form-body {
+                padding: 1.5rem;
+            }
+            
+            .form-title {
+                font-size: 1.5rem;
+            }
+            
+            .accordion-header {
+                padding: 1rem;
+            }
+            
+            .accordion-content {
+                padding: 0 1rem 1rem 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="agent-form fade-in">
+            <div class="form-header">
+                <div class="header-content">
+                    <h1 class="form-title">Registered Agent Information</h1>
+                    <p class="form-subtitle">Choose your registered agent options</p>
+                </div>
+            </div>
+            
+            <div class="form-body">
+                <div class="agent-info fade-in">
+                    <p>New York requires an LLC to appoint a Registered Agent:</p>
+                    
+                    <div class="check-item">
+                        <span class="check-icon material-icons">check_circle</span>
+                        <span class="check-text">Only Bizee offers 1 full year of Registered Agent service FREE with every new business formation order - a $119.00 value!</span>
+                    </div>
+                    
+                    <p>Typical documents received by your Registered Agent can include:</p>
+                    
+                    <div class="check-item">
+                        <span class="check-icon material-icons">check_circle</span>
+                        <span class="check-text">Service of Process, i.e. notification of a pending lawsuit or court order</span>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon material-icons">check_circle</span>
+                        <span class="check-text">State correspondence, i.e. annual reports or statements</span>
+                    </div>
+                </div>
+                
+                <div class="radio-options fade-in">
+                    <div class="radio-option selected" data-value="bizee">
+                        <div class="radio-circle"></div>
+                        <div class="radio-label">Assign Bizee as my Registered Agent FREE For 1 year.</div>
+                    </div>
+                    
+                    <div class="radio-option" data-value="self">
+                        <div class="radio-circle"></div>
+                        <div class="radio-label">I would like to act as my own registered agent.</div>
+                    </div>
+                </div>
+                
+                <div class="accordion fade-in">
+                    <div class="accordion-item active">
+                        <div class="accordion-header">
+                            <div class="accordion-icon">
+                                <span class="material-icons">event</span>
+                            </div>
+                            <div class="accordion-title">Free First Year</div>
+                            <span class="accordion-arrow material-icons">expand_more</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>Every new order for incorporation service includes 1 year of FREE Registered Agent service. Service automatically renews each year, but you may cancel at any time by changing your agent and then contacting us. <a href="#" class="terms-link">View Terms</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div class="accordion-icon">
+                                <span class="material-icons">description</span>
+                            </div>
+                            <div class="accordion-title">Guaranteed Rates</div>
+                            <span class="accordion-arrow material-icons">expand_more</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>After the first year your renewal rate will remain $119 per year and is guaranteed for the life of the service. When your renewal is due you will be notified and be allowed to decide if renewing the service is in your best interests.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div class="accordion-icon">
+                                <span class="material-icons">layers</span>
+                            </div>
+                            <div class="accordion-title">All-Inclusive</div>
+                            <span class="accordion-arrow material-icons">expand_more</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>We never charge a dime in additional fees for postage paid to deliver you your company's important documents.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div class="accordion-icon">
+                                <span class="material-icons">mail</span>
+                            </div>
+                            <div class="accordion-title">Reduce Junk Mail</div>
+                            <span class="accordion-arrow material-icons">expand_more</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>Many companies will acquire distribution lists of new companies and use the registered agent address to send annoying solicitation mail. By having a registered agent address you can reduce the amount of junk mail received.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-section">
+                    <button type="button" class="update-btn">
+                        Update
+                        <span class="material-icons">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation
+            const fadeElements = document.querySelectorAll('.fade-in');
+            setTimeout(() => {
+                fadeElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('active');
+                    }, index * 150);
+                });
+            }, 100);
+            
+            // Radio options toggle
+            const radioOptions = document.querySelectorAll('.radio-option');
+            
+            radioOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected state from all options
+                    radioOptions.forEach(opt => opt.classList.remove('selected'));
+                    // Add selected state to clicked option
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Accordion functionality
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all accordion items
+                    document.querySelectorAll('.accordion-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // If it wasn't active before, open it now
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Update button action
+            const updateBtn = document.querySelector('.update-btn');
+            
+            updateBtn.addEventListener('click', function() {
+                // Get selected agent option
+                const selectedOption = document.querySelector('.radio-option.selected');
+                const agentType = selectedOption.getAttribute('data-value');
+                
+                // In a real application, you would send this data to the server
+                console.log('Selected agent type:', agentType);
+                
+                // Redirect to order summary page
+                window.location.href = 'order-summary.html';
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Tax Information - LLC Registration</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <style>
+        :root {
+            --primary-color: #3a56e4;
+            --primary-light: #eef1fd;
+            --primary-dark: #2a46d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --text-primary: #1a2233;
+            --text-secondary: #4a5568;
+            --text-tertiary: #718096;
+            --border-color: #e2e8f0;
+            --bg-light: #f8fafc;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding: 2rem 1rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .tax-form {
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            background-color: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background-color: var(--primary-color);
+            margin-right: 0.75rem;
+            border-radius: 2px;
+        }
+
+        h3.section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .form-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 2.5rem 0;
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(58, 86, 228, 0.15);
+        }
+
+        .form-control.text-center {
+            text-align: center;
+        }
+
+        .select-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        .select-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(58, 86, 228, 0.15);
+        }
+
+        .option-cards {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-card {
+            flex: 1;
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary-color);
+            background-color: var(--primary-light);
+        }
+
+        .option-card.selected {
+            border-color: var(--primary-color);
+            background-color: var(--primary-light);
+        }
+
+        .option-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            margin-right: 0.75rem;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .radio-circle.selected {
+            border-color: var(--primary-color);
+        }
+
+        .radio-circle.selected::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .radio-label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .checkbox-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-left: 2.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            user-select: none;
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 24px;
+            width: 24px;
+            background-color: white;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-container:hover input ~ .checkmark {
+            border-color: var(--primary-color);
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .checkbox-container .checkmark:after {
+            left: 8px;
+            top: 4px;
+            width: 6px;
+            height: 12px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .applicant-display {
+            background-color: var(--primary-light);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+        }
+
+        .address-options {
+            margin-bottom: 1.5rem;
+        }
+
+        .address-divider {
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            position: relative;
+        }
+
+        .address-divider::before,
+        .address-divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        .address-divider::before {
+            left: 0;
+        }
+
+        .address-divider::after {
+            right: 0;
+        }
+
+        .physical-address-option,
+        .company-address-option {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .physical-address-option:hover,
+        .company-address-option:hover {
+            border-color: var(--primary-color);
+        }
+
+        .person-icon,
+        .location-icon {
+            color: var(--primary-color);
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .info-message {
+            display: flex;
+            align-items: flex-start;
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            margin: 1.5rem 0;
+        }
+
+        .success-message {
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .info-icon {
+            color: var(--success-color);
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .info-description {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .accordion-section {
+            margin: 1.5rem 0;
+        }
+
+        .accordion {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: white;
+            cursor: pointer;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            transition: background-color 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: var(--bg-light);
+        }
+
+        .accordion-icon {
+            font-size: 1.25rem;
+            color: var(--text-tertiary);
+            transition: transform 0.2s ease;
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: var(--bg-light);
+        }
+
+        .accordion.active .accordion-content {
+            padding: 1rem;
+            max-height: 200px;
+        }
+
+        .optional {
+            font-size: 0.75rem;
+            font-weight: normal;
+            color: var(--text-tertiary);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2.5rem;
+        }
+
+        .update-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .update-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .arrow-icon {
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .tax-form {
+                padding: 1.5rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .option-cards {
+                flex-direction: column;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tax-form">
+        <h2>EIN / Tax Identification Number Information</h2>
+        
+        <div class="form-description">
+            An Employer Identification Number (EIN) is a nine-digit number that is assigned by the IRS and used to identify taxpayers. We will apply and obtain your EIN from the IRS electronically. This option is the fastest way to obtain the EIN.
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="form-section">
+            <div class="foreign-option">
+                <p class="section-title">I am a foreign individual and do not have a social security number</p>
+                
+                <div class="option-cards">
+                    <div class="option-card" id="foreign-yes-option">
+                        <div class="option-content">
+                            <div class="radio-option">
+                                <div class="radio-circle"></div>
+                                <div class="radio-label">Yes</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-card selected" id="foreign-no-option">
+                        <div class="option-content">
+                            <div class="radio-option">
+                                <div class="radio-circle selected"></div>
+                                <div class="radio-label">No</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="applicant-display checkbox-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="applicantCheck" checked>
+                        <span class="checkmark"></span>
+                        <div class="checkbox-label">
+                            <span class="material-icons person-icon">person</span>
+                            <span id="applicantName">Testest Julijuliet</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" value="Testest">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" value="Julijuliet">
+                </div>
+            </div>
+            
+            <div class="identification-section" id="identification-section">
+                <div class="section-title">Identification number by which I will obtain the EIN</div>
+                
+                <div class="option-cards">
+                    <div class="option-card selected" id="ssn-option">
+                        <div class="option-content">
+                            <div class="radio-option">
+                                <div class="radio-circle selected"></div>
+                                <div class="radio-label">SSN</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-card" id="itin-option">
+                        <div class="option-content">
+                            <div class="radio-option">
+                                <div class="radio-circle"></div>
+                                <div class="radio-label">ITIN</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group" id="ssn-section">
+                    <label class="form-label">SSN</label>
+                    <input type="text" class="form-control text-center" id="ssnInput" placeholder="000-00-0000" value="000-00-0000">
+                </div>
+                
+                <div class="form-group" id="itin-section" style="display: none;">
+                    <label class="form-label">ITIN</label>
+                    <input type="text" class="form-control text-center" id="itinInput" placeholder="000-00-0000">
+                </div>
+                
+                <div class="accordion-section">
+                    <div class="accordion">
+                        <div class="accordion-header" id="ssnInfoHeader">
+                            <span>The IRS needs your Social Security Number to verify your identity and prevent fraud.</span>
+                            <span class="material-icons accordion-icon">expand_more</span>
+                        </div>
+                        <div class="accordion-content" id="ssnInfoContent">
+                            <p>The IRS requires an SSN or ITIN for the responsible party on an EIN application to verify identity and prevent fraud. This information is protected and not disclosed publicly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="form-section">
+            <h3 class="section-title">Physical Street Address</h3>
+            
+            <div class="form-description">
+                The IRS requires a physical address in order to issue an Employer Identification Number (EIN / Tax ID Number) to your company. Please note the IRS will not allow for the use of a PO Box; however, this address will not be public under any circumstance.
+            </div>
+            
+            <div class="address-options">
+                <div class="physical-address-option checkbox-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="useCustomAddressCheck">
+                        <span class="checkmark"></span>
+                        <div class="checkbox-label">
+                            <span class="material-icons location-icon">location_on</span>
+                            <span id="customAddressText">222 Newyork, New 111, CN.</span>
+                        </div>
+                    </label>
+                </div>
+                
+                <div class="address-divider">or</div>
+                
+                <div class="company-address-option checkbox-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="useCompanyAddressCheck" checked>
+                        <span class="checkmark"></span>
+                        <div class="checkbox-label">
+                            <span class="material-icons location-icon">location_on</span>
+                            Use the assigned company address provided by Bizee
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="info-message success-message" id="addressSuccessMsg">
+                <span class="material-icons info-icon">info</span>
+                <div class="info-content">
+                    <p class="info-title">You have selected for Bizee to provide you with a company address.</p>
+                    <p class="info-description">We will use the company address for the EIN information in order to shield your personal information from being publicly available.</p>
+                </div>
+            </div>
+            
+            <div class="physical-address-section" id="physicalAddressSection" style="display:none;">
+                <div class="form-group">
+                    <label class="form-label">Country</label>
+                    <select class="select-control" id="country">
+                        <option value="US">United States</option>
+                        <option value="CN" selected>China (中国)</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Street Address</label>
+                    <input type="text" class="form-control" id="street" value="222">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Address (Cont) <span class="optional">(Optional)</span></label>
+                    <input type="text" class="form-control" id="street2">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" value="Newyork">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-control" id="state" value="New">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Zip Code</label>
+                        <input type="text" class="form-control" id="zip" value="111">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <button type="button" class="update-btn" id="updateBtn">
+                Update
+                <span class="material-icons arrow-icon">arrow_forward</span>
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Option card selection
+            const optionCards = document.querySelectorAll('.option-card');
+            
+            optionCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Get the card group
+                    const parent = this.parentElement;
+                    const allCardsInGroup = parent.querySelectorAll('.option-card');
+                    
+                    // Remove selected class and unselect radio circles
+                    allCardsInGroup.forEach(c => {
+                        c.classList.remove('selected');
+                        const radioCircle = c.querySelector('.radio-circle');
+                        if (radioCircle) radioCircle.classList.remove('selected');
+                    });
+                    
+                    // Add selected class and select radio circle
+                    this.classList.add('selected');
+                    const radioCircle = this.querySelector('.radio-circle');
+                    if (radioCircle) radioCircle.classList.add('selected');
+                    
+                    // Handle specific option selections
+                    if (this.id === 'foreign-yes-option') {
+                        // Show relevant foreign options
+                        document.getElementById('identification-section').style.display = 'none';
+                    } else if (this.id === 'foreign-no-option') {
+                        // Show SSN/ITIN options
+                        document.getElementById('identification-section').style.display = 'block';
+                    } else if (this.id === 'ssn-option') {
+                        // Show SSN input, hide ITIN input
+                        document.getElementById('ssn-section').style.display = 'block';
+                        document.getElementById('itin-section').style.display = 'none';
+                    } else if (this.id === 'itin-option') {
+                        // Show ITIN input, hide SSN input
+                        document.getElementById('ssn-section').style.display = 'none';
+                        document.getElementById('itin-section').style.display = 'block';
+                    }
+                });
+            });
+            
+            // Address option checkboxes
+            const useCustomAddressCheck = document.getElementById('useCustomAddressCheck');
+            const useCompanyAddressCheck = document.getElementById('useCompanyAddressCheck');
+            const physicalAddressSection = document.getElementById('physicalAddressSection');
+            const addressSuccessMsg = document.getElementById('addressSuccessMsg');
+            
+            useCustomAddressCheck.addEventListener('change', function() {
+                if (this.checked) {
+                    useCompanyAddressCheck.checked = false;
+                    physicalAddressSection.style.display = 'block';
+                    addressSuccessMsg.style.display = 'none';
+                } else if (!useCompanyAddressCheck.checked) {
+                    useCompanyAddressCheck.checked = true;
+                    physicalAddressSection.style.display = 'none';
+                    addressSuccessMsg.style.display = 'flex';
+                }
+            });
+            
+            useCompanyAddressCheck.addEventListener('change', function() {
+                if (this.checked) {
+                    useCustomAddressCheck.checked = false;
+                    physicalAddressSection.style.display = 'none';
+                    addressSuccessMsg.style.display = 'flex';
+                } else if (!useCustomAddressCheck.checked) {
+                    useCustomAddressCheck.checked = true;
+                    physicalAddressSection.style.display = 'block';
+                    addressSuccessMsg.style.display = 'none';
+                }
+            });
+            
+            // Accordion functionality
+            const accordion = document.querySelector('.accordion');
+            const accordionHeader = document.getElementById('ssnInfoHeader');
+            const accordionContent = document.getElementById('ssnInfoContent');
+            
+            accordionHeader.addEventListener('click', function() {
+                accordion.classList.toggle('active');
+            });
+            
+            // SSN input formatting
+            const ssnInput = document.getElementById('ssnInput');
+            ssnInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 9) value = value.slice(0, 9);
+                
+                if (value.length > 5) {
+                    value = value.slice(0, 3) + '-' + value.slice(3, 5) + '-' + value.slice(5);
+                } else if (value.length > 3) {
+                    value = value.slice(0, 3) + '-' + value.slice(3);
+                }
+                
+                e.target.value = value;
+            });
+            
+            // Update button event
+            const updateBtn = document.getElementById('updateBtn');
+            updateBtn.addEventListener('click', function() {
+                // In a real application, validate the form and submit
+                window.location.href = 'order-summary.html';
+            });
+        });
+    </script>
+</body>
+</html> 
