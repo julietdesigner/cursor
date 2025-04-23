@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Company Address - LLC Registration</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <style>
+        :root {
+            --primary-color: #3a56e4;
+            --primary-light: #eef1fd;
+            --primary-dark: #2a46d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --text-primary: #1a2233;
+            --text-secondary: #4a5568;
+            --text-tertiary: #718096;
+            --border-color: #e2e8f0;
+            --bg-light: #f8fafc;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 2rem 1rem;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .address-form {
+            max-width: 1200px;
+            margin: 0 auto 2.5rem;
+            background-color: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background-color: var(--primary-color);
+            padding: 1.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1));
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-title {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .form-body {
+            padding: 2rem;
+        }
+
+        .form-description {
+            margin-bottom: 1.75rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .check-list {
+            margin: 1.75rem 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .check-icon {
+            color: var(--primary-color);
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+            font-size: 1.25rem;
+        }
+
+        .option-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0 2.5rem;
+        }
+
+        .option-card {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+            background-color: white;
+        }
+
+        .option-card:hover {
+            border-color: #c5cbff;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .option-card.selected {
+            border: 2px solid var(--primary-color);
+            background-color: var(--primary-light);
+        }
+
+        .option-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            z-index: 1;
+        }
+
+        .option-header {
+            padding: 2.5rem;
+            background-color: white;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .option-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .option-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin: 0.75rem 0 0;
+        }
+
+        .option-content {
+            padding: 1.5rem;
+            padding-bottom: 3.5rem;
+        }
+
+        .option-address {
+            text-align: center;
+            font-size: 1rem;
+            border: 1px dashed var(--border-color);
+            padding: 1rem;
+            margin-bottom: 1.25rem;
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+
+        .option-note {
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            margin-bottom: 1.25rem;
+        }
+
+        .option-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .benefit-icon {
+            color: var(--success-color);
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+            font-size: 1.25rem;
+        }
+
+        .option-price {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .price-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 0.25rem 0;
+        }
+
+        .price-amount {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .price-note {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            margin-top: 0.5rem;
+        }
+
+        .option-radio {
+            display: flex;
+            padding: 0.75rem 1.25rem;
+            border-top: 1px solid var(--border-color);
+            align-items: center;
+            cursor: pointer;
+            background-color: white;
+            transition: background-color 0.2s ease;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .option-card.selected .option-radio {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .radio-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.2s ease;
+        }
+
+        .option-card.selected .radio-icon {
+            border-color: white;
+        }
+
+        .option-card.selected .radio-icon::after {
+            content: "";
+            width: 0.625rem;
+            height: 0.625rem;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .radio-label {
+            font-weight: 500;
+            font-size: 0.9375rem;
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9375rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(58, 86, 228, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .optional {
+            font-weight: normal;
+            color: var(--text-tertiary);
+            font-size: 0.8125rem;
+            margin-left: 0.25rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper .material-icons {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--text-tertiary);
+        }
+
+        select.form-control {
+            appearance: none;
+            padding-right: 2rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23718096'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            font-size: 1rem;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-primary .material-icons {
+            margin-left: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .action-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2.5rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .option-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .form-header, .form-body {
+                padding: 1.5rem;
+            }
+            
+            .form-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="address-form fade-in">
+            <div class="form-header">
+                <div class="header-content">
+                    <h1 class="form-title">Company Address Information</h1>
+                    <p class="form-subtitle">Select your business address options</p>
+                </div>
+            </div>
+            
+            <div class="form-body">
+                <div class="form-description">
+                    We recommend using our Virtual Address service if maintaining your personal privacy is important.
+                </div>
+                
+                <div class="form-description">
+                    The State of New York formation documents collect and make publicly available both the business address of the entity as well as the personal addresses of the owners. Ensure your privacy with our Virtual Address Service, now with your <span class="highlight">first month FREE!</span> with your formation.
+                </div>
+                
+                <div class="form-section fade-in">
+                    <h3 class="section-title">Benefits of Using a Private Virtual Mail Address</h3>
+                    
+                    <ul class="check-list">
+                        <li class="check-item">
+                            <span class="material-icons check-icon">check_circle</span>
+                            <span>Keeping your personal address confidential</span>
+                        </li>
+                        <li class="check-item">
+                            <span class="material-icons check-icon">check_circle</span>
+                            <span>Real-time text and email notification of any incoming mail</span>
+                        </li>
+                        <li class="check-item">
+                            <span class="material-icons check-icon">check_circle</span>
+                            <span>Having a physical presence in New York, even if you're not physically there</span>
+                        </li>
+                        <li class="check-item">
+                            <span class="material-icons check-icon">check_circle</span>
+                            <span>Permanent digital access to your mail anywhere in the world</span>
+                        </li>
+                        <li class="check-item">
+                            <span class="material-icons check-icon">check_circle</span>
+                            <span>Receiving correspondence from the New York Secretary of State</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="option-cards">
+                    <div class="option-card selected fade-in" id="virtual-address-option">
+                        <div class="option-badge">FIRST MONTH FREE</div>
+                        <div class="option-header">
+                            <h4 class="option-title">Professional Business Address & Virtual Mail Service</h4>
+                            <p class="option-subtitle">This will be your principal company address:</p>
+                        </div>
+                        <div class="option-content">
+                            <div class="option-address">
+                                54 STATE STREET, STE 804<br>
+                                ALBANY, NY 12207
+                            </div>
+                            <p class="option-note">Suite # assigned upon order completion</p>
+                            
+                            <ul class="option-benefits">
+                                <li class="benefit-item">
+                                    <span class="material-icons benefit-icon">check_circle</span>
+                                    <span>Maintain privacy by using a commercial address</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <span class="material-icons benefit-icon">check_circle</span>
+                                    <span>Unlimited scanned incoming mail</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <span class="material-icons benefit-icon">check_circle</span>
+                                    <span>A physical address for your business (not PO Box)</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <span class="material-icons benefit-icon">check_circle</span>
+                                    <span>Instant alerts with 24/7 access to your mail online</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="option-price">
+                                <h5 class="price-title">First Month Free</h5>
+                                <p class="price-amount">Then $29/month. Cancel anytime.</p>
+                                <p class="price-note">Some States may require an amendment after cancellation</p>
+                            </div>
+                        </div>
+                        <div class="option-radio">
+                            <div class="radio-icon"></div>
+                            <div class="radio-label">Yes, I'd like to use Virtual Address</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-card fade-in" id="own-address-option">
+                        <div class="option-header">
+                            <h4 class="option-title">Use My Own Address</h4>
+                        </div>
+                        <div class="option-content">
+                            <p class="option-subtitle">I will provide my own New York business address and will personally keep up with the incoming mail.</p>
+                            <div class="option-benefits" style="margin-top: 1.5rem;">
+                                <li class="benefit-item">
+                                    <span class="material-icons benefit-icon" style="color: var(--text-tertiary);">info</span>
+                                    <span>New York requires a physical street address (PO Boxes are not accepted).</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <span class="material-icons benefit-icon" style="color: var(--warning-color);">warning</span>
+                                    <span>Any residential address provided to the state will be listed publicly.</span>
+                                </li>
+                            </div>
+                            
+                            <div class="option-price">
+                                <h5 class="price-title">$0</h5>
+                                <p class="price-amount">Use your own address</p>
+                            </div>
+                        </div>
+                        <div class="option-radio">
+                            <div class="radio-icon"></div>
+                            <div class="radio-label">No, I'd like to use my own address</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="company-address-section fade-in" id="company-address-section" style="display:none;">
+                    <h3 class="section-title">Company Address</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="company-street">Street Address</label>
+                        <input type="text" class="form-control" id="company-street">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="company-street2">Address (Cont) <span class="optional">(Optional)</span></label>
+                        <input type="text" class="form-control" id="company-street2">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="company-city">City</label>
+                        <input type="text" class="form-control" id="company-city">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="company-state">State</label>
+                            <div class="select-wrapper">
+                                <select class="form-control" id="company-state">
+                                    <option value="New York" selected>New York</option>
+                                </select>
+                                <span class="material-icons">arrow_drop_down</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="company-zip">Zip Code</label>
+                            <input type="text" class="form-control" id="company-zip">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-section form-section fade-in">
+                    <h3 class="section-title">Contact Address</h3>
+                    
+                    <div class="form-description">
+                        Please provide the name and address of the person whom we may contact for State, IRS, or legal correspondence relating to your business.
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="contact-country">Country</label>
+                        <div class="select-wrapper">
+                            <select class="form-control" id="contact-country">
+                                <option value="US">United States</option>
+                                <option value="CN" selected>China (中国)</option>
+                                <option value="CA">Canada</option>
+                                <option value="UK">United Kingdom</option>
+                            </select>
+                            <span class="material-icons">arrow_drop_down</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="contact-street">Street Address</label>
+                        <input type="text" class="form-control" id="contact-street" value="222">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="contact-street2">Address (Cont) <span class="optional">(Optional)</span></label>
+                        <input type="text" class="form-control" id="contact-street2" value="222">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="contact-city">City</label>
+                        <input type="text" class="form-control" id="contact-city" value="New York">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="contact-state">State/Province</label>
+                            <input type="text" class="form-control" id="contact-state" value="Juliet">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="contact-zip">Zip/Postal Code</label>
+                            <input type="text" class="form-control" id="contact-zip" value="111">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-section">
+                    <button type="button" class="btn btn-primary" id="updateBtn">
+                        Update Address
+                        <span class="material-icons">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation
+            const fadeElements = document.querySelectorAll('.fade-in');
+            setTimeout(() => {
+                fadeElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('active');
+                    }, index * 150);
+                });
+            }, 100);
+            
+            // Get elements
+            const virtualAddressOption = document.getElementById('virtual-address-option');
+            const ownAddressOption = document.getElementById('own-address-option');
+            const companyAddressSection = document.getElementById('company-address-section');
+            const updateBtn = document.getElementById('updateBtn');
+            
+            // Option toggle logic
+            function selectOption(option) {
+                // Remove all selected states
+                virtualAddressOption.classList.remove('selected');
+                ownAddressOption.classList.remove('selected');
+                
+                // Add selected state
+                option.classList.add('selected');
+                
+                // If choosing to use own address, show company address form
+                if (option.id === 'own-address-option') {
+                    companyAddressSection.style.display = 'block';
+                } else {
+                    companyAddressSection.style.display = 'none';
+                }
+            }
+            
+            // Bind click events
+            virtualAddressOption.addEventListener('click', function() {
+                selectOption(virtualAddressOption);
+            });
+            
+            ownAddressOption.addEventListener('click', function() {
+                selectOption(ownAddressOption);
+            });
+            
+            // Update button logic
+            updateBtn.addEventListener('click', function() {
+                // Add loading state
+                this.disabled = true;
+                this.innerHTML = '<span class="loading-text">Updating...</span>';
+                
+                // Get selected option
+                const useVirtualAddress = virtualAddressOption.classList.contains('selected');
+                
+                // Prepare data object
+                const addressData = {
+                    useVirtualAddress: useVirtualAddress,
+                };
+                
+                // If using own address, collect company address form data
+                if (!useVirtualAddress) {
+                    addressData.companyAddress = {
+                        street: document.getElementById('company-street').value,
+                        street2: document.getElementById('company-street2').value,
+                        city: document.getElementById('company-city').value,
+                        state: document.getElementById('company-state').value,
+                        zip: document.getElementById('company-zip').value
+                    };
+                } else {
+                    // If using virtual address, provide virtual address data
+                    addressData.virtualAddress = {
+                        street: '54 STATE STREET',
+                        suite: 'STE 804',
+                        city: 'ALBANY',
+                        state: 'NY',
+                        zip: '12207'
+                    };
+                }
+                
+                // Collect contact address data
+                addressData.contactAddress = {
+                    country: document.getElementById('contact-country').value,
+                    street: document.getElementById('contact-street').value,
+                    street2: document.getElementById('contact-street2').value,
+                    city: document.getElementById('contact-city').value,
+                    state: document.getElementById('contact-state').value,
+                    zip: document.getElementById('contact-zip').value
+                };
+                
+                // Save data to sessionStorage
+                sessionStorage.setItem('addressData', JSON.stringify(addressData));
+                
+                // Simulate processing time and redirect
+                setTimeout(function() {
+                    // Return to order summary page
+                    window.location.href = 'order-summary.html';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start an LLC - Registration Service</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-description {
+            font-size: 1.25rem;
+            color: var(--secondary-text);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.75;
+        }
+        
+        .calculate-btn {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: inline-block;
+        }
+        
+        .calculate-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            background-color: var(--card-background);
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            max-width: 300px;
+        }
+        
+        .feature-icon {
+            margin-right: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-text {
+            color: var(--secondary-text);
+            font-size: 1rem;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Start Your LLC Today</h1>
+        <p class="page-description">
+            Form your LLC quickly and easily with our professional service. We handle the paperwork so you can focus on growing your business.
+        </p>
+        
+        <button class="calculate-btn" id="startLLCBtn">Start an LLC</button>
+        
+        <div class="features">
+            <div class="feature">
+                <span class="material-icons feature-icon">schedule</span>
+                <span class="feature-text">Fast filing process (7-10 business days)</span>
+            </div>
+            
+            <div class="feature">
+                <span class="material-icons feature-icon">verified_user</span>
+                <span class="feature-text">Includes all required state filings</span>
+            </div>
+            
+            <div class="feature">
+                <span class="material-icons feature-icon">support_agent</span>
+                <span class="feature-text">Dedicated customer support</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startButton = document.getElementById('startLLCBtn');
+            
+            startButton.addEventListener('click', function() {
+                window.location.href = 'payment.html';
+            });
+        });
+    </script>
+</body>
+</html> 

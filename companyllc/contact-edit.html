@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Information - LLC Registration</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <style>
+        :root {
+            --primary-color: #3a56e4;
+            --primary-light: #eef1fd;
+            --primary-dark: #2a46d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --text-primary: #1a2233;
+            --text-secondary: #4a5568;
+            --text-tertiary: #718096;
+            --border-color: #e2e8f0;
+            --bg-light: #f8fafc;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 2rem 1rem;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            max-width: 1200px;
+            margin: 0 auto 2.5rem;
+            background-color: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background-color: var(--primary-color);
+            padding: 1.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1));
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-title {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .form-body {
+            padding: 2rem;
+        }
+
+        .description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9375rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(58, 86, 228, 0.1);
+        }
+
+        .phone-input {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .flag-select {
+            position: absolute;
+            left: 1rem;
+            display: flex;
+            align-items: center;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .flag-select select {
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding-right: 0.5rem;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .flag-select::after {
+            content: "▼";
+            font-size: 0.625rem;
+            color: var(--text-tertiary);
+        }
+
+        .phone-input input {
+            padding-left: 4.5rem;
+        }
+
+        .consent-checkbox {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .checkbox-container {
+            position: relative;
+            padding-left: 2rem;
+            cursor: pointer;
+            font-size: 0.9375rem;
+            user-select: none;
+            color: var(--text-secondary);
+            margin-top: -2px;
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0.125rem;
+            left: 0;
+            height: 1.25rem;
+            width: 1.25rem;
+            border-radius: var(--radius-sm);
+            background-color: white;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-container:hover input ~ .checkmark {
+            border-color: var(--primary-color);
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .checkbox-container .checkmark:after {
+            left: 0.4375rem;
+            top: 0.1875rem;
+            width: 0.3125rem;
+            height: 0.625rem;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .action-section {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .update-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .update-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .update-btn .material-icons {
+            margin-left: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .contact-form {
+                margin: 1rem;
+            }
+            
+            .form-header, .form-body {
+                padding: 1.5rem;
+            }
+            
+            .form-title {
+                font-size: 1.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="contact-form fade-in">
+            <div class="form-header">
+                <div class="header-content">
+                    <h1 class="form-title">Contact Person</h1>
+                    <p class="form-subtitle">Add your contact details</p>
+                </div>
+            </div>
+            
+            <div class="form-body">
+                <p class="description fade-in">Please provide the name of the person responsible for this order whom we may contact if additional information is needed.</p>
+
+                <form id="contactForm">
+                    <div class="form-row fade-in">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" value="Testest" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" value="Test" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row fade-in">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" value="316172428@qq.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Mobile Phone</label>
+                            <div class="phone-input">
+                                <div class="flag-select">
+                                    <select>
+                                        <option value="+1">🇺🇸</option>
+                                        <option value="+86">🇨🇳</option>
+                                        <option value="+44">🇬🇧</option>
+                                        <option value="+61">🇦🇺</option>
+                                    </select>
+                                </div>
+                                <input type="tel" id="phone" name="phone" value="(201) 555-0123" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="consent-checkbox fade-in">
+                        <label class="checkbox-container">
+                            I consent to receiving SMS text messages and phone calls from Bizee.
+                            <input type="checkbox" id="consent" name="consent" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+                    <div class="action-section">
+                        <button type="submit" class="update-btn">
+                            Update
+                            <span class="material-icons">arrow_forward</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation
+            const fadeElements = document.querySelectorAll('.fade-in');
+            setTimeout(() => {
+                fadeElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('active');
+                    }, index * 150);
+                });
+            }, 100);
+            
+            // Form submission handler
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(contactForm);
+                const contactData = {
+                    firstName: formData.get('firstName'),
+                    lastName: formData.get('lastName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    consent: formData.get('consent') ? true : false
+                };
+                
+                // In a real application, you would send this data to the server
+                console.log('Contact data submitted:', contactData);
+                
+                // Simulate successful update, redirect to order summary page
+                window.location.href = 'order-summary.html';
+            });
+        });
+    </script>
+</body>
+</html> 

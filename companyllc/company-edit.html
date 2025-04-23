@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Company Information - LLC Registration</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <style>
+        :root {
+            --primary-color: #3a56e4;
+            --primary-light: #eef1fd;
+            --primary-dark: #2a46d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --text-primary: #1a2233;
+            --text-secondary: #4a5568;
+            --text-tertiary: #718096;
+            --border-color: #e2e8f0;
+            --bg-light: #f8fafc;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 2rem 1rem;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .company-form {
+            max-width: 1200px;
+            margin: 0 auto 2.5rem;
+            background-color: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background-color: var(--primary-color);
+            padding: 1.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1));
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-title {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .form-body {
+            padding: 2rem;
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9375rem;
+        }
+
+        .help-icon {
+            color: var(--text-tertiary);
+            font-size: 1.125rem;
+            margin-left: 0.375rem;
+            cursor: help;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .input-field:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(58, 86, 228, 0.1);
+        }
+
+        .select-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            color: var(--text-primary);
+            background-color: white;
+            transition: all 0.2s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23718096'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+
+        .select-field:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(58, 86, 228, 0.1);
+        }
+
+        .preview-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            color: var(--text-primary);
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .preview-field .check-icon {
+            color: var(--success-color);
+        }
+
+        .info-text {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .accordion {
+            margin-top: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            padding: 1.25rem 1.5rem;
+            background-color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: var(--bg-light);
+        }
+
+        .accordion-title {
+            font-weight: 600;
+            font-size: 1.125rem;
+            color: var(--text-primary);
+        }
+
+        .accordion-icon {
+            color: var(--text-tertiary);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            max-height: 1000px;
+        }
+
+        .accordion-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .action-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .update-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .update-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .update-btn .material-icons {
+            margin-left: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .company-form {
+                margin: 1rem;
+            }
+            
+            .form-header, .form-body {
+                padding: 1.5rem;
+            }
+            
+            .form-title {
+                font-size: 1.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="company-form fade-in">
+            <div class="form-header">
+                <div class="header-content">
+                    <h1 class="form-title">Company Information</h1>
+                    <p class="form-subtitle">Enter your LLC details</p>
+                </div>
+            </div>
+            
+            <div class="form-body">
+                <div class="form-section fade-in">
+                    <h3 class="section-title">Basic Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">
+                                LLC Name
+                                <span class="material-icons help-icon">info</span>
+                            </label>
+                            <input type="text" class="input-field" id="companyName" value="111" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                Designator
+                                <span class="material-icons help-icon">info</span>
+                            </label>
+                            <select class="select-field" id="designator" required>
+                                <option value="LLC" selected>LLC</option>
+                                <option value="L.L.C.">L.L.C.</option>
+                                <option value="Limited Liability Company">Limited Liability Company</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Your official company name will display as</label>
+                        <div class="preview-field">
+                            <span id="fullCompanyName">111 LLC</span>
+                            <span class="material-icons check-icon">check_circle</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section fade-in">
+                    <h3 class="section-title">Additional Information</h3>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <div class="accordion-title">What if company name is unavailable?</div>
+                                <span class="material-icons accordion-icon">expand_more</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-text">
+                                    <p>In the event the company name is unavailable, we will contact you to request an alternative company name. We will continue to work with you until we find a name that is accepted by the state.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <div class="accordion-title">Does the company name end with "LLC" or "INC"?</div>
+                                <span class="material-icons accordion-icon">expand_more</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-text">
+                                    <p>Incorporated entities require the use of a designator to signify that the company is conducting business as an incorporated entity. Every state has different allowable designators. The most typical designator for the Limited Liability Company is 'LLC' and for Corporations it is 'INC'</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-section">
+                    <button type="button" class="update-btn" id="updateBtn">
+                        Update
+                        <span class="material-icons">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation
+            const fadeElements = document.querySelectorAll('.fade-in');
+            setTimeout(() => {
+                fadeElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('active');
+                    }, index * 150);
+                });
+            }, 100);
+            
+            // Update company name preview
+            function updateFullCompanyName() {
+                const companyName = document.getElementById('companyName').value;
+                const designator = document.getElementById('designator').value;
+                const fullCompanyName = document.getElementById('fullCompanyName');
+                
+                fullCompanyName.textContent = `${companyName} ${designator}`;
+            }
+            
+            // Bind company name and designator input events
+            document.getElementById('companyName').addEventListener('input', updateFullCompanyName);
+            document.getElementById('designator').addEventListener('change', updateFullCompanyName);
+            
+            // Initialize accordion
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                
+                header.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all items
+                    accordionItems.forEach(accItem => {
+                        accItem.classList.remove('active');
+                    });
+                    
+                    // Toggle current item state
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Update button
+            document.getElementById('updateBtn').addEventListener('click', function() {
+                // Validate form
+                const companyName = document.getElementById('companyName').value;
+                
+                if (!companyName.trim()) {
+                    alert('Please enter company name');
+                    return;
+                }
+                
+                // Save data
+                const companyData = {
+                    name: companyName,
+                    designator: document.getElementById('designator').value,
+                    fullName: document.getElementById('fullCompanyName').textContent
+                };
+                
+                // Store data to sessionStorage
+                sessionStorage.setItem('companyInfo', JSON.stringify(companyData));
+                
+                // Redirect to order summary page
+                window.location.href = 'order-summary.html';
+            });
+        });
+    </script>
+</body>
+</html> 
