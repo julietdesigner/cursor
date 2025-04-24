@@ -98,12 +98,131 @@
         .company-name-display {
             background-color: var(--primary-light);
             border-radius: var(--radius-md);
-            padding: 1rem;
+            padding: 1.25rem;
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
             font-weight: 600;
             color: var(--primary-color);
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(58, 86, 228, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .company-name-display::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.5));
+            z-index: 1;
+        }
+
+        .company-name-display .material-icons {
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+
+        .alternate-names-container {
+            margin-bottom: 2.5rem;
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .alternate-names-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-light), var(--primary-color));
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+        }
+
+        .alternate-names-title {
+            width: 100%;
             font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .alternate-names-title .material-icons {
+            font-size: 1.25rem;
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .alternate-names {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .alternate-names:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .alternate-name-item {
+            flex: 1;
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.75rem;
+            text-align: center;
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alternate-name-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary-light);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .alternate-name-item:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .alternate-name-item:hover::before {
+            opacity: 1;
+            background-color: var(--primary-color);
+        }
+
+        .alternate-name-item .material-icons {
+            font-size: 0.875rem;
+            margin-right: 0.25rem;
+            vertical-align: middle;
+            color: var(--primary-color);
         }
 
         .info-section {
@@ -165,6 +284,10 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            border: 1px solid var(--border-color);
         }
 
         .info-content.single-row {
@@ -308,6 +431,7 @@
 
             .info-content {
                 grid-template-columns: 1fr;
+                padding: 1rem;
             }
 
             .info-content.three-columns {
@@ -316,6 +440,31 @@
 
             .member-details {
                 grid-template-columns: 1fr;
+            }
+
+            .alternate-names {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .alternate-name-item {
+                padding: 0.625rem;
+                font-size: 0.875rem;
+            }
+
+            .company-name-display {
+                padding: 1rem;
+                font-size: 1.125rem;
+            }
+
+            .alternate-names-container {
+                padding: 1rem;
+            }
+
+            .alternate-names-title {
+                font-size: 1rem;
+                padding-bottom: 0.625rem;
+                margin-bottom: 1rem;
             }
         }
     </style>
@@ -333,6 +482,35 @@
             <div class="summary-body">
                 <div class="company-name-display fade-in">
                     <span class="material-icons">business</span> 111 LLC
+                </div>
+
+                <div class="alternate-names-container fade-in">
+                    <div class="alternate-names-title">
+                        <span class="material-icons">swap_horiz</span>
+                        Alternate Company Names
+                    </div>
+                    
+                    <div class="alternate-names">
+                        <div class="alternate-name-item">
+                            <span class="material-icons">subdirectory_arrow_right</span> 
+                            <span id="alternateName1">Alternate Name 1</span>
+                        </div>
+                        <div class="alternate-name-item">
+                            <span class="material-icons">subdirectory_arrow_right</span> 
+                            <span id="alternateName2">Alternate Name 2</span>
+                        </div>
+                    </div>
+                    
+                    <div class="alternate-names">
+                        <div class="alternate-name-item">
+                            <span class="material-icons">subdirectory_arrow_right</span> 
+                            <span id="alternateName3">Alternate Name 3</span>
+                        </div>
+                        <div class="alternate-name-item">
+                            <span class="material-icons">subdirectory_arrow_right</span> 
+                            <span id="alternateName4">Alternate Name 4</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="info-section fade-in">
@@ -399,7 +577,7 @@
                     <div class="info-content single-row">
                         <div class="info-item">
                             <p>
-                                You have selected Bizee to provide you with a Registered Agent.
+                                You have selected uTaxes to provide you with a Registered Agent.
                                 <span class="info-badge success">First Year Free</span>
                             </p>
                         </div>
@@ -420,7 +598,11 @@
                     <div class="info-content">
                         <div class="info-item">
                             <h4>Company Name</h4>
-                            <p>111 LLC</p>
+                            <p id="companyNameDetail">111 LLC</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>Alternate Names</h4>
+                            <p><span id="summaryAlternateNames">Alternate Name 1, Alternate Name 2</span></p>
                         </div>
                     </div>
                 </div>
@@ -439,7 +621,7 @@
                     <div class="info-content">
                         <div class="info-item">
                             <h4>Company Address</h4>
-                            <p>You have selected for Bizee to provide you with a company address</p>
+                            <p>You have selected for uTaxes to provide you with a company address</p>
                         </div>
                         <div class="info-item">
                             <h4>Contact Address</h4>
@@ -474,7 +656,7 @@
                         </div>
                         <div class="info-item">
                             <h4>Address</h4>
-                            <p>You have selected for Bizee to provide you with a company address</p>
+                            <p>You have selected for uTaxes to provide you with a company address</p>
                         </div>
                     </div>
                 </div>
@@ -531,6 +713,79 @@
                     }, index * 150);
                 });
             }, 100);
+            
+            // Load company info from session storage
+            const companyInfo = JSON.parse(sessionStorage.getItem('companyInfo') || '{}');
+            
+            // Update company name display
+            const companyNameDisplay = document.querySelector('.company-name-display');
+            if (companyInfo && companyInfo.fullName) {
+                companyNameDisplay.innerHTML = `<span class="material-icons">business</span> ${companyInfo.fullName}`;
+                
+                // Update company name in details section
+                document.getElementById('companyNameDetail').textContent = companyInfo.fullName;
+            }
+            
+            if (companyInfo && companyInfo.alternateName1) {
+                // 处理所有备选名称
+                const namePairs = [
+                    { id: 'alternateName1', value: companyInfo.alternateName1 },
+                    { id: 'alternateName2', value: companyInfo.alternateName2 },
+                    { id: 'alternateName3', value: companyInfo.alternateName3 },
+                    { id: 'alternateName4', value: companyInfo.alternateName4 },
+                    { id: 'alternateName5', value: companyInfo.alternateName5 || '' },
+                    { id: 'alternateName6', value: companyInfo.alternateName6 || '' },
+                    { id: 'alternateName7', value: companyInfo.alternateName7 || '' },
+                    { id: 'alternateName8', value: companyInfo.alternateName8 || '' }
+                ];
+                
+                // 收集有效的备选名称用于摘要显示
+                const alternateNames = [];
+                
+                // 处理每个备选名称元素
+                namePairs.forEach(pair => {
+                    const element = document.getElementById(pair.id);
+                    if (element && pair.value) {
+                        element.textContent = pair.value + ' ' + companyInfo.designator;
+                        alternateNames.push(pair.value + ' ' + companyInfo.designator);
+                    }
+                });
+                
+                // 空白备选名称检查 - 隐藏空白的元素
+                const alternateNameElements = document.querySelectorAll('.alternate-name-item');
+                alternateNameElements.forEach(element => {
+                    const nameSpan = element.querySelector('span:last-child');
+                    if (!nameSpan.textContent || 
+                        nameSpan.textContent.trim().startsWith('Alternate Name')) {
+                        element.style.display = 'none';
+                    }
+                });
+                
+                // 如果整行中的所有名称项都被隐藏，则隐藏整行
+                const alternateNameRows = document.querySelectorAll('.alternate-names');
+                alternateNameRows.forEach(row => {
+                    const visibleItems = row.querySelectorAll('.alternate-name-item:not([style*="display: none"])');
+                    if (visibleItems.length === 0) {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                // 更新摘要部分的备选名称列表
+                document.getElementById('summaryAlternateNames').textContent = alternateNames.join(', ') || 'None provided';
+                
+                // 检查是否所有备选名称行均为空，如果是则隐藏整个部分
+                const allRowsEmpty = document.querySelectorAll('.alternate-names[style*="display: none"]').length === document.querySelectorAll('.alternate-names').length;
+                
+                if (allRowsEmpty) {
+                    document.querySelector('.alternate-names-container').style.display = 'none';
+                }
+            } else {
+                // 如果没有备选名称数据，则隐藏整个备选名称容器
+                const alternateNamesContainer = document.querySelector('.alternate-names-container');
+                if (alternateNamesContainer) {
+                    alternateNamesContainer.style.display = 'none';
+                }
+            }
             
             // Edit button click events
             const editButtons = document.querySelectorAll('.edit-btn');

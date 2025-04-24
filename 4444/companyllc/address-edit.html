@@ -696,11 +696,13 @@
                 // Add selected state
                 option.classList.add('selected');
                 
-                // If choosing to use own address, show company address form
+                // If choosing to use own address, show company address form and hide contact address section
                 if (option.id === 'own-address-option') {
                     companyAddressSection.style.display = 'block';
+                    document.querySelector('.contact-section').style.display = 'none';
                 } else {
                     companyAddressSection.style.display = 'none';
+                    document.querySelector('.contact-section').style.display = 'block';
                 }
             }
             
@@ -736,6 +738,16 @@
                         state: document.getElementById('company-state').value,
                         zip: document.getElementById('company-zip').value
                     };
+                    
+                    // When using own address, company address is also contact address
+                    addressData.contactAddress = {
+                        country: 'US', // Default to US since we're requiring a New York address
+                        street: document.getElementById('company-street').value,
+                        street2: document.getElementById('company-street2').value,
+                        city: document.getElementById('company-city').value,
+                        state: document.getElementById('company-state').value,
+                        zip: document.getElementById('company-zip').value
+                    };
                 } else {
                     // If using virtual address, provide virtual address data
                     addressData.virtualAddress = {
@@ -745,17 +757,17 @@
                         state: 'NY',
                         zip: '12207'
                     };
+                    
+                    // Collect contact address data only when using virtual address
+                    addressData.contactAddress = {
+                        country: document.getElementById('contact-country').value,
+                        street: document.getElementById('contact-street').value,
+                        street2: document.getElementById('contact-street2').value,
+                        city: document.getElementById('contact-city').value,
+                        state: document.getElementById('contact-state').value,
+                        zip: document.getElementById('contact-zip').value
+                    };
                 }
-                
-                // Collect contact address data
-                addressData.contactAddress = {
-                    country: document.getElementById('contact-country').value,
-                    street: document.getElementById('contact-street').value,
-                    street2: document.getElementById('contact-street2').value,
-                    city: document.getElementById('contact-city').value,
-                    state: document.getElementById('contact-state').value,
-                    zip: document.getElementById('contact-zip').value
-                };
                 
                 // Save data to sessionStorage
                 sessionStorage.setItem('addressData', JSON.stringify(addressData));
@@ -766,6 +778,15 @@
                     window.location.href = 'order-summary.html';
                 }, 1000);
             });
+            
+            // Initialize view based on initial selection
+            if (ownAddressOption.classList.contains('selected')) {
+                companyAddressSection.style.display = 'block';
+                document.querySelector('.contact-section').style.display = 'none';
+            } else if (virtualAddressOption.classList.contains('selected')) {
+                companyAddressSection.style.display = 'none';
+                document.querySelector('.contact-section').style.display = 'block';
+            }
         });
     </script>
 </body>
