@@ -527,8 +527,7 @@
         <div class="members-form fade-in">
             <div class="form-header">
                 <div class="header-content">
-                    <h1 class="form-title">Members Information</h1>
-                    <p class="form-subtitle">Add details for <span id="company-name">111 LLC</span></p>
+                    <h1 class="form-title">Please provide Members Information for 111 LLC</h1>
                 </div>
             </div>
             
@@ -547,132 +546,187 @@
                     </select>
                 </div>
                 
-                <div class="member-section fade-in" id="memberSection1">
-                    <h3 class="section-title">Member 1</h3>
-                    
-                    <div class="option-cards member-type-options">
-                        <div class="option-card selected" id="individual-option-1">
-                            <div class="option-content">
-                                <div class="radio-option">
-                                    <div class="radio-circle selected"></div>
-                                    <div class="radio-label">
-                                        <h4>Individual</h4>
-                                        <p>Select if Member is a person.</p>
+                <div id="membersContainer">
+                    <!-- Member sections will be dynamically added here -->
+                    <div class="member-section fade-in" id="memberSection1">
+                        <h3 class="section-title">Member 1</h3>
+                        
+                        <div class="option-cards member-type-options">
+                            <div class="option-card selected" id="individual-option-1" data-member="1" data-type="individual">
+                                <div class="option-content">
+                                    <div class="radio-option">
+                                        <div class="radio-circle selected"></div>
+                                        <div class="radio-label">
+                                            <h4>Individual</h4>
+                                            <p>Select if Member is a person.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="option-card" id="company-option-1" data-member="1" data-type="company">
+                                <div class="option-content">
+                                    <div class="radio-option">
+                                        <div class="radio-circle"></div>
+                                        <div class="radio-label">
+                                            <h4>Company</h4>
+                                            <p>Select if Member is a company.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="option-card" id="company-option-1">
-                            <div class="option-content">
-                                <div class="radio-option">
-                                    <div class="radio-circle"></div>
-                                    <div class="radio-label">
-                                        <h4>Company</h4>
-                                        <p>Select if Member is a company.</p>
-                                    </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="useAddress1">
+                                <span class="checkmark"></span>
+                                <div class="checkbox-label">
+                                    <span class="material-icons location-icon">location_on</span>
+                                    Juliet, 11, Newyork, NY 12345, US.
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="member-name-display">
-                            <span class="material-icons person-icon">person</span>
-                            <span class="member-name" id="memberName1">Testest Test</span>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group checkbox-group">
-                        <label class="checkbox-container">
-                            <input type="checkbox" id="useCompanyAddress1" checked>
-                            <span class="checkmark"></span>
-                            <div class="checkbox-label">
-                                <span class="material-icons location-icon">location_on</span>
-                                Use the assigned company address provided by Bizee
-                            </div>
-                        </label>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="firstName1" value="Jeu">
+                            </label>
                         </div>
                         
-                        <div class="form-group">
-                            <label class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastName1" value="None">
-                        </div>
-                    </div>
-                    
-                    <div class="info-message success-message">
-                        <span class="material-icons info-icon">check_circle</span>
-                        <div class="info-content">
-                            <p class="info-title">You have selected for Bizee to provide you with a company address.</p>
-                            <p class="info-description">We will use the company address for the member information in order to shield your personal information from being publicly available.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="member-address-section" id="memberAddressSection1" style="display:none;">
-                        <!-- Member address form, displayed when not using company address -->
-                        <div class="form-group">
-                            <label class="form-label">Street Address</label>
-                            <input type="text" class="form-control" id="memberStreet1">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Address (Cont) <span class="optional">(Optional)</span></label>
-                            <input type="text" class="form-control" id="memberStreet21">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">City</label>
-                            <input type="text" class="form-control" id="memberCity1">
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label">State</label>
-                                <select class="select-control" id="memberState1">
-                                    <option value="New York" selected>New York</option>
-                                    <!-- Other state options -->
-                                </select>
+                        <!-- Individual Form Fields -->
+                        <div id="individualFields1">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName1">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName1">
+                                </div>
                             </div>
                             
                             <div class="form-group">
-                                <label class="form-label">Zip Code</label>
-                                <input type="text" class="form-control" id="memberZip1">
+                                <label class="form-label">Street Address</label>
+                                <input type="text" class="form-control" id="street1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Address (Cont) <span class="optional">(Optional)</span></label>
+                                <input type="text" class="form-control" id="street21">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control" id="city1">
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">State</label>
+                                    <select class="select-control" id="state1">
+                                        <option value="">Select State</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <!-- Add other states -->
+                                        <option value="NY">New York</option>
+                                        <!-- Add remaining states -->
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Zip Code</label>
+                                    <input type="text" class="form-control" id="zip1">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">% of Ownership</label>
+                                <select class="select-control" id="ownership1">
+                                    <option value="">% of Ownership</option>
+                                    <option value="100">100%</option>
+                                    <option value="90">90%</option>
+                                    <option value="80">80%</option>
+                                    <option value="70">70%</option>
+                                    <option value="60">60%</option>
+                                    <option value="50">50%</option>
+                                    <option value="40">40%</option>
+                                    <option value="30">30%</option>
+                                    <option value="20">20%</option>
+                                    <option value="10">10%</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Company Form Fields -->
+                        <div id="companyFields1" style="display: none;">
+                            <div class="form-group">
+                                <label class="form-label">Company Name</label>
+                                <input type="text" class="form-control" id="companyName1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Representative Signing On Behalf Of Entity</label>
+                                <input type="text" class="form-control" id="representative1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Street Address</label>
+                                <input type="text" class="form-control" id="companyStreet1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Address (Cont) <span class="optional">(Optional)</span></label>
+                                <input type="text" class="form-control" id="companyStreet21">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control" id="companyCity1">
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">State</label>
+                                    <select class="select-control" id="companyState1">
+                                        <option value="">Select State</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <!-- Add other states -->
+                                        <option value="NY">New York</option>
+                                        <!-- Add remaining states -->
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Zip Code</label>
+                                    <input type="text" class="form-control" id="companyZip1">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">% of Ownership</label>
+                                <select class="select-control" id="companyOwnership1">
+                                    <option value="">% of Ownership</option>
+                                    <option value="100">100%</option>
+                                    <option value="90">90%</option>
+                                    <option value="80">80%</option>
+                                    <option value="70">70%</option>
+                                    <option value="60">60%</option>
+                                    <option value="50">50%</option>
+                                    <option value="40">40%</option>
+                                    <option value="30">30%</option>
+                                    <option value="20">20%</option>
+                                    <option value="10">10%</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="form-action-buttons">
-                        <button type="button" class="save-btn" id="saveMemberBtn1">Save</button>
-                    </div>
                 </div>
-                
-                <div class="divider"></div>
                 
                 <div class="button-container">
                     <button type="button" class="update-btn" id="updateBtn">
                         Update
                         <span class="material-icons arrow-icon">arrow_forward</span>
                     </button>
-                </div>
-                
-                <div class="additional-info-section fade-in">
-                    <h3>Additional Explanation</h3>
-                    
-                    <div class="accordion">
-                        <div class="accordion-header" id="articlesInfoHeader">
-                            <span>What information is included in the Articles of Organization for an LLC?</span>
-                            <span class="material-icons accordion-icon">expand_more</span>
-                        </div>
-                        <div class="accordion-content" id="articlesInfoContent">
-                            <p>The articles of organization will not record the names and or addresses of the initial members of the LLC.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -690,82 +744,309 @@
                 });
             }, 100);
             
-            // Handle option cards
-            const individualOption = document.getElementById('individual-option-1');
-            const companyOption = document.getElementById('company-option-1');
+            const membersContainer = document.getElementById('membersContainer');
+            const numberOfMembersSelect = document.getElementById('numberOfMembers');
+            let currentMembers = 1;
             
-            individualOption.addEventListener('click', function() {
-                individualOption.classList.add('selected');
-                companyOption.classList.remove('selected');
+            // Handle number of members change
+            numberOfMembersSelect.addEventListener('change', function() {
+                const newMembersCount = parseInt(this.value);
                 
+                // If increasing members
+                if (newMembersCount > currentMembers) {
+                    for (let i = currentMembers + 1; i <= newMembersCount; i++) {
+                        addMemberSection(i);
+                    }
+                } 
+                // If decreasing members
+                else if (newMembersCount < currentMembers) {
+                    for (let i = currentMembers; i > newMembersCount; i--) {
+                        const memberSection = document.getElementById(`memberSection${i}`);
+                        if (memberSection) {
+                            memberSection.remove();
+                        }
+                    }
+                }
+                
+                currentMembers = newMembersCount;
+            });
+            
+            // Add member section
+            function addMemberSection(memberIndex) {
+                const newMemberSection = document.createElement('div');
+                newMemberSection.className = 'member-section fade-in';
+                newMemberSection.id = `memberSection${memberIndex}`;
+                
+                const memberTitle = document.createElement('h3');
+                memberTitle.className = 'section-title';
+                memberTitle.textContent = `Member ${memberIndex}`;
+                
+                // Add Edit link for members after the first one
+                if (memberIndex > 1) {
+                    const editLink = document.createElement('span');
+                    editLink.textContent = 'Edit';
+                    editLink.style.float = 'right';
+                    editLink.style.color = 'var(--primary-color)';
+                    editLink.style.cursor = 'pointer';
+                    editLink.style.fontWeight = '500';
+                    editLink.style.fontSize = '0.875rem';
+                    memberTitle.appendChild(editLink);
+                }
+                
+                newMemberSection.appendChild(memberTitle);
+                
+                // Add option cards for member type
+                const optionCards = document.createElement('div');
+                optionCards.className = 'option-cards member-type-options';
+                optionCards.innerHTML = `
+                    <div class="option-card selected" id="individual-option-${memberIndex}" data-member="${memberIndex}" data-type="individual">
+                        <div class="option-content">
+                            <div class="radio-option">
+                                <div class="radio-circle selected"></div>
+                                <div class="radio-label">
+                                    <h4>Individual</h4>
+                                    <p>Select if Member is a person.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-card" id="company-option-${memberIndex}" data-member="${memberIndex}" data-type="company">
+                        <div class="option-content">
+                            <div class="radio-option">
+                                <div class="radio-circle"></div>
+                                <div class="radio-label">
+                                    <h4>Company</h4>
+                                    <p>Select if Member is a company.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                newMemberSection.appendChild(optionCards);
+                
+                // Add address checkbox
+                const checkboxGroup = document.createElement('div');
+                checkboxGroup.className = 'checkbox-group';
+                checkboxGroup.innerHTML = `
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="useAddress${memberIndex}">
+                        <span class="checkmark"></span>
+                        <div class="checkbox-label">
+                            <span class="material-icons location-icon">location_on</span>
+                            Juliet, 11, Newyork, NY 12345, US.
+                        </div>
+                    </label>
+                `;
+                
+                newMemberSection.appendChild(checkboxGroup);
+                
+                // Individual form fields
+                const individualFields = document.createElement('div');
+                individualFields.id = `individualFields${memberIndex}`;
+                individualFields.innerHTML = `
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName${memberIndex}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName${memberIndex}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Street Address</label>
+                        <input type="text" class="form-control" id="street${memberIndex}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Address (Cont) <span class="optional">(Optional)</span></label>
+                        <input type="text" class="form-control" id="street2${memberIndex}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-control" id="city${memberIndex}">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">State</label>
+                            <select class="select-control" id="state${memberIndex}">
+                                <option value="">Select State</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="NY">New York</option>
+                                <!-- Add other states -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Zip Code</label>
+                            <input type="text" class="form-control" id="zip${memberIndex}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">% of Ownership</label>
+                        <select class="select-control" id="ownership${memberIndex}">
+                            <option value="">% of Ownership</option>
+                            <option value="100">100%</option>
+                            <option value="90">90%</option>
+                            <option value="80">80%</option>
+                            <option value="70">70%</option>
+                            <option value="60">60%</option>
+                            <option value="50">50%</option>
+                            <option value="40">40%</option>
+                            <option value="30">30%</option>
+                            <option value="20">20%</option>
+                            <option value="10">10%</option>
+                        </select>
+                    </div>
+                `;
+                
+                newMemberSection.appendChild(individualFields);
+                
+                // Company form fields
+                const companyFields = document.createElement('div');
+                companyFields.id = `companyFields${memberIndex}`;
+                companyFields.style.display = 'none';
+                companyFields.innerHTML = `
+                    <div class="form-group">
+                        <label class="form-label">Company Name</label>
+                        <input type="text" class="form-control" id="companyName${memberIndex}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Representative Signing On Behalf Of Entity</label>
+                        <input type="text" class="form-control" id="representative${memberIndex}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Street Address</label>
+                        <input type="text" class="form-control" id="companyStreet${memberIndex}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Address (Cont) <span class="optional">(Optional)</span></label>
+                        <input type="text" class="form-control" id="companyStreet2${memberIndex}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-control" id="companyCity${memberIndex}">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">State</label>
+                            <select class="select-control" id="companyState${memberIndex}">
+                                <option value="">Select State</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="NY">New York</option>
+                                <!-- Add other states -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Zip Code</label>
+                            <input type="text" class="form-control" id="companyZip${memberIndex}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">% of Ownership</label>
+                        <select class="select-control" id="companyOwnership${memberIndex}">
+                            <option value="">% of Ownership</option>
+                            <option value="100">100%</option>
+                            <option value="90">90%</option>
+                            <option value="80">80%</option>
+                            <option value="70">70%</option>
+                            <option value="60">60%</option>
+                            <option value="50">50%</option>
+                            <option value="40">40%</option>
+                            <option value="30">30%</option>
+                            <option value="20">20%</option>
+                            <option value="10">10%</option>
+                        </select>
+                    </div>
+                `;
+                
+                newMemberSection.appendChild(companyFields);
+                
+                // Add divider if not the last member
+                if (memberIndex < parseInt(numberOfMembersSelect.value)) {
+                    const divider = document.createElement('div');
+                    divider.className = 'divider';
+                    newMemberSection.appendChild(divider);
+                }
+                
+                membersContainer.appendChild(newMemberSection);
+                
+                // Initialize option card functionality
+                const individualOption = document.getElementById(`individual-option-${memberIndex}`);
+                const companyOption = document.getElementById(`company-option-${memberIndex}`);
+                
+                individualOption.addEventListener('click', function() {
+                    selectMemberType(memberIndex, 'individual');
+                });
+                
+                companyOption.addEventListener('click', function() {
+                    selectMemberType(memberIndex, 'company');
+                });
+                
+                // Add fade-in animation
+                setTimeout(() => {
+                    newMemberSection.classList.add('active');
+                }, 50);
+            }
+            
+            // Handle member type selection
+            function selectMemberType(memberIndex, type) {
+                const individualOption = document.getElementById(`individual-option-${memberIndex}`);
+                const companyOption = document.getElementById(`company-option-${memberIndex}`);
                 const individualRadio = individualOption.querySelector('.radio-circle');
                 const companyRadio = companyOption.querySelector('.radio-circle');
+                const individualFields = document.getElementById(`individualFields${memberIndex}`);
+                const companyFields = document.getElementById(`companyFields${memberIndex}`);
                 
-                individualRadio.classList.add('selected');
-                companyRadio.classList.remove('selected');
-            });
-            
-            companyOption.addEventListener('click', function() {
-                companyOption.classList.add('selected');
-                individualOption.classList.remove('selected');
-                
-                const individualRadio = individualOption.querySelector('.radio-circle');
-                const companyRadio = companyOption.querySelector('.radio-circle');
-                
-                companyRadio.classList.add('selected');
-                individualRadio.classList.remove('selected');
-            });
-            
-            // Handle checkbox for address
-            const useCompanyAddress = document.getElementById('useCompanyAddress1');
-            const memberAddressSection = document.getElementById('memberAddressSection1');
-            
-            useCompanyAddress.addEventListener('change', function() {
-                if (this.checked) {
-                    memberAddressSection.style.display = 'none';
+                if (type === 'individual') {
+                    individualOption.classList.add('selected');
+                    companyOption.classList.remove('selected');
+                    individualRadio.classList.add('selected');
+                    companyRadio.classList.remove('selected');
+                    individualFields.style.display = 'block';
+                    companyFields.style.display = 'none';
                 } else {
-                    memberAddressSection.style.display = 'block';
+                    companyOption.classList.add('selected');
+                    individualOption.classList.remove('selected');
+                    companyRadio.classList.add('selected');
+                    individualRadio.classList.remove('selected');
+                    companyFields.style.display = 'block';
+                    individualFields.style.display = 'none';
                 }
-            });
+            }
             
-            // Handle accordion
-            const accordionHeader = document.getElementById('articlesInfoHeader');
-            const accordionContent = document.getElementById('articlesInfoContent');
-            
-            accordionHeader.addEventListener('click', function() {
-                accordionContent.classList.toggle('active');
-                
-                const icon = this.querySelector('.accordion-icon');
-                if (accordionContent.classList.contains('active')) {
-                    icon.style.transform = 'rotate(180deg)';
-                } else {
-                    icon.style.transform = 'rotate(0deg)';
-                }
-            });
-            
-            // Handle save button
-            const firstNameInput = document.getElementById('firstName1');
-            const lastNameInput = document.getElementById('lastName1');
-            const memberNameDisplay = document.getElementById('memberName1');
-            
-            document.getElementById('saveMemberBtn1').addEventListener('click', function() {
-                const firstName = firstNameInput.value.trim();
-                const lastName = lastNameInput.value.trim();
-                
-                if (firstName && lastName) {
-                    memberNameDisplay.textContent = `${firstName} ${lastName}`;
-                    alert('Member information saved!');
-                } else {
-                    alert('Please enter both first and last name.');
-                }
+            // Initialize event listeners for existing elements
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const memberIndex = this.dataset.member;
+                    const type = this.dataset.type;
+                    selectMemberType(memberIndex, type);
+                });
             });
             
             // Handle update button
             document.getElementById('updateBtn').addEventListener('click', function() {
-                // In a real application, you would send this data to the server
-                console.log('Member data updated');
-                
-                // Redirect to order summary page
+                // In a real application, you would collect and validate all the data here
+                // For now, just redirect to order summary
                 window.location.href = 'order-summary.html';
             });
         });

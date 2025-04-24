@@ -61,6 +61,7 @@
             padding: 1.5rem 2rem;
             position: relative;
             overflow: hidden;
+            background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
         }
         
         .form-header::after {
@@ -111,6 +112,11 @@
             margin-bottom: 1.5rem;
         }
 
+        .form-group.focus-within {
+            transform: translateY(-2px);
+            transition: transform 0.2s ease;
+        }
+
         .form-label {
             display: flex;
             align-items: center;
@@ -118,6 +124,12 @@
             margin-bottom: 0.5rem;
             color: var(--text-primary);
             font-size: 0.9375rem;
+        }
+
+        .required-label::after {
+            content: "*";
+            color: var(--danger-color);
+            margin-left: 0.25rem;
         }
 
         .help-icon {
@@ -129,18 +141,24 @@
 
         .input-field {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.875rem 1rem;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             font-size: 1rem;
             color: var(--text-primary);
             transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
         }
 
         .input-field:focus {
             border-color: var(--primary-color);
             outline: none;
             box-shadow: 0 0 0 3px rgba(58, 86, 228, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: var(--text-tertiary);
+            opacity: 0.7;
         }
 
         .select-field {
@@ -317,6 +335,42 @@
                 gap: 0;
             }
         }
+
+        .section-subtitle {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .alternate-names-container {
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .alternate-names-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .alternate-names-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .alternate-names-icon {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -333,26 +387,25 @@
                 <div class="form-section fade-in">
                     <h3 class="section-title">Basic Information</h3>
                     
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">
-                                LLC Name
-                                <span class="material-icons help-icon">info</span>
-                            </label>
-                            <input type="text" class="input-field" id="companyName" value="111" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">
-                                Designator
-                                <span class="material-icons help-icon">info</span>
-                            </label>
-                            <select class="select-field" id="designator" required>
-                                <option value="LLC" selected>LLC</option>
-                                <option value="L.L.C.">L.L.C.</option>
-                                <option value="Limited Liability Company">Limited Liability Company</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label class="form-label required-label">
+                            Legal Name (First Choice)
+                            <span class="material-icons help-icon" title="This will be your official company name. If this name is unavailable, we'll try your alternate names.">info</span>
+                        </label>
+                        <input type="text" class="input-field" id="companyName" value="111" required placeholder="Enter your first choice company name">
+                        <p class="info-text">Must include 'LLC', 'L.L.C.' or 'Limited Liability Company'</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">
+                            Designator
+                            <span class="material-icons help-icon">info</span>
+                        </label>
+                        <select class="select-field" id="designator" required>
+                            <option value="LLC" selected>LLC</option>
+                            <option value="L.L.C.">L.L.C.</option>
+                            <option value="Limited Liability Company">Limited Liability Company</option>
+                        </select>
                     </div>
                     
                     <div class="form-group">
@@ -360,6 +413,52 @@
                         <div class="preview-field">
                             <span id="fullCompanyName">111 LLC</span>
                             <span class="material-icons check-icon">check_circle</span>
+                        </div>
+                    </div>
+
+                    <div class="alternate-names-container">
+                        <div class="alternate-names-header">
+                            <h4 class="alternate-names-title">
+                                <span class="material-icons alternate-names-icon">swap_horiz</span>
+                                Alternate Names
+                            </h4>
+                        </div>
+                        <p class="section-subtitle">In case your first choice is unavailable, provide alternate names</p>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Alternate Name 1
+                                <span class="material-icons help-icon" title="This will be your second choice if your first choice is unavailable">info</span>
+                            </label>
+                            <input type="text" class="input-field" id="alternateName1" placeholder="Enter your second choice company name">
+                            <p class="info-text">In case your first choice is unavailable</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Alternate Name 2
+                                <span class="material-icons help-icon" title="This will be your third choice if your first and second choices are unavailable">info</span>
+                            </label>
+                            <input type="text" class="input-field" id="alternateName2" placeholder="Enter your third choice company name">
+                            <p class="info-text">In case your first and second choices are unavailable</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Alternate Name 3
+                                <span class="material-icons help-icon" title="This will be your fourth choice if your previous choices are unavailable">info</span>
+                            </label>
+                            <input type="text" class="input-field" id="alternateName3" placeholder="Enter your fourth choice company name">
+                            <p class="info-text">In case your previous choices are unavailable</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Alternate Name 4
+                                <span class="material-icons help-icon" title="This will be your fifth choice if your previous choices are unavailable">info</span>
+                            </label>
+                            <input type="text" class="input-field" id="alternateName4" placeholder="Enter your fifth choice company name">
+                            <p class="info-text">In case your previous choices are unavailable</p>
                         </div>
                     </div>
                 </div>
@@ -416,6 +515,18 @@
                 });
             }, 100);
             
+            // Focus effects for input fields
+            const inputFields = document.querySelectorAll('.input-field, .select-field');
+            inputFields.forEach(field => {
+                field.addEventListener('focus', function() {
+                    this.closest('.form-group').classList.add('focus-within');
+                });
+                
+                field.addEventListener('blur', function() {
+                    this.closest('.form-group').classList.remove('focus-within');
+                });
+            });
+            
             // Update company name preview
             function updateFullCompanyName() {
                 const companyName = document.getElementById('companyName').value;
@@ -464,7 +575,15 @@
                 const companyData = {
                     name: companyName,
                     designator: document.getElementById('designator').value,
-                    fullName: document.getElementById('fullCompanyName').textContent
+                    fullName: document.getElementById('fullCompanyName').textContent,
+                    alternateName1: document.getElementById('alternateName1').value,
+                    alternateName2: document.getElementById('alternateName2').value,
+                    alternateName3: document.getElementById('alternateName3').value,
+                    alternateName4: document.getElementById('alternateName4').value,
+                    alternateName5: document.getElementById('alternateName5').value,
+                    alternateName6: document.getElementById('alternateName6').value,
+                    alternateName7: document.getElementById('alternateName7').value, 
+                    alternateName8: document.getElementById('alternateName8').value
                 };
                 
                 // Store data to sessionStorage

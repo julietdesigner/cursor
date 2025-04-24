@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="stepper.css">
+    <!-- <link rel="stylesheet" href="stepper.css"> -->
     <style>
     .step-buttons {
         display: flex;
@@ -377,14 +377,14 @@
         <header class="main-header">
             <div class="credit-header">
                 <div class="credit-content">
-                    <h1>YOUR BUSINESS, </br>Flex with an LLC</h1>
+                    <h1>Get started with your business formation today!</h1>
                 </div>
-                <div class="ad-preview">
+                <!-- <div class="ad-preview">
                     <div class="ad-url">www.utaxes.com</div>
                     <div class="ad-description">
                         <p>Get started with your business formation today!</p>
                     </div>
-                </div>
+                </div> -->
                 <img src="image/man.png" class="man-image">
             </div>
         </header>
@@ -395,7 +395,7 @@
             <!-- 插入计算器组件 -->
             <div class="calculator-container">
                 <div class="calculator-header">
-                    <div class="step-badge">STEP 1</div>
+                    <div class="step-badge">LLC</div>
                     <h2>Calculate Your Formation Costs</h2>
                     <p>Select your services to calculate total formation costs</p>
                 </div>
@@ -425,8 +425,8 @@
                             <div class="package-card" data-type="basic" data-price="0">
                                 <h3>Basic</h3>
                                 <div class="price">
-                                    <h2>$0</h2>
-                                    <p>+ $236 state fee</p>
+                                    <h2>$99</h2>
+                                    <p>+ $200 state fee</p>
                                 </div>
                                 <div class="package-time">
                                     <span class="material-icons">schedule</span>
@@ -436,52 +436,55 @@
                                     <li><span class="material-icons">check</span>Preparing & Filing the Articles of Organization</li>
                                     <li><span class="material-icons">check</span>FREE 1st Year Registered Agent Service!</li>
                                     <li><span class="material-icons">check</span>FREE 1st Month of Virtual Address Service!</li>
+                                    <div class="addon-options">
+                                        <div class="addon-option">
+                                            <input type="checkbox" id="expedited-filing">
+                                            <label for="expedited-filing">
+                                                <span class="addon-name">Expedited Filing</span>
+                                                <span class="addon-description">1 business day (instead of 3 weeks)</span>
+                                                <span class="addon-price">+ $50</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="addon-option">
+                                            <input type="checkbox" id="business-templates">
+                                            <label for="business-templates">
+                                                <span class="addon-name">Business Contract Templates</span>
+                                                <span class="addon-description">Access to essential business contract templates</span>
+                                                <span class="addon-price">+ $150</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="addon-option">
+                                            <input type="checkbox" id="ein-service" checked disabled>
+                                            <label for="ein-service">
+                                                <span class="addon-name">EIN Business Tax Number</span>
+                                                <span class="addon-description">Federal Tax ID registration with the IRS</span>
+                                                <span class="addon-price">+ $70</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="addon-option">
+                                            <input type="checkbox" id="corporate-bylaws">
+                                            <label for="corporate-bylaws">
+                                                <span class="addon-name">Corporate Bylaws</span>
+                                                <span class="addon-description">Customized corporate bylaws document</span>
+                                                <span class="addon-price">+ $30</span>
+                                            </label>
+                                        </div>
+                                    </div>
                                     <li><span class="material-icons">close</span>Domain Name + Business Email</li>
                                     <li><span class="material-icons">close</span>FREE 1st Year Business Phone Number</li>
                                     <li><span class="material-icons">close</span>Lifetime Compliance Alerts</li>
-                                    <li><span class="material-icons">close</span>Unlimited Phone & Email Support</li>
                                     <li><span class="material-icons">check</span>Online Access Dashboard</li>
-                                    <li><span class="material-icons">check</span>Business Banking Account Offer</li>
+                                    <li><span class="material-icons">check</span>Document Management</li>
+                                    <li><span class="material-icons">close</span>Business Banking Account Offer</li>
                                     <li><span class="material-icons">check</span>Business Tax Consultation</li>
-                                    <li><span class="material-icons">close</span>IRS Form 2553</li>
+                                    <li><span class="material-icons">check</span>Calendar</li>
+                                    <li><span class="material-icons">check</span>Tax Filing Discount Voucher</li>
+                                    <li><span class="material-icons">check</span>Bookkeeping Templates</li>
                                 </ul>
-                                <div class="addon-options">
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="expedited-filing">
-                                        <label for="expedited-filing">
-                                            <span class="addon-name">Expedited Filing</span>
-                                            <span class="addon-description">1 business day (instead of 3 weeks)</span>
-                                            <span class="addon-price">+ $50</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="business-templates">
-                                        <label for="business-templates">
-                                            <span class="addon-name">Business Contract Templates</span>
-                                            <span class="addon-description">Access to essential business contract templates</span>
-                                            <span class="addon-price">+ $150</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="ein-service">
-                                        <label for="ein-service">
-                                            <span class="addon-name">EIN Business Tax Number</span>
-                                            <span class="addon-description">Federal Tax ID registration with the IRS</span>
-                                            <span class="addon-price">+ $70</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="corporate-bylaws">
-                                        <label for="corporate-bylaws">
-                                            <span class="addon-name">Corporate Bylaws</span>
-                                            <span class="addon-description">Customized corporate bylaws document</span>
-                                            <span class="addon-price">+ $30</span>
-                                        </label>
-                                    </div>
-                                </div>
+              
                             </div>
                             
                             <div class="package-card selected" data-type="standard" data-price="199">
@@ -489,7 +492,7 @@
                                 <h3>Standard</h3>
                                 <div class="price">
                                     <h2>$199</h2>
-                                    <p>+ $236 state fee</p>
+                                    <p>+ $200 state fee</p>
                                 </div>
                                 <div class="package-time">
                                     <span class="material-icons">schedule</span>
@@ -499,59 +502,61 @@
                                     <li><span class="material-icons">check</span>Preparing & Filing the Articles of Organization</li>
                                     <li><span class="material-icons">check</span>FREE 1st Year Registered Agent Service!</li>
                                     <li><span class="material-icons">check</span>FREE 1st Month of Virtual Address Service!</li>
-                                    <li><span class="material-icons">check</span>Domain Name + Business Email</li>
-                                    <li><span class="material-icons">check</span>FREE 1st Year Business Phone Number</li>
+                                    <div class="addon-options">
+                                        <div class="addon-option">
+                                            <input type="checkbox" id="expedited-filing">
+                                            <label for="expedited-filing">
+                                                <span class="addon-name">Expedited Filing</span>
+                                                <span class="addon-description">1 business day (instead of 3 weeks)</span>
+                                                <span class="addon-price">+ $50</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="addon-option">
+                                            <input type="checkbox" id="business-templates">
+                                            <label for="business-templates">
+                                                <span class="addon-name">Business Contract Templates</span>
+                                                <span class="addon-description">Access to essential business contract templates</span>
+                                                <span class="addon-price">+ $150</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="addon-option">
+                                            <input type="checkbox" id="ein-service" checked disabled>
+                                            <label for="ein-service">
+                                                <span class="addon-name">EIN Business Tax Number</span>
+                                                <span class="addon-description">Federal Tax ID registration with the IRS</span>
+                                                <span class="addon-price">+ $70</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="addon-option">
+                                            <input type="checkbox" id="corporate-bylaws" checked disabled>
+                                            <label for="corporate-bylaws">
+                                                <span class="addon-name">Corporate Bylaws</span>
+                                                <span class="addon-description">Customized corporate bylaws document</span>
+                                                <span class="addon-price">+ $30</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <li><span class="material-icons">close</span>Domain Name + Business Email</li>
+                                    <li><span class="material-icons">close</span>FREE 1st Year Business Phone Number</li>
                                     <li><span class="material-icons">check</span>Lifetime Compliance Alerts</li>
-                                    <li><span class="material-icons">check</span>Unlimited Phone & Email Support</li>
                                     <li><span class="material-icons">check</span>Online Access Dashboard</li>
-                                    <li><span class="material-icons">check</span>Business Banking Account Offer</li>
+                                    <li><span class="material-icons">check</span>Document Management</li>
+                                    <li><span class="material-icons">close</span>Business Banking Account Offer</li>
                                     <li><span class="material-icons">check</span>Business Tax Consultation</li>
-                                    <li><span class="material-icons">check</span>IRS Form 2553</li>
+                                    <li><span class="material-icons">check</span>Calendar</li>
+                                    <li><span class="material-icons">check</span>Tax Filing Discount Voucher</li>
+                                    <li><span class="material-icons">check</span>Bookkeeping Templates</li>
                                 </ul>
-                                <div class="addon-options">
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="expedited-filing">
-                                        <label for="expedited-filing">
-                                            <span class="addon-name">Expedited Filing</span>
-                                            <span class="addon-description">1 business day (instead of 3 weeks)</span>
-                                            <span class="addon-price">+ $50</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="business-templates">
-                                        <label for="business-templates">
-                                            <span class="addon-name">Business Contract Templates</span>
-                                            <span class="addon-description">Access to essential business contract templates</span>
-                                            <span class="addon-price">+ $150</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="ein-service" checked disabled>
-                                        <label for="ein-service">
-                                            <span class="addon-name">EIN Business Tax Number</span>
-                                            <span class="addon-description">Federal Tax ID registration with the IRS</span>
-                                            <span class="addon-price">+ $70</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="corporate-bylaws" checked disabled>
-                                        <label for="corporate-bylaws">
-                                            <span class="addon-name">Corporate Bylaws</span>
-                                            <span class="addon-description">Customized corporate bylaws document</span>
-                                            <span class="addon-price">+ $30</span>
-                                        </label>
-                                    </div>
-                                </div>
                             </div>
-                            
+
                             <div class="package-card" data-type="premium" data-price="399">
                                 <h3>Premium</h3>
                                 <div class="price">
                                     <h2>$299</h2>
-                                    <p>+ $236 state fee</p>
+                                    <p>+ $200 state fee</p>
                                 </div>
                                 <div class="package-time">
                                     <span class="material-icons">schedule</span>
@@ -561,52 +566,55 @@
                                     <li><span class="material-icons">check</span>Preparing & Filing the Articles of Organization</li>
                                     <li><span class="material-icons">check</span>FREE 1st Year Registered Agent Service!</li>
                                     <li><span class="material-icons">check</span>FREE 1st Month of Virtual Address Service!</li>
-                                    <li><span class="material-icons">check</span>Domain Name + Business Email</li>
-                                    <li><span class="material-icons">check</span>FREE 1st Year Business Phone Number</li>
+                                    <div class="addon-options">
+                                        <div class="addon-option">
+                                            <input type="checkbox" id="expedited-filing" checked disabled>
+                                            <label for="expedited-filing">
+                                                <span class="addon-name">Expedited Filing</span>
+                                                <span class="addon-description">1 business day (instead of 3 weeks)</span>
+                                                <span class="addon-price">+ $50</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="addon-option">
+                                            <input type="checkbox" id="business-templates" checked disabled>
+                                            <label for="business-templates">
+                                                <span class="addon-name">Business Contract Templates</span>
+                                                <span class="addon-description">Access to essential business contract templates</span>
+                                                <span class="addon-price">+ $150</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="addon-option">
+                                            <input type="checkbox" id="ein-service" checked disabled>
+                                            <label for="ein-service">
+                                                <span class="addon-name">EIN Business Tax Number</span>
+                                                <span class="addon-description">Federal Tax ID registration with the IRS</span>
+                                                <span class="addon-price">+ $70</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="addon-option">
+                                            <input type="checkbox" id="corporate-bylaws" checked disabled>
+                                            <label for="corporate-bylaws">
+                                                <span class="addon-name">Corporate Bylaws</span>
+                                                <span class="addon-description">Customized corporate bylaws document</span>
+                                                <span class="addon-price">+ $30</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <li><span class="material-icons">close</span>Domain Name + Business Email</li>
+                                    <li><span class="material-icons">close</span>FREE 1st Year Business Phone Number</li>
                                     <li><span class="material-icons">check</span>Lifetime Compliance Alerts</li>
-                                    <li><span class="material-icons">check</span>Unlimited Phone & Email Support</li>
                                     <li><span class="material-icons">check</span>Online Access Dashboard</li>
-                                    <li><span class="material-icons">check</span>Business Banking Account Offer</li>
+                                    <li><span class="material-icons">check</span>Document Management</li>
+                                    <li><span class="material-icons">close</span>Business Banking Account Offer</li>
                                     <li><span class="material-icons">check</span>Business Tax Consultation</li>
-                                    <li><span class="material-icons">check</span>IRS Form 2553</li>
+                                    <li><span class="material-icons">check</span>Calendar</li>
+                                    <li><span class="material-icons">check</span>Tax Filing Discount Voucher</li>
+                                    <li><span class="material-icons">check</span>Bookkeeping Templates</li>
                                 </ul>
-                                <div class="addon-options">
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="expedited-filing" checked disabled>
-                                        <label for="expedited-filing">
-                                            <span class="addon-name">Expedited Filing</span>
-                                            <span class="addon-description">1 business day (instead of 3 weeks)</span>
-                                            <span class="addon-price">+ $50</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="business-templates" checked disabled>
-                                        <label for="business-templates">
-                                            <span class="addon-name">Business Contract Templates</span>
-                                            <span class="addon-description">Access to essential business contract templates</span>
-                                            <span class="addon-price">+ $150</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="ein-service" checked disabled>
-                                        <label for="ein-service">
-                                            <span class="addon-name">EIN Business Tax Number</span>
-                                            <span class="addon-description">Federal Tax ID registration with the IRS</span>
-                                            <span class="addon-price">+ $70</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="addon-option">
-                                        <input type="checkbox" id="corporate-bylaws" checked disabled>
-                                        <label for="corporate-bylaws">
-                                            <span class="addon-name">Corporate Bylaws</span>
-                                            <span class="addon-description">Customized corporate bylaws document</span>
-                                            <span class="addon-price">+ $30</span>
-                                        </label>
-                                    </div>
-                                </div>
+              
                             </div>
                         </div>
                     </div>
@@ -623,7 +631,7 @@
                                         <h4>Professional Business Address & Virtual Mail Service</h4>
                                     </div>
                                     <div class="address-details">
-                                        <p class="address-text">45 Colvin Ave, Suite 120 Albany, NY 12206</p>
+                                        <p class="address-text">45 Colvin Ave， Suite 120-0001， Albany NY 12206</p>
                                         <p class="suite-note">Suite # assigned upon order completion</p>
                                         <ul class="features-list">
                                             <li>Maintain privacy by using a commercial address</li>

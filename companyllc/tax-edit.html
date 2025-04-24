@@ -43,7 +43,7 @@
         }
 
         .tax-form {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto 2.5rem;
             background-color: white;
             border-radius: var(--radius-lg);
@@ -614,11 +614,11 @@
             <div class="address-options">
                 <div class="physical-address-option checkbox-group">
                     <label class="checkbox-container">
-                        <input type="checkbox" id="useCustomAddressCheck">
+                        <input type="checkbox" id="useCustomAddressCheck" checked>
                         <span class="checkmark"></span>
                         <div class="checkbox-label">
                             <span class="material-icons location-icon">location_on</span>
-                            <span id="customAddressText">222 Newyork, New 111, CN.</span>
+                            <span id="customAddressText">Juliet, 11, Newyork, NY 12345, US.</span>
                         </div>
                     </label>
                 </div>
@@ -627,30 +627,30 @@
                 
                 <div class="company-address-option checkbox-group">
                     <label class="checkbox-container">
-                        <input type="checkbox" id="useCompanyAddressCheck" checked>
+                        <input type="checkbox" id="useCompanyAddressCheck">
                         <span class="checkmark"></span>
                         <div class="checkbox-label">
                             <span class="material-icons location-icon">location_on</span>
-                            Use the assigned company address provided by Bizee
+                            Use the assigned company address provided by uTaxes
                         </div>
                     </label>
                 </div>
             </div>
             
-            <div class="info-message success-message" id="addressSuccessMsg">
+            <div class="info-message success-message" id="addressSuccessMsg" style="display:none;">
                 <span class="material-icons info-icon">info</span>
                 <div class="info-content">
-                    <p class="info-title">You have selected for Bizee to provide you with a company address.</p>
+                    <p class="info-title">You have selected for uTaxes to provide you with a company address.</p>
                     <p class="info-description">We will use the company address for the EIN information in order to shield your personal information from being publicly available.</p>
                 </div>
             </div>
             
-            <div class="physical-address-section" id="physicalAddressSection" style="display:none;">
+            <div class="physical-address-section" id="physicalAddressSection">
                 <div class="form-group">
                     <label class="form-label">Country</label>
                     <select class="select-control" id="country">
-                        <option value="US">United States</option>
-                        <option value="CN" selected>China (中国)</option>
+                        <option value="US" selected>United States of America (United States)</option>
+                        <option value="CN">China (中国)</option>
                         <option value="CA">Canada</option>
                         <option value="UK">United Kingdom</option>
                     </select>
@@ -658,12 +658,12 @@
                 
                 <div class="form-group">
                     <label class="form-label">Street Address</label>
-                    <input type="text" class="form-control" id="street" value="222">
+                    <input type="text" class="form-control" id="street" value="Juliet">
                 </div>
                 
                 <div class="form-group">
                     <label class="form-label">Address (Cont) <span class="optional">(Optional)</span></label>
-                    <input type="text" class="form-control" id="street2">
+                    <input type="text" class="form-control" id="street2" value="11">
                 </div>
                 
                 <div class="form-group">
@@ -674,12 +674,20 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">State</label>
-                        <input type="text" class="form-control" id="state" value="New">
+                        <select class="select-control" id="state">
+                            <option value="">Select State</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <!-- Add other states -->
+                            <option value="NY" selected>New York</option>
+                            <!-- Add remaining states -->
+                        </select>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label">Zip Code</label>
-                        <input type="text" class="form-control" id="zip" value="111">
+                        <input type="text" class="form-control" id="zip" value="12345">
                     </div>
                 </div>
             </div>

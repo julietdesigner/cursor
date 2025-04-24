@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateButtonText(businessType) {
         const buttons = document.querySelectorAll('.calculate-btn');
         // 不再检查业务类型，始终使用LLC
-        const buttonText = 'Start an LLC';
+        const buttonText = 'Pay $505.00';
         
         buttons.forEach(button => {
             button.textContent = buttonText;
