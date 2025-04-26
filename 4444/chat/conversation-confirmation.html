@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Help Center - Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 确认页面 -->
+        <section class="page new-conversation-page active">
+            <div class="chat-header">
+                <div class="back-button" id="back-button">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="chat-profile">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Fin</h3>
+                        <p>The team can also help</p>
+                    </div>
+                </div>
+                <div class="more-options">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="expand-button">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+            </div>
+            
+            <div class="chat-container">
+                <div class="system-message">
+                    <p>Hi! How can we help?</p>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>Welcome to OpenAI's Help Center!</p>
+                    </div>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>Hi! What can we help with?</p>
+                    </div>
+                </div>
+                
+                <div class="user-message">
+                    <div class="message-bubble user-bubble">
+                        <p>Payments and Billing</p>
+                    </div>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>What type of help do you need?</p>
+                    </div>
+                </div>
+                
+                <div class="user-message">
+                    <div class="message-bubble user-bubble">
+                        <p>Something else</p>
+                    </div>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>Please provide more details about your Payments and Billing issue:</p>
+                    </div>
+                </div>
+                
+                <div class="user-message">
+                    <div class="message-bubble user-bubble">
+                        <p>[Form submitted with your billing issue details]</p>
+                    </div>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>Thank you for submitting your issue. We've received your request and a member of our team will get back to you within 1-2 business days at the email address you provided.</p>
+                    </div>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>Your case number is: <strong>#OAI-<span id="case-number">12345678</span></strong></p>
+                        <p>Please keep this reference number for future communications about this issue.</p>
+                    </div>
+                </div>
+                
+                <div class="confirmation-actions">
+                    <button class="option-button" id="start-over-button">Start a new conversation</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 生成随机案例编号
+            const caseNumber = Math.floor(10000000 + Math.random() * 90000000);
+            document.getElementById('case-number').textContent = caseNumber;
+            
+            // 返回按钮功能
+            document.getElementById('back-button').addEventListener('click', function() {
+                window.location.href = 'conversation-step4.html';
+            });
+            
+            // 开始新对话按钮
+            document.getElementById('start-over-button').addEventListener('click', function() {
+                window.location.href = 'new-conversation.html';
+            });
+        });
+    </script>
+</body>
+</html> 

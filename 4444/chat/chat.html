@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Help Center - Chat</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 聊天页面 -->
+        <section class="page chat-page active">
+            <div class="chat-header">
+                <div class="back-button" id="back-button">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="chat-profile">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Fin</h3>
+                        <p>The team can also help</p>
+                    </div>
+                </div>
+                <div class="expand-button">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+            </div>
+            
+            <div class="chat-container">
+                <div class="system-message">
+                    <p>Hi! How can we help?</p>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>Welcome to OpenAI's Help Center!</p>
+                    </div>
+                </div>
+                
+                <div class="user-message" style="display: none;">
+                    <div class="message-bubble user-bubble">
+                        <p>I need help with my account</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <button class="get-started-btn" id="get-started-btn">Get started</button>
+                <div class="text-input-container" id="text-input-container" style="display: none;">
+                    <input type="text" class="chat-input" placeholder="Message..." />
+                    <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 返回按钮功能
+            document.getElementById('back-button').addEventListener('click', function() {
+                window.location.href = 'messages.html';
+            });
+            
+            // Get started 按钮功能
+            const getStartedBtn = document.getElementById('get-started-btn');
+            const textInputContainer = document.getElementById('text-input-container');
+            const userMessage = document.querySelector('.user-message');
+            const chatInput = document.querySelector('.chat-input');
+            const sendBtn = document.querySelector('.send-btn');
+            
+            getStartedBtn.addEventListener('click', function() {
+                // 显示用户消息
+                userMessage.style.display = 'flex';
+                
+                // 隐藏Get started按钮并显示输入框
+                getStartedBtn.style.display = 'none';
+                textInputContainer.style.display = 'flex';
+                
+                // 向下滚动聊天内容
+                const chatContainer = document.querySelector('.chat-container');
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                
+                // 聚焦输入框
+                setTimeout(() => {
+                    chatInput.focus();
+                }, 100);
+            });
+            
+            // 发送消息功能
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    // 创建新的用户消息元素
+                    const newMessage = document.createElement('div');
+                    newMessage.className = 'user-message';
+                    newMessage.innerHTML = `
+                        <div class="message-bubble user-bubble">
+                            <p>${message}</p>
+                        </div>
+                    `;
+                    
+                    // 添加到聊天容器
+                    const chatContainer = document.querySelector('.chat-container');
+                    chatContainer.appendChild(newMessage);
+                    
+                    // 清空输入框
+                    chatInput.value = '';
+                    
+                    // 向下滚动聊天内容
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                    
+                    // 模拟AI响应
+                    setTimeout(() => {
+                        const aiResponse = document.createElement('div');
+                        aiResponse.className = 'ai-message';
+                        aiResponse.innerHTML = `
+                            <div class="avatar">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                            </div>
+                            <div class="message-bubble">
+                                <p>Thank you for your message. Our team will assist you with your account shortly.</p>
+                            </div>
+                        `;
+                        chatContainer.appendChild(aiResponse);
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                    }, 1000);
+                }
+            }
+            
+            // 发送按钮点击事件
+            sendBtn.addEventListener('click', sendMessage);
+            
+            // 输入框回车键事件
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

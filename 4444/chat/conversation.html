@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Help Center - Conversation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 详细聊天对话页面 -->
+        <section class="page conversation-page active">
+            <div class="chat-header">
+                <div class="back-button" id="back-button">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="chat-profile">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Fin</h3>
+                        <p>The team can also help</p>
+                    </div>
+                </div>
+                <div class="more-options">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="expand-button">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+            </div>
+            
+            <div class="chat-container full-conversation">
+                <div class="ai-message long-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>
+                            ChatGPT Plus subscription was unintentional, and while a $13.95 refund was issued, your preference is to retain the original Plus plan and continue service without disruption. We do apologize for the inconvenience this may have caused. Rest assured, we are here to assist you.
+                        </p>
+                        <p class="message-space"></p>
+                        <p>
+                            Based on our investigation, you currently have an active ChatGPT Plus subscription that started on April 23, 2025.
+                        </p>
+                        <p class="message-space"></p>
+                        <p>
+                            We're glad to see your subscription is active again, and you'll be able to continue enjoying Plus features without interruption. If you have any other questions or need help with anything else, feel free to reach out—we're always here to support you.
+                        </p>
+                        <p class="message-space"></p>
+                        <p>
+                            Have a great day and stay safe.
+                        </p>
+                        <p class="message-space"></p>
+                        <p>
+                            Best,<br>
+                            Maureen<br>
+                            OpenAI Support
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="rate-conversation-container">
+                    <div class="rate-title">Rate your conversation</div>
+                    <div class="rating-emojis">
+                        <span class="emoji-rating" data-rating="1">😡</span>
+                        <span class="emoji-rating" data-rating="2">😕</span>
+                        <span class="emoji-rating" data-rating="3">😐</span>
+                        <span class="emoji-rating" data-rating="4">😄</span>
+                        <span class="emoji-rating" data-rating="5">😁</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <div class="text-input-container" style="display: flex;">
+                    <input type="text" class="chat-input" placeholder="Message...">
+                    <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 返回按钮功能
+            document.getElementById('back-button').addEventListener('click', function() {
+                window.location.href = 'messages.html';
+            });
+            
+            // 评分功能
+            const emojiRatings = document.querySelectorAll('.emoji-rating');
+            emojiRatings.forEach(emoji => {
+                emoji.addEventListener('click', function() {
+                    // 移除之前的选中状态
+                    emojiRatings.forEach(e => e.classList.remove('selected'));
+                    // 添加当前选中状态
+                    this.classList.add('selected');
+                    
+                    const rating = this.getAttribute('data-rating');
+                    console.log('Rating: ' + rating); // 实际应用中可以发送到服务器
+                    
+                    // 显示感谢消息
+                    setTimeout(() => {
+                        document.querySelector('.rate-conversation-container').innerHTML = 
+                            '<div class="rate-thank-you">Thanks for your feedback!</div>';
+                    }, 500);
+                });
+            });
+            
+            // 发送消息功能
+            const chatInput = document.querySelector('.chat-input');
+            const sendBtn = document.querySelector('.send-btn');
+            
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    // 创建新的用户消息元素
+                    const newMessage = document.createElement('div');
+                    newMessage.className = 'user-message';
+                    newMessage.innerHTML = `
+                        <div class="message-bubble user-bubble">
+                            <p>${message}</p>
+                        </div>
+                    `;
+                    
+                    // 添加到评分容器之前
+                    const rateContainer = document.querySelector('.rate-conversation-container');
+                    rateContainer.parentNode.insertBefore(newMessage, rateContainer);
+                    
+                    // 清空输入框
+                    chatInput.value = '';
+                    
+                    // 向下滚动聊天内容
+                    const chatContainer = document.querySelector('.chat-container');
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+            }
+            
+            // 发送按钮点击事件
+            sendBtn.addEventListener('click', sendMessage);
+            
+            // 回车键发送
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Help Center - Subscription Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 订阅确认页面 -->
+        <section class="page confirmation-page active">
+            <div class="header">
+                <h2>How can we help?</h2>
+            </div>
+            
+            <div class="confirmation-container">
+                <div class="card recent-message">
+                    <h3>Recent message</h3>
+                    <div class="message-item">
+                        <div class="avatar">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="OpenAI">
+                        </div>
+                        <div class="message-content">
+                            <div class="message-text">Rate your conversation</div>
+                            <div class="message-info">Maureen · 1d ago</div>
+                        </div>
+                        <div class="arrow-icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card confirmation-card">
+                    <div class="confirmation-message">
+                        <p>Confirm your subscription by clicking the link in your email</p>
+                    </div>
+                    <button class="btn-done" id="btn-done">Done</button>
+                </div>
+                
+                <div class="card search-container">
+                    <div class="search-container-header">
+                        <h3>Search for help</h3>
+                        <i class="fas fa-search" id="search-icon"></i>
+                    </div>
+                    
+                    <div class="help-links">
+                        <div class="help-link-item">
+                            <div class="link-text">Student discounts for ChatGPT Plus (US/Canada)</div>
+                            <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                        <div class="help-link-item">
+                            <div class="link-text">Network recommendations for ChatGPT errors on web and apps</div>
+                            <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 底部导航栏 -->
+            <nav class="bottom-nav">
+                <div class="nav-item active" onclick="window.location.href='home.html'">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item" onclick="window.location.href='messages.html'">
+                    <i class="fas fa-comment-alt"></i>
+                    <span>Messages</span>
+                </div>
+                <div class="nav-item" onclick="window.location.href='help.html'">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help</span>
+                </div>
+            </nav>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Done按钮点击事件
+            document.getElementById('btn-done').addEventListener('click', function() {
+                window.location.href = 'home.html';
+            });
+            
+            // 搜索图标点击事件
+            document.getElementById('search-icon').addEventListener('click', function() {
+                window.location.href = 'search.html';
+            });
+            
+            // 帮助链接点击事件
+            const helpLinkItems = document.querySelectorAll('.help-link-item');
+            helpLinkItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const linkText = this.querySelector('.link-text').textContent;
+                    window.location.href = 'search.html?query=' + encodeURIComponent(linkText);
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

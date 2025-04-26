@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Help Center - Request a Refund</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <section class="page conversation-step3 active">
+            <div class="chat-header">
+                <div class="back-button" id="back-button">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="chat-profile">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Fin</h3>
+                        <p>The team can also help</p>
+                    </div>
+                </div>
+                <div class="more-options">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="expand-button">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+            </div>
+            
+            <div class="chat-container">
+                <div class="system-message">
+                    <p>Category: Payments and Billing > Request a Refund</p>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>I can help you with your refund request. To better assist you, I need some information about your subscription.</p>
+                    </div>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>Which of the following best describes your situation?</p>
+                        <div class="option-grid">
+                            <button class="option-button" id="accidental-button">Accidental purchase</button>
+                            <button class="option-button" id="unsatisfied-button">Unsatisfied with service</button>
+                            <button class="option-button" id="duplicate-button">Duplicate charge</button>
+                            <button class="option-button" id="other-refund-button">Other reason</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <textarea class="chat-input" placeholder="Type a message..."></textarea>
+                <button class="send-button">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 返回按钮功能
+            document.getElementById('back-button').addEventListener('click', function() {
+                window.location.href = 'conversation-step2.html';
+            });
+            
+            // 选项按钮点击事件
+            const refundOptions = ['accidental-button', 'unsatisfied-button', 'duplicate-button', 'other-refund-button'];
+            refundOptions.forEach(function(buttonId) {
+                document.getElementById(buttonId).addEventListener('click', function() {
+                    const buttonElement = document.getElementById(buttonId);
+                    const reason = buttonElement.textContent;
+                    
+                    // 添加用户的选择到聊天界面
+                    const chatContainer = document.querySelector('.chat-container');
+                    
+                    // 添加用户消息
+                    const userMessage = document.createElement('div');
+                    userMessage.className = 'user-message';
+                    userMessage.innerHTML = `
+                        <div class="message-bubble">
+                            <p>${reason}</p>
+                        </div>
+                    `;
+                    chatContainer.appendChild(userMessage);
+                    
+                    // 添加系统"正在输入"状态
+                    setTimeout(function() {
+                        // 添加AI回复
+                        const aiMessage = document.createElement('div');
+                        aiMessage.className = 'ai-message';
+                        aiMessage.innerHTML = `
+                            <div class="avatar">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                            </div>
+                            <div class="message-bubble">
+                                <p>Thanks for providing that information. I've submitted your refund request for the reason: "${reason}". You should receive an email confirmation shortly, and the refund will be processed within 5-7 business days.</p>
+                                <p>Is there anything else I can help you with today?</p>
+                            </div>
+                        `;
+                        chatContainer.appendChild(aiMessage);
+                        
+                        // 滚动到底部
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                    }, 1000);
+                    
+                    // 移除选项按钮
+                    document.querySelector('.option-grid').remove();
+                    
+                    // 滚动到底部
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                });
+            });
+            
+            // 发送按钮点击事件
+            document.querySelector('.send-button').addEventListener('click', function() {
+                sendMessage();
+            });
+            
+            // 输入框回车事件
+            document.querySelector('.chat-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+            
+            // 发送消息函数
+            function sendMessage() {
+                const input = document.querySelector('.chat-input');
+                const message = input.value.trim();
+                
+                if (message) {
+                    const chatContainer = document.querySelector('.chat-container');
+                    
+                    // 添加用户消息
+                    const userMessage = document.createElement('div');
+                    userMessage.className = 'user-message';
+                    userMessage.innerHTML = `
+                        <div class="message-bubble">
+                            <p>${message}</p>
+                        </div>
+                    `;
+                    chatContainer.appendChild(userMessage);
+                    
+                    // 清空输入框
+                    input.value = '';
+                    
+                    // 添加AI回复
+                    setTimeout(function() {
+                        const aiMessage = document.createElement('div');
+                        aiMessage.className = 'ai-message';
+                        aiMessage.innerHTML = `
+                            <div class="avatar">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                            </div>
+                            <div class="message-bubble">
+                                <p>Thank you for reaching out. Your case has been assigned to our customer support team, and they will contact you soon to assist further.</p>
+                                <p>For now, you can return to the <a href="new-conversation.html">Help Center</a> if you need help with anything else.</p>
+                            </div>
+                        `;
+                        chatContainer.appendChild(aiMessage);
+                        
+                        // 滚动到底部
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                    }, 1000);
+                    
+                    // 滚动到底部
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

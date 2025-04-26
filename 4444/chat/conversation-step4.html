@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Help Center - New Conversation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 新对话页面 - 步骤4 -->
+        <section class="page new-conversation-page active">
+            <div class="chat-header">
+                <div class="back-button" id="back-button">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="chat-profile">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Fin</h3>
+                        <p>The team can also help</p>
+                    </div>
+                </div>
+                <div class="more-options">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="expand-button">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+            </div>
+            
+            <div class="chat-container">
+                <div class="system-message">
+                    <p>Hi! How can we help?</p>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>Welcome to OpenAI's Help Center!</p>
+                    </div>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>Hi! What can we help with?</p>
+                    </div>
+                </div>
+                
+                <div class="user-message">
+                    <div class="message-bubble user-bubble">
+                        <p>Payments and Billing</p>
+                    </div>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>What type of help do you need?</p>
+                    </div>
+                </div>
+                
+                <div class="user-message">
+                    <div class="message-bubble user-bubble">
+                        <p>Something else</p>
+                    </div>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>Please provide more details about your Payments and Billing issue:</p>
+                    </div>
+                </div>
+                
+                <div class="form-container">
+                    <form id="help-form">
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Issue description</label>
+                            <textarea id="description" name="description" placeholder="Please describe your issue in detail..." rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="subscription">Subscription type</label>
+                            <select id="subscription" name="subscription">
+                                <option value="">Select your subscription</option>
+                                <option value="chatgpt-plus">ChatGPT Plus</option>
+                                <option value="team">ChatGPT Team</option>
+                                <option value="enterprise">ChatGPT Enterprise</option>
+                                <option value="api">API</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="submit-button">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 返回按钮功能
+            document.getElementById('back-button').addEventListener('click', function() {
+                window.location.href = 'conversation-step3.html';
+            });
+            
+            // 表单提交功能
+            document.getElementById('help-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // 获取表单数据
+                const email = document.getElementById('email').value;
+                const description = document.getElementById('description').value;
+                const subscription = document.getElementById('subscription').value;
+                
+                // 在实际应用中，这里会发送数据到服务器
+                console.log('Form submitted:', { email, description, subscription });
+                
+                // 跳转到确认页面
+                window.location.href = 'conversation-confirmation.html';
+            });
+        });
+    </script>
+</body>
+</html> 

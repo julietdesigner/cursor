@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Help Center - Help</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 帮助页面 -->
+        <section class="page help-page active">
+            <div class="header">
+                <h2>Help</h2>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Search for help">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="collections-container">
+                <h3>11 collections</h3>
+                
+                <div class="collection-item">
+                    <div class="collection-info">
+                        <h4>Account, login and billing</h4>
+                        <p>Refund requests, billing and login issues</p>
+                        <span class="article-count">61 articles</span>
+                    </div>
+                    <div class="arrow-icon">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <div class="collection-info">
+                        <h4>Privacy and policies</h4>
+                        <p>Details on data privacy and usage policies</p>
+                        <span class="article-count">38 articles</span>
+                    </div>
+                    <div class="arrow-icon">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <div class="collection-info">
+                        <h4>API</h4>
+                        <p>Common questions related to our APIs and models</p>
+                        <span class="article-count">90 articles</span>
+                    </div>
+                    <div class="arrow-icon">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <div class="collection-info">
+                        <h4>ChatGPT</h4>
+                        <p>All things about ChatGPT</p>
+                        <span class="article-count">204 articles</span>
+                    </div>
+                    <div class="arrow-icon">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="send-message-btn" id="send-message-btn" style="display: block; margin-top: 40px;">
+                <span>Send us a message</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </section>
+
+        <!-- 底部导航栏 -->
+        <nav class="bottom-nav">
+            <div class="nav-item" onclick="window.location.href='home.html'">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='messages.html'">
+                <i class="fas fa-comment-alt"></i>
+                <span>Messages</span>
+            </div>
+            <div class="nav-item active">
+                <i class="fas fa-question-circle"></i>
+                <span>Help</span>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 点击"Send us a message"打开聊天页面
+            document.getElementById('send-message-btn').addEventListener('click', function() {
+                window.location.href = 'chat.html';
+            });
+        });
+    </script>
+</body>
+</html> 

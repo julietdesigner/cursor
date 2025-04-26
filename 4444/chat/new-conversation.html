@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Help Center - New Conversation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 新对话页面 -->
+        <section class="page new-conversation-page active">
+            <div class="chat-header">
+                <div class="back-button disabled">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="chat-profile">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Fin</h3>
+                        <p>The team can also help</p>
+                    </div>
+                </div>
+                <div class="more-options">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="expand-button">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+            </div>
+            
+            <div class="chat-container">
+                <div class="system-message">
+                    <p>Hi! How can we help?</p>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>Welcome to OpenAI's Help Center!</p>
+                    </div>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>Hi! What can we help with?</p>
+                        <div class="option-grid">
+                            <button class="option-button" id="account-button">Account</button>
+                            <button class="option-button" id="payments-button">Payments and Billing</button>
+                            <button class="option-button" id="usage-button">Usage & Limits</button>
+                            <button class="option-button" id="api-button">API</button>
+                            <button class="option-button" id="product-button">Product Issues</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 支付和账单按钮的点击事件
+            document.getElementById('payments-button').addEventListener('click', function() {
+                window.location.href = 'conversation-step2.html';
+            });
+            
+            // 其他按钮的点击事件 - 目前仅实现支付和账单流程
+            const otherButtons = ['account-button', 'usage-button', 'api-button', 'product-button'];
+            otherButtons.forEach(function(buttonId) {
+                document.getElementById(buttonId).addEventListener('click', function() {
+                    alert('此功能尚未实现。目前只提供"支付和账单"的演示流程。');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

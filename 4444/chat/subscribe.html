@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Help Center - Subscribe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 订阅页面 -->
+        <section class="page subscribe-page active">
+            <div class="header">
+                <div class="back-button" id="back-button">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <h2>Subscribe to Updates</h2>
+            </div>
+            
+            <div class="subscribe-container">
+                <div class="card recent-message">
+                    <h3>Recent message</h3>
+                    <div class="message-item">
+                        <div class="avatar">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="OpenAI">
+                        </div>
+                        <div class="message-content">
+                            <div class="message-text">Rate your conversation</div>
+                            <div class="message-info">Maureen · 1d ago</div>
+                        </div>
+                        <div class="arrow-icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card email-subscribe">
+                    <h3>Email address</h3>
+                    <div class="email-input-container">
+                        <input type="email" id="email-input" placeholder="Enter your email address">
+                    </div>
+                    <button class="btn-subscribe-email" id="btn-subscribe-email">Subscribe</button>
+                    <button class="btn-cancel" id="btn-cancel">Cancel</button>
+                </div>
+                
+                <div class="card search-container">
+                    <div class="search-container-header">
+                        <h3>Search for help</h3>
+                        <i class="fas fa-search" id="search-icon"></i>
+                    </div>
+                    
+                    <div class="help-links">
+                        <div class="help-link-item" id="student-discount-link">
+                            <div class="link-text">Student discounts for ChatGPT Plus</div>
+                            <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 返回按钮功能
+            document.getElementById('back-button').addEventListener('click', function() {
+                window.location.href = 'home.html';
+            });
+            
+            // 订阅按钮功能
+            document.getElementById('btn-subscribe-email').addEventListener('click', function() {
+                const email = document.getElementById('email-input').value.trim();
+                if (email) {
+                    // 重定向到确认页面
+                    window.location.href = 'confirmation.html';
+                } else {
+                    alert('Please enter a valid email address');
+                }
+            });
+            
+            // 取消按钮功能
+            document.getElementById('btn-cancel').addEventListener('click', function() {
+                window.location.href = 'home.html';
+            });
+            
+            // 搜索图标点击事件
+            document.getElementById('search-icon').addEventListener('click', function() {
+                window.location.href = 'search.html';
+            });
+            
+            // 学生折扣链接点击事件
+            document.getElementById('student-discount-link').addEventListener('click', function() {
+                window.location.href = 'search.html?query=Student+discounts+for+ChatGPT+Plus';
+            });
+        });
+    </script>
+</body>
+</html> 

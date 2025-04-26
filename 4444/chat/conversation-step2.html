@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Help Center - Payments and Billing</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <section class="page conversation-step2 active">
+            <div class="chat-header">
+                <div class="back-button" id="back-button">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="chat-profile">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Fin</h3>
+                        <p>The team can also help</p>
+                    </div>
+                </div>
+                <div class="more-options">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="expand-button">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+            </div>
+            
+            <div class="chat-container">
+                <div class="system-message">
+                    <p>Category: Payments and Billing</p>
+                </div>
+                
+                <div class="ai-message">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="Fin">
+                    </div>
+                    <div class="message-bubble">
+                        <p>I can help with your payments and billing questions. What specifically are you looking for help with?</p>
+                        <div class="option-grid">
+                            <button class="option-button" id="refund-button">Request a refund</button>
+                            <button class="option-button" id="payment-button">Payment method issues</button>
+                            <button class="option-button" id="cancel-button">Cancel subscription</button>
+                            <button class="option-button" id="invoice-button">Get an invoice</button>
+                            <button class="option-button" id="other-button">Other billing question</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 返回按钮功能
+            document.getElementById('back-button').addEventListener('click', function() {
+                window.location.href = 'new-conversation.html';
+            });
+            
+            // 退款请求按钮功能
+            document.getElementById('refund-button').addEventListener('click', function() {
+                window.location.href = 'conversation-step3.html';
+            });
+            
+            // 其他按钮的点击事件 - 目前仅实现退款请求流程
+            const otherButtons = ['payment-button', 'cancel-button', 'invoice-button', 'other-button'];
+            otherButtons.forEach(function(buttonId) {
+                document.getElementById(buttonId).addEventListener('click', function() {
+                    alert('此功能尚未实现。目前只提供"请求退款"的演示流程。');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

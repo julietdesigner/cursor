@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Help Center - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 主页部分 -->
+        <section class="page home-page active">
+            <div class="greeting-container">
+                <h1>Hi <span class="email">user@example.com</span> <span class="wave">👋</span></h1>
+                <h2>How can we help?</h2>
+            </div>
+
+            <div class="card recent-message">
+                <h3>Recent message</h3>
+                <div class="message-item" id="recent-message-item">
+                    <div class="avatar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="OpenAI">
+                    </div>
+                    <div class="message-content">
+                        <div class="message-text">Rate your conversation</div>
+                        <div class="message-info">Maureen · 1d ago</div>
+                    </div>
+                    <div class="arrow-icon">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card notification">
+                <div class="notification-content">
+                    <div class="notification-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="notification-text">
+                        <h4>New users may experience temporary delays in video generation capabilities</h4>
+                        <p>Ongoing for 15 days</p>
+                    </div>
+                </div>
+                <button class="btn-subscribe" id="btn-subscribe">Subscribe to updates</button>
+            </div>
+
+            <div class="card search-container">
+                <div class="search-box">
+                    <input type="text" id="home-search-input" placeholder="Search for help">
+                    <button class="search-btn" id="home-search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="help-links">
+                    <div class="help-link-item">
+                        <div class="link-text">Network recommendations for ChatGPT errors on web and apps</div>
+                        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    <div class="help-link-item">
+                        <div class="link-text">How can I contact support?</div>
+                        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    <div class="help-link-item">
+                        <div class="link-text">What is the ChatGPT model selector?</div>
+                        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    <div class="help-link-item">
+                        <div class="link-text">What happens after I submit my ID for age verification?</div>
+                        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card message-us" id="message-us-btn">
+                <div class="message-us-content">
+                    <div>Send us a message</div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <div class="card api-reference">
+                <div class="api-reference-content">
+                    <div>API Reference</div>
+                    <i class="fas fa-external-link-alt"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部导航栏 -->
+        <nav class="bottom-nav">
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='messages.html'">
+                <i class="fas fa-comment-alt"></i>
+                <span>Messages</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='help.html'">
+                <i class="fas fa-question-circle"></i>
+                <span>Help</span>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 点击"Send us a message"打开聊天页面
+            document.getElementById('message-us-btn').addEventListener('click', function() {
+                window.location.href = 'chat.html';
+            });
+            
+            // 点击"Subscribe to updates"打开订阅页面
+            document.getElementById('btn-subscribe').addEventListener('click', function() {
+                window.location.href = 'subscribe.html';
+            });
+            
+            // 点击最近消息打开详细聊天页面
+            document.getElementById('recent-message-item').addEventListener('click', function() {
+                window.location.href = 'conversation.html';
+            });
+            
+            // 搜索功能
+            const homeSearchInput = document.getElementById('home-search-input');
+            const homeSearchBtn = document.getElementById('home-search-btn');
+            
+            function performSearch() {
+                const query = homeSearchInput.value.trim();
+                if (query) {
+                    window.location.href = 'search.html?query=' + encodeURIComponent(query);
+                }
+            }
+            
+            homeSearchBtn.addEventListener('click', performSearch);
+            
+            homeSearchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // 帮助链接点击事件
+            const helpLinkItems = document.querySelectorAll('.help-link-item');
+            helpLinkItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const linkText = this.querySelector('.link-text').textContent;
+                    window.location.href = 'search.html?query=' + encodeURIComponent(linkText);
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

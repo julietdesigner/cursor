@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Help Center - Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 搜索结果页面 -->
+        <section class="page search-page active">
+            <div class="header">
+                <div class="back-button" id="back-button">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <h2>Search Results</h2>
+            </div>
+            
+            <div class="search-result-container">
+                <div class="search-box full-width">
+                    <input type="text" id="search-input" placeholder="Search for help">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="search-results">
+                    <div class="search-result-item">
+                        <div class="search-result-title">Student discounts for ChatGPT Plus</div>
+                        <div class="search-result-content">
+                            <p>Learn about our student discount program for ChatGPT Plus subscriptions. Eligibility requirements and how to apply.</p>
+                        </div>
+                        <div class="arrow-icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="search-result-item">
+                        <div class="search-result-title">How to get started with ChatGPT</div>
+                        <div class="search-result-content">
+                            <p>A quick guide to help you get started with ChatGPT, including account setup and basic usage tips.</p>
+                        </div>
+                        <div class="arrow-icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="search-result-item">
+                        <div class="search-result-title">ChatGPT Plus features and benefits</div>
+                        <div class="search-result-content">
+                            <p>Explore the additional features and benefits available to ChatGPT Plus subscribers.</p>
+                        </div>
+                        <div class="arrow-icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 底部导航栏 -->
+            <nav class="bottom-nav">
+                <div class="nav-item" onclick="window.location.href='home.html'">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item" onclick="window.location.href='messages.html'">
+                    <i class="fas fa-comment-alt"></i>
+                    <span>Messages</span>
+                </div>
+                <div class="nav-item" onclick="window.location.href='help.html'">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help</span>
+                </div>
+            </nav>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 返回按钮功能
+            document.getElementById('back-button').addEventListener('click', function() {
+                window.history.back();
+            });
+            
+            // 搜索框功能
+            const searchInput = document.getElementById('search-input');
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('query');
+            
+            if (query) {
+                searchInput.value = query;
+            }
+            
+            // 搜索按钮点击事件
+            document.querySelector('.search-btn').addEventListener('click', function() {
+                const searchQuery = searchInput.value.trim();
+                if (searchQuery) {
+                    // 刷新页面，带上新的查询参数
+                    window.location.href = 'search.html?query=' + encodeURIComponent(searchQuery);
+                }
+            });
+            
+            // 回车键搜索
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const searchQuery = searchInput.value.trim();
+                    if (searchQuery) {
+                        window.location.href = 'search.html?query=' + encodeURIComponent(searchQuery);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
